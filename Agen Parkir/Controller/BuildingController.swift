@@ -172,8 +172,12 @@ class BuildingController: UIViewController, UICollectionViewDelegate {
                         self.listSearchBuilding.append(value)
                         
                         if index == buildingList.listBuilding.count - 1 {
+                            self.currentSearchPage += 1
+                            
                             self.buildingCollectionView.reloadData()
+                            
                             self.buildingCollectionView.isHidden = false
+                            
                             self.emptyText.isHidden = true
                         }
                     }

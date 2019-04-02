@@ -212,13 +212,8 @@ extension BuildingController{
                 self.view.layoutIfNeeded()
             }
             
-            if self.doingSearch {
-                self.doingSearch = false
-                self.buildingCollectionView.reloadData()
-                self.buildingCollectionView.scrollToItem(at: self.lastVisibleIndexPath, at: UICollectionView.ScrollPosition.centeredVertically, animated: true)
-            } else {
-                buildingCollectionView.isHidden = false
-            }
+            self.buildingCollectionView.reloadData()
+            self.buildingCollectionView.scrollToItem(at: self.lastVisibleIndexPath, at: UICollectionView.ScrollPosition.centeredVertically, animated: true)
             
             if self.listBuilding.count > 0 {
                 self.emptyText.isHidden = true
@@ -314,13 +309,16 @@ extension BuildingController: BuildingCellProtocol{
             storeController.data = (building_id: data.building_id, address: data.address, building_name: data.building_name)
             navigationController?.pushViewController(storeController, animated: true)
         }
-
     }
 }
 
 extension BuildingController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.tag == 1 {
+            //reset indexpath
+            self.lastVisibleSearchIndexPath = IndexPath(item: 0, section: 0)
+            //reset to page 1
+            self.currentSearchPage = 1
             //remove previous search
             self.listSearchBuilding.removeAll()
             //change flag

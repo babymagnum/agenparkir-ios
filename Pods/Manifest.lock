@@ -1,0 +1,102 @@
+PODS:
+  - Alamofire (4.8.1)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - FacebookCore (0.5.0):
+    - Bolts (~> 1.9)
+    - FBSDKCoreKit (~> 4.37)
+  - FacebookLogin (0.5.0):
+    - Bolts (~> 1.9)
+    - FacebookCore (~> 0.5)
+    - FBSDKCoreKit (~> 4.37)
+    - FBSDKLoginKit (~> 4.37)
+  - FBSDKCoreKit (4.41.0):
+    - Bolts (~> 1.9)
+  - FBSDKLoginKit (4.41.0):
+    - FBSDKCoreKit
+  - IQKeyboardManagerSwift (6.2.0)
+  - Kingfisher (4.10.1)
+  - MidtransCoreKit (1.15.0)
+  - MidtransKit (1.15.0):
+    - MidtransCoreKit (= 1.15.0)
+    - MidtransKit/UI (= 1.15.0)
+  - MidtransKit/UI (1.15.0):
+    - MidtransCoreKit (= 1.15.0)
+  - OneSignal (2.9.5)
+  - RxAtomic (4.4.2)
+  - RxCocoa (4.4.2):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
+  - ScalingCarousel (2.3)
+  - SendBirdSDK (3.0.132)
+  - SVProgressHUD (2.2.5)
+  - SwiftyJSON (4.2.0)
+  - XLPagerTabStrip (8.1.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - FacebookCore
+  - FacebookLogin
+  - IQKeyboardManagerSwift
+  - Kingfisher
+  - MidtransKit
+  - OneSignal (< 3.0, >= 2.6.2)
+  - RxCocoa (~> 4.0)
+  - RxSwift (~> 4.0)
+  - ScalingCarousel
+  - SendBirdSDK
+  - SVProgressHUD
+  - SwiftyJSON (~> 4.0)
+  - XLPagerTabStrip (~> 8.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Bolts
+    - FacebookCore
+    - FacebookLogin
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - MidtransCoreKit
+    - MidtransKit
+    - OneSignal
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
+    - ScalingCarousel
+    - SendBirdSDK
+    - SVProgressHUD
+    - SwiftyJSON
+    - XLPagerTabStrip
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FacebookCore: 74288d0add931d361b1596beae787ab72c438249
+  FacebookLogin: ebcf34714a1cb9f0759d9f071cfb01ed500996cf
+  FBSDKCoreKit: 974810fe3806173f3777c68062fa8ed6fa59b59d
+  FBSDKLoginKit: 159a5c2eebe6a0774c3b128f5085128679233d2b
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  MidtransCoreKit: fc4bb7ee80b28e847ae0d44e2134a6c0e18d68a9
+  MidtransKit: ad3fdd649354cbe3c4290c32cd64f296dc9a09f3
+  OneSignal: ccdeb961882f8668305e5b694e2cb7cb325fc907
+  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
+  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
+  ScalingCarousel: ee866c34c01b784b6edf9009f12ea73935517e3e
+  SendBirdSDK: a53ca2977953f2f91b2d35e60d29ea68e8888506
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  XLPagerTabStrip: 22d4c58200d7c105e0e407ab6bfd01a5d85014be
+
+PODFILE CHECKSUM: ef660ff54ef3dd916ec47b58029d4922fb24e0c8
+
+COCOAPODS: 1.5.3

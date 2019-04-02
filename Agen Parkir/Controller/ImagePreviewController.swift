@@ -95,6 +95,7 @@ extension ImagePreviewController {
             }
             
             SVProgressHUD.dismiss()
+            
             print("success send file message \(fileMessage?.url)")
             
             self.dismiss(animated: true) {

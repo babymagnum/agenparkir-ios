@@ -10,6 +10,7 @@ import UIKit
 import SendBirdSDK
 import RxSwift
 import RxCocoa
+import SVProgressHUD
 
 class ChatController: UIViewController, UICollectionViewDelegate, UITextFieldDelegate {
 
@@ -137,10 +138,18 @@ class ChatController: UIViewController, UICollectionViewDelegate, UITextFieldDel
     }
     
     private func populateData(_ channel: SBDGroupChannel) {
+        SVProgressHUD.show()
+        
         let previousMessageQuery = channel.createPreviousMessageListQuery()
         previousMessageQuery?.loadPreviousMessages(withLimit: 30, reverse: false, completionHandler: { (messages, error) in
             if let err = error {
                 print("error failed last message \(err.localizedDescription)")
+                return
+            }
+            
+            if messages?.count == 0 {
+                PublicFunction().showUnderstandDialog(self, "Empty Chat", "Ask anything to this store by typing chat in bottom of screen", "Understand")
+                SVProgressHUD.dismiss()
                 return
             }
             
@@ -158,12 +167,12 @@ class ChatController: UIViewController, UICollectionViewDelegate, UITextFieldDel
                 }
                 
                 if index == (messages?.count)! - 1 {
+                    SVProgressHUD.dismiss()
+                    
                     self.chatCollectionView.reloadData()
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                        let bottomOffset = CGPoint(x: 0, y: self.chatCollectionView.contentSize.height - self.chatCollectionView.bounds.size.height)
-                        self.chatCollectionView.setContentOffset(bottomOffset, animated: true)
-                    })
+                    //let bottomOffset = CGPoint(x: 0, y: self.chatCollectionView.contentSize.height)
+                    //self.chatCollectionView.setContentOffset(bottomOffset, animated: true)
                 }
             }
         })

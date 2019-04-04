@@ -178,7 +178,7 @@ class ParkingController: UIViewController, IndicatorInfoProvider {
         }
         
         if ongoingModel.vehicle_type == 0 {
-            let difference = Calendar.current.dateComponents([.second], from: PublicFunction().getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed)!, pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction().getDate(stringDate: PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
+            let difference = Calendar.current.dateComponents([.second], from: PublicFunction().getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed) ?? "\(PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"))", pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction().getDate(stringDate: PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
             print("time left for canceled timer \(UserDefaults.standard.integer(forKey: StaticVar.last_timer))")
             print("difference between last time and current time \(difference)")
             self.timerLast = UserDefaults.standard.integer(forKey: StaticVar.last_timer) - difference

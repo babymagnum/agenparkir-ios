@@ -16,6 +16,9 @@ target 'Agen Parkir' do
   pod 'FacebookLogin'
   pod 'OneSignal', '>= 2.6.2', '< 3.0'
   pod 'SendBirdSDK'
+  pod 'Firebase/Core'
+  pod 'Fabric', '~> 1.9.0'
+  pod 'Crashlytics', '~> 3.12.0'
 end
 
 target 'OneSignalNotificationServiceExtension' do

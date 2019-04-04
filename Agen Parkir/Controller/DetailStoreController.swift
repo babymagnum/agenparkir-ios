@@ -148,18 +148,18 @@ extension DetailStoreController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-//        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StoreHeaderReusableView", for: indexPath) as! StoreHeaderReusableView
-//        headerView.dataHeader = self.storeDetail
-//        return headerView
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StoreHeaderReusableView", for: indexPath) as! StoreHeaderReusableView
+        headerView.dataHeader = self.storeDetail
+        return headerView
         
-        switch kind {
-            case UICollectionView.elementKindSectionHeader:
-                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StoreHeaderReusableView", for: indexPath) as! StoreHeaderReusableView
-                headerView.dataHeader = self.storeDetail
-                return headerView
-            default:
-                assert(false, "Unexpected element kind")
-        }
+//        switch kind {
+//            case UICollectionView.elementKindSectionHeader:
+//                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StoreHeaderReusableView", for: indexPath) as! StoreHeaderReusableView
+//                headerView.dataHeader = self.storeDetail
+//                return headerView
+//            default:
+//                assert(false, "Unexpected element kind")
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

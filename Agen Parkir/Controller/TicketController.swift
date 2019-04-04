@@ -123,18 +123,18 @@ extension TicketController: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-//        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StadionHeaderReusableView", for: indexPath) as! StadionHeaderReusableView
-//        headerView.venueData = self.venueTicketModel
-//        return headerView
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StadionHeaderReusableView", for: indexPath) as! StadionHeaderReusableView
+        headerView.venueData = self.venueTicketModel
+        return headerView
         
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StadionHeaderReusableView", for: indexPath) as! StadionHeaderReusableView
-            headerView.venueData = self.venueTicketModel
-            return headerView
-        default:
-            assert(false, "Unexpected element kind")
-        }
+//        switch kind {
+//        case UICollectionView.elementKindSectionHeader:
+//            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StadionHeaderReusableView", for: indexPath) as! StadionHeaderReusableView
+//            headerView.venueData = self.venueTicketModel
+//            return headerView
+//        default:
+//            assert(false, "Unexpected element kind")
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

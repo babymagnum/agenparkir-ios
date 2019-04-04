@@ -204,6 +204,7 @@ class BookingController: UIViewController, UICollectionViewDelegate {
     }
     
     private func handleGesture() {
+        iconCancelBooking.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconCancelBookingClick)))
         textSelectedVehicle.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(textSelectedVehicleClick)))
         viewCancelVehicle.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewCancelVehicleClick)))
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
@@ -332,6 +333,10 @@ extension BookingController: UICollectionViewDataSource {
 }
 
 extension BookingController {
+    @objc func iconCancelBookingClick() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @objc func viewCarsClick() {
         vehicleType = 2
         changeToGreen(iconCars, "Artboard 130@0.75x-8", textCars)

@@ -7,12 +7,12 @@
 		<key>Agen Parkir.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>25</integer>
 		</dict>
 		<key>OneSignalNotificationServiceExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>26</integer>
 		</dict>
 	</dict>
 </dict>

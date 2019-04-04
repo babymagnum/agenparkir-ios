@@ -20,7 +20,7 @@ class LoginRegisterController: UIViewController {
     @IBOutlet weak var viewSignup: UIView!
     @IBOutlet weak var arrowSignup: UIImageView!
     @IBOutlet weak var viewFacebook: UIView!
-    //@IBOutlet weak var iconFacebook: UIImageView!
+    @IBOutlet weak var iconFacebook: UIImageView!
     @IBOutlet weak var viewGoogle: UIView!
     @IBOutlet weak var iconGoogle: UIImageView!
     
@@ -52,18 +52,17 @@ class LoginRegisterController: UIViewController {
     }
     
     private func customView(){
-        //iconFacebook.clipsToBounds = true
+        iconFacebook.clipsToBounds = true
         iconGoogle.clipsToBounds = true
         viewLogin.layer.cornerRadius = viewLogin.frame.height / 2
         viewSignup.layer.cornerRadius = viewSignup.frame.height / 2
         PublicFunction().changeTintColor(imageView: arrowLogin, hexCode: 0x4552FF, alpha: 1.0)
         PublicFunction().changeTintColor(imageView: arrowSignup, hexCode: 0x4552FF, alpha: 1.0)
-        //iconFacebook.clipsToBounds = true
         iconGoogle.clipsToBounds = true
-        //iconFacebook.layer.cornerRadius = iconFacebook.frame.width / 2
+        iconFacebook.layer.cornerRadius = iconFacebook.frame.width / 2
         iconGoogle.layer.cornerRadius = iconGoogle.frame.width / 2
-        viewGoogle.layer.cornerRadius = iconGoogle.frame.width / 2
-        //viewFacebook.layer.cornerRadius = 10
+        viewGoogle.layer.cornerRadius = viewGoogle.frame.height / 2
+        viewFacebook.layer.cornerRadius = 8
     }
     
     private func getFBUserData(){

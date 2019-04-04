@@ -16,6 +16,8 @@ class ReceiptsController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var emptyReceipts: UILabel!
     @IBOutlet weak var iconBack: UIImageView!
     
+    var lastVelocityYSign = 0
+    var allowLoadMore = false
     var listReceipts = [ReceiptsModel]()
     var currentPage = 1
     var popRecognizer: InteractivePopRecognizer?
@@ -49,8 +51,6 @@ class ReceiptsController: UIViewController, UICollectionViewDelegate {
             DispatchQueue.main.async {
                 SVProgressHUD.dismiss()
                 
-                self.receiptsCollectionView.isScrollEnabled = true
-                
                 switch listReceiptsOperation.state {
                 case .success?:
                     self.currentPage += 1
@@ -65,15 +65,17 @@ class ReceiptsController: UIViewController, UICollectionViewDelegate {
                     if self.listReceipts.count == 0 {
                         self.emptyReceipts.isHidden = false
                         PublicFunction().showUnderstandDialog(self, "Empty Receipts", "You haven't make any order yet", "Understand")
-                    } else {
-                        PublicFunction().showUnderstandDialog(self, "End Of List", "You have reach the end of list", "Understand")
                     }
                 case .error?:
-                    self.emptyReceipts.isHidden = false
-                    PublicFunction().showUnderstandDialog(self, "Error", listReceiptsOperation.error!, "Understand")
+                    if self.listReceipts.count == 0 {
+                        self.emptyReceipts.isHidden = false
+                        PublicFunction().showUnderstandDialog(self, "Error", listReceiptsOperation.error!, "Understand")
+                    }
                 default:
-                    self.emptyReceipts.isHidden = false
-                    PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please refresh the page", "Understand")
+                    if self.listReceipts.count == 0 {
+                        self.emptyReceipts.isHidden = false
+                        PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please refresh the page", "Understand")
+                    }
                 }
             }
         }
@@ -106,8 +108,25 @@ class ReceiptsController: UIViewController, UICollectionViewDelegate {
 extension ReceiptsController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == listReceipts.count - 1 {
-            self.receiptsCollectionView.isScrollEnabled = false
-            self.loadReceipts()
+            if allowLoadMore {
+                self.loadReceipts()
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentVelocityY =  scrollView.panGestureRecognizer.velocity(in: scrollView.superview).y
+        let currentVelocityYSign = Int(currentVelocityY).signum()
+        
+        if currentVelocityYSign != lastVelocityYSign &&
+            currentVelocityYSign != 0 {
+            lastVelocityYSign = currentVelocityYSign
+        }
+        
+        if lastVelocityYSign < 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.allowLoadMore = true
+            }
         }
     }
     

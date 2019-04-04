@@ -12,6 +12,7 @@ import MidtransKit
 import FacebookCore
 import OneSignal
 import SendBirdSDK
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
@@ -30,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        //firebase
+        FirebaseApp.configure()
         
         //sendbird init
         SBDMain.initWithApplicationId("CD56DC1F-6999-43A3-BF41-FE364D867801")

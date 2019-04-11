@@ -12,8 +12,9 @@ import RxSwift
 import RxCocoa
 import SVProgressHUD
 
-class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldDelegate {
+class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldDelegate, BaseViewControllerProtocol {
 
+    @IBOutlet weak var emptyText: UIButton!
     @IBOutlet weak var viewInputChat: UIView!
     @IBOutlet weak var inputChat: UITextField!
     @IBOutlet weak var iconAddImage: UIImageView!
@@ -71,9 +72,15 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
     }
     
     private func joinChannelWithId() {
+        SVProgressHUD.show()
+        
         SBDGroupChannel.createChannel(withUserIds: listUserId!, isDistinct: true) { (channel, error) in
+            SVProgressHUD.dismiss()
+            
             if let err = error {
-                PublicFunction().showUnderstandDialog(self, "Error Join Channel", err.localizedDescription, "Understand")
+                PublicFunction().showUnderstandDialog(self, "Error Join Channel", err.localizedDescription, "Rejoin Channel", "Cancel", completionHandler: {
+                    self.joinChannelWithId()
+                })
                 return
             }
             
@@ -105,10 +112,12 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
         super.viewWillDisappear(animated)
         
         //remove sendbird delegate if view disappear
-        SBDMain.removeChannelDelegate(forIdentifier: (thisChannel?.channelUrl)!)
+        guard let channel = thisChannel else {return}
+        SBDMain.removeChannelDelegate(forIdentifier: channel.channelUrl)
     }
     
     private func handleGesture() {
+        emptyText.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyTextClick)))
         iconAddImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconAddImageClick)))
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewClick)))
@@ -118,7 +127,23 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
         super.viewDidLayoutSubviews()
     }
     
+    func noInternet() {
+        emptyText.setAttributedTitle(reloadString(), for: .normal)
+        
+        opponentStatus.text = "Waiting for network..."
+        
+        if listChat.count == 0 {
+            emptyText.isHidden = false
+        }
+    }
+    
+    func hasInternet() {
+        emptyText.setTitle("Ooops, you're not send any message yet.", for: .normal)
+        opponentStatus.text = "Online"
+    }
+    
     private func customView() {
+        baseDelegate = self
         inputChat.tag = 1
         inputChat.delegate = self
         PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 1.0)
@@ -157,6 +182,7 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
             
             self.listChat.removeAll()
             
+            self.emptyText.isHidden = true
             for (index, message) in (messages?.enumerated())! {
                 if message is SBDUserMessage {
                     guard let userMessage = message as? SBDUserMessage else {return}
@@ -252,6 +278,11 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
 
 //MARK: Handle Gesture
 extension ChatController {
+    @objc func emptyTextClick() {
+        joinChannelWithId()
+        checkOnlineStatus()
+    }
+    
     @objc func iconAddImageClick() {
         ImagePickerManager().pickImage(self) { (image, url) in
             let imagePreviewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImagePreviewController") as! ImagePreviewController

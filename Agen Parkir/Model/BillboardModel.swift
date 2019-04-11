@@ -9,11 +9,21 @@
 import Foundation
 
 struct BillboardModel {
-    let image: String?
-    let id: Int?
+    let images: String?
+    let store_id: Int?
+    let description: String?
+    let buildings_id: Int?
+    let time: String?
+    let address: String?
+    let name_store: String?
     
-    init(image: String, id: Int) {
-        self.image = image
-        self.id = id
+    init(images: String, store_id: Int, description: String, buildings_id: Int, time: String, address: String, name_store: String) {
+        self.images = images
+        self.store_id = store_id
+        self.description = description
+        self.buildings_id = buildings_id
+        self.time = time
+        self.address = address
+        self.name_store = name_store
     }
 }

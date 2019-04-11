@@ -245,6 +245,15 @@ class PublicFunction{
         viewController.present(alert, animated: true)
     }
     
+    open func showUnderstandDialog(_ viewController: UIViewController, _ title: String, _ message: String, _ actionTitle: String, _ actionTitle2: String, completionHandler: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { (action) in
+            completionHandler()
+        }))
+        alert.addAction(UIAlertAction(title: actionTitle2, style: .cancel, handler: nil))
+        viewController.present(alert, animated: true)
+    }
+    
     open func createQRFromString(_ str: String, size: CGSize) -> UIImage {
         let stringData = str.data(using: .utf8)
         

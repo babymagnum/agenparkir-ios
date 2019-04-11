@@ -10,8 +10,15 @@ import Foundation
 import UIKit
 import SVProgressHUD
 
+protocol BaseViewControllerProtocol {
+    func noInternet()
+    func hasInternet()
+}
+
 class BaseViewController: UIViewController {
 
+    var baseDelegate: BaseViewControllerProtocol?
+    
 //    var timer: Timer?
 //
 //    override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +38,19 @@ class BaseViewController: UIViewController {
 //
 //        timer?.invalidate()
 //    }
+    
+    func reloadString() -> NSMutableAttributedString {
+        let mainString = "No internet connection, tap to reload data"
+        let colorString = "reload data"
+        let range = (mainString as NSString).range(of: colorString)
+        let coloredString = NSMutableAttributedString.init(string: mainString)
+        coloredString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(rgb: 0x2B3990), range: range)
+        return coloredString
+    }
+    
+    func isConnected() -> Bool {
+        return NetworkManager.shared.isConnected()
+    }
     
     let inetReachability = InternetReachability()!
 
@@ -69,15 +89,19 @@ class BaseViewController: UIViewController {
                 let alert = UIAlertController(title: "No Connection Internet", message: "Oopppss, you're not connected to internet, please turn on your connection to continue", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Understand", style: .default, handler: nil))
                 self.present(alert, animated: true)
+                
+                self.baseDelegate?.noInternet()
 
                 print("no internet")
             }
         case .cellular:
             DispatchQueue.main.async {
+                self.baseDelegate?.hasInternet()
                 print("connected to internet")
             }
         default:
             DispatchQueue.main.async {
+                self.baseDelegate?.hasInternet()
                 print("connected to internet")
             }
         }

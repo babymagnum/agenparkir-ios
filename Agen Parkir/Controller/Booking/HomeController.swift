@@ -513,7 +513,16 @@ extension HomeController {
     
     @objc func billboardContentMainClick(sender: UITapGestureRecognizer) {
         if let indexpath = billboardCollectionView.indexPathForItem(at: sender.location(in: billboardCollectionView)) {
-            print("billboard id \(listBillboard[indexpath.row].id ?? 0)")
+            let detailStoreController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailStoreController") as! DetailStoreController
+            var storeModel = StoreModel()
+            storeModel.store_id = listBillboard[indexpath.item].store_id
+            storeModel.address = listBillboard[indexpath.item].address
+            storeModel.time = listBillboard[indexpath.item].time
+            storeModel.images = listBillboard[indexpath.item].images
+            storeModel.description = listBillboard[indexpath.item].description
+            storeModel.name_store = listBillboard[indexpath.item].name_store
+            detailStoreController.storeDetail = storeModel
+            self.navigationController?.pushViewController(detailStoreController, animated: true)
         }
     }
     

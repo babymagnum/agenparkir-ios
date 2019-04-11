@@ -10,7 +10,7 @@ import UIKit
 import XLPagerTabStrip
 import SVProgressHUD
 
-class ParkingController: BaseViewController, IndicatorInfoProvider {
+class ParkingController: BaseViewController, IndicatorInfoProvider, BaseViewControllerProtocol {
     
     //MARK: Outlet
     @IBOutlet weak var emptyOngoing: UILabel!
@@ -39,8 +39,6 @@ class ParkingController: BaseViewController, IndicatorInfoProvider {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        print("view will appear")
         
         loadOngoing()
     }
@@ -82,6 +80,7 @@ class ParkingController: BaseViewController, IndicatorInfoProvider {
         view.addGestureRecognizer(swipeLeftGesture)
         view.addGestureRecognizer(swipeRightGesture)
         viewMaps.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewMapsClick)))
+        emptyOngoing.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyOngoingClick)))
         viewInfo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewInfoClick)))
         viewBarcode.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewBarcodeClick)))
         viewMessage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewMessageClick)))
@@ -153,14 +152,20 @@ class ParkingController: BaseViewController, IndicatorInfoProvider {
                     self.updateUI(listOngoingOperation.listOngoing[0])
                     self.contentMain.isHidden = false
                 case .error?:
-                    self.emptyOngoing.text = listOngoingOperation.error!
-                    self.emptyOngoing.isHidden = false
-                    self.contentMain.isHidden = true
+                    self.emptyContent()
                 default:
-                    self.emptyOngoing.text = "There was something error with system, please try refresh the page"
-                    self.emptyOngoing.isHidden = false
+                    self.emptyContent()
                 }
             }
+        }
+    }
+    
+    private func emptyContent() {
+        guard let _ = ongoingModel else {
+            self.emptyOngoing.text = "You haven't make any parking book yet."
+            self.emptyOngoing.isHidden = false
+            self.contentMain.isHidden = true
+            return
         }
     }
     
@@ -207,7 +212,21 @@ class ParkingController: BaseViewController, IndicatorInfoProvider {
         self.view.layoutIfNeeded()
     }
     
+    func noInternet() {
+        guard let _ = ongoingModel else {
+            contentMain.isHidden = true
+            emptyOngoing.attributedText = self.reloadString()
+            emptyOngoing.isHidden = false
+            return
+        }
+    }
+    
+    func hasInternet() {
+        emptyOngoing.text = "You haven't make any parking book yet."
+    }
+    
     private func customView() {
+        baseDelegate = self
         contentMain.layer.cornerRadius = 10
         contentMain.clipsToBounds = false
         contentMain.layer.shadowColor = UIColor.lightGray.cgColor
@@ -229,6 +248,10 @@ extension ParkingController {
     
     @objc func swipeRight() {
         allowStopTimer = false
+    }
+    
+    @objc func emptyOngoingClick() {
+        loadOngoing()
     }
     
     @objc func viewMapsClick() {

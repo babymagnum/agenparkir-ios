@@ -10,12 +10,19 @@ import UIKit
 import XLPagerTabStrip
 import SVProgressHUD
 
-class TicketingController: BaseViewController, UICollectionViewDelegate, IndicatorInfoProvider {
+class TicketingController: BaseViewController, UICollectionViewDelegate, IndicatorInfoProvider, BaseViewControllerProtocol {
 
     @IBOutlet weak var ticketCollectionView: UICollectionView!
     @IBOutlet weak var emptyTicket: UILabel!
     
     var listTicket = [String]()
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.blue
+        
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +30,26 @@ class TicketingController: BaseViewController, UICollectionViewDelegate, Indicat
         initCollection()
         
         loadTicket()
+        
+        baseDelegate = self
+        
+        handleGesture()
+    }
+    
+    private func handleGesture() {
+        emptyTicket.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyTicketClick)))
+    }
+    
+    func hasInternet() {
+        emptyTicket.text = "You have no active ticket yet."
+    }
+    
+    func noInternet() {
+        emptyTicket.attributedText = reloadString()
+        
+        if listTicket.count == 0 {
+            emptyTicket.isHidden = false
+        }
     }
     
     private func loadTicket() {
@@ -37,20 +64,26 @@ class TicketingController: BaseViewController, UICollectionViewDelegate, Indicat
             DispatchQueue.main.async {
                 switch ticketOngoing.state {
                 case .success?:
+                    self.emptyTicket.isHidden = true
                     self.listTicket = ticketOngoing.listTicket
                     self.ticketCollectionView.reloadData()
                 case .error?:
                     PublicFunction().showUnderstandDialog(self, "Error", ticketOngoing.error!, "Understand")
-                    self.emptyTicket.isHidden = false
+                    self.showEmpty()
                 case .empty?:
                     PublicFunction().showUnderstandDialog(self, "No Active Ticket", "You have no active ticket yet", "Understand")
-                    self.emptyTicket.isHidden = false
+                    self.showEmpty()
                 default:
                     PublicFunction().showUnderstandDialog(self, "Error", ticketOngoing.error!, "Understand")
-                    self.emptyTicket.isHidden = false
+                    self.showEmpty()
                 }
             }
         }
+    }
+    
+    private func showEmpty() {
+        emptyTicket.text = "You have no active ticket yet."
+        emptyTicket.isHidden = false
     }
     
     override func viewDidLayoutSubviews() {
@@ -60,6 +93,7 @@ class TicketingController: BaseViewController, UICollectionViewDelegate, Indicat
     }
     
     private func initCollection() {
+        ticketCollectionView.addSubview(refreshControl)
         ticketCollectionView.delegate = self
         ticketCollectionView.dataSource = self
         ticketCollectionView.isPrefetchingEnabled = false
@@ -72,6 +106,18 @@ class TicketingController: BaseViewController, UICollectionViewDelegate, Indicat
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Ticketing")
+    }
+}
+
+extension TicketingController {
+    @objc func emptyTicketClick() {
+        loadTicket()
+    }
+    
+    @objc func handleRefresh(_ refresh: UIRefreshControl) {
+        loadTicket()
+        
+        refresh.endRefreshing()
     }
 }
 

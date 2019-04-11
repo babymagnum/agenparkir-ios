@@ -34,7 +34,6 @@ class TicketDetailController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var iconOrder: UIImageView!
     @IBOutlet weak var viewContentOrder: UIView!
     
-    var building_name: String?
     var ticketModel: TicketModel?
     var mTotalPrice = 0
     var mTicketLeft = 1
@@ -75,7 +74,7 @@ class TicketDetailController: BaseViewController, UITextFieldDelegate {
             mTotalPrice = data.price!
             mTicketLeft = data.quantity!
             maxTicket = data.limit_ticket!
-            titleTop.text = building_name!
+            titleTop.text = data.building_name!
             if data.images == "" {
                 imageHeader.image = UIImage(named: "Artboard 12@0.75x-8")
             } else {

@@ -9,8 +9,9 @@
 import UIKit
 import SVProgressHUD
 
-class TicketController: BaseViewController, UICollectionViewDelegate {
+class TicketController: BaseViewController, UICollectionViewDelegate, BaseViewControllerProtocol {
 
+    @IBOutlet weak var emptyText: UIButton!
     @IBOutlet weak var viewIconTop: UIView!
     @IBOutlet weak var iconBack: UIImageView!
     @IBOutlet weak var ticketCollectionView: UICollectionView!
@@ -21,6 +22,13 @@ class TicketController: BaseViewController, UICollectionViewDelegate {
     var listTicket = [TicketModel]()
     let operation = OperationQueue()
     var venueTicketModel: VenueTicketModel?
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.blue
+        
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +39,9 @@ class TicketController: BaseViewController, UICollectionViewDelegate {
         
         initCollectionView()
         
-        loadInitialData()
+        loadTicket()
+        
+        //loadInitialData()
         
         handleGesture()
     }
@@ -52,9 +62,24 @@ class TicketController: BaseViewController, UICollectionViewDelegate {
     
     private func handleGesture() {
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
+        emptyText.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyTextClick)))
+    }
+    
+    func noInternet() {
+        emptyText.setAttributedTitle(reloadString(), for: .normal)
+        
+        if listTicket.count == 0 {
+            emptyText.isHidden = false
+            ticketCollectionView.isHidden = true
+        }
+    }
+    
+    func hasInternet() {
+        emptyText.setTitle("Ooops, we haven't any ticket for you yet", for: .normal)
     }
     
     private func customView() {
+        baseDelegate = self
         PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 0.8)
         viewIconTop.layer.cornerRadius = viewIconTop.frame.height / 2
     }
@@ -70,10 +95,15 @@ class TicketController: BaseViewController, UICollectionViewDelegate {
                 
                 switch ticketOperation.state {
                 case .success?:
+                    self.ticketCollectionView.isHidden = false
+                    self.emptyText.isHidden = true
+                    
                     if ticketOperation.listTicket.count == 0 {
                         PublicFunction().showUnderstandDialog(self, "Empty Ticket", "This venue dont have upcoming or active event yet.", "Understand")
                         return
                     }
+                    
+                    self.venueTicketModel = ticketOperation.venueTicketModel
                     
                     for (index, ticket) in ticketOperation.listTicket.enumerated() {
                         self.listTicket.append(ticket)
@@ -92,6 +122,7 @@ class TicketController: BaseViewController, UICollectionViewDelegate {
     }
     
     private func initCollectionView() {
+        ticketCollectionView.addSubview(refreshControl)
         ticketCollectionView.showsVerticalScrollIndicator = false
         ticketCollectionView.delegate = self
         ticketCollectionView.dataSource = self
@@ -126,15 +157,6 @@ extension TicketController: UICollectionViewDataSource, UICollectionViewDelegate
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StadionHeaderReusableView", for: indexPath) as! StadionHeaderReusableView
         headerView.venueData = self.venueTicketModel
         return headerView
-        
-//        switch kind {
-//        case UICollectionView.elementKindSectionHeader:
-//            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StadionHeaderReusableView", for: indexPath) as! StadionHeaderReusableView
-//            headerView.venueData = self.venueTicketModel
-//            return headerView
-//        default:
-//            assert(false, "Unexpected element kind")
-//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -152,7 +174,7 @@ extension TicketController: UICollectionViewDataSource, UICollectionViewDelegate
         //
         //        let height = headerView.viewTop.frame.height + 80 + estimatedFrameDescription.height + estimatedFrameAddress.height
         
-        return CGSize(width: UIScreen.main.bounds.width, height: 334)
+        return CGSize(width: UIScreen.main.bounds.width, height: 262)
     }
 }
 
@@ -161,12 +183,23 @@ extension TicketController {
         if let indexpath = ticketCollectionView.indexPathForItem(at: sender.location(in: ticketCollectionView)) {
             let ticketDetailController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TicketDetailController") as! TicketDetailController
             ticketDetailController.ticketModel = listTicket[indexpath.row]
-            ticketDetailController.building_name = self.building_name
             navigationController?.pushViewController(ticketDetailController, animated: true)
         }
     }
     
     @objc func iconBackClick() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func emptyTextClick() {
+        loadTicket()
+    }
+    
+    @objc func handleRefresh(_ refresh: UIRefreshControl) {
+        listTicket.removeAll()
+        
+        loadTicket()
+        
+        refresh.endRefreshing()
     }
 }

@@ -20,7 +20,7 @@ protocol LicensePlateControllerProtocol {
     func refreshData(listPlate: [PlateModel])
 }
 
-class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollectionViewDelegate {
+class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollectionViewDelegate, BaseViewControllerProtocol {
     
     //MARK: Outlet
     @IBOutlet weak var iconEditPlateNumber: UIImageView!
@@ -137,6 +137,7 @@ class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollect
         viewCars.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewCarsClick)))
         viewMotorCycle.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewMotorCycleClick)))
         iconEditPlateNumber.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconEditPlateNumberClick)))
+        emptyPlateLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyPlateLabelClick)))
     }
     
     private func loadListPlate() {
@@ -169,6 +170,18 @@ class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollect
         }
     }
     
+    func hasInternet() {
+        emptyPlateLabel.text = "You haven't registered any vehicle yet."
+    }
+    
+    func noInternet() {
+        emptyPlateLabel.attributedText = reloadString()
+        
+        if listPlate.count == 0 {
+            emptyPlateLabel.isHidden = false
+        }
+    }
+    
     private func initCollectionView() {
         plateCollectionView.delegate = self
         plateCollectionView.dataSource = self
@@ -176,6 +189,7 @@ class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollect
     }
     
     private func customView() {
+        baseDelegate = self
         viewCreate.clipsToBounds = true
         viewCreate.layer.cornerRadius = viewCreate.frame.height / 2
         PublicFunction().changeTintColor(imageView: iconCreate, hexCode: 0xffffff, alpha: 1)
@@ -246,6 +260,10 @@ class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollect
 
 //MARK: Handle gesture
 extension LicensePlateController {
+    @objc func emptyPlateLabelClick() {
+        loadListPlate()
+    }
+    
     @objc func iconEditPlateNumberClick() {
         inputPlateNumber.text = ""
         linePlateNumber.backgroundColor = UIColor(rgb: 0xd50000)

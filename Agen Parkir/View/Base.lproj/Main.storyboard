@@ -2657,7 +2657,7 @@
                                             <constraint firstAttribute="trailing" secondItem="U4m-HU-Wo9" secondAttribute="trailing" constant="20" id="Wez-Nr-GA2"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hoc-7v-hfZ">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hoc-7v-hfZ">
                                         <rect key="frame" x="0.0" y="56" width="320" height="492"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="0.0" id="W1L-De-IGG">
@@ -2914,7 +2914,7 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oopps, we cant find what you want to search." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEx-5u-qRN">
+                                    <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oopps, we cant find what you want to search." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEx-5u-qRN">
                                         <rect key="frame" x="20" y="256" width="280" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3148,7 +3148,7 @@
                                             <constraint firstItem="DvF-uy-jFO" firstAttribute="leading" secondItem="O7R-93-0Rs" secondAttribute="leading" id="pRB-W4-RyJ"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="B1f-aI-m2i">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="B1f-aI-m2i">
                                         <rect key="frame" x="0.0" y="383" width="320" height="165"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4TU-1q-Jf9">
@@ -3277,7 +3277,7 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't make any transaction yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kK0-Ck-cya">
+                                    <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't make any transaction yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kK0-Ck-cya">
                                         <rect key="frame" x="20" y="383" width="280" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4717,7 +4717,7 @@
                                             <constraint firstAttribute="trailing" secondItem="hTO-pO-eW3" secondAttribute="trailing" constant="20" id="l28-Dg-S77"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GCe-hq-a4J">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GCe-hq-a4J">
                                         <rect key="frame" x="0.0" y="106" width="320" height="442"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7CH-KW-jd3">
@@ -4817,7 +4817,7 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't made any order yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpz-50-hch">
+                                    <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't made any order yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpz-50-hch">
                                         <rect key="frame" x="20" y="265" width="280" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5299,17 +5299,26 @@
                                             <constraint firstAttribute="height" constant="50" id="yax-Lh-7QL"/>
                                         </constraints>
                                     </view>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFr-aN-BAk">
+                                        <rect key="frame" x="20" y="259" width="280" height="30"/>
+                                        <state key="normal" title="No internet connection">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="OP2-HO-0XK" firstAttribute="top" secondItem="Xwq-ko-9ts" secondAttribute="bottom" id="178-hj-aZm"/>
                                     <constraint firstAttribute="trailing" secondItem="Xwq-ko-9ts" secondAttribute="trailing" id="5tT-Gd-gvb"/>
+                                    <constraint firstItem="ZFr-aN-BAk" firstAttribute="centerY" secondItem="lJH-r0-vNF" secondAttribute="centerY" id="6SB-px-Yll"/>
                                     <constraint firstItem="tvB-rl-QKX" firstAttribute="top" secondItem="OP2-HO-0XK" secondAttribute="bottom" id="BSK-ml-R48"/>
                                     <constraint firstAttribute="trailing" secondItem="OP2-HO-0XK" secondAttribute="trailing" id="Gru-77-Bs6"/>
                                     <constraint firstAttribute="trailing" secondItem="tvB-rl-QKX" secondAttribute="trailing" id="RRc-mK-OfI"/>
                                     <constraint firstItem="tvB-rl-QKX" firstAttribute="leading" secondItem="lJH-r0-vNF" secondAttribute="leading" id="VOl-Vk-XnT"/>
                                     <constraint firstAttribute="bottom" secondItem="tvB-rl-QKX" secondAttribute="bottom" id="Ywh-OY-j8A"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZFr-aN-BAk" secondAttribute="trailing" constant="20" id="hqU-wF-xWr"/>
                                     <constraint firstItem="OP2-HO-0XK" firstAttribute="leading" secondItem="lJH-r0-vNF" secondAttribute="leading" id="iz6-Sf-HtY"/>
+                                    <constraint firstItem="ZFr-aN-BAk" firstAttribute="leading" secondItem="lJH-r0-vNF" secondAttribute="leading" constant="20" id="n5J-Np-lqH"/>
                                     <constraint firstItem="Xwq-ko-9ts" firstAttribute="top" secondItem="lJH-r0-vNF" secondAttribute="top" id="tyL-xO-Vkm"/>
                                     <constraint firstItem="Xwq-ko-9ts" firstAttribute="leading" secondItem="lJH-r0-vNF" secondAttribute="leading" id="uJQ-Ig-fg5"/>
                                 </constraints>
@@ -5326,6 +5335,7 @@
                     </view>
                     <connections>
                         <outlet property="chatCollectionView" destination="OP2-HO-0XK" id="TF9-hS-9KH"/>
+                        <outlet property="emptyText" destination="ZFr-aN-BAk" id="NMA-HO-fCF"/>
                         <outlet property="iconAddImage" destination="ksv-EK-SPn" id="fh6-mA-SGz"/>
                         <outlet property="iconBack" destination="f1w-Dt-X3b" id="tOg-1v-7fS"/>
                         <outlet property="inputChat" destination="r28-fS-Eaf" id="nko-QK-ESj"/>
@@ -6054,7 +6064,7 @@
                                             <constraint firstAttribute="height" constant="56" id="oIW-zs-7EK"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tch-d0-jwi">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Tch-d0-jwi">
                                         <rect key="frame" x="0.0" y="106" width="320" height="442"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dVi-EV-aMG">
@@ -6205,7 +6215,7 @@
                                             <constraint firstItem="hVp-6f-RJO" firstAttribute="leading" secondItem="MR2-8p-2Py" secondAttribute="leading" constant="20" id="hvz-ra-Twc"/>
                                         </constraints>
                                     </view>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no store registered yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgC-bV-pfP">
+                                    <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no store registered yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgC-bV-pfP">
                                         <rect key="frame" x="20" y="265" width="280" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -6312,7 +6322,7 @@
                                             <constraint firstItem="fAc-Mo-oAr" firstAttribute="leading" secondItem="naa-qn-Sf1" secondAttribute="trailing" constant="20" id="wjI-0t-AFq"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ssf-lW-khI">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ssf-lW-khI">
                                         <rect key="frame" x="0.0" y="56" width="320" height="492"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Vd0-dl-bVz">
@@ -6410,16 +6420,25 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJ6-j7-hxq">
+                                        <rect key="frame" x="20" y="259" width="280" height="30"/>
+                                        <state key="normal" title="There is no product registered in this store.">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Ssf-lW-khI" secondAttribute="trailing" id="59H-Vf-zxo"/>
                                     <constraint firstItem="QlW-M4-upz" firstAttribute="top" secondItem="PeL-Qy-UYw" secondAttribute="top" id="A8y-DJ-fIl"/>
                                     <constraint firstItem="Ssf-lW-khI" firstAttribute="top" secondItem="QlW-M4-upz" secondAttribute="bottom" id="IUP-wI-mhr"/>
+                                    <constraint firstItem="NJ6-j7-hxq" firstAttribute="centerY" secondItem="PeL-Qy-UYw" secondAttribute="centerY" id="OTJ-5s-FLX"/>
                                     <constraint firstAttribute="trailing" secondItem="QlW-M4-upz" secondAttribute="trailing" id="Vrw-4m-RhS"/>
+                                    <constraint firstAttribute="trailing" secondItem="NJ6-j7-hxq" secondAttribute="trailing" constant="20" id="Z3E-Mk-DnI"/>
                                     <constraint firstItem="Ssf-lW-khI" firstAttribute="leading" secondItem="PeL-Qy-UYw" secondAttribute="leading" id="adR-Eg-vRe"/>
                                     <constraint firstAttribute="bottom" secondItem="Ssf-lW-khI" secondAttribute="bottom" id="gAH-zB-h64"/>
                                     <constraint firstItem="QlW-M4-upz" firstAttribute="leading" secondItem="PeL-Qy-UYw" secondAttribute="leading" id="iIL-E3-WaH"/>
+                                    <constraint firstItem="NJ6-j7-hxq" firstAttribute="leading" secondItem="PeL-Qy-UYw" secondAttribute="leading" constant="20" id="juJ-h1-tHD"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -6433,6 +6452,7 @@
                         <viewLayoutGuide key="safeArea" id="GLJ-bx-v16"/>
                     </view>
                     <connections>
+                        <outlet property="emptyText" destination="NJ6-j7-hxq" id="M5t-fN-xrJ"/>
                         <outlet property="iconBack" destination="naa-qn-Sf1" id="JcR-f5-pCX"/>
                         <outlet property="productCollectionView" destination="Ssf-lW-khI" id="XvX-ku-V5O"/>
                         <outlet property="viewIconTop" destination="fAc-Mo-oAr" id="YRj-eV-fPr"/>
@@ -7739,7 +7759,7 @@
                                             <constraint firstItem="pJz-Vd-NXO" firstAttribute="centerY" secondItem="FVX-dW-tuA" secondAttribute="centerY" id="x5g-rM-MHj"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iJc-gU-c7i">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iJc-gU-c7i">
                                         <rect key="frame" x="15" y="369" width="290" height="179"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="p9s-GK-dMr">
@@ -7819,10 +7839,10 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't registered any vehicle yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kl-dG-TbL">
+                                    <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't registered any vehicle yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kl-dG-TbL">
                                         <rect key="frame" x="15" y="369" width="290" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit" translatesAutoresizingMaskIntoConstraints="NO" id="B1b-9r-b2n">
@@ -7968,7 +7988,7 @@
                                             <constraint firstItem="upg-nX-7h7" firstAttribute="centerY" secondItem="zXP-1b-Idn" secondAttribute="centerY" id="p0l-Bq-pdn"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iNl-ci-4Ox">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iNl-ci-4Ox">
                                         <rect key="frame" x="0.0" y="56" width="320" height="492"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3TA-qH-aJ2">
@@ -8036,16 +8056,25 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s1K-uR-Fm6">
+                                        <rect key="frame" x="20" y="259" width="280" height="30"/>
+                                        <state key="normal" title="Ooops, no ticket to buy here.">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="iNl-ci-4Ox" secondAttribute="trailing" id="2UY-v7-gwP"/>
+                                    <constraint firstAttribute="trailing" secondItem="s1K-uR-Fm6" secondAttribute="trailing" constant="20" id="2mk-To-WCF"/>
                                     <constraint firstItem="zXP-1b-Idn" firstAttribute="leading" secondItem="0YH-nU-q2U" secondAttribute="leading" id="3Do-tu-QBG"/>
+                                    <constraint firstItem="s1K-uR-Fm6" firstAttribute="centerY" secondItem="0YH-nU-q2U" secondAttribute="centerY" id="6FM-TT-LJx"/>
                                     <constraint firstItem="zXP-1b-Idn" firstAttribute="top" secondItem="0YH-nU-q2U" secondAttribute="top" id="AM9-tV-CaQ"/>
                                     <constraint firstItem="iNl-ci-4Ox" firstAttribute="top" secondItem="zXP-1b-Idn" secondAttribute="bottom" id="CLF-Vi-gSC"/>
                                     <constraint firstItem="iNl-ci-4Ox" firstAttribute="leading" secondItem="0YH-nU-q2U" secondAttribute="leading" id="FBb-LN-JHC"/>
                                     <constraint firstAttribute="bottom" secondItem="iNl-ci-4Ox" secondAttribute="bottom" id="VQO-XP-07o"/>
                                     <constraint firstAttribute="trailing" secondItem="zXP-1b-Idn" secondAttribute="trailing" id="Zg6-xK-i4l"/>
+                                    <constraint firstItem="s1K-uR-Fm6" firstAttribute="leading" secondItem="0YH-nU-q2U" secondAttribute="leading" constant="20" id="vuD-ff-ELG"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -8059,6 +8088,7 @@
                         <viewLayoutGuide key="safeArea" id="Y8K-bM-s72"/>
                     </view>
                     <connections>
+                        <outlet property="emptyText" destination="s1K-uR-Fm6" id="Ogq-H7-5Cp"/>
                         <outlet property="iconBack" destination="upg-nX-7h7" id="ct0-KR-jvc"/>
                         <outlet property="ticketCollectionView" destination="iNl-ci-4Ox" id="8NU-tA-3uS"/>
                         <outlet property="viewIconTop" destination="RIj-a7-tOj" id="wsU-na-Js3"/>
@@ -8819,7 +8849,7 @@
                                             <constraint firstItem="DYA-5H-vk8" firstAttribute="leading" secondItem="WEl-mX-3eH" secondAttribute="leading" constant="10" id="yuY-BG-3r4"/>
                                         </constraints>
                                     </view>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't make any parking book yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aea-Rq-zgo">
+                                    <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't make any parking book yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aea-Rq-zgo">
                                         <rect key="frame" x="20" y="264" width="280" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -8877,7 +8907,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfc-Fj-Tc0">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I2v-tx-HGP">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I2v-tx-HGP">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lDI-Hq-RR3">
@@ -8980,7 +9010,7 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no active ticket yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1H-NG-TYI">
+                                    <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no active ticket yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1H-NG-TYI">
                                         <rect key="frame" x="20" y="263.5" width="280" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

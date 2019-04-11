@@ -358,22 +358,12 @@ class RecentlyOperation: AbstractOperation {
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
             
-//            for i in 1...10 {
-//                self.listRecently.append(RecentlyModel(venueName: "Venue \(i)", image: "", orderDate: PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd")))
-//
-//                if i == 10 {
-//                    self.state = .success
-//                    self.finish(true)
-//                }
-//            }
-            
             switch response.result {
             case .success(let responseSuccess):
                 let data = JSON(responseSuccess)
                 print("data recently: \(data)")
 
                 if data["data"].array?.count == 0 {
-                    print("recently array is empty")
                     self.state = .empty
                     self.finish(true)
                     return
@@ -434,9 +424,7 @@ class BillboardOperation: AbstractOperation {
                 self.state = .success
                 
                 for (index, recently) in (data["data"].array?.enumerated())! {
-                    let billboardModel = BillboardModel(image: recently["images"].string!, id: recently["store_id"].int!)
-                    
-                    print(billboardModel)
+                    let billboardModel = BillboardModel(images: recently["images"].string ?? "", store_id: recently["store_id"].int!, description: recently["description"].string ?? "", buildings_id: recently["buildings_id"].int!, time: recently["time"].string ?? "7:00 AM - 10:00 PM", address: recently["address"].string ?? "", name_store: recently["name_store"].string ?? "")
                     
                     self.listBillboard.append(billboardModel)
                     
@@ -1613,16 +1601,17 @@ class TicketOperation: AbstractOperation {
                 } else {
                     for (index, ticket) in (jsonArrayTicket?.enumerated())! {
                         var ticketModel = TicketModel()
-                        ticketModel.tickets_id = ticket["tickets_id"].int!
+                        ticketModel.tickets_id = ticket["tickets_id"].int ?? 0
                         ticketModel.images = ticket["images"].string ?? ""
-                        ticketModel.schedule = ticket["schedule"].string!
-                        ticketModel.name = ticket["name"].string!
-                        ticketModel.price = ticket["price"].int!
-                        ticketModel.quantity = ticket["quantity"].int!
-                        ticketModel.limit_ticket = ticket["limit_ticket"].int!
-                        ticketModel.limit_ticket_to = ticket["limit_ticket_to"].int!
-                        ticketModel.buildings_id = ticket["buildings_id"].int!
-                        ticketModel.reedem_date = ticket["reedem_date"].string!
+                        ticketModel.schedule = ticket["schedule"].string ?? ""
+                        ticketModel.name = ticket["name"].string ?? ""
+                        ticketModel.price = ticket["price"].int ?? 0
+                        ticketModel.quantity = ticket["quantity"].int ?? 0
+                        ticketModel.limit_ticket = ticket["limit_ticket"].int ?? 0
+                        ticketModel.limit_ticket_to = ticket["limit_ticket_to"].int ?? 0
+                        ticketModel.buildings_id = ticket["buildings_id"].int ?? 0
+                        ticketModel.building_name = ticket["building_name"].string ?? ""
+                        ticketModel.reedem_date = ticket["reedem_date"].string ?? ""
 
                         self.listTicket.append(ticketModel)
 

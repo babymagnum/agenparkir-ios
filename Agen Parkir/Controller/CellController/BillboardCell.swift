@@ -30,10 +30,10 @@ class BillboardCell: UICollectionViewCell {
     var billboardData: BillboardModel? {
         didSet {
             if let data = billboardData {
-                if data.image == "" {
+                if data.images == "" {
                     image.image = UIImage(named: "Artboard 9@0.75x-8")
                 } else {
-                    let url = "\(StaticVar.root_images)\(data.image ?? "")"
+                    let url = "\(StaticVar.root_images)\(data.images ?? "")"
                     print("billboard cell img url \(url)")
                     image.loadUrl(url)
                 }

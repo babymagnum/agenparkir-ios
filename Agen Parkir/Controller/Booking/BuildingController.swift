@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 
-class BuildingController: BaseViewController, UICollectionViewDelegate {
+class BuildingController: BaseViewController, UICollectionViewDelegate, BaseViewControllerProtocol {
     
     @IBOutlet weak var emptyText: UILabel!
     @IBOutlet weak var iconSearchContent: UIImageView!
@@ -34,6 +34,13 @@ class BuildingController: BaseViewController, UICollectionViewDelegate {
     var popRecognizer: InteractivePopRecognizer?
     var lastVisibleIndexPath = IndexPath(item: 0, section: 0)
     var lastVisibleSearchIndexPath = IndexPath(item: 0, section: 0)
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.blue
+        
+        return refreshControl
+    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -63,7 +70,20 @@ class BuildingController: BaseViewController, UICollectionViewDelegate {
         }
     }
     
+    func noInternet() {
+        emptyText.attributedText = reloadString()
+        
+        if listBuilding.count == 0 && listSearchBuilding.count == 0 {
+            emptyText.isHidden = false
+        }
+    }
+    
+    func hasInternet() {
+        emptyText.text = "Ooops, we can't find what you want to search"
+    }
+    
     private func customView() {
+        baseDelegate = self
         inputSearch.tag = 1
         inputSearch.delegate = self
         iconSearchContent.image = UIImage(named: "search")?.tinted(with: UIColor.lightGray)
@@ -84,34 +104,42 @@ class BuildingController: BaseViewController, UICollectionViewDelegate {
     private func handleGesture() {
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
         iconSearch.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconSearchClick)))
+        emptyText.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyTextClick)))
     }
     
     private func loadBuilding() {
         SVProgressHUD.show()
+        
         let showListOperation = ShowListBuildingOperation((pageNumber: currentPage, purpose: LoadBuilding.booking, nameQuery: ""))
         operation.addOperations([showListOperation], waitUntilFinished: false)
         showListOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
-            switch showListOperation.state {
-            case .success?:
-                for (index, building) in showListOperation.listBuilding.enumerated() {
-                    self.listBuilding.append(building)
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                
+                switch showListOperation.state {
+                case .success?:
+                    self.emptyText.isHidden = true
                     
-                    if index == showListOperation.listBuilding.count - 1 {
-                        DispatchQueue.main.async {
-                            self.buildingCollectionView.reloadData()
-                            
-                            self.currentPage += 1
+                    for (index, building) in showListOperation.listBuilding.enumerated() {
+                        self.listBuilding.append(building)
+                        
+                        if index == showListOperation.listBuilding.count - 1 {
+                            DispatchQueue.main.async {
+                                self.buildingCollectionView.reloadData()
+                                
+                                self.currentPage += 1
+                            }
                         }
                     }
+                case .error?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "\(showListOperation.error ?? "")", "Understand")
+                case .empty?:
+                    if self.listBuilding.count == 0 {
+                        PublicFunction.instance.showUnderstandDialog(self, "Empty Building", "Empty list building", "Understand")
+                    }
+                default:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error, please refresh this page", "Understand")
                 }
-            case .error?:
-                PublicFunction().showUnderstandDialog(self, "Error", "\(showListOperation.error ?? "")", "Understand")
-            case .empty?:
-                print("empty")
-            default:
-                PublicFunction().showUnderstandDialog(self, "Error", "There was something error, please refresh this page", "Understand")
             }
         }
     }
@@ -122,6 +150,7 @@ class BuildingController: BaseViewController, UICollectionViewDelegate {
         let height = cell.contentMain.frame.height
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 40, height: height)
         
+        buildingCollectionView.addSubview(refreshControl)
         buildingCollectionView.delegate = self
         buildingCollectionView.dataSource = self
         buildingCollectionView.isPrefetchingEnabled = false
@@ -140,7 +169,8 @@ class BuildingController: BaseViewController, UICollectionViewDelegate {
                 switch ticketOperation.state {
                 case .success?:
                     let ticketController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TicketController") as! TicketController
-                    ticketController.venueTicketModel = ticketOperation.venueTicketModel
+                    //ticketController.venueTicketModel = ticketOperation.venueTicketModel
+                    ticketController.building_id = Int(building_id)
                     self.navigationController?.pushViewController(ticketController, animated: true)
                 case .error?:
                     PublicFunction().showUnderstandDialog(self, "Error", ticketOperation.error!, "Understand")
@@ -153,8 +183,8 @@ class BuildingController: BaseViewController, UICollectionViewDelegate {
     
     private func showEmptySearch() {
         if listSearchBuilding.count == 0 {
+            self.emptyText.text = "Oopps, we cant find what you want to search."
             self.emptyText.isHidden = false
-            //self.listSearchBuilding.removeAll()
             self.buildingCollectionView.reloadData()
         }
     }
@@ -195,8 +225,30 @@ class BuildingController: BaseViewController, UICollectionViewDelegate {
 
 //MARK: Handle gesture
 extension BuildingController{
+    @objc func emptyTextClick() {
+        if inSearch {
+            loadBuildingBySearch()
+        } else {
+            loadBuilding()
+        }
+    }
+    
     @objc func iconBackClick() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func handleRefresh(_ refresh: UIRefreshControl) {
+        if inSearch {
+            listSearchBuilding.removeAll()
+            self.currentSearchPage = 1
+            loadBuildingBySearch()
+        } else {
+            listBuilding.removeAll()
+            self.currentPage = 1
+            loadBuilding()
+        }
+        
+        refresh.endRefreshing()
     }
     
     @objc func iconSearchClick() {
@@ -216,6 +268,7 @@ extension BuildingController{
             self.buildingCollectionView.scrollToItem(at: self.lastVisibleIndexPath, at: UICollectionView.ScrollPosition.centeredVertically, animated: true)
             
             if self.listBuilding.count > 0 {
+                self.buildingCollectionView.isHidden = false
                 self.emptyText.isHidden = true
             } else {
                 self.emptyText.isHidden = false
@@ -281,7 +334,7 @@ extension BuildingController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BuildingCell", for: indexPath) as! BuildingCell
-        cell.buildingData = inSearch ? listSearchBuilding[indexPath.row] : listBuilding[indexPath.row]
+        cell.buildingData = inSearch ? listSearchBuilding[indexPath.item] : listBuilding[indexPath.item]
         cell.delegate = self
         return cell
     }
@@ -303,7 +356,10 @@ extension BuildingController: BuildingCellProtocol{
             bookingController.building_id = Int(data.building_id)
             navigationController?.pushViewController(bookingController, animated: true)
         case "Buy Ticket":
-            loadInitialTicket(data.building_id)
+            //loadInitialTicket(data.building_id)
+            let ticketController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TicketController") as! TicketController
+            ticketController.building_id = Int(data.building_id)
+            self.navigationController?.pushViewController(ticketController, animated: true)
         default:
             let storeController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StoreController") as! StoreController
             storeController.data = (building_id: data.building_id, address: data.address, building_name: data.building_name)

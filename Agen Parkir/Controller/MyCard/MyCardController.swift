@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 
-class MyCardController: BaseViewController, UICollectionViewDelegate {
+class MyCardController: BaseViewController, UICollectionViewDelegate, BaseViewControllerProtocol {
     
     //MARK: Outlet
     @IBOutlet weak var iconBack: UIImageView!
@@ -41,7 +41,7 @@ class MyCardController: BaseViewController, UICollectionViewDelegate {
         
         initCollectionView()
         
-        loadData()
+        loadData()    
     }
     
     override func viewDidLayoutSubviews() {
@@ -155,7 +155,20 @@ class MyCardController: BaseViewController, UICollectionViewDelegate {
         customerName.text = data.name
     }
     
+    func noInternet() {
+        emptyLabel.attributedText = reloadString()
+        
+        if listHistory.count == 0 {
+            emptyLabel.isHidden = false
+        }
+    }
+    
+    func hasInternet() {
+        emptyLabel.text = "You haven't make any transaction yet."
+    }
+    
     private func customView() {
+        baseDelegate = self
         viewSaldo.layer.cornerRadius = viewSaldo.frame.height / 2
         viewSaldo.clipsToBounds = false
         viewSaldo.layer.shadowColor = UIColor.lightGray.cgColor
@@ -176,10 +189,16 @@ class MyCardController: BaseViewController, UICollectionViewDelegate {
     private func handleGesture(){
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
         iconTopUp.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconTopUpClick)))
+        emptyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyLabelClick)))
     }
 }
 
 extension MyCardController {
+    @objc func emptyLabelClick() {
+        loadData()
+        loadHistory()
+    }
+    
     @objc func iconTopUpClick() {
         let topupController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TopupController") as! TopupController
         topupController.delegate = self

@@ -9,21 +9,28 @@
 import UIKit
 import SVProgressHUD
 
-class DetailStoreController: BaseViewController, UICollectionViewDelegate {
+class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseViewControllerProtocol {
     
     //MARK: Outlet
     @IBOutlet weak var iconBack: UIImageView!
+    @IBOutlet weak var emptyText: UIButton!
     @IBOutlet weak var productCollectionView: UICollectionView!
     @IBOutlet weak var viewIconTop: UIView!
     
     //MARK: Props
-    var stores_id: String?
     var listProduct = [ProductModel]()
     var operation = OperationQueue()
     var storeDetail: StoreModel?
     var page = 1
     var lastVelocityYSign = 0
     var allowLoadMore = false
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.blue
+        
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +55,7 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate {
     private func loadStore() {
         SVProgressHUD.show()
         
-        let detailStoreOperation = DetailStoreOperation((stores_id: stores_id!, page: page))
+        let detailStoreOperation = DetailStoreOperation((stores_id: "\(storeDetail?.store_id ?? 0)", page: page))
         operation.addOperation(detailStoreOperation)
         detailStoreOperation.completionBlock = {
             DispatchQueue.main.async {
@@ -56,6 +63,8 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate {
                 
                 switch detailStoreOperation.state {
                 case .success?:
+                    self.emptyText.isHidden = true
+                    self.productCollectionView.isHidden = false
                     for (index, product) in (detailStoreOperation.listProduct.enumerated()) {
                         self.listProduct.append(product)
                         
@@ -67,6 +76,7 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate {
                 case .empty?:
                     if self.listProduct.count == 0 {
                         PublicFunction().showUnderstandDialog(self, "No Products", "This store dont register their products yet", "Understand")
+                        self.showEmpty()
                     }
                 case .error?:
                     if self.listProduct.count == 0 {
@@ -81,16 +91,37 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate {
         }
     }
     
+    private func showEmpty() {
+        emptyText.setTitle("There is no product registered in this store.", for: .normal)
+        emptyText.isHidden = false
+    }
+    
     private func handleGesture() {
+        emptyText.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyTextClick)))
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
     }
     
     private func customView() {
+        baseDelegate = self
         PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 1.0)
         viewIconTop.layer.cornerRadius = viewIconTop.frame.height / 2
     }
     
+    func noInternet() {
+        emptyText.setAttributedTitle(reloadString(), for: .normal)
+        
+        if listProduct.count == 0 {
+            emptyText.isHidden = false
+            productCollectionView.isHidden = true
+        }
+    }
+    
+    func hasInternet() {
+        emptyText.setTitle("There is no product registered in this store.", for: .normal)
+    }
+    
     private func initCollectionView() {
+        productCollectionView.addSubview(refreshControl)
         productCollectionView.delegate = self
         productCollectionView.dataSource = self
         productCollectionView.isPrefetchingEnabled = false
@@ -192,5 +223,16 @@ extension DetailStoreController {
     
     @objc func iconBackClick() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func emptyTextClick() {
+        loadStore()
+    }
+    
+    @objc func handleRefresh(_ refresh: UIRefreshControl) {
+        page = 1
+        listProduct.removeAll()
+        loadStore()
+        refresh.endRefreshing()
     }
 }

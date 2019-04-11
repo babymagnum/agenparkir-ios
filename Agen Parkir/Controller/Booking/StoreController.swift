@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 
-class StoreController: BaseViewController, UICollectionViewDelegate, UITextFieldDelegate {
+class StoreController: BaseViewController, UICollectionViewDelegate, UITextFieldDelegate, BaseViewControllerProtocol {
     
     //MARK: Outlet
     @IBOutlet weak var iconBack: UIImageView!
@@ -28,6 +28,13 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
     var page = 1
     var lastVelocityYSign = 0
     var allowLoadMore = false
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.blue
+        
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +49,7 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
     }
     
     private func handleGesture() {
+        emptyText.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyTextClick)))
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
     }
     
@@ -52,6 +60,7 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
     }
     
     private func customView() {
+        baseDelegate = self
         inputSearch.delegate = self
         inputSearch.tag = 1
         PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 1.0)
@@ -60,6 +69,18 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
         viewSearch.layer.borderWidth = 1
         viewSearch.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.6).cgColor
         viewIconTop.layer.cornerRadius = viewIconTop.frame.height / 2
+    }
+    
+    func noInternet() {
+        emptyText.attributedText = reloadString()
+        
+        if listStore.count == 0 {
+            emptyText.isHidden = false
+        }
+    }
+    
+    func hasInternet() {
+        emptyText.text = "There is no store registered yet."
     }
     
     private func loadStore() {
@@ -74,6 +95,8 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
                 
                 switch listStore.state {
                 case .success?:
+                    self.emptyText.isHidden = true
+                    
                     for (index, store) in listStore.listStore.enumerated() {
                         self.listStore.append(store)
                         
@@ -89,7 +112,7 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
                     }
                 case .empty?:
                     if self.listStore.count == 0 {
-                        self.emptyText.isHidden = false
+                        self.showEmpty()
                         PublicFunction().showUnderstandDialog(self, "Error", "This building has no store registered yet", "Understand")
                     }
                 default:
@@ -101,6 +124,11 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
             }
         }
     }
+    
+    private func showEmpty() {
+        emptyText.text = "There is no store registered yet."
+        emptyText.isHidden = false
+    }
 
     private func initCollectionView() {
         let cell = storeCollectionView.dequeueReusableCell(withReuseIdentifier: "StoreCell", for: IndexPath(item: 0, section: 0)) as! StoreCell
@@ -108,6 +136,7 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
         let height = 80 + cell.storeName.frame.height
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 40, height: height)
         
+        storeCollectionView.addSubview(refreshControl)
         storeCollectionView.delegate = self
         storeCollectionView.dataSource = self
     }
@@ -162,6 +191,10 @@ extension StoreController {
 }
 
 extension StoreController {
+    @objc func emptyTextClick() {
+        loadStore()
+    }
+    
     @objc func iconBackClick() {
         navigationController?.popViewController(animated: true)
     }
@@ -169,9 +202,15 @@ extension StoreController {
     @objc func contentMainClick(sender: UITapGestureRecognizer) {
         if let indexpath = storeCollectionView.indexPathForItem(at: sender.location(in: storeCollectionView)) {
             let detailStore = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailStoreController") as! DetailStoreController
-            detailStore.stores_id = "\(listStore[indexpath.row].store_id ?? 0)"
             detailStore.storeDetail = listStore[indexpath.row]
             navigationController?.pushViewController(detailStore, animated: true)
         }
+    }
+    
+    @objc func handleRefresh(_ refresh: UIRefreshControl) {
+        page = 1
+        listStore.removeAll()
+        loadStore()
+        refresh.endRefreshing()
     }
 }

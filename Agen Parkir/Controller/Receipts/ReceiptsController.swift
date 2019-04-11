@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 
-class ReceiptsController: BaseViewController, UICollectionViewDelegate {
+class ReceiptsController: BaseViewController, UICollectionViewDelegate, BaseViewControllerProtocol {
     @IBOutlet weak var iconClearAll: UIImageView!
     @IBOutlet weak var viewClearAll: UIView!
     @IBOutlet weak var receiptsCollectionView: UICollectionView!
@@ -21,6 +21,14 @@ class ReceiptsController: BaseViewController, UICollectionViewDelegate {
     var listReceipts = [ReceiptsModel]()
     var currentPage = 1
     var popRecognizer: InteractivePopRecognizer?
+    var refresh = false
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.blue
+        
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +45,7 @@ class ReceiptsController: BaseViewController, UICollectionViewDelegate {
     }
     
     private func handleGesture() {
+        emptyReceipts.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyReceiptsClick)))
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
     }
     
@@ -45,7 +54,7 @@ class ReceiptsController: BaseViewController, UICollectionViewDelegate {
         
         let operation = OperationQueue()
         let listReceiptsOperation = ListReceiptsOperation(currentPage: currentPage)
-        operation.addOperations([listReceiptsOperation], waitUntilFinished: false)
+        operation.addOperation(listReceiptsOperation)
         listReceiptsOperation.completionBlock = {
             //update the ui in main thread
             DispatchQueue.main.async {
@@ -53,32 +62,41 @@ class ReceiptsController: BaseViewController, UICollectionViewDelegate {
                 
                 switch listReceiptsOperation.state {
                 case .success?:
-                    self.currentPage += 1
+                    self.emptyReceipts.isHidden = true
+                    if self.refresh == true { self.listReceipts.removeAll() }
+                    
                     for (index, receipt) in listReceiptsOperation.listReceipts.enumerated() {
                         self.listReceipts.append(receipt)
                         
                         if index == listReceiptsOperation.listReceipts.count - 1{
                             self.receiptsCollectionView.reloadData()
+                            self.currentPage += 1
+                            self.refresh = false
                         }
                     }
                 case .empty?:
                     if self.listReceipts.count == 0 {
-                        self.emptyReceipts.isHidden = false
+                        self.showEmpty()
                         PublicFunction().showUnderstandDialog(self, "Empty Receipts", "You haven't make any order yet", "Understand")
                     }
                 case .error?:
                     if self.listReceipts.count == 0 {
-                        self.emptyReceipts.isHidden = false
+                        self.showEmpty()
                         PublicFunction().showUnderstandDialog(self, "Error", listReceiptsOperation.error!, "Understand")
                     }
                 default:
                     if self.listReceipts.count == 0 {
-                        self.emptyReceipts.isHidden = false
+                        self.showEmpty()
                         PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please refresh the page", "Understand")
                     }
                 }
             }
         }
+    }
+    
+    private func showEmpty() {
+        emptyReceipts.text = "You haven't made any order yet."
+        emptyReceipts.isHidden = false
     }
     
     private func setInteractiveRecognizer() {
@@ -88,6 +106,7 @@ class ReceiptsController: BaseViewController, UICollectionViewDelegate {
     }
     
     private func initCollectionView() {
+        receiptsCollectionView.addSubview(refreshControl)
         receiptsCollectionView.delegate = self
         receiptsCollectionView.dataSource = self
         
@@ -98,10 +117,23 @@ class ReceiptsController: BaseViewController, UICollectionViewDelegate {
     }
     
     private func customView() {
+        baseDelegate = self
         viewClearAll.layer.cornerRadius = viewClearAll.frame.height / 2
         viewClearAll.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         PublicFunction().changeTintColor(imageView: iconClearAll, hexCode: 0xffffff, alpha: 1.0)
         PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
+    }
+    
+    func noInternet() {
+        emptyReceipts.attributedText = reloadString()
+        
+        if listReceipts.count == 0 {
+            emptyReceipts.isHidden = false
+        }
+    }
+    
+    func hasInternet() {
+        emptyReceipts.text = "You haven't made any order yet."
     }
 }
 
@@ -157,8 +189,19 @@ extension ReceiptsController{
             
         }
     }
+    
     @objc func iconBackClick() {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func emptyReceiptsClick() {
+        loadReceipts()
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        refresh = true
+        currentPage = 1
+        loadReceipts()
+        refreshControl.endRefreshing()
+    }
 }

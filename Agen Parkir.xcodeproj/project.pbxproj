@@ -34,6 +34,12 @@
 		ED305C36222A1D94002744A6 /* CarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED305C35222A1D94002744A6 /* CarouselFlowLayout.swift */; };
 		ED305C3A222C9AE5002744A6 /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED305C39222C9AE5002744A6 /* ServicesCell.swift */; };
 		ED305C3C222C9C71002744A6 /* ServicesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED305C3B222C9C71002744A6 /* ServicesModel.swift */; };
+		ED42AE7D225D826C00C2DDEB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED42AE7C225D826C00C2DDEB /* BaseViewController.swift */; };
+		ED42AE84225D8E5300C2DDEB /* InternetReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED42AE83225D8E5300C2DDEB /* InternetReachability.swift */; };
+		ED42AE86225D941700C2DDEB /* NoConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED42AE85225D941700C2DDEB /* NoConnectionView.xib */; };
+		ED42AE8A225D94D700C2DDEB /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED42AE89225D94D700C2DDEB /* NibView.swift */; };
+		ED42AE8C225D953D00C2DDEB /* NoConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED42AE8B225D953D00C2DDEB /* NoConnectionView.swift */; };
+		ED42AE8E225DA72200C2DDEB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED42AE8D225DA72200C2DDEB /* NetworkManager.swift */; };
 		ED448E67223A75DE00BAAEF4 /* ReceiptsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED448E66223A75DE00BAAEF4 /* ReceiptsController.swift */; };
 		ED448E69223A7B5500BAAEF4 /* ReceiptsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED448E68223A7B5500BAAEF4 /* ReceiptsCell.swift */; };
 		ED448E6B223A9FA700BAAEF4 /* ReceiptsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED448E6A223A9FA700BAAEF4 /* ReceiptsModel.swift */; };
@@ -169,6 +175,12 @@
 		ED305C35222A1D94002744A6 /* CarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselFlowLayout.swift; sourceTree = "<group>"; };
 		ED305C39222C9AE5002744A6 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
 		ED305C3B222C9C71002744A6 /* ServicesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesModel.swift; sourceTree = "<group>"; };
+		ED42AE7C225D826C00C2DDEB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		ED42AE83225D8E5300C2DDEB /* InternetReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetReachability.swift; sourceTree = "<group>"; };
+		ED42AE85225D941700C2DDEB /* NoConnectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoConnectionView.xib; sourceTree = "<group>"; };
+		ED42AE89225D94D700C2DDEB /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		ED42AE8B225D953D00C2DDEB /* NoConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoConnectionView.swift; sourceTree = "<group>"; };
+		ED42AE8D225DA72200C2DDEB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		ED448E66223A75DE00BAAEF4 /* ReceiptsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsController.swift; sourceTree = "<group>"; };
 		ED448E68223A7B5500BAAEF4 /* ReceiptsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsCell.swift; sourceTree = "<group>"; };
 		ED448E6A223A9FA700BAAEF4 /* ReceiptsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsModel.swift; sourceTree = "<group>"; };
@@ -325,38 +337,16 @@
 		ED2B0B0622238E0D004AF051 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ED42AE7E225D831600C2DDEB /* Settings */,
+				ED42AE7B225D825A00C2DDEB /* Base */,
+				ED42AE7A225D7F9300C2DDEB /* MyCard */,
+				ED42AE79225D7F8D00C2DDEB /* Receipts */,
+				ED42AE78225D7F8400C2DDEB /* OnGoing */,
+				ED42AE77225D7F7600C2DDEB /* Booking */,
+				ED42AE76225D7F6400C2DDEB /* Auth */,
 				ED2B0B0B22239415004AF051 /* CellController */,
 				ED2B0AF4222387ED004AF051 /* AppDelegate.swift */,
 				ED2B0B09222392E8004AF051 /* WelcomeController.swift */,
-				ED2B0B102223B85B004AF051 /* LoginRegisterController.swift */,
-				ED2B0B152223D1D9004AF051 /* LoginController.swift */,
-				ED2B0B172224137B004AF051 /* ForgotPasswordController.swift */,
-				EDA224E32224C97E00291B68 /* RegisterController.swift */,
-				EDA224E52224CA3800291B68 /* Enter4DigitResetPasswordController.swift */,
-				EDA224E72225761C00291B68 /* HomeController.swift */,
-				EDA224E92225792E00291B68 /* AgreementsController.swift */,
-				ED9A3420222F4AC400D26E6F /* SettingsController.swift */,
-				ED9A3426222F77CC00D26E6F /* AccountsController.swift */,
-				EDF4081C223120A400CA6FDF /* LicensePlateController.swift */,
-				EDED07A02233860600BB8CBD /* BuildingController.swift */,
-				ED7253892233E347000BE938 /* BookingController.swift */,
-				ED976D0F2236912D00EF8354 /* BookingAgreementController.swift */,
-				ED1BE8B52237DF6D00FD26A9 /* OngoingController.swift */,
-				ED6AE5122239413A0057E453 /* DirectionController.swift */,
-				ED6AE514223947850057E453 /* QrCodeController.swift */,
-				ED6AE5182239CB530057E453 /* OngoingInfoController.swift */,
-				ED448E66223A75DE00BAAEF4 /* ReceiptsController.swift */,
-				ED448E6C223B41FC00BAAEF4 /* SendReceiptController.swift */,
-				ED448E6E223CDFA700BAAEF4 /* MyCardController.swift */,
-				ED011627223D29DD0047AD40 /* TopupController.swift */,
-				EDDB03FB223FF3C3005845A9 /* TicketController.swift */,
-				ED10ECD0224309530028161E /* TicketDetailController.swift */,
-				ED10ECD22243B4780028161E /* TabOngoingController.swift */,
-				ED10ECD42243B8970028161E /* ParkingController.swift */,
-				ED10ECD62243B8AB0028161E /* TicketingController.swift */,
-				EDBCC80722448C84004AAF42 /* TicketDetailReceiptController.swift */,
-				EDFBB77D2248666100BB8246 /* StoreController.swift */,
-				EDFBB78E2248A97000BB8246 /* DetailStoreController.swift */,
 				ED551275224F19780052A86E /* ChatController.swift */,
 				ED589BC422519A35003FE6D7 /* ImagePreviewController.swift */,
 			);
@@ -445,8 +435,89 @@
 				ED1BE8BB223877D200FD26A9 /* CustomTimer.swift */,
 				EDBCC80922449584004AAF42 /* Barcode.swift */,
 				ED589BC62252CF6A003FE6D7 /* ScaledHeightImageView.swift */,
+				ED42AE83225D8E5300C2DDEB /* InternetReachability.swift */,
+				ED42AE8D225DA72200C2DDEB /* NetworkManager.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		ED42AE76225D7F6400C2DDEB /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EDA224E92225792E00291B68 /* AgreementsController.swift */,
+				ED2B0B102223B85B004AF051 /* LoginRegisterController.swift */,
+				ED2B0B152223D1D9004AF051 /* LoginController.swift */,
+				ED2B0B172224137B004AF051 /* ForgotPasswordController.swift */,
+				EDA224E32224C97E00291B68 /* RegisterController.swift */,
+				EDA224E52224CA3800291B68 /* Enter4DigitResetPasswordController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		ED42AE77225D7F7600C2DDEB /* Booking */ = {
+			isa = PBXGroup;
+			children = (
+				EDFBB77D2248666100BB8246 /* StoreController.swift */,
+				EDFBB78E2248A97000BB8246 /* DetailStoreController.swift */,
+				EDDB03FB223FF3C3005845A9 /* TicketController.swift */,
+				ED10ECD0224309530028161E /* TicketDetailController.swift */,
+				EDA224E72225761C00291B68 /* HomeController.swift */,
+				EDED07A02233860600BB8CBD /* BuildingController.swift */,
+				ED7253892233E347000BE938 /* BookingController.swift */,
+				ED976D0F2236912D00EF8354 /* BookingAgreementController.swift */,
+			);
+			path = Booking;
+			sourceTree = "<group>";
+		};
+		ED42AE78225D7F8400C2DDEB /* OnGoing */ = {
+			isa = PBXGroup;
+			children = (
+				ED10ECD22243B4780028161E /* TabOngoingController.swift */,
+				ED10ECD42243B8970028161E /* ParkingController.swift */,
+				ED10ECD62243B8AB0028161E /* TicketingController.swift */,
+				EDBCC80722448C84004AAF42 /* TicketDetailReceiptController.swift */,
+				ED1BE8B52237DF6D00FD26A9 /* OngoingController.swift */,
+				ED6AE5122239413A0057E453 /* DirectionController.swift */,
+				ED6AE514223947850057E453 /* QrCodeController.swift */,
+				ED6AE5182239CB530057E453 /* OngoingInfoController.swift */,
+			);
+			path = OnGoing;
+			sourceTree = "<group>";
+		};
+		ED42AE79225D7F8D00C2DDEB /* Receipts */ = {
+			isa = PBXGroup;
+			children = (
+				ED448E66223A75DE00BAAEF4 /* ReceiptsController.swift */,
+				ED448E6C223B41FC00BAAEF4 /* SendReceiptController.swift */,
+			);
+			path = Receipts;
+			sourceTree = "<group>";
+		};
+		ED42AE7A225D7F9300C2DDEB /* MyCard */ = {
+			isa = PBXGroup;
+			children = (
+				ED448E6E223CDFA700BAAEF4 /* MyCardController.swift */,
+				ED011627223D29DD0047AD40 /* TopupController.swift */,
+			);
+			path = MyCard;
+			sourceTree = "<group>";
+		};
+		ED42AE7B225D825A00C2DDEB /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				ED42AE7C225D826C00C2DDEB /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		ED42AE7E225D831600C2DDEB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ED9A3420222F4AC400D26E6F /* SettingsController.swift */,
+				ED9A3426222F77CC00D26E6F /* AccountsController.swift */,
+				EDF4081C223120A400CA6FDF /* LicensePlateController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		ED4F64822246F216007DCD18 /* OneSignalNotificationServiceExtension */ = {
@@ -476,6 +547,9 @@
 				EDFBB78A22489AA000BB8246 /* StoreHeaderReusableView.xib */,
 				EDA8438B224CEDFB0054D580 /* StadionHeaderReusableView.xib */,
 				EDA8438D224CEFE60054D580 /* StadionHeaderReusableView.swift */,
+				ED42AE85225D941700C2DDEB /* NoConnectionView.xib */,
+				ED42AE89225D94D700C2DDEB /* NibView.swift */,
+				ED42AE8B225D953D00C2DDEB /* NoConnectionView.swift */,
 			);
 			path = Nib;
 			sourceTree = "<group>";
@@ -584,6 +658,7 @@
 				ED2B0AFC222387EE004AF051 /* Assets.xcassets in Resources */,
 				ED551266224F05C70052A86E /* MyChatImageCell.xib in Resources */,
 				ED551262224F059A0052A86E /* MyChatCell.xib in Resources */,
+				ED42AE86225D941700C2DDEB /* NoConnectionView.xib in Resources */,
 				EDD7051A22560A6C0000EEA0 /* GoogleService-Info.plist in Resources */,
 				ED551268224F05D50052A86E /* OpponentChatImageCell.xib in Resources */,
 				ED2B0AFA222387ED004AF051 /* Main.storyboard in Resources */,
@@ -750,6 +825,8 @@
 				ED2B0B0A222392E8004AF051 /* WelcomeController.swift in Sources */,
 				ED55126E224F11B20052A86E /* MyChatImageCell.swift in Sources */,
 				EDFBB78D2248A73A00BB8246 /* ProductCell.swift in Sources */,
+				ED42AE8E225DA72200C2DDEB /* NetworkManager.swift in Sources */,
+				ED42AE7D225D826C00C2DDEB /* BaseViewController.swift in Sources */,
 				EDBCC80A22449584004AAF42 /* Barcode.swift in Sources */,
 				ED10ECD72243B8AB0028161E /* TicketingController.swift in Sources */,
 				ED6AE5132239413A0057E453 /* DirectionController.swift in Sources */,
@@ -792,7 +869,9 @@
 				ED551272224F124B0052A86E /* ChatModel.swift in Sources */,
 				EDDB0400223FFD91005845A9 /* TicketModel.swift in Sources */,
 				ED011628223D29DD0047AD40 /* TopupController.swift in Sources */,
+				ED42AE8C225D953D00C2DDEB /* NoConnectionView.swift in Sources */,
 				EDBCC80822448C84004AAF42 /* TicketDetailReceiptController.swift in Sources */,
+				ED42AE8A225D94D700C2DDEB /* NibView.swift in Sources */,
 				ED2B0AF5222387ED004AF051 /* AppDelegate.swift in Sources */,
 				ED6AE5192239CB530057E453 /* OngoingInfoController.swift in Sources */,
 				ED1BE8B82237E92900FD26A9 /* OngoingCell.swift in Sources */,
@@ -802,6 +881,7 @@
 				ED55126C224F119D0052A86E /* OpponentChatCell.swift in Sources */,
 				ED9A3429222F83BC00D26E6F /* InteractiveRecognizer.swift in Sources */,
 				ED9A3427222F77CC00D26E6F /* AccountsController.swift in Sources */,
+				ED42AE84225D8E5300C2DDEB /* InternetReachability.swift in Sources */,
 				ED448E6D223B41FC00BAAEF4 /* SendReceiptController.swift in Sources */,
 				ED6AE51B2239E4590057E453 /* ImagesOngoingCell.swift in Sources */,
 				ED53C1FD222CC040005FEBF9 /* UpdatesModel.swift in Sources */,

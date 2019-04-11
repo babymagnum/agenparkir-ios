@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NoConnectionView" customModule="Agen_Parkir" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="315" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Hh-vW-LrJ">
+                    <rect key="frame" x="0.0" y="0.0" width="315" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Internet Connection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afB-TY-zpP">
+                            <rect key="frame" x="20" y="16" width="275" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="0.94999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.50428082191780821" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="afB-TY-zpP" secondAttribute="trailing" constant="20" id="Bqz-bh-Rse"/>
+                        <constraint firstItem="afB-TY-zpP" firstAttribute="centerY" secondItem="1Hh-vW-LrJ" secondAttribute="centerY" id="Rou-n6-l2w"/>
+                        <constraint firstItem="afB-TY-zpP" firstAttribute="leading" secondItem="1Hh-vW-LrJ" secondAttribute="leading" constant="20" id="v6X-P8-gV6"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1Hh-vW-LrJ" secondAttribute="trailing" id="6o2-1d-pCk"/>
+                <constraint firstAttribute="bottom" secondItem="1Hh-vW-LrJ" secondAttribute="bottom" id="7CC-Yd-YXd"/>
+                <constraint firstItem="1Hh-vW-LrJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Cr3-IU-Hhn"/>
+                <constraint firstItem="1Hh-vW-LrJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="U5g-Fg-CEr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="contentMain" destination="1Hh-vW-LrJ" id="u1V-Fb-dhT"/>
+            </connections>
+            <point key="canvasLocation" x="84" y="123.23838080959521"/>
+        </view>
+    </objects>
+</document>

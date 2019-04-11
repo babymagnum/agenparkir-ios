@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D646C00C8224382F4ADB09C2DC356D0A"
+               BlueprintIdentifier = "58761B2183402F37AF4F556C5A27BC57"
                BuildableName = "MidtransKit.bundle"
                BlueprintName = "MidtransKit-MidtransKit"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D646C00C8224382F4ADB09C2DC356D0A"
+            BlueprintIdentifier = "58761B2183402F37AF4F556C5A27BC57"
             BuildableName = "MidtransKit.bundle"
             BlueprintName = "MidtransKit-MidtransKit"
             ReferencedContainer = "container:Pods.xcodeproj">

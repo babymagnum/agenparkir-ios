@@ -26,6 +26,6 @@ struct CurrentModel {
     }
     
     func getMyCard() -> String {
-        return "Rp,\(PublicFunction().prettyRupiah("\(self.my_card!.dropLast(3))"))"
+        return "Rp,\(PublicFunction().prettyRupiah("\(self.my_card!)"))"
     }
 }

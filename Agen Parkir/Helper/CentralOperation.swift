@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 enum OperationState {
-    case success, canceled, empty, error
+    case success, canceled, empty, error, expired
 }
 
 enum LoadBuilding {
@@ -69,6 +69,7 @@ class RegisterOperation: AbstractOperation {
     var registerModel: RegisterModel?
     
     //MARK: Props
+    var state: OperationState?
     var error: String?
     
     init(registerModel: RegisterModel) {
@@ -77,6 +78,7 @@ class RegisterOperation: AbstractOperation {
     
     override func main() {
         if isCancelled {
+            self.state = .canceled
             self.finish(true)
             return
         }
@@ -100,19 +102,27 @@ class RegisterOperation: AbstractOperation {
             
             switch response.result {
             case .success(let responseSuccess):
-                print("\(responseSuccess)")
+                print("register response \(responseSuccess)")
                 
                 let data = JSON(responseSuccess)
                 
                 if "\(responseSuccess)".contains("code = 401") {
                     self.error = data["message"].string
+                    self.state = .error
+                    self.finish(true)
+                    return
+                } else if "\(responseSuccess)".contains("code = 200") {
+                    self.error = data["message"].string
+                    self.state = .error
                     self.finish(true)
                     return
                 } else {
+                    self.state = .success
                     self.finish(true)
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                print("error register response: \(error.localizedDescription)")
+                self.state = .error
                 self.error = error.localizedDescription
                 self.finish(true)
             }
@@ -448,10 +458,12 @@ class BillboardOperation: AbstractOperation {
 //for get current profile
 class CurrentOperation: AbstractOperation {
     var currentModel: CurrentModel?
+    var state: OperationState?
     var error: String?
     
     override func main() {
         if isCancelled{
+            self.state = .canceled
             self.finish(true)
             return
         }
@@ -471,36 +483,38 @@ class CurrentOperation: AbstractOperation {
                 
                 print("current data \(data)")
                 
-                if data["data"]["status"].string == "expired" {
+                if data["status"].string == "expired" {
+                    self.state = .expired
                     self.error = "Your session is end, please login again"
                     self.finish(true)
                     return
                 }
                 
-                let amount_my_card = String((data["my_card"].string?.dropLast(3))!)
+                self.state = .success
+                let amount_my_card = "\(data["my_card"].string ?? "0.00")".dropLast(3)
                 let phone = data["phone"].int ?? 0123456789
-                UserDefaults.standard.set(amount_my_card, forKey: StaticVar.my_card)
-                UserDefaults.standard.set(data["name"].string!, forKey: StaticVar.name)
+                UserDefaults.standard.set("\(amount_my_card)", forKey: StaticVar.my_card)
+                UserDefaults.standard.set(data["name"].string ?? "Unknown", forKey: StaticVar.name)
                 UserDefaults.standard.set("\(phone)", forKey: StaticVar.phone)
                 UserDefaults.standard.set(data["email"].string, forKey: StaticVar.email)
                 UserDefaults.standard.set(data["id"].int, forKey: StaticVar.id)
                 
                 //connect to sendbird
-                //menambahkan proxy customer untuk aplikasi agen parkir, dan store untuk store dan officer untuk juru parkir
-                PublicFunction().connectSendbird("customer_\(data["id"].int!)", data["name"].string!, "")
+                PublicFunction().connectSendbird("\(data["sendbird_userid"].string!)", data["name"].string ?? "Unknown", "")
                 
                 guard let image = data["images"].string else {
                     UserDefaults.standard.set("", forKey: StaticVar.images)
-                    self.currentModel = CurrentModel(data["id"].int!, data["name"].string!, data["email"].string!, phone, "", data["my_card"].string!)
+                    self.currentModel = CurrentModel(data["id"].int!, data["name"].string ?? "Unknown", data["email"].string!, phone, "", "\(amount_my_card)")
                     self.finish(true)
                     return
                 }
                 
                 UserDefaults.standard.set(image, forKey: StaticVar.images)
-                self.currentModel = CurrentModel(data["id"].int!, data["name"].string!, data["email"].string!, phone, image, data["my_card"].string!)
+                self.currentModel = CurrentModel(data["id"].int!, data["name"].string ?? "Unknown", data["email"].string!, phone, image, "\(amount_my_card)")
                 self.finish(true)
                 
             case .failure(let error):
+                self.state = .error
                 self.error = error.localizedDescription
                 self.finish(true)
             }
@@ -1223,6 +1237,7 @@ class ListOngoingOperation: AbstractOperation {
                 ongoingModel.booking_code = data["booking_code"].string
                 ongoingModel.vehicle_type = self.vehicle_type
                 ongoingModel.removeTimer = false
+                ongoingModel.officer = (data["officer"].arrayObject as! [String])
                 
                 self.listOngoing.append(ongoingModel)
                 

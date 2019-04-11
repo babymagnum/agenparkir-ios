@@ -14,7 +14,7 @@ protocol ImagePreviewControllerProtocol {
     func reloadData()
 }
 
-class ImagePreviewController: UIViewController, UICollectionViewDelegate {
+class ImagePreviewController: BaseViewController, UICollectionViewDelegate {
 
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var cancelButton: UIButton!

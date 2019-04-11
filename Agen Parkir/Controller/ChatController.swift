@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import SVProgressHUD
 
-class ChatController: UIViewController, UICollectionViewDelegate, UITextFieldDelegate {
+class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var viewInputChat: UIView!
     @IBOutlet weak var inputChat: UITextField!
@@ -24,7 +24,7 @@ class ChatController: UIViewController, UICollectionViewDelegate, UITextFieldDel
     
     //MARK: Props
     var listChat = [ChatModel]()
-    var userId: String? //for creating channel
+    var listUserId: [String]?
     var thisChannel: SBDGroupChannel?
     var defaultObservable = BehaviorRelay(value: "")
     let bag = DisposeBag()
@@ -71,7 +71,7 @@ class ChatController: UIViewController, UICollectionViewDelegate, UITextFieldDel
     }
     
     private func joinChannelWithId() {
-        SBDGroupChannel.createChannel(withUserIds: ["user1"], isDistinct: true) { (channel, error) in
+        SBDGroupChannel.createChannel(withUserIds: listUserId!, isDistinct: true) { (channel, error) in
             if let err = error {
                 PublicFunction().showUnderstandDialog(self, "Error Join Channel", err.localizedDescription, "Understand")
                 return
@@ -87,13 +87,15 @@ class ChatController: UIViewController, UICollectionViewDelegate, UITextFieldDel
     
     private func checkOpponentStatus(completionHandler: @escaping (_ isOnline: Bool, _ lastOnline: String, _ name: String) -> Void) {
         let applicationUserListQuery = SBDMain.createApplicationUserListQuery()
-        applicationUserListQuery?.userIdsFilter = ["user1"]
+        applicationUserListQuery?.userIdsFilter = listUserId
         applicationUserListQuery?.loadNextPage(completionHandler: { (users, error) in
             guard error == nil else {return}
             
-            if users?[0].connectionStatus == SBDUserConnectionStatus.online {
+            let filteredUsers = users?.filter{ $0.connectionStatus == SBDUserConnectionStatus.online }
+            
+            if (filteredUsers?.count)! > 0 {
                 completionHandler(true, PublicFunction().dateLongToString(dateInMillis: Double(exactly: (users?[0].lastSeenAt)!)!, pattern: "dd MMM yyyy / kk:mm"), (users?[0].nickname)!)
-            } else if users?[0].connectionStatus == SBDUserConnectionStatus.offline {
+            } else {
                 completionHandler(false, PublicFunction().dateLongToString(dateInMillis: Double(exactly: (users?[0].lastSeenAt)!)!, pattern: "dd MMM yyyy / kk:mm"), (users?[0].nickname)!)
             }
         })

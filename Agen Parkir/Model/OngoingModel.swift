@@ -22,4 +22,5 @@ struct OngoingModel {
     var booking_code: String?
     var vehicle_type: Int?
     var removeTimer: Bool?
+    var officer: [String]?
 }

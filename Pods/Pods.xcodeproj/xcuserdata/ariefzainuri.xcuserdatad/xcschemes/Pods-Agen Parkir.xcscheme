@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2DCDD2FCF66742E41D6C070A4398AFDB"
+               BlueprintIdentifier = "6494BA9B9178991078307ECEB80C835A"
                BuildableName = "Pods_Agen_Parkir.framework"
                BlueprintName = "Pods-Agen Parkir"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2DCDD2FCF66742E41D6C070A4398AFDB"
+            BlueprintIdentifier = "6494BA9B9178991078307ECEB80C835A"
             BuildableName = "Pods_Agen_Parkir.framework"
             BlueprintName = "Pods-Agen Parkir"
             ReferencedContainer = "container:Pods.xcodeproj">

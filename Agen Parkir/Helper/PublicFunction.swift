@@ -14,6 +14,9 @@ import Kingfisher
 import SendBirdSDK
 
 class PublicFunction{
+    
+    static let instance = PublicFunction()
+    
     /*
      bottom_right = .layerMaxXMaxYCorner
      bottom_left = .layerMinXMaxYCorner
@@ -72,6 +75,12 @@ class PublicFunction{
                     print(addressString)
                 }
         })
+    }
+    
+    open func timerConnection() -> Timer {
+        return Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+            print("timer is running")
+        }
     }
     
     ///////////////////////////////////////////////////////////////////////
@@ -225,6 +234,14 @@ class PublicFunction{
     open func showUnderstandDialog(_ viewController: UIViewController, _ title: String, _ message: String, _ actionTitle: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: actionTitle, style: .cancel, handler: nil))
+        viewController.present(alert, animated: true)
+    }
+    
+    open func showUnderstandDialog(_ viewController: UIViewController, _ title: String, _ message: String, _ actionTitle: String, completionHandler: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { (action) in
+            completionHandler()
+        }))
         viewController.present(alert, animated: true)
     }
     
@@ -421,6 +438,22 @@ extension UICollectionView {
         let lastItemIndexPath = IndexPath(item: numberOfItems(inSection: lastSection) - 1,
                                           section: lastSection)
         scrollToItem(at: lastItemIndexPath, at: .bottom, animated: true)
+    }
+}
+
+extension UIView {
+    
+    public class func fromNib() -> Self {
+        return fromNib(nibName: nil)
+    }
+    
+    public class func fromNib(nibName: String?) -> Self {
+        func fromNibHelper<T>(nibName: String?) -> T where T : UIView {
+            let bundle = Bundle(for: T.self)
+            let name = nibName ?? String(describing: T.self)
+            return bundle.loadNibNamed(name, owner: nil, options: nil)?.first as? T ?? T()
+        }
+        return fromNibHelper(nibName: nibName)
     }
 }
 

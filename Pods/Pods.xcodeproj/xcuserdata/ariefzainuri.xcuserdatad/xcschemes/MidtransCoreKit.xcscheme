@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85D4779A7AAC2390909E011BABD3D740"
+               BlueprintIdentifier = "8A99044462F70C2E9C4289204109EB1F"
+               BuildableName = "MidtransCoreKit.framework"
                BlueprintName = "MidtransCoreKit"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "MidtransCoreKit.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

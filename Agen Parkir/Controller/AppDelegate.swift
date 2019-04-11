@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         FirebaseApp.configure()
         
         //sendbird init
-        SBDMain.initWithApplicationId("CD56DC1F-6999-43A3-BF41-FE364D867801")
+        SBDMain.initWithApplicationId("4FB8C8E8-D452-497C-85DE-8EE0F4FA6251")
         
         //keyboard manager
         IQKeyboardManager.shared.enable = true

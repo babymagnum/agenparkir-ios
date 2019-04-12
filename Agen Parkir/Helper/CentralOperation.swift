@@ -360,10 +360,17 @@ class RecentlyOperation: AbstractOperation {
             
             switch response.result {
             case .success(let responseSuccess):
-                let data = JSON(responseSuccess)
-                print("data recently: \(data)")
+                let data = JSON(responseSuccess)["data"].array
 
-                if data["data"].array?.count == 0 {
+                guard let recentlys = data else {
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
+                
+                print("data recently: \(recentlys)")
+                
+                if recentlys.count == 0 {
                     self.state = .empty
                     self.finish(true)
                     return
@@ -371,12 +378,12 @@ class RecentlyOperation: AbstractOperation {
 
                 self.state = .success
 
-                for (index, recently) in (data["data"].array?.enumerated())! {
+                for (index, recently) in recentlys.enumerated() {
                     let recentlyModel = RecentlyModel(venueName: recently["name"].string!, image: recently["images"].string!, orderDate: recently["last_booked"].string ?? "Booking Incomplete", building_id: recently["building_id"].int!)
 
                     self.listRecently.append(recentlyModel)
 
-                    if index == (data["data"].array?.count)! - 1 {
+                    if index == recentlys.count - 1 {
                         self.finish(true)
                     }
                 }
@@ -410,12 +417,19 @@ class BillboardOperation: AbstractOperation {
         Alamofire.request(url, method: .get).responseJSON { (response) in
             
             switch response.result{
+                
             case .success(let responseSuccess):
-                let data = JSON(responseSuccess)
+                let billboardArray = JSON(responseSuccess)["data"].array
                 
-                print("data billboard: \(data)")
+                guard let billboards = billboardArray else {
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
                 
-                if data["data"].array?.count == 0 {
+                print("data billboard: \(billboards)")
+                
+                if billboards.count == 0 {
                     self.state = .empty
                     self.finish(true)
                     return
@@ -423,12 +437,12 @@ class BillboardOperation: AbstractOperation {
                 
                 self.state = .success
                 
-                for (index, recently) in (data["data"].array?.enumerated())! {
-                    let billboardModel = BillboardModel(images: recently["images"].string ?? "", store_id: recently["store_id"].int!, description: recently["description"].string ?? "", buildings_id: recently["buildings_id"].int!, time: recently["time"].string ?? "7:00 AM - 10:00 PM", address: recently["address"].string ?? "", name_store: recently["name_store"].string ?? "")
+                for (index, billboard) in billboards.enumerated() {
+                    let billboardModel = BillboardModel(images: billboard["images"].string ?? "", store_id: billboard["store_id"].int!, description: billboard["description"].string ?? "", buildings_id: billboard["buildings_id"].int!, time: billboard["time"].string ?? "7:00 AM - 10:00 PM", address: billboard["address"].string ?? "", name_store: billboard["name_store"].string ?? "")
                     
                     self.listBillboard.append(billboardModel)
                     
-                    if index == (data["data"].array?.count)! - 1 {
+                    if index == billboards.count - 1 {
                         self.finish(true)
                     }
                 }
@@ -438,7 +452,6 @@ class BillboardOperation: AbstractOperation {
                 self.error = error.localizedDescription
                 self.finish(true)
             }
-            
         }
     }
 }
@@ -488,7 +501,7 @@ class CurrentOperation: AbstractOperation {
                 UserDefaults.standard.set(data["id"].int, forKey: StaticVar.id)
                 
                 //connect to sendbird
-                PublicFunction().connectSendbird("\(data["sendbird_userid"].string!)", data["name"].string ?? "Unknown", "")
+                PublicFunction().connectSendbird("\(data["sendbird_userid"].string ?? "")", data["name"].string ?? "Unknown", "")
                 
                 guard let image = data["images"].string else {
                     UserDefaults.standard.set("", forKey: StaticVar.images)
@@ -600,13 +613,17 @@ class ShowListBuildingOperation: AbstractOperation {
             switch response.result {
             case .success(let responseSuccess):
                 
-                let data = JSON(responseSuccess)
+                let data = JSON(responseSuccess)["data"].array
                 
-                print("list building data \(data)")
+                guard let list = data else {
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
                 
-                let list = data["data"].array
+                print("list building data \(list)")
                 
-                if list?.count == 0 {
+                if list.count == 0 {
                     self.state = .empty
                     self.finish(true)
                     return
@@ -614,7 +631,7 @@ class ShowListBuildingOperation: AbstractOperation {
                 
                 self.state = .success
                 
-                for (index, building) in (list?.enumerated())! {
+                for (index, building) in list.enumerated() {
                     var buildingModel = BuildingModel()
                     buildingModel.building_id = building["building_id"].int
                     buildingModel.name_building = building["name_building"].string
@@ -640,7 +657,7 @@ class ShowListBuildingOperation: AbstractOperation {
                         }
                     }
                     
-                    if index == (list?.count)! - 1 {
+                    if index == list.count - 1 {
                         self.finish(true)
                     }
                 }
@@ -884,17 +901,23 @@ class ShowListPlateOperation: AbstractOperation {
             
             switch response.result {
             case .success(let success):
-                print("data list plate \(success)")
-                let data = JSON(success)
-                let array = data["data"].array
+                let array = JSON(success)["data"].array
                 
-                if array?.count == 0 {
+                guard let listPlate = array else {
                     self.state = .empty
                     self.finish(true)
                     return
                 }
                 
-                for (index, plate) in (array?.enumerated())! {
+                print("data list plate \(listPlate)")
+                
+                if listPlate.count == 0 {
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
+                
+                for (index, plate) in listPlate.enumerated() {
                     self.listPlate.append(PlateModel(plate["plate_id"].int!, plate["vehicle_id"].int!, plate["number_plate"].string!, plate["title_plate"].string!))
                     
                     if index == (array?.count)! - 1 {
@@ -1323,7 +1346,13 @@ class ListReceiptsOperation: AbstractOperation {
             case .success(let success):
                 let list = JSON(success)["data"].array
                 
-                if list?.count == 0 {
+                guard let receipts = list else {
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
+                
+                if receipts.count == 0 {
                     self.state = .empty
                     self.finish(true)
                     return
@@ -1331,7 +1360,7 @@ class ListReceiptsOperation: AbstractOperation {
                 
                 self.state = .success
                 
-                for (index, receipt) in (list?.enumerated())! {
+                for (index, receipt) in receipts.enumerated() {
                     let details = receipt["details"]
                     var receiptsModel = ReceiptsModel()
                     receiptsModel.orders_id = receipt["orders_id"].int!
@@ -1353,7 +1382,7 @@ class ListReceiptsOperation: AbstractOperation {
                     
                     self.listReceipts.append(receiptsModel)
                     
-                    if index == (list?.count)! - 1 {
+                    if index == receipts.count - 1 {
                         self.finish(true)
                     }
                 }
@@ -1533,7 +1562,13 @@ class HistoryOperation: AbstractOperation {
             case .success(let success):
                 let list = JSON(success)["data"].array
                 
-                if list?.count == 0 {
+                guard let histories = list else {
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
+                
+                if histories.count == 0 {
                     self.state = .empty
                     self.finish(true)
                     return
@@ -1541,7 +1576,7 @@ class HistoryOperation: AbstractOperation {
                 
                 self.state = .success
                 
-                for (index, history) in (list?.enumerated())! {
+                for (index, history) in histories.enumerated() {
                     var historyModel = HistoryModel()
                     historyModel.nominal = history["nominal"].string!
                     historyModel.trans_date = history["trans_date"].string!
@@ -1549,7 +1584,7 @@ class HistoryOperation: AbstractOperation {
                     
                     self.listHistory.append(historyModel)
                     
-                    if index == (list?.count)! - 1 {
+                    if index == histories.count - 1 {
                         self.finish(true)
                     }
                 }
@@ -1592,34 +1627,43 @@ class TicketOperation: AbstractOperation {
                 let jsonArrayTicket = data["ticketing"].array
                 print("ticket data \(data)")
                 
-                if jsonArrayTicket?.count == 0 {
+                guard let tickets = jsonArrayTicket else {
                     self.venueTicketModel = VenueTicketModel(data["name_building"].string!, data["address"].string!, data["images_building"].string!, data["count_event"].int!, self.listTicket)
                     
-                    print("no ticketing in this venue")
-                    self.state = .success
+                    self.state = .empty
                     self.finish(true)
-                } else {
-                    for (index, ticket) in (jsonArrayTicket?.enumerated())! {
-                        var ticketModel = TicketModel()
-                        ticketModel.tickets_id = ticket["tickets_id"].int ?? 0
-                        ticketModel.images = ticket["images"].string ?? ""
-                        ticketModel.schedule = ticket["schedule"].string ?? ""
-                        ticketModel.name = ticket["name"].string ?? ""
-                        ticketModel.price = ticket["price"].int ?? 0
-                        ticketModel.quantity = ticket["quantity"].int ?? 0
-                        ticketModel.limit_ticket = ticket["limit_ticket"].int ?? 0
-                        ticketModel.limit_ticket_to = ticket["limit_ticket_to"].int ?? 0
-                        ticketModel.buildings_id = ticket["buildings_id"].int ?? 0
-                        ticketModel.building_name = ticket["building_name"].string ?? ""
-                        ticketModel.reedem_date = ticket["reedem_date"].string ?? ""
-
-                        self.listTicket.append(ticketModel)
-
-                        if index == (jsonArrayTicket?.count)! - 1 {
-                            self.venueTicketModel = VenueTicketModel(data["name_building"].string!, data["address"].string!, data["images_building"].string!, data["count_event"].int!, self.listTicket)
-                            self.state = .success
-                            self.finish(true)
-                        }
+                    
+                    return
+                }
+                
+                if tickets.count == 0 {
+                    self.venueTicketModel = VenueTicketModel(data["name_building"].string!, data["address"].string!, data["images_building"].string!, data["count_event"].int!, self.listTicket)
+                    
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
+                
+                for (index, ticket) in tickets.enumerated() {
+                    var ticketModel = TicketModel()
+                    ticketModel.tickets_id = ticket["tickets_id"].int ?? 0
+                    ticketModel.images = ticket["images"].string ?? ""
+                    ticketModel.schedule = ticket["schedule"].string ?? ""
+                    ticketModel.name = ticket["name"].string ?? ""
+                    ticketModel.price = ticket["price"].int ?? 0
+                    ticketModel.quantity = ticket["quantity"].int ?? 0
+                    ticketModel.limit_ticket = ticket["limit_ticket"].int ?? 0
+                    ticketModel.limit_ticket_to = ticket["limit_ticket_to"].int ?? 0
+                    ticketModel.buildings_id = ticket["buildings_id"].int ?? 0
+                    ticketModel.building_name = ticket["building_name"].string ?? ""
+                    ticketModel.reedem_date = ticket["reedem_date"].string ?? ""
+                    
+                    self.listTicket.append(ticketModel)
+                    
+                    if index == tickets.count - 1 {
+                        self.venueTicketModel = VenueTicketModel(data["name_building"].string!, data["address"].string!, data["images_building"].string!, data["count_event"].int!, self.listTicket)
+                        self.state = .success
+                        self.finish(true)
                     }
                 }
                 
@@ -1751,18 +1795,23 @@ class TicketListOngoingOperation: AbstractOperation {
             case .success(let success):
                 let data = JSON(success)["data"].array
                 
-                if data?.count == 0 {
+                guard let ticketOngoing = data else {
                     self.state = .empty
                     self.finish(true)
                     return
                 }
                 
-                self.state = .success
+                if ticketOngoing.count == 0 {
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
                 
-                for (index, value) in (data?.enumerated())! {
+                for (index, value) in ticketOngoing.enumerated() {
                     self.listTicket.append("\(value["orders_id"].int!)")
                     
-                    if index == (data?.count)! - 1 {
+                    if index == ticketOngoing.count - 1 {
+                        self.state = .success
                         self.finish(true)
                     }
                 }
@@ -1801,17 +1850,21 @@ class ListStoreOperation: AbstractOperation {
             case .success(let success):
                 let storeArray = JSON(success)["data"].array
                 
-                print("data list store \(String(describing: storeArray))")
-                
-                if storeArray!.count == 0 {
+                guard let stores = storeArray else {
                     self.state = .empty
                     self.finish(true)
                     return
                 }
                 
-                self.state = .success
+                print("data list store \(stores)")
                 
-                for (index, value) in storeArray!.enumerated(){
+                if stores.count == 0 {
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
+                
+                for (index, value) in stores.enumerated() {
                     var storeModel = StoreModel()
                     storeModel.address = value["address"].string!
                     storeModel.description = value["description"].string!
@@ -1824,7 +1877,8 @@ class ListStoreOperation: AbstractOperation {
                     
                     self.listStore.append(storeModel)
                     
-                    if index == (storeArray?.count)! - 1 {
+                    if index == stores.count - 1 {
+                        self.state = .success
                         self.finish(true)
                     }
                 }

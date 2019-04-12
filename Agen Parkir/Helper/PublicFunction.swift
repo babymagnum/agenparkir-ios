@@ -276,23 +276,29 @@ class PublicFunction{
     }
     
     open func connectSendbird(_ userId: String, _ nickname: String, _ imageUrl: String) {
-        SBDMain.connect(withUserId: userId) { (user, error) in
-            if let err = error {
-                print("failed connect to sendbird \(err.localizedDescription)")
-                return
-            }
-            
-            print("Success connect to sendbird with id: \(userId) and nickname: \(nickname)")
-            
-            //update profile
-            SBDMain.updateCurrentUserInfo(withNickname: nickname, profileUrl: imageUrl, completionHandler: { (error) in
+        if userId == "" {
+            return
+        }
+        
+        if SBDMain.getCurrentUser() == nil {
+            SBDMain.connect(withUserId: userId) { (user, error) in
                 if let err = error {
-                    print("Failed update profile \(err.localizedDescription)")
+                    print("failed connect to sendbird \(err.localizedDescription)")
                     return
                 }
                 
-                print("success update profile")
-            })
+                print("Success connect to sendbird with id: \(userId) and nickname: \(nickname)")
+                
+                //update profile
+                SBDMain.updateCurrentUserInfo(withNickname: nickname, profileUrl: imageUrl, completionHandler: { (error) in
+                    if let err = error {
+                        print("Failed update profile \(err.localizedDescription)")
+                        return
+                    }
+                    
+                    print("success update profile")
+                })
+            }
         }
     }
     

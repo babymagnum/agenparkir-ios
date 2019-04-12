@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import SendBirdSDK
 
 class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseViewControllerProtocol {
     
@@ -76,7 +77,6 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseV
                 case .empty?:
                     if self.listProduct.count == 0 {
                         PublicFunction().showUnderstandDialog(self, "No Products", "This store dont register their products yet", "Understand")
-                        self.showEmpty()
                     }
                 case .error?:
                     if self.listProduct.count == 0 {
@@ -126,6 +126,39 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseV
         productCollectionView.dataSource = self
         productCollectionView.isPrefetchingEnabled = false
         productCollectionView.register(UINib(nibName: "StoreHeaderReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "StoreHeaderReusableView")
+    }
+    
+    private func checkSendbird() {
+        if SBDMain.getCurrentUser() == nil {
+            let currentOperation = CurrentOperation()
+            let operation = OperationQueue()
+            operation.addOperation(currentOperation)
+            
+            currentOperation.completionBlock = {
+                switch currentOperation.state {
+                case .success?:
+                    self.navigateToMessage()
+                case .error?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", currentOperation.error!, "Reload", "Cancel", completionHandler: {
+                        self.checkSendbird()
+                    })
+                default:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was some error with syste.", "Reload", "Cancel", completionHandler: {
+                        self.checkSendbird()
+                    })
+                }
+            }
+            
+            return
+        }
+        
+        self.navigateToMessage()
+    }
+    
+    private func navigateToMessage() {
+        let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
+        chatController.listUserId = ["store_1"]
+        navigationController?.pushViewController(chatController, animated: true)
     }
 }
 
@@ -216,9 +249,7 @@ extension DetailStoreController: UICollectionViewDataSource, UICollectionViewDel
 
 extension DetailStoreController {
     @objc func iconMessageClick() {
-        let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
-        chatController.listUserId = ["store_1"]
-        navigationController?.pushViewController(chatController, animated: true)
+        checkSendbird()
     }
     
     @objc func iconBackClick() {

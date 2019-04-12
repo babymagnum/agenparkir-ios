@@ -485,7 +485,7 @@ extension HomeController {
     @objc func recentlyContentClick(sender: UITapGestureRecognizer){
         if let indexpath = recentlyCollectionView.indexPathForItem(at: sender.location(in: recentlyCollectionView)){
             let bookingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BookingController") as! BookingController
-            bookingController.building_id = listRecently[indexpath.row].building_id
+            bookingController.building_id = listRecently[indexpath.item].building_id
             navigationController?.pushViewController(bookingController, animated: true)
         }
     }

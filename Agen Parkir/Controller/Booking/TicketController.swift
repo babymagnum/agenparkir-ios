@@ -97,21 +97,14 @@ class TicketController: BaseViewController, UICollectionViewDelegate, BaseViewCo
                 case .success?:
                     self.ticketCollectionView.isHidden = false
                     self.emptyText.isHidden = true
-                    
-                    if ticketOperation.listTicket.count == 0 {
-                        PublicFunction().showUnderstandDialog(self, "Empty Ticket", "This venue dont have upcoming or active event yet.", "Understand")
-                        return
-                    }
-                    
                     self.venueTicketModel = ticketOperation.venueTicketModel
-                    
-                    for (index, ticket) in ticketOperation.listTicket.enumerated() {
-                        self.listTicket.append(ticket)
-                        
-                        if index == ticketOperation.listTicket.count - 1 {
-                            self.ticketCollectionView.reloadData()
-                        }
-                    }
+                    self.listTicket = ticketOperation.listTicket
+                    self.ticketCollectionView.reloadData()
+                case .empty?:
+                    self.listTicket = ticketOperation.listTicket
+                    self.venueTicketModel = ticketOperation.venueTicketModel
+                    self.ticketCollectionView.reloadData()
+                    PublicFunction().showUnderstandDialog(self, "Empty Ticket", "This venue dont have upcoming or active event yet.", "Understand")
                 case .error?:
                     PublicFunction().showUnderstandDialog(self, "Error", ticketOperation.error!, "Understand")
                 default:

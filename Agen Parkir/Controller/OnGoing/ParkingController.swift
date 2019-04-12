@@ -9,6 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 import SVProgressHUD
+import SendBirdSDK
 
 class ParkingController: BaseViewController, IndicatorInfoProvider, BaseViewControllerProtocol {
     
@@ -239,6 +240,41 @@ class ParkingController: BaseViewController, IndicatorInfoProvider, BaseViewCont
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Parking")
     }
+    
+    private func checkSendbird() {
+        guard let model = ongoingModel else { return }
+
+        if SBDMain.getCurrentUser() == nil {
+            let currentOperation = CurrentOperation()
+            let operation = OperationQueue()
+            operation.addOperation(currentOperation)
+            
+            currentOperation.completionBlock = {
+                switch currentOperation.state {
+                case .success?:
+                    self.navigateToMessage(model)
+                case .error?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", currentOperation.error!, "Reload", "Cancel", completionHandler: {
+                        self.checkSendbird()
+                    })
+                default:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was some error with syste.", "Reload", "Cancel", completionHandler: {
+                        self.checkSendbird()
+                    })
+                }
+            }
+            
+            return
+        }
+        
+        self.navigateToMessage(model)
+    }
+    
+    private func navigateToMessage(_ model: OngoingModel) {
+        let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
+        chatController.listUserId = model.officer
+        self.navigationController?.pushViewController(chatController, animated: true)
+    }
 }
 
 extension ParkingController {
@@ -289,10 +325,7 @@ extension ParkingController {
     }
     
     @objc func viewMessageClick() {
-        guard let model = ongoingModel else { return }
-        let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
-        chatController.listUserId = model.officer
-        navigationController?.pushViewController(chatController, animated: true)
+        self.checkSendbird()
     }
     
     @objc func willActive(_ notification: Notification) {

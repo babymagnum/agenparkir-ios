@@ -68,13 +68,13 @@ class TicketingController: BaseViewController, UICollectionViewDelegate, Indicat
                     self.listTicket = ticketOngoing.listTicket
                     self.ticketCollectionView.reloadData()
                 case .error?:
-                    PublicFunction().showUnderstandDialog(self, "Error", ticketOngoing.error!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", ticketOngoing.error!, "Understand")
                     self.showEmpty()
                 case .empty?:
-                    PublicFunction().showUnderstandDialog(self, "No Active Ticket", "You have no active ticket yet", "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "No Active Ticket", "You have no active ticket yet", "Understand")
                     self.showEmpty()
                 default:
-                    PublicFunction().showUnderstandDialog(self, "Error", ticketOngoing.error!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", ticketOngoing.error!, "Understand")
                     self.showEmpty()
                 }
             }

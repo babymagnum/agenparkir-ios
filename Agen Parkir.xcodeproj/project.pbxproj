@@ -337,6 +337,7 @@
 		ED2B0B0622238E0D004AF051 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ED42AE8F2261602200C2DDEB /* Messaging */,
 				ED42AE7E225D831600C2DDEB /* Settings */,
 				ED42AE7B225D825A00C2DDEB /* Base */,
 				ED42AE7A225D7F9300C2DDEB /* MyCard */,
@@ -347,8 +348,6 @@
 				ED2B0B0B22239415004AF051 /* CellController */,
 				ED2B0AF4222387ED004AF051 /* AppDelegate.swift */,
 				ED2B0B09222392E8004AF051 /* WelcomeController.swift */,
-				ED551275224F19780052A86E /* ChatController.swift */,
-				ED589BC422519A35003FE6D7 /* ImagePreviewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -518,6 +517,15 @@
 				EDF4081C223120A400CA6FDF /* LicensePlateController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		ED42AE8F2261602200C2DDEB /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				ED551275224F19780052A86E /* ChatController.swift */,
+				ED589BC422519A35003FE6D7 /* ImagePreviewController.swift */,
+			);
+			path = Messaging;
 			sourceTree = "<group>";
 		};
 		ED4F64822246F216007DCD18 /* OneSignalNotificationServiceExtension */ = {

@@ -121,9 +121,9 @@ class LoginController: BaseViewController, UITextFieldDelegate {
         
         viewNext.layer.cornerRadius = viewNext.frame.width / 2
         
-        PublicFunction().changeTintColor(imageView: iconDeleteEmail, hexCode: 0x000000, alpha: 0.6)
-        PublicFunction().changeTintColor(imageView: iconNext, hexCode: 0xffffff, alpha: 1.0)
-        PublicFunction().changeTintColor(imageView: iconForgotPassword, hexCode: 0x00A551, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconDeleteEmail, hexCode: 0x000000, alpha: 0.6)
+        PublicFunction.instance.changeTintColor(imageView: iconNext, hexCode: 0xffffff, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconForgotPassword, hexCode: 0x00A551, alpha: 1.0)
         
         /*
          bottom_right = .layerMaxXMaxYCorner
@@ -137,6 +137,19 @@ class LoginController: BaseViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Understand", style: .cancel, handler: nil))
         present(alert, animated: true)
+    }
+    
+    private func showDialogActivate(_ err: String, _ email: String, _ password: String) {
+        let alert = UIAlertController(title: "Login Error", message: err, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Understand", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Activate", style: .default, handler: { (UIAlertAction) in
+            let enter4digit = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Enter4DigitResetPasswordController") as! Enter4DigitResetPasswordController
+            enter4digit.state = Enter4DigitCodeState.email
+            enter4digit.email = email
+            enter4digit.password = password
+            self.navigationController?.pushViewController(enter4digit, animated: true)
+        }))
+        self.present(alert, animated: true)
     }
     
 }
@@ -154,7 +167,7 @@ extension LoginController {
     
     @objc func viewNextClick() {
         if state == .dont {
-            PublicFunction().showUnderstandDialog(self, "Form Not Complete", "Make sure to input your email and password before login", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Form Not Complete", "Make sure to input your email and password before login", "Understand")
             return
         }
         
@@ -171,47 +184,28 @@ extension LoginController {
         let loginOperation = LoginOperation(loginData: (email!, password!))
         operationQueue.addOperation(loginOperation)
         loginOperation.completionBlock = {
-            SVProgressHUD.dismiss()
             
-            if let err = loginOperation.error {
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
                 
-                let alert = UIAlertController(title: "Login Error", message: err, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Understand", style: .cancel, handler: nil))
-                alert.addAction(UIAlertAction(title: "Activate", style: .default, handler: { (UIAlertAction) in
+                if let err = loginOperation.error {
                     
-                    SVProgressHUD.show()
-                    
-                    let resendEmailOperation = ResendEmailOperation(email: (self.inputEmail.text?.trim())!)
-                    
-                    operationQueue.addOperation(resendEmailOperation)
-                    
-                    resendEmailOperation.completionBlock = {
-                        SVProgressHUD.dismiss()
-                        
-                        if let err = resendEmailOperation.error {
-                            PublicFunction().showUnderstandDialog(self, "Error Activate Email", err, "Understand")
-                            return
-                        }
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
-                            let enter4digit = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Enter4DigitResetPasswordController") as! Enter4DigitResetPasswordController
-                            enter4digit.state = Enter4DigitCodeState.email
-                            enter4digit.email = email
-                            enter4digit.password = password
-                            self.navigationController?.pushViewController(enter4digit, animated: true)
-                        })
+                    switch err {
+                    case "Your email has not been verified, Check you email for OTP":
+                        self.showDialogActivate(err, email!, password!)
+                        break
+                    default:
+                        self.showDialog("Login Error", err)
+                        break
                     }
-                }))
-                self.present(alert, animated: true)
+                    
+                    return
+                }
                 
-                return
+                UserDefaults.standard.set(true, forKey: StaticVar.login)
+                
+                self.performSegue(withIdentifier: "toHomeController", sender: self)
             }
-            
-            UserDefaults.standard.set(true, forKey: StaticVar.login)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                let homeController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeController") as! HomeController
-                self.navigationController?.pushViewController(homeController, animated: true)
-            })
         }
     }
     

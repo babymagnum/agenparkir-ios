@@ -77,17 +77,17 @@ class ReceiptsController: BaseViewController, UICollectionViewDelegate, BaseView
                 case .empty?:
                     if self.listReceipts.count == 0 {
                         self.showEmpty()
-                        PublicFunction().showUnderstandDialog(self, "Empty Receipts", "You haven't make any order yet", "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Empty Receipts", "You haven't make any order yet", "Understand")
                     }
                 case .error?:
                     if self.listReceipts.count == 0 {
                         self.showEmpty()
-                        PublicFunction().showUnderstandDialog(self, "Error", listReceiptsOperation.error!, "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", listReceiptsOperation.error!, "Understand")
                     }
                 default:
                     if self.listReceipts.count == 0 {
                         self.showEmpty()
-                        PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please refresh the page", "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please refresh the page", "Understand")
                     }
                 }
             }
@@ -120,8 +120,8 @@ class ReceiptsController: BaseViewController, UICollectionViewDelegate, BaseView
         baseDelegate = self
         viewClearAll.layer.cornerRadius = viewClearAll.frame.height / 2
         viewClearAll.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-        PublicFunction().changeTintColor(imageView: iconClearAll, hexCode: 0xffffff, alpha: 1.0)
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconClearAll, hexCode: 0xffffff, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
     }
     
     func noInternet() {
@@ -180,7 +180,7 @@ extension ReceiptsController{
             
             switch listReceipts[indexpath.item].booking_status_id {
             case 0, 1, 2, 4:
-                PublicFunction().showUnderstandDialog(self, "Cant Send Receipts", "Your parking order not completed yet, or maybe canceled due to system and provicy policy", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Cant Send Receipts", "Your parking order not completed yet, or maybe canceled due to system and provicy policy", "Understand")
             default:
                 let sendReceiptsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SendReceiptController") as! SendReceiptController
                 sendReceiptsController.receiptsModel = self.listReceipts[indexpath.item]

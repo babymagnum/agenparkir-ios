@@ -102,8 +102,8 @@ class BookingAgreementController: BaseViewController {
             self.plateNumber.text = "[ \(returnBooking.plate_number) ]"
             
             //custom price text
-            self.priceText(PublicFunction().prettyRupiah("\(returnBooking.sub_tariff)"), 0x00A551, self.price)
-            self.priceText(PublicFunction().prettyRupiah("\(returnBooking.total)"), 0x000000, self.totalPrice)
+            self.priceText(PublicFunction.instance.prettyRupiah("\(returnBooking.sub_tariff)"), 0x00A551, self.price)
+            self.priceText(PublicFunction.instance.prettyRupiah("\(returnBooking.total)"), 0x000000, self.totalPrice)
         }
     }
     
@@ -119,7 +119,7 @@ class BookingAgreementController: BaseViewController {
     private func customView() {
         imageHeader.clipsToBounds = true
         imageHeader.layer.cornerRadius = imageHeader.frame.width / 2
-        PublicFunction().changeTintColor(imageView: iconCancel, hexCode: 0xd50000, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconCancel, hexCode: 0xd50000, alpha: 1.0)
         viewImageHeader.layer.cornerRadius = viewImageHeader.frame.width / 2
         viewImageHeader.layer.borderWidth = 1
         viewImageHeader.layer.borderColor = UIColor(rgb: 0x00A551).cgColor
@@ -147,7 +147,7 @@ class BookingAgreementController: BaseViewController {
                     paymentController?.paymentDelegate = self
                     self.present(paymentController!, animated: true, completion: nil)
                 } else {
-                    PublicFunction().showUnderstandDialog(self, "Error", (error?.localizedDescription)!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", (error?.localizedDescription)!, "Understand")
                 }
             }
         }
@@ -172,7 +172,7 @@ extension BookingAgreementController: MidtransUIPaymentViewControllerDelegate {
     }
     
     func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentPending result: MidtransTransactionResult!) {
-        PublicFunction().showUnderstandDialog(self, "Payment Pending", "Your payment is pending", "Understand")
+        PublicFunction.instance.showUnderstandDialog(self, "Payment Pending", "Your payment is pending", "Understand")
     }
     
     func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentSuccess result: MidtransTransactionResult!) {
@@ -182,7 +182,7 @@ extension BookingAgreementController: MidtransUIPaymentViewControllerDelegate {
     }
     
     func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentFailed error: Error!) {
-        PublicFunction().showUnderstandDialog(self, "Payment Error", error.localizedDescription, "Understand")
+        PublicFunction.instance.showUnderstandDialog(self, "Payment Error", error.localizedDescription, "Understand")
     }
     
     func paymentViewController_paymentCanceled(_ viewController: MidtransUIPaymentViewController!) {
@@ -222,9 +222,9 @@ extension BookingAgreementController {
                             self.goToOngoingController()
                         }
                     case .error?:
-                        PublicFunction().showUnderstandDialog(self, "Error", orderOperation.error!, "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", orderOperation.error!, "Understand")
                     default:
-                        PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
                     }
                 }
             }
@@ -241,10 +241,10 @@ extension BookingAgreementController {
                     self.showPaymentController(creditCardOperation.token!)
                 case .error?:
                     SVProgressHUD.dismiss()
-                    PublicFunction().showUnderstandDialog(self, "Error", creditCardOperation.error!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", creditCardOperation.error!, "Understand")
                 default:
                     SVProgressHUD.dismiss()
-                    PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
                 }
             }
         }
@@ -265,9 +265,9 @@ extension BookingAgreementController {
                         self.navigationController?.popViewController(animated: true)
                     }
                 case .error?:
-                    PublicFunction().showUnderstandDialog(self, "Error", cancelBookingOperation.error!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", cancelBookingOperation.error!, "Understand")
                 default:
-                    PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please try again later", "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again later", "Understand")
                 }
             }
         }

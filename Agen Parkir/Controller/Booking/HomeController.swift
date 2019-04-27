@@ -48,6 +48,7 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
     @IBOutlet weak var iconTopUp: UIImageView!
     
     //MARK: Props
+    var channelUrl: String?
     var listRecently = [RecentlyModel]()
     var listBillboard = [BillboardModel]()
     var listServices = [ServicesModel]()
@@ -64,6 +65,18 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         
         return refreshControl
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let url = channelUrl {
+            DispatchQueue.main.async {
+                let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
+                chatController.channelUrl = url
+                self.navigationController?.pushViewController(chatController, animated: true)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,15 +115,15 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
                 case .success?:
                     self.updateCurrentData(currentOperation.currentModel!)
                 case .error?:
-                    PublicFunction().showUnderstandDialog(self, "Error", currentOperation.error!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", currentOperation.error!, "Understand")
                 case .expired?:
                     let alert = UIAlertController(title: "Session Expired", message: currentOperation.error!, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Login", style: .default, handler: { (action) in
-                        self.logout()
+                        PublicFunction.instance.logout(self)
                     }))
                     self.present(alert, animated: true)
                 default:
-                    PublicFunction().showUnderstandDialog(self, "Error", "There was some error with system, please try again", "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was some error with system, please try again", "Understand")
                 }
             }
         }
@@ -210,25 +223,6 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         }
     }
     
-    private func logout() {
-        //set data has account, so when from welcome controller we can head to loginregister controller
-        UserDefaults.standard.set(true, forKey: StaticVar.hasAccount)
-        //set login state to false, so user will head to welcome controller first
-        UserDefaults.standard.set(false, forKey: StaticVar.login)
-        UserDefaults.standard.set("", forKey: StaticVar.id)
-        UserDefaults.standard.set("", forKey: StaticVar.token)
-        UserDefaults.standard.set("", forKey: StaticVar.images)
-        
-        if FBSDKAccessToken.current() != nil {
-            FBSDKAccessToken.setCurrent(nil)
-            FBSDKProfile.setCurrent(nil)
-            FBSDKLoginManager().logOut()
-        }
-        
-        let welcomeController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeController") as! WelcomeController
-        self.present(welcomeController, animated: true)
-    }
-    
     private func handleGestureListener() {
         iconTopUp.isUserInteractionEnabled = true
         iconTopUp.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconTopUpClick)))
@@ -240,6 +234,7 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         iconOngoingBottom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewOngoingClick)))
         iconReceiptBottom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewReceiptClick)))
         viewMycard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewMycardClick)))
+        viewNotification.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewNotificationClick)))
         iconMycardBottom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewMycardClick)))
     }
     
@@ -464,7 +459,7 @@ extension HomeController: UpdateCurrentDataProtocol {
             SVProgressHUD.dismiss()
             
             if let err = currentOperation.error {
-                PublicFunction().showUnderstandDialog(self, "Error", err, "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error", err, "Understand")
             }
             
             guard let currentModel = currentOperation.currentModel else { return }
@@ -497,6 +492,7 @@ extension HomeController {
     
     @objc func viewOngoingClick() {
         let tabOngoingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabOngoingController") as! TabOngoingController
+        tabOngoingController.updateDelegate = self
         navigationController?.pushViewController(tabOngoingController, animated: true)
     }
     
@@ -528,6 +524,7 @@ extension HomeController {
     
     @objc func viewMycardClick() {
         let mycardController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyCardController") as! MyCardController
+        mycardController.delegate = self
         navigationController?.pushViewController(mycardController, animated: true)
     }
     
@@ -536,5 +533,9 @@ extension HomeController {
         locationManager.startUpdatingLocation()
         
         refreshControl.endRefreshing()
+    }
+    
+    @objc func viewNotificationClick() {
+        showDevelopmentFeature()
     }
 }

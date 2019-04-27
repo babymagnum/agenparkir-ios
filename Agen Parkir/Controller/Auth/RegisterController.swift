@@ -123,7 +123,7 @@ class RegisterController: BaseViewController, UITextFieldDelegate {
     }
     
     private func customView() {
-        PublicFunction().changeTintColor(imageView: iconNext, hexCode: 0xffffff, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconNext, hexCode: 0xffffff, alpha: 1.0)
         viewBack.layer.cornerRadius = 25
         viewBack.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         viewNext.layer.cornerRadius = viewNext.frame.width / 2
@@ -137,11 +137,11 @@ class RegisterController: BaseViewController, UITextFieldDelegate {
         inputPassword.tag = 3
         inputConfirmPassword.tag = 4
         inputPhoneNumber.tag = 5
-        PublicFunction().setShadow(viewFullName, 4, UIColor.lightGray.cgColor, 2, 4, 4, 1.0)
-        PublicFunction().setShadow(viewEmail, 4, UIColor.lightGray.cgColor, 2, 4, 4, 1.0)
-        PublicFunction().setShadow(viewPassword, 4, UIColor.lightGray.cgColor, 2, 4, 4, 1.0)
-        PublicFunction().setShadow(viewConfirmPassword, 4, UIColor.lightGray.cgColor, 2, 4, 4, 1.0)
-        PublicFunction().setShadow(viewPhoneNumber, 4, UIColor.lightGray.cgColor, 2, 4, 4, 1.0)
+        PublicFunction.instance.setShadow(viewFullName, 4, UIColor.lightGray.cgColor, 2, 4, 4, 1.0)
+        PublicFunction.instance.setShadow(viewEmail, 4, UIColor.lightGray.cgColor, 2, 4, 4, 1.0)
+        PublicFunction.instance.setShadow(viewPassword, 4, UIColor.lightGray.cgColor, 2, 4, 4, 1.0)
+        PublicFunction.instance.setShadow(viewConfirmPassword, 4, UIColor.lightGray.cgColor, 2, 4, 4, 1.0)
+        PublicFunction.instance.setShadow(viewPhoneNumber, 4, UIColor.lightGray.cgColor, 2, 4, 4, 1.0)
     }
     
     private func changeToGreen(_ textField: UITextField, _ line: UIView) {
@@ -205,7 +205,7 @@ extension RegisterController {
     
     @objc func viewNextClick() {
         if state == .dont {
-            PublicFunction().showUnderstandDialog(self, "Form Not Complete", "Make sure to fill the registration form before procceed", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Form Not Complete", "Make sure to fill the registration form before procceed", "Understand")
             return
         }
         

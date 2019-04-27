@@ -16,7 +16,7 @@ class PlateCell: UICollectionViewCell {
     @IBOutlet weak var icon: UIImageView!
     
     override func awakeFromNib() {
-        PublicFunction().changeTintColor(imageView: iconDelete, hexCode: 0xdfe6e9, alpha: 1)
+        PublicFunction.instance.changeTintColor(imageView: iconDelete, hexCode: 0xdfe6e9, alpha: 1)
     }
     
     var plateData: PlateModel? {

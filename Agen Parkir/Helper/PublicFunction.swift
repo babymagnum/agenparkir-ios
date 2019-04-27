@@ -12,8 +12,11 @@ import CoreLocation
 import MapKit
 import Kingfisher
 import SendBirdSDK
+import FBSDKCoreKit
+import FBSDKLoginKit
+import FacebookLogin
 
-class PublicFunction{
+class PublicFunction: NSObject{
     
     static let instance = PublicFunction()
     
@@ -243,6 +246,24 @@ class PublicFunction{
             completionHandler()
         }))
         viewController.present(alert, animated: true)
+    }
+    
+    open func logout(_ viewController: UIViewController) {
+        //set data has account, so when from welcome controller we can head to loginregister controller
+        UserDefaults.standard.set(true, forKey: StaticVar.hasAccount)
+        //set login state to false, so user will head to welcome controller first
+        UserDefaults.standard.set(false, forKey: StaticVar.login)
+        UserDefaults.standard.set("", forKey: StaticVar.id)
+        UserDefaults.standard.set("", forKey: StaticVar.token)
+        UserDefaults.standard.set("", forKey: StaticVar.images)
+        
+        if FBSDKAccessToken.current() != nil {
+            FBSDKAccessToken.setCurrent(nil)
+            FBSDKProfile.setCurrent(nil)
+            FBSDKLoginManager().logOut()
+        }
+        
+        viewController.performSegue(withIdentifier: "toLoginRegisterController", sender: viewController)
     }
     
     open func showUnderstandDialog(_ viewController: UIViewController, _ title: String, _ message: String, _ actionTitle: String, _ actionTitle2: String, completionHandler: @escaping () -> Void) {

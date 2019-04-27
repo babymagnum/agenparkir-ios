@@ -74,7 +74,7 @@ class OngoingController: BaseViewController, UICollectionViewDelegate {
         super.viewWillDisappear(animated)
         
         if allowStopTimer {
-            UserDefaults.standard.set(PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
+            UserDefaults.standard.set(PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
             
             print("cancel timer because of user tap back in \(UserDefaults.standard.string(forKey: StaticVar.time_timer_removed) ?? "")")
             
@@ -168,14 +168,14 @@ class OngoingController: BaseViewController, UICollectionViewDelegate {
                     self.contentMain.isHidden = false 
                 }
             case .error?:
-                PublicFunction().showUnderstandDialog(self, "Empty Order", listOngoingOperation.error!, "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Empty Order", listOngoingOperation.error!, "Understand")
                 DispatchQueue.main.async {
                     self.emptyOngoing.text = listOngoingOperation.error!
                     self.emptyOngoing.isHidden = false
                     self.contentMain.isHidden = true
                 }
             default:
-                PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please try refresh the page", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try refresh the page", "Understand")
                 self.emptyOngoing.text = "There was something error with system, please try refresh the page"
                 self.emptyOngoing.isHidden = false
             }
@@ -186,14 +186,14 @@ class OngoingController: BaseViewController, UICollectionViewDelegate {
         venueName.text = ongoingModel.building_name
         
         if let date = ongoingModel.booking_start_time {
-            let longDate = PublicFunction().dateStringToInt(stringDate: date, pattern: "yyyy-MM-dd kk:mm:ss")
-            orderDate.text = PublicFunction().dateLongToString(dateInMillis: longDate, pattern: "dd MMMM yyyy, kk:mm a")
+            let longDate = PublicFunction.instance.dateStringToInt(stringDate: date, pattern: "yyyy-MM-dd kk:mm:ss")
+            orderDate.text = PublicFunction.instance.dateLongToString(dateInMillis: longDate, pattern: "dd MMMM yyyy, kk:mm a")
         } else {
-            orderDate.text = PublicFunction().getCurrentDate(pattern: "dd MMMM yyyy kk:mm a")
+            orderDate.text = PublicFunction.instance.getCurrentDate(pattern: "dd MMMM yyyy kk:mm a")
         }
         
         if ongoingModel.vehicle_type == 0 {
-            let difference = Calendar.current.dateComponents([.second], from: PublicFunction().getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed)!, pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction().getDate(stringDate: PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
+            let difference = Calendar.current.dateComponents([.second], from: PublicFunction.instance.getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed)!, pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction.instance.getDate(stringDate: PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
             print("time left for canceled timer \(UserDefaults.standard.integer(forKey: StaticVar.last_timer))")
             print("difference between last time and current time \(difference)")
             self.timerLast = UserDefaults.standard.integer(forKey: StaticVar.last_timer) - difference
@@ -226,7 +226,7 @@ class OngoingController: BaseViewController, UICollectionViewDelegate {
     }
     
     private func customView() {        
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x0D47A1, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x0D47A1, alpha: 1.0)
         contentMain.layer.cornerRadius = 10
         contentMain.clipsToBounds = false
         contentMain.layer.shadowColor = UIColor.lightGray.cgColor
@@ -283,7 +283,7 @@ extension OngoingController {
             print("start timer again from background")
             
             if model.vehicle_type == 0 {
-                let difference = Calendar.current.dateComponents([.second], from: PublicFunction().getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed)!, pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction().getDate(stringDate: PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
+                let difference = Calendar.current.dateComponents([.second], from: PublicFunction.instance.getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed)!, pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction.instance.getDate(stringDate: PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
                 print("time left for canceled timer \(UserDefaults.standard.integer(forKey: StaticVar.last_timer))")
                 print("difference between last time and current time \(difference)")
                 self.timerLast = UserDefaults.standard.integer(forKey: StaticVar.last_timer) - difference
@@ -299,7 +299,7 @@ extension OngoingController {
     }
     
     @objc func willResignActive(_ notification: Notification) {
-        UserDefaults.standard.set(PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
+        UserDefaults.standard.set(PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
         
         print("cancel timer because of in background in \(UserDefaults.standard.string(forKey: StaticVar.time_timer_removed) ?? "")")
         

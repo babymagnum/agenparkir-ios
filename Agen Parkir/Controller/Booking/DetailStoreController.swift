@@ -76,15 +76,15 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseV
                     }
                 case .empty?:
                     if self.listProduct.count == 0 {
-                        PublicFunction().showUnderstandDialog(self, "No Products", "This store dont register their products yet", "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "No Products", "This store dont register their products yet", "Understand")
                     }
                 case .error?:
                     if self.listProduct.count == 0 {
-                        PublicFunction().showUnderstandDialog(self, "Error", detailStoreOperation.error!, "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", detailStoreOperation.error!, "Understand")
                     }
                 default:
                     if self.listProduct.count == 0 {
-                        PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please try again later", "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again later", "Understand")
                     }
                 }
             }
@@ -103,7 +103,7 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseV
     
     private func customView() {
         baseDelegate = self
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 1.0)
         viewIconTop.layer.cornerRadius = viewIconTop.frame.height / 2
     }
     

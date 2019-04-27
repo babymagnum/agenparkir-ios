@@ -30,8 +30,8 @@ class HistoryCell: UICollectionViewCell {
     var dataHistory: HistoryModel? {
         didSet{
             if let data = dataHistory {
-                let millis = PublicFunction().dateStringToInt(stringDate: data.trans_date!, pattern: "yyyy-MM-dd kk:mm:ss")
-                let time = PublicFunction().dateLongToString(dateInMillis: millis, pattern: "kk:mm a")
+                let millis = PublicFunction.instance.dateStringToInt(stringDate: data.trans_date!, pattern: "yyyy-MM-dd kk:mm:ss")
+                let time = PublicFunction.instance.dateLongToString(dateInMillis: millis, pattern: "kk:mm a")
                 
                 self.time.text = time
             }

@@ -29,6 +29,7 @@ class MyCardController: BaseViewController, UICollectionViewDelegate, BaseViewCo
     var currentPage = 1
     var allowLoadMore = false
     var popRecognizer: InteractivePopRecognizer?
+    var delegate: UpdateCurrentDataProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ class MyCardController: BaseViewController, UICollectionViewDelegate, BaseViewCo
         
         initCollectionView()
         
-        loadData()    
+        loadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -114,9 +115,9 @@ class MyCardController: BaseViewController, UICollectionViewDelegate, BaseViewCo
                 case .success?:
                     self.updateUI(currentOperation.currentModel!)
                 case .error?:
-                    PublicFunction().showUnderstandDialog(self, "Error", currentOperation.error!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", currentOperation.error!, "Understand")
                 default:
-                    PublicFunction().showUnderstandDialog(self, "Error", "There was some error with system, please try again", "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was some error with system, please try again", "Understand")
                 }
             }
         }
@@ -177,7 +178,7 @@ class MyCardController: BaseViewController, UICollectionViewDelegate, BaseViewCo
         viewSaldo.layer.shadowOpacity = 0.6
         textSaldo.clipsToBounds = true
         textSaldo.layer.cornerRadius = textSaldo.frame.height / 2
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
         contentMyCard.layer.cornerRadius = 5
         contentMyCard.clipsToBounds = false
         contentMyCard.layer.shadowColor = UIColor.lightGray.cgColor
@@ -190,6 +191,10 @@ class MyCardController: BaseViewController, UICollectionViewDelegate, BaseViewCo
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
         iconTopUp.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconTopUpClick)))
         emptyLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyLabelClick)))
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeGestureBack))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
     }
 }
 
@@ -206,6 +211,12 @@ extension MyCardController {
     }
     
     @objc func iconBackClick() {
+        delegate?.updateData()
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func swipeGestureBack() {
+        delegate?.updateData()
         navigationController?.popViewController(animated: true)
     }
 }
@@ -248,26 +259,26 @@ extension MyCardController: UICollectionViewDataSource, UICollectionViewDelegate
         case 1:
             cell.transactionLabel.text = "Top Up"
             cell.icon.image = UIImage(named: "Artboard 180@0.75x-8")
-            cell.amount.text = "+Rp\(PublicFunction().prettyRupiah(String((listHistory[indexPath.row].nominal?.dropLast(5))!)))"
+            cell.amount.text = "+Rp\(PublicFunction.instance.prettyRupiah(String((listHistory[indexPath.row].nominal?.dropLast(5))!)))"
         case 2:
             cell.transactionLabel.text = "Booking"
             cell.icon.image = UIImage(named: "Artboard 178@0.75x-8")
-            cell.amount.text = "-Rp\(PublicFunction().prettyRupiah(String((listHistory[indexPath.row].nominal?.dropLast(5))!)))"
+            cell.amount.text = "-Rp\(PublicFunction.instance.prettyRupiah(String((listHistory[indexPath.row].nominal?.dropLast(5))!)))"
         default:
             cell.transactionLabel.text = "Ticketing"
             cell.icon.image = UIImage(named: "Artboard 179@0.75x-8")
-            cell.amount.text = "-Rp\(PublicFunction().prettyRupiah(String((listHistory[indexPath.row].nominal?.dropLast(5))!)))"
+            cell.amount.text = "-Rp\(PublicFunction.instance.prettyRupiah(String((listHistory[indexPath.row].nominal?.dropLast(5))!)))"
         }
         
-        let millis = PublicFunction().dateStringToInt(stringDate: listHistory[indexPath.row].trans_date!, pattern: "yyyy-MM-dd kk:mm:ss")
-        let date = PublicFunction().dateLongToString(dateInMillis: millis, pattern: "dd MMMM yyyy")
+        let millis = PublicFunction.instance.dateStringToInt(stringDate: listHistory[indexPath.row].trans_date!, pattern: "yyyy-MM-dd kk:mm:ss")
+        let date = PublicFunction.instance.dateLongToString(dateInMillis: millis, pattern: "dd MMMM yyyy")
         
         let originalHeight = cell.view1Height.constant + cell.view2Height.constant + 30 + cell.topDateHeight.constant + 3
         let minimalisHeight = cell.view1Height.constant + cell.view2Height.constant + 30
         
         if indexPath.row > 0 {
-            let millisBefore = PublicFunction().dateStringToInt(stringDate: listHistory[indexPath.row - 1].trans_date!, pattern: "yyyy-MM-dd kk:mm:ss")
-            let dateBefore = PublicFunction().dateLongToString(dateInMillis: millisBefore, pattern: "dd MMMM yyyy")
+            let millisBefore = PublicFunction.instance.dateStringToInt(stringDate: listHistory[indexPath.row - 1].trans_date!, pattern: "yyyy-MM-dd kk:mm:ss")
+            let dateBefore = PublicFunction.instance.dateLongToString(dateInMillis: millisBefore, pattern: "dd MMMM yyyy")
             
             if dateBefore == date {
                 cell.topDate.text = ""
@@ -294,10 +305,10 @@ extension MyCardController: UICollectionViewDataSource, UICollectionViewDelegate
         let minimalisHeight = cell.view1Height.constant + cell.view2Height.constant + 30
         
         if indexPath.row > 0 {
-            let millis = PublicFunction().dateStringToInt(stringDate: listHistory[indexPath.row].trans_date!, pattern: "yyyy-MM-dd kk:mm:ss")
-            let date = PublicFunction().dateLongToString(dateInMillis: millis, pattern: "dd MMMM yyyy")
-            let millisBefore = PublicFunction().dateStringToInt(stringDate: listHistory[indexPath.row - 1].trans_date!, pattern: "yyyy-MM-dd kk:mm:ss")
-            let dateBefore = PublicFunction().dateLongToString(dateInMillis: millisBefore, pattern: "dd MMMM yyyy")
+            let millis = PublicFunction.instance.dateStringToInt(stringDate: listHistory[indexPath.row].trans_date!, pattern: "yyyy-MM-dd kk:mm:ss")
+            let date = PublicFunction.instance.dateLongToString(dateInMillis: millis, pattern: "dd MMMM yyyy")
+            let millisBefore = PublicFunction.instance.dateStringToInt(stringDate: listHistory[indexPath.row - 1].trans_date!, pattern: "yyyy-MM-dd kk:mm:ss")
+            let dateBefore = PublicFunction.instance.dateLongToString(dateInMillis: millisBefore, pattern: "dd MMMM yyyy")
             
             if dateBefore == date {
                 return CGSize(width: UIScreen.main.bounds.width - 40, height: minimalisHeight)
@@ -320,7 +331,7 @@ extension MyCardController: UpdateCurrentDataProtocol {
             SVProgressHUD.dismiss()
             
             if let err = currentOperation.error {
-                PublicFunction().showUnderstandDialog(self, "Error", err, "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error", err, "Understand")
             }
             
             guard let currentModel = currentOperation.currentModel else { return }

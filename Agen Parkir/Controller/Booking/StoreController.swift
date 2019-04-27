@@ -63,7 +63,7 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
         baseDelegate = self
         inputSearch.delegate = self
         inputSearch.tag = 1
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 1.0)
         iconSearch.image = UIImage(named: "search")?.tinted(with: UIColor.lightGray.withAlphaComponent(0.6))
         viewSearch.layer.cornerRadius = viewSearch.frame.height / 2
         viewSearch.layer.borderWidth = 1
@@ -108,17 +108,17 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
                 case .error?:
                     if self.listStore.count == 0 {
                         self.emptyText.isHidden = false
-                        PublicFunction().showUnderstandDialog(self, "Error", listStore.error!, "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", listStore.error!, "Understand")
                     }
                 case .empty?:
                     if self.listStore.count == 0 {
                         self.showEmpty()
-                        PublicFunction().showUnderstandDialog(self, "Error", "This building has no store registered yet", "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "This building has no store registered yet", "Understand")
                     }
                 default:
                     if self.listStore.count == 0 {
                         self.emptyText.isHidden = false
-                        PublicFunction().showUnderstandDialog(self, "Error", "There was some error with system, please try again", "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was some error with system, please try again", "Understand")
                     }
                 }
             }
@@ -183,7 +183,7 @@ extension StoreController: UICollectionViewDataSource{
 extension StoreController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.tag == 1 {
-            PublicFunction().showUnderstandDialog(self, "Search is in Development", "Search function is in development", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Search is in Development", "Search function is in development", "Understand")
         }
         
         return true

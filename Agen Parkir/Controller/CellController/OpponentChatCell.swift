@@ -31,7 +31,7 @@ class OpponentChatCell: UICollectionViewCell {
     var dataMessage: ChatModel? {
         didSet {
             if let data = dataMessage {
-                time.text = PublicFunction().dateLongToString(dateInMillis: Double(data.createdAt!), pattern: "kk:mm a")
+                time.text = PublicFunction.instance.dateLongToString(dateInMillis: Double(data.createdAt!), pattern: "kk:mm a")
                 message.setTitle(data.message, for: .normal)
                 
                 let messageContent = data.message

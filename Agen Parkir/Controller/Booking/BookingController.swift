@@ -195,10 +195,10 @@ class BookingController: BaseViewController, UICollectionViewDelegate {
                 }
             case .error?:
                 if let err = detailBuildingOperation.error {
-                    PublicFunction().showUnderstandDialog(self, "Error", err, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", err, "Understand")
                 }
             default:
-                PublicFunction().showUnderstandDialog(self, "Error", "Operation is canceled by system, please try again", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error", "Operation is canceled by system, please try again", "Understand")
             }
         }
     }
@@ -239,9 +239,9 @@ class BookingController: BaseViewController, UICollectionViewDelegate {
         buttonOrder.layer.cornerRadius = buttonOrder.frame.height / 2
         viewCancelVehicle.layer.cornerRadius = viewCancelVehicle.frame.width / 2
         viewPickVehicle.layer.cornerRadius = viewPickVehicle.frame.width / 2
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
-        PublicFunction().changeTintColor(imageView: iconPickVehicle, hexCode: 0x00A551, alpha: 1.0)
-        PublicFunction().changeTintColor(imageView: iconCancelVehicle, hexCode: 0xd50000, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconPickVehicle, hexCode: 0x00A551, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconCancelVehicle, hexCode: 0xd50000, alpha: 1.0)
     }
     
     private func loadPlate() {
@@ -270,14 +270,14 @@ class BookingController: BaseViewController, UICollectionViewDelegate {
                     }
                 }
             case .error?:
-                PublicFunction().showUnderstandDialog(self, "Error Get List Plate", showListPlateOperation.error!, "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error Get List Plate", showListPlateOperation.error!, "Understand")
                 self.buttonAddPlate.isHidden = false
             case .empty?:
                 DispatchQueue.main.async {
                     self.buttonAddPlate.isHidden = false
                 }
             default:
-                PublicFunction().showUnderstandDialog(self, "Error!", "Please click the retry button to refresh data", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error!", "Please click the retry button to refresh data", "Understand")
             }
         }
     }
@@ -311,9 +311,9 @@ class BookingController: BaseViewController, UICollectionViewDelegate {
                     self.navigationController?.pushViewController(bookingAgreementController, animated: true)
                 }
             case .error?:
-                PublicFunction().showUnderstandDialog(self, "Error", bookingOperation.error!, "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error", bookingOperation.error!, "Understand")
             default:
-                PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
             }
         }
     }
@@ -442,7 +442,7 @@ extension BookingController {
         case .allow:
             if let building = self.buildingModel { self.booking(building) }
         default:
-            PublicFunction().showUnderstandDialog(self, "Empty Field", "Make sure to fill and choose every option before proceed to order your parking", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Empty Field", "Make sure to fill and choose every option before proceed to order your parking", "Understand")
         }
     }
     
@@ -461,7 +461,7 @@ extension BookingController {
             viewContentPickVehicle.isHidden = false
             loadPlate()
         } else {
-            PublicFunction().showUnderstandDialog(self, "Empty Vehicle Type", "Please choose either car or motorcycle as your vehicle type", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Empty Vehicle Type", "Please choose either car or motorcycle as your vehicle type", "Understand")
         }
     }
     
@@ -484,7 +484,7 @@ extension BookingController {
             textSelectedVehicle.setTitleColor(UIColor(rgb: 0x00A551), for: .normal)
             self.myVehicle.accept(true)
         } else {
-            PublicFunction().showUnderstandDialog(self, "Pick Vehicle First", "You're not pick any vehicle yet", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Pick Vehicle First", "You're not pick any vehicle yet", "Understand")
         }
     }
 }

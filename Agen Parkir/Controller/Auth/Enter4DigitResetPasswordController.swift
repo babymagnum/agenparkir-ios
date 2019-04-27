@@ -106,7 +106,7 @@ class Enter4DigitResetPasswordController: BaseViewController, UITextFieldDelegat
         input3.layer.cornerRadius = 4
         input4.layer.cornerRadius = 4
         viewIconBack.layer.cornerRadius = viewIconBack.frame.width / 2
-        PublicFunction().changeTintColor(imageView: iconNext, hexCode: 0xffffff, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconNext, hexCode: 0xffffff, alpha: 1.0)
         
         if let _ = state {
             if state == Enter4DigitCodeState.email {

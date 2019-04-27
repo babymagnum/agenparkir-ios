@@ -82,10 +82,10 @@ class TicketDetailController: BaseViewController, UITextFieldDelegate {
             }
             totalTicket.placeholder = self.textTotalOrder
             eventName.text = data.name
-            eventPrice.text = "Rp \(PublicFunction().prettyRupiah("\(data.price ?? 0)"))"
+            eventPrice.text = "Rp \(PublicFunction.instance.prettyRupiah("\(data.price ?? 0)"))"
             ticketLeft.text = "\(data.quantity!)"
-            let longSchedule = PublicFunction().dateStringToInt(stringDate: data.schedule!, pattern: "yyyy-MM-dd kk:mm:ss")
-            schedule.text = "/ \(PublicFunction().dateLongToString(dateInMillis: longSchedule, pattern: "EEEE dd MMMM yyyy / kk:mm"))"
+            let longSchedule = PublicFunction.instance.dateStringToInt(stringDate: data.schedule!, pattern: "yyyy-MM-dd kk:mm:ss")
+            schedule.text = "/ \(PublicFunction.instance.dateLongToString(dateInMillis: longSchedule, pattern: "EEEE dd MMMM yyyy / kk:mm"))"
         }
     }
     
@@ -95,9 +95,9 @@ class TicketDetailController: BaseViewController, UITextFieldDelegate {
         contentMain.layer.cornerRadius = 5
         totalTicket.delegate = self
         totalTicket.tag = 1
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
         viewContentOrder.layer.cornerRadius = viewContentOrder.frame.height / 2
-        PublicFunction().changeTintColor(imageView: iconOrder, hexCode: 0x00A551, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconOrder, hexCode: 0x00A551, alpha: 1.0)
         viewTotalPrice.layer.cornerRadius = 5
     }
     
@@ -118,14 +118,14 @@ class TicketDetailController: BaseViewController, UITextFieldDelegate {
                     paymentController?.paymentDelegate = self
                     self.present(paymentController!, animated: true, completion: nil)
                 } else {
-                    PublicFunction().showUnderstandDialog(self, "Error", (error?.localizedDescription)!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", (error?.localizedDescription)!, "Understand")
                 }
             }
         }
     }
     
     private func showDialogSaldoNotEnought() {
-        let alert = UIAlertController(title: "My Card", message: "My Card saldo is not enough, your saldo is Rp\(PublicFunction().prettyRupiah(UserDefaults.standard.string(forKey: StaticVar.my_card)!))", preferredStyle: .alert)
+        let alert = UIAlertController(title: "My Card", message: "My Card saldo is not enough, your saldo is Rp\(PublicFunction.instance.prettyRupiah(UserDefaults.standard.string(forKey: StaticVar.my_card)!))", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Top Up", style: .default, handler: { (action) in
             let topupController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TopupController") as! TopupController
             self.navigationController?.pushViewController(topupController, animated: true)
@@ -160,12 +160,12 @@ extension TicketDetailController {
     
     @objc func viewOrderClick() {
         if paymentType == 0 {
-            PublicFunction().showUnderstandDialog(self, "Choose Payment Type First", "You have to choose payment type before buy the ticket", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Choose Payment Type First", "You have to choose payment type before buy the ticket", "Understand")
             return
         }
         
         if totalTicket.text?.trim() == "" || totalTicket.text?.trim() == "0" {
-            PublicFunction().showUnderstandDialog(self, "Ticket Empty", "Ticket can't be 0 or empty", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Ticket Empty", "Ticket can't be 0 or empty", "Understand")
             return
         }
         
@@ -181,9 +181,9 @@ extension TicketDetailController {
                     case .success?:
                         self.showPaymentController(ticketOrderOperation.token!)
                     case .error?:
-                        PublicFunction().showUnderstandDialog(self, "Error", ticketOrderOperation.error!, "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", ticketOrderOperation.error!, "Understand")
                     default:
-                        PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
                     }
                 }
             }
@@ -203,9 +203,9 @@ extension TicketDetailController {
                         //payment success
                         self.gotoTabOngoingController()
                     case .error?:
-                        PublicFunction().showUnderstandDialog(self, "Error", ticketOrderOperation.error!, "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", ticketOrderOperation.error!, "Understand")
                     default:
-                        PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
                     }
                 }
             }
@@ -223,7 +223,7 @@ extension TicketDetailController: MidtransUIPaymentViewControllerDelegate {
     }
     
     func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentPending result: MidtransTransactionResult!) {
-        PublicFunction().showUnderstandDialog(self, "Payment Pending", "Your payment is pending, please wait before we make sure that your payment in success", "Understand")
+        PublicFunction.instance.showUnderstandDialog(self, "Payment Pending", "Your payment is pending, please wait before we make sure that your payment in success", "Understand")
         print("payment success \(result.debugDescription)")
     }
     
@@ -233,7 +233,7 @@ extension TicketDetailController: MidtransUIPaymentViewControllerDelegate {
     }
     
     func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentFailed error: Error!) {
-        PublicFunction().showUnderstandDialog(self, "Payment Failed", error.localizedDescription, "Understand")
+        PublicFunction.instance.showUnderstandDialog(self, "Payment Failed", error.localizedDescription, "Understand")
         print("payment failed error: \(error.localizedDescription)")
     }
     
@@ -249,11 +249,11 @@ extension TicketDetailController {
         if textField.tag == 1 {
             if Int((totalTicket.text?.trim())!)! > 5 {
                 self.totalTicket.text = ""
-                PublicFunction().showUnderstandDialog(self, "Max Ticket Order", self.textTotalOrder, "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Max Ticket Order", self.textTotalOrder, "Understand")
                 return
             }
             
-            totalPrice.text = "Rp. \(PublicFunction().prettyRupiah("\(mTotalPrice * Int((totalTicket.text?.trim())!)!)"))"
+            totalPrice.text = "Rp. \(PublicFunction.instance.prettyRupiah("\(mTotalPrice * Int((totalTicket.text?.trim())!)!)"))"
             ticketLeft.text = "\(self.mTicketLeft - Int((totalTicket.text?.trim())!)!)"
         }
     }

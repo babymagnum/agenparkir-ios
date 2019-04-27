@@ -51,7 +51,7 @@ class TicketController: BaseViewController, UICollectionViewDelegate, BaseViewCo
             self.building_name = data.name_building
             
             if data.ticketing.count == 0 {
-                PublicFunction().showUnderstandDialog(self, "No Event", "This venue has no active or upcoming event yet.", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "No Event", "This venue has no active or upcoming event yet.", "Understand")
                 return
             }
             
@@ -80,7 +80,7 @@ class TicketController: BaseViewController, UICollectionViewDelegate, BaseViewCo
     
     private func customView() {
         baseDelegate = self
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 0.8)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 0.8)
         viewIconTop.layer.cornerRadius = viewIconTop.frame.height / 2
     }
     
@@ -104,11 +104,11 @@ class TicketController: BaseViewController, UICollectionViewDelegate, BaseViewCo
                     self.listTicket = ticketOperation.listTicket
                     self.venueTicketModel = ticketOperation.venueTicketModel
                     self.ticketCollectionView.reloadData()
-                    PublicFunction().showUnderstandDialog(self, "Empty Ticket", "This venue dont have upcoming or active event yet.", "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Empty Ticket", "This venue dont have upcoming or active event yet.", "Understand")
                 case .error?:
-                    PublicFunction().showUnderstandDialog(self, "Error", ticketOperation.error!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", ticketOperation.error!, "Understand")
                 default:
-                    PublicFunction().showUnderstandDialog(self, "Error", "There was some error with system, please try again", "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was some error with system, please try again", "Understand")
                 }
             }
         }

@@ -56,9 +56,9 @@ class ReceiptTicketCell: UICollectionViewCell {
     }
     
     private func updateUI(_ data: TicketDetailModel) {
-        let doubleSchedule = PublicFunction().dateStringToInt(stringDate: data.schedule!, pattern: "yyyy-MM-dd kk:mm:ss")
+        let doubleSchedule = PublicFunction.instance.dateStringToInt(stringDate: data.schedule!, pattern: "yyyy-MM-dd kk:mm:ss")
         eventName.text = data.tickets_name
-        date.text = PublicFunction().dateLongToString(dateInMillis: doubleSchedule, pattern: "EEEE, dd MMMM yyyy / kk:mm")
+        date.text = PublicFunction.instance.dateLongToString(dateInMillis: doubleSchedule, pattern: "EEEE, dd MMMM yyyy / kk:mm")
         venueName.text = data.building_name
         totalTicket.text = "\(data.quantity_order ?? 0) Ticket"
     }
@@ -93,7 +93,7 @@ extension ReceiptTicketCell {
         if let ticket = ticketDetail {
             delegate?.contentMain(ticket)
         } else {
-            PublicFunction().showUnderstandDialog(controller!, "Data Still Loading", "Data is loading...", "Understand")
+            PublicFunction.instance.showUnderstandDialog(controller!, "Data Still Loading", "Data is loading...", "Understand")
         }
     }
 }

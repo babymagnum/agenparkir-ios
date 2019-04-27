@@ -46,7 +46,7 @@ class TopupController: BaseViewController {
             
             if (amount?.count)! > 0 {
                 self.formState = .allow
-                self.totalAmount = PublicFunction().prettyRupiah((amount?.trim().replacingOccurrences(of: "Rp", with: "").replacingOccurrences(of: ".", with: ""))!)
+                self.totalAmount = PublicFunction.instance.prettyRupiah((amount?.trim().replacingOccurrences(of: "Rp", with: "").replacingOccurrences(of: ".", with: ""))!)
                 print(self.totalAmount)
             } else {
                 self.formState = .dont
@@ -60,7 +60,7 @@ class TopupController: BaseViewController {
         inputAmount.delegate = self
         buttonProceed.clipsToBounds = true
         buttonProceed.layer.cornerRadius = 5
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
     }
     
     private func handleGesture() {
@@ -87,13 +87,13 @@ extension TopupController {
     
     @objc func buttonProceedClick() {
         if formState == .dont {
-            PublicFunction().showUnderstandDialog(self, "Empty Amount", "Please input the amount price you want to topup before tap proceed button", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Empty Amount", "Please input the amount price you want to topup before tap proceed button", "Understand")
             return
         }
         
         let amount = inputAmount.text?.trim().replacingOccurrences(of: "Rp", with: "").replacingOccurrences(of: ".", with: "")
         if Int(amount!)! < 50000 {
-            PublicFunction().showUnderstandDialog(self, "Top Up Amount", "Minimal top up amount is Rp 50.000", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Top Up Amount", "Minimal top up amount is Rp 50.000", "Understand")
             return
         }
         
@@ -113,10 +113,10 @@ extension TopupController {
                 }
             case .error?:
                 SVProgressHUD.dismiss()
-                PublicFunction().showUnderstandDialog(self, "Error Generate Token", topupOperation.error!, "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error Generate Token", topupOperation.error!, "Understand")
             default:
                 SVProgressHUD.dismiss()
-                PublicFunction().showUnderstandDialog(self, "Error Generate Token", "There was some error in the system, please try again", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error Generate Token", "There was some error in the system, please try again", "Understand")
             }
         }
     }
@@ -134,10 +134,10 @@ extension TopupController {
                 self.openPaymentController(topupCreditCardOperation.token!)
             case .error?:
                 SVProgressHUD.dismiss()
-                PublicFunction().showUnderstandDialog(self, "Error Generating Token", topupCreditCardOperation.error!, "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error Generating Token", topupCreditCardOperation.error!, "Understand")
             default:
                 SVProgressHUD.dismiss()
-                PublicFunction().showUnderstandDialog(self, "Error Generating Token", "There was some error with the system, please try again", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error Generating Token", "There was some error with the system, please try again", "Understand")
             }
         }
     }
@@ -152,7 +152,7 @@ extension TopupController {
                     paymentController?.paymentDelegate = self
                     self.present(paymentController!, animated: true, completion: nil)
                 } else {
-                    PublicFunction().showUnderstandDialog(self, "Error", (error?.localizedDescription)!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", (error?.localizedDescription)!, "Understand")
                 }
             }
         }
@@ -172,9 +172,9 @@ extension TopupController {
                 case .success?:
                     self.updateUI(currentOperation.currentModel!)
                 case .error?:
-                    PublicFunction().showUnderstandDialog(self, "Error", currentOperation.error!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", currentOperation.error!, "Understand")
                 default:
-                    PublicFunction().showUnderstandDialog(self, "Error", "There was something with system, try to reload data", "Reload", completionHandler: {
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something with system, try to reload data", "Reload", completionHandler: {
                         self.currentUpdate()
                     })
                 }
@@ -198,17 +198,17 @@ extension TopupController:  MidtransUIPaymentViewControllerDelegate {
     }
     
     func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentPending result: MidtransTransactionResult!) {
-        PublicFunction().showUnderstandDialog(self, "Payment Pending", result.debugDescription, "Understand")
+        PublicFunction.instance.showUnderstandDialog(self, "Payment Pending", result.debugDescription, "Understand")
         self.currentUpdate()
     }
     
     func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentSuccess result: MidtransTransactionResult!) {
-        PublicFunction().showUnderstandDialog(self, "Payment Success", result.debugDescription, "Understand")
+        PublicFunction.instance.showUnderstandDialog(self, "Payment Success", result.debugDescription, "Understand")
         self.currentUpdate()
     }
     
     func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentFailed error: Error!) {
-        PublicFunction().showUnderstandDialog(self, "Payment Failed", error.localizedDescription, "Understand")
+        PublicFunction.instance.showUnderstandDialog(self, "Payment Failed", error.localizedDescription, "Understand")
     }
     
     func paymentViewController_paymentCanceled(_ viewController: MidtransUIPaymentViewController!) {

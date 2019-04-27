@@ -10,14 +10,8 @@ import Foundation
 
 struct WelcomeModel {
     var imageHeader: String?
-    var title: String?
-    var message: String?
-    var selectedPage: Int?
     
-    init(imageHeader: String, title: String, message: String, selectedPage: Int) {
+    init(imageHeader: String) {
         self.imageHeader = imageHeader
-        self.title = title
-        self.message = message
-        self.selectedPage = selectedPage
     }
 }

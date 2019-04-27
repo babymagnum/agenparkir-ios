@@ -57,9 +57,9 @@ class AccountsController: BaseViewController, UITextFieldDelegate {
         imageUser.layer.cornerRadius = imageUser.frame.width / 2
         viewEdit.clipsToBounds = true
         viewEdit.layer.cornerRadius = viewEdit.frame.width / 2
-        PublicFunction().changeTintColor(imageView: iconEditImage, hexCode: 0xffffff, alpha: 1)
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x000000, alpha: 0.8)
-        PublicFunction().changeTintColor(imageView: iconEdit, hexCode: 0x000000, alpha: 0.8)
+        PublicFunction.instance.changeTintColor(imageView: iconEditImage, hexCode: 0xffffff, alpha: 1)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x000000, alpha: 0.8)
+        PublicFunction.instance.changeTintColor(imageView: iconEdit, hexCode: 0x000000, alpha: 0.8)
     }
     
     private func populateDefaultData() {
@@ -127,7 +127,7 @@ extension AccountsController {
                 
                 if let _ = accountOperation.error { return }
                 
-                PublicFunction().showUnderstandDialog(self, "Success Edit", "Your profile was edited successfully", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Success Edit", "Your profile was edited successfully", "Understand")
                 
                 UserDefaults.standard.set(true, forKey: StaticVar.reload_home_controller)
             }

@@ -13,6 +13,7 @@ class TabOngoingController: ButtonBarPagerTabStripViewController {
 
     @IBOutlet weak var iconBack: UIImageView!
     
+    var updateDelegate: UpdateCurrentDataProtocol?
     var vehicleType: Int?
     var fromBooking: Bool?
     var pages = [UIViewController]()
@@ -61,10 +62,14 @@ class TabOngoingController: ButtonBarPagerTabStripViewController {
     
     private func handleGesture() {
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
+        let swipeBack = UISwipeGestureRecognizer(target: self, action: #selector(swipeGestureBack))
+        swipeBack.direction = .right
+        view.addGestureRecognizer(swipeBack)
+        
     }
     
     private func customView() {
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
     }
     
     func setupTabLayout() {
@@ -97,10 +102,8 @@ class TabOngoingController: ButtonBarPagerTabStripViewController {
         pages.append(parkingController)
         return pages
     }
-}
-
-extension TabOngoingController {
-    @objc func iconBackClick() {
+    
+    private func navigateBack() {
         if let _ = fromBooking {
             for (index, item) in (self.navigationController?.viewControllers.enumerated())! {
                 var homeControllerId = "\(item)".components(separatedBy: ":")
@@ -110,12 +113,26 @@ extension TabOngoingController {
                 let clearHcId = hcID[0].replacingOccurrences(of: "<", with: "")
                 
                 if clearHomeControllerId == clearHcId {
+                    updateDelegate?.updateData()
                     self.navigationController?.popToViewController(self.navigationController?.viewControllers[index] as! HomeController, animated: true)
                     break
                 }
             }
+            
+            return
         }
         
+        updateDelegate?.updateData()
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension TabOngoingController {
+    @objc func iconBackClick() {
+        navigateBack()
+    }
+    
+    @objc func swipeGestureBack() {
+        navigateBack()
     }
 }

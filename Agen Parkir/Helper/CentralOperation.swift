@@ -44,10 +44,10 @@ class FacebookLoginOperation: AbstractOperation {
                 let data = JSON(success)["data"]
                 print("facebook login data \(data)")
                 
-                UserDefaults.standard.set(data["token"].string, forKey: StaticVar.token)
-                UserDefaults.standard.set(data["email"].string, forKey: StaticVar.email)
-                UserDefaults.standard.set(data["id"].int, forKey: StaticVar.id)
-                UserDefaults.standard.set(data["name"].string, forKey: StaticVar.name)
+                UserDefaults.standard.set(data["token"].string ?? "", forKey: StaticVar.token)
+                UserDefaults.standard.set(data["email"].string ?? "", forKey: StaticVar.email)
+                UserDefaults.standard.set(data["id"].int ?? 0, forKey: StaticVar.id)
+                UserDefaults.standard.set(data["name"].string ?? "", forKey: StaticVar.name)
                 
                 self.state = .success
                 self.finish(true)
@@ -120,6 +120,7 @@ class RegisterOperation: AbstractOperation {
                     self.state = .success
                     self.finish(true)
                 }
+                
             case .failure(let error):
                 print("error register response: \(error.localizedDescription)")
                 self.state = .error
@@ -181,7 +182,8 @@ class LoginOperation: AbstractOperation {
                     self.finish(true)
                 }
                 
-                UserDefaults.standard.set(data["data"]["token"].string, forKey: StaticVar.token)
+                UserDefaults.standard.set(data["data"]["id"].int ?? 0, forKey: StaticVar.id)
+                UserDefaults.standard.set(data["data"]["token"].string ?? "", forKey: StaticVar.token)
                 
                 self.finish(true)
             case .failure(let error):
@@ -232,9 +234,9 @@ class ActivationOperation: AbstractOperation {
                 } else {
                     print("success activate account")
                     
-                    UserDefaults.standard.set(data["data"]["token"].string, forKey: StaticVar.token)
-                    UserDefaults.standard.set(data["data"]["email"].string, forKey: StaticVar.email)
-                    UserDefaults.standard.set(data["data"]["id"].int, forKey: StaticVar.id)
+                    UserDefaults.standard.set(data["data"]["token"].string ?? "", forKey: StaticVar.token)
+                    UserDefaults.standard.set(data["data"]["email"].string ?? "", forKey: StaticVar.email)
+                    UserDefaults.standard.set(data["data"]["id"].int ?? 0, forKey: StaticVar.id)
                     
                     self.finish(true)
                 }
@@ -327,7 +329,7 @@ class ResendEmailOperation: AbstractOperation {
             print("full response \(stringResponse)")
             
             if stringResponse.contains("code = 401") {
-                self.error = PublicFunction().errorMessage(stringResponse)
+                self.error = PublicFunction.instance.errorMessage(stringResponse)
                 self.finish(true)
                 return
             } else {
@@ -376,14 +378,13 @@ class RecentlyOperation: AbstractOperation {
                     return
                 }
 
-                self.state = .success
-
                 for (index, recently) in recentlys.enumerated() {
-                    let recentlyModel = RecentlyModel(venueName: recently["name"].string!, image: recently["images"].string!, orderDate: recently["last_booked"].string ?? "Booking Incomplete", building_id: recently["building_id"].int!)
+                    let recentlyModel = RecentlyModel(venueName: recently["name"].string ?? "Failed to get data", image: recently["images"].string ?? "", orderDate: recently["last_booked"].string ?? "Booking Incomplete", building_id: recently["building_id"].int ?? 0)
 
                     self.listRecently.append(recentlyModel)
 
                     if index == recentlys.count - 1 {
+                        self.state = .success
                         self.finish(true)
                     }
                 }
@@ -435,14 +436,13 @@ class BillboardOperation: AbstractOperation {
                     return
                 }
                 
-                self.state = .success
-                
                 for (index, billboard) in billboards.enumerated() {
-                    let billboardModel = BillboardModel(images: billboard["images"].string ?? "", store_id: billboard["store_id"].int!, description: billboard["description"].string ?? "", buildings_id: billboard["buildings_id"].int!, time: billboard["time"].string ?? "7:00 AM - 10:00 PM", address: billboard["address"].string ?? "", name_store: billboard["name_store"].string ?? "")
+                    let billboardModel = BillboardModel(images: billboard["images"].string ?? "", store_id: billboard["store_id"].int ?? 0, description: billboard["description"].string ?? "Failed to get data", buildings_id: billboard["buildings_id"].int ?? 0, time: billboard["time"].string ?? "7:00 AM - 10:00 PM", address: billboard["address"].string ?? "Failed to get data", name_store: billboard["name_store"].string ?? "Failed to get data")
                     
                     self.listBillboard.append(billboardModel)
                     
                     if index == billboards.count - 1 {
+                        self.state = .success
                         self.finish(true)
                     }
                 }
@@ -486,7 +486,7 @@ class CurrentOperation: AbstractOperation {
                 
                 if data["status"].string == "expired" {
                     self.state = .expired
-                    self.error = "Your session is end, please login again"
+                    self.error = "Your session is expired, please login again"
                     self.finish(true)
                     return
                 }
@@ -495,23 +495,23 @@ class CurrentOperation: AbstractOperation {
                 let amount_my_card = "\(data["my_card"].string ?? "0.00")".dropLast(3)
                 let phone = data["phone"].int ?? 0123456789
                 UserDefaults.standard.set("\(amount_my_card)", forKey: StaticVar.my_card)
-                UserDefaults.standard.set(data["name"].string ?? "Unknown", forKey: StaticVar.name)
+                UserDefaults.standard.set(data["name"].string ?? "Failed to get data", forKey: StaticVar.name)
                 UserDefaults.standard.set("\(phone)", forKey: StaticVar.phone)
-                UserDefaults.standard.set(data["email"].string, forKey: StaticVar.email)
-                UserDefaults.standard.set(data["id"].int, forKey: StaticVar.id)
+                UserDefaults.standard.set(data["email"].string ?? "Failed to get data", forKey: StaticVar.email)
+                UserDefaults.standard.set(data["id"].int ?? 0, forKey: StaticVar.id)
                 
                 //connect to sendbird
-                PublicFunction().connectSendbird("\(data["sendbird_userid"].string ?? "")", data["name"].string ?? "Unknown", "")
+                PublicFunction.instance.connectSendbird("\(data["sendbird_userid"].string ?? "")", data["name"].string ?? "Unknown", "")
                 
                 guard let image = data["images"].string else {
                     UserDefaults.standard.set("", forKey: StaticVar.images)
-                    self.currentModel = CurrentModel(data["id"].int!, data["name"].string ?? "Unknown", data["email"].string!, phone, "", "\(amount_my_card)")
+                    self.currentModel = CurrentModel(data["id"].int ?? 0, data["name"].string ?? "Failed to get data", data["email"].string ?? "Failed to get data", phone, "", "\(amount_my_card)")
                     self.finish(true)
                     return
                 }
                 
                 UserDefaults.standard.set(image, forKey: StaticVar.images)
-                self.currentModel = CurrentModel(data["id"].int!, data["name"].string ?? "Unknown", data["email"].string!, phone, image, "\(amount_my_card)")
+                self.currentModel = CurrentModel(data["id"].int ?? 0, data["name"].string ?? "Failed to get data", data["email"].string ?? "Failed to get data", phone, image, "\(amount_my_card)")
                 self.finish(true)
                 
             case .failure(let error):
@@ -541,34 +541,30 @@ class ServicesOperation: AbstractOperation {
         let url = "\(root)api/android/services"
 
         Alamofire.request(url, method: .get).responseJSON { (response) in
-
-//            for i in 1...3 {
-//                self.listServices.append(ServicesModel("", "Service Title \(i)", "Service description \(i)", "Today"))
-//
-//                if i == 3 {
-//                    self.state = .success
-//                    self.finish(true)
-//                }
-//            }
             
             switch response.result{
             case .success(let responseSuccess):
-                let data = JSON(responseSuccess)
+                let data = JSON(responseSuccess)["data"].array
 
-                if data["data"].array?.count == 0 {
+                guard let services = data else {
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
+                
+                if services.count == 0 {
                     self.state = .empty
                     self.finish(true)
                     return
                 }
 
-                self.state = .success
-
-                for (index, service) in (data["data"].array?.enumerated())! {
-                    let serviceModel = ServicesModel(service["images"].string!, service["title"].string!, service["description"].string!, service["date"].string!)
+                for (index, service) in services.enumerated() {
+                    let serviceModel = ServicesModel(service["images"].string ?? "", service["title"].string ?? "Failed to get data", service["description"].string ?? "Failed to get data", service["date"].string ?? "")
 
                     self.listServices.append(serviceModel)
 
-                    if index == (data["data"].array?.count)! - 1 {
+                    if index == services.count - 1 {
+                        self.state = .success
                         self.finish(true)
                     }
                 }
@@ -615,49 +611,49 @@ class ShowListBuildingOperation: AbstractOperation {
                 
                 let data = JSON(responseSuccess)["data"].array
                 
-                guard let list = data else {
+                guard let buildings = data else {
                     self.state = .empty
                     self.finish(true)
                     return
                 }
                 
-                print("list building data \(list)")
+                print("list building data \(buildings)")
                 
-                if list.count == 0 {
+                if buildings.count == 0 {
                     self.state = .empty
                     self.finish(true)
                     return
                 }
                 
-                self.state = .success
-                
-                for (index, building) in list.enumerated() {
+                for (index, building) in buildings.enumerated() {
                     var buildingModel = BuildingModel()
-                    buildingModel.building_id = building["building_id"].int
-                    buildingModel.name_building = building["name_building"].string
-                    buildingModel.motor = building["motor"].int
-                    buildingModel.mobil = building["mobil"].int
-                    buildingModel.has_outdoor = building["has_outdoor"].int
-                    buildingModel.has_indoor = building["has_indoor"].int
-                    buildingModel.has_mobil = building["has_mobil"].int
-                    buildingModel.has_motor = building["has_motor"].int
-                    buildingModel.has_standard = building["has_standard"].int
-                    buildingModel.has_valet = building["has_valet"].int
-                    buildingModel.has_store = building["has_store"].int
-                    buildingModel.has_ticketing = building["has_ticketing"].int
-                    buildingModel.images = building["images"].string
+                    buildingModel.building_id = building["building_id"].int  ?? 0
+                    buildingModel.name_building = building["name_building"].string ?? ""
+                    buildingModel.motor = building["motor"].int ?? 0
+                    buildingModel.mobil = building["mobil"].int ?? 0
+                    buildingModel.has_outdoor = building["has_outdoor"].int ?? 0
+                    buildingModel.has_indoor = building["has_indoor"].int ?? 0
+                    buildingModel.has_mobil = building["has_mobil"].int ?? 0
+                    buildingModel.has_motor = building["has_motor"].int ?? 0
+                    buildingModel.has_standard = building["has_standard"].int ?? 0
+                    buildingModel.has_valet = building["has_valet"].int ?? 0
+                    buildingModel.has_store = building["has_store"].int ?? 0
+                    buildingModel.has_ticketing = building["has_ticketing"].int ?? 0
+                    buildingModel.images = building["images"].string ?? ""
                     buildingModel.index = index + 1
-                    buildingModel.address = building["address"].string
+                    buildingModel.address = building["address"].string ?? ""
                     self.listBuilding.append(buildingModel)
                     
                     if self.data?.purpose == .home {
                         if index == 4 {
+                            self.state = .success
                             self.finish(true)
                             break
                         }
                     }
                     
-                    if index == list.count - 1 {
+                    if index == buildings.count - 1 {
+                        self.state = .success
                         self.finish(true)
                     }
                 }
@@ -756,7 +752,7 @@ class AccountOperation: AbstractOperation {
                 let data = JSON(responseSuccess)
                 print("data account \(data)")
                 if data["message"] == "success" {
-                    UserDefaults.standard.set(data["data"]["name"].string, forKey: StaticVar.name)
+                    UserDefaults.standard.set(data["data"]["name"].string ?? "", forKey: StaticVar.name)
                     self.finish(true)
                 } else {
                     self.error = "Error updating your account"
@@ -783,7 +779,6 @@ class AccountOperation: AbstractOperation {
         { (result) in
             switch result {
             case .success(let upload, _, _):
-                
                 upload.uploadProgress(closure: { (progress) in
                     print("Upload Progress: \(progress.fractionCompleted)")
                 })
@@ -799,32 +794,6 @@ class AccountOperation: AbstractOperation {
                 self.finish(true)
             }
         }
-        
-//        Alamofire.upload(multipartFormData: { (multipartFormData) in
-//            for (key, value) in params {
-//                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
-//            }
-//
-//            if let data = imageData {
-//                multipartFormData.append(data, withName: "images", fileName: fileName, mimeType: "image/\(type)")
-//            }
-//
-//        }, usingThreshold: UInt64.init(), to: url, method: .post, headers: headers) { (result) in
-//            switch result{
-//            case .success(let upload, _, _):
-//                upload.responseJSON { response in
-//                    print("Succesfully uploaded")
-//                    if let err = response.error{
-//                        onError?(err)
-//                        return
-//                    }
-//                    onCompletion?(nil)
-//                }
-//            case .failure(let error):
-//                print("Error in upload: \(error.localizedDescription)")
-//                onError?(error)
-//            }
-//        }
     }
 }
 
@@ -864,13 +833,12 @@ class PostPlateOperation: AbstractOperation {
                 
                 if data["message"].string == "success" {
                     self.state = .success
-                    
+                    self.finish(true)
                 } else {
                     self.state = .error
                     self.error = "Error registered plate"
+                    self.finish(true)
                 }
-                
-                self.finish(true)
             case .failure(let error):
                 print("error post plate \(error.localizedDescription)")
                 self.error = error.localizedDescription
@@ -918,9 +886,9 @@ class ShowListPlateOperation: AbstractOperation {
                 }
                 
                 for (index, plate) in listPlate.enumerated() {
-                    self.listPlate.append(PlateModel(plate["plate_id"].int!, plate["vehicle_id"].int!, plate["number_plate"].string!, plate["title_plate"].string!))
+                    self.listPlate.append(PlateModel(plate["plate_id"].int ?? 0, plate["vehicle_id"].int ?? 0, plate["number_plate"].string ?? "Failed to get data", plate["title_plate"].string ?? "Failed to get data"))
                     
-                    if index == (array?.count)! - 1 {
+                    if index == listPlate.count - 1 {
                         self.state = .success
                         self.finish(true)
                     }
@@ -931,7 +899,6 @@ class ShowListPlateOperation: AbstractOperation {
                 self.error = error.localizedDescription
                 self.finish(true)
             }
-            
         }
     }
 }
@@ -1005,28 +972,27 @@ class DetailBuildingOperation: AbstractOperation {
         Alamofire.request(url, method: .get).responseJSON { (response) in
             switch response.result {
             case .success(let responseSuccess):
-                let data = JSON(responseSuccess)
+                let data = JSON(responseSuccess)["data"]
                 print("building data \(data)")
                 
                 self.buildingModel = BuildingModel()
-                self.buildingModel!.building_id = data["data"]["building_id"].int
-                self.buildingModel!.name_building = data["data"]["name_building"].string
-                self.buildingModel!.motor = data["data"]["motor"].int
-                self.buildingModel!.mobil = data["data"]["mobil"].int
-                self.buildingModel!.has_outdoor = data["data"]["has_outdoor"].int
-                self.buildingModel!.has_indoor = data["data"]["has_indoor"].int
-                self.buildingModel!.has_mobil = data["data"]["has_mobil"].int
-                self.buildingModel!.has_motor = data["data"]["has_motor"].int
-                self.buildingModel!.has_standard = data["data"]["has_standard"].int
-                self.buildingModel!.has_valet = data["data"]["has_valet"].int
-                self.buildingModel!.has_store = data["data"]["has_store"].int
-                self.buildingModel!.has_ticketing = data["data"]["has_ticketing"].int
-                self.buildingModel!.images = data["data"]["images"].string
-                self.buildingModel!.category_id = data["data"]["category_id"].int
-                self.buildingModel!.category_name = data["data"]["category_name"].string
+                self.buildingModel!.building_id = data["building_id"].int ?? 0
+                self.buildingModel!.name_building = data["name_building"].string ?? "Failed to get data"
+                self.buildingModel!.motor = data["motor"].int ?? 0
+                self.buildingModel!.mobil = data["mobil"].int ?? 0
+                self.buildingModel!.has_outdoor = data["has_outdoor"].int ?? 0
+                self.buildingModel!.has_indoor = data["has_indoor"].int ?? 0
+                self.buildingModel!.has_mobil = data["has_mobil"].int ?? 0
+                self.buildingModel!.has_motor = data["has_motor"].int ?? 0
+                self.buildingModel!.has_standard = data["has_standard"].int ?? 0
+                self.buildingModel!.has_valet = data["has_valet"].int ?? 0
+                self.buildingModel!.has_store = data["has_store"].int ?? 0
+                self.buildingModel!.has_ticketing = data["has_ticketing"].int ?? 0
+                self.buildingModel!.images = data["images"].string ?? "Failed to get data"
+                self.buildingModel!.category_id = data["category_id"].int ?? 0
+                self.buildingModel!.category_name = data["category_name"].string ?? "Failed to get data"
                 
                 self.state = .success
-                
                 self.finish(true)
                 
             case .failure(let error):
@@ -1085,13 +1051,13 @@ class BookingOperation: AbstractOperation {
                     return
                 }
                 
-                self.returnBookingData = (order_id: data["order_id"].int, booking_code: data["booking_code"].string, parking_lot: data["parking_lot"].int, area_name: data["area_name"].string, customer_name: data["customer_name"].string, building_name: data["building_name"].string, is_percentage: data["is_percentage"].int, plate_number: data["plate_number"].string, sub_tariff: data["sub_tariff"].int, total: data["total"].int) as? (order_id: Int, booking_code: String, parking_lot: Int, area_name: String, customer_name: String, building_name: String, is_percentage: Int, plate_number: String, sub_tariff: Int, total: Int)
+                self.returnBookingData = (order_id: data["order_id"].int ?? 0, booking_code: data["booking_code"].string ?? "", parking_lot: data["parking_lot"].int ?? 0, area_name: data["area_name"].string ?? "", customer_name: data["customer_name"].string ?? "", building_name: data["building_name"].string ?? "", is_percentage: data["is_percentage"].int ?? 0, plate_number: data["plate_number"].string ?? "", sub_tariff: data["sub_tariff"].int ?? 0, total: data["total"].int ?? 0) as (order_id: Int, booking_code: String, parking_lot: Int, area_name: String, customer_name: String, building_name: String, is_percentage: Int, plate_number: String, sub_tariff: Int, total: Int)
                 
-                UserDefaults.standard.set(data["parking_lot"].int, forKey: StaticVar.parking_lot)
-                UserDefaults.standard.set(data["total"].int, forKey: StaticVar.last_total_price)
-                UserDefaults.standard.set(data["vehicle_types"].string, forKey: StaticVar.last_vehicle_type)
-                UserDefaults.standard.set(data["parking_types"].string, forKey: StaticVar.last_parking_type)
-                UserDefaults.standard.set(data["payment_types_id"].string, forKey: StaticVar.last_payment_type)
+                UserDefaults.standard.set(data["parking_lot"].int ?? 0, forKey: StaticVar.parking_lot)
+                UserDefaults.standard.set(data["total"].int ?? 0, forKey: StaticVar.last_total_price)
+                UserDefaults.standard.set(data["vehicle_types"].string ?? "", forKey: StaticVar.last_vehicle_type)
+                UserDefaults.standard.set(data["parking_types"].string ?? "", forKey: StaticVar.last_parking_type)
+                UserDefaults.standard.set(data["payment_types_id"].string ?? "", forKey: StaticVar.last_payment_type)
                 UserDefaults.standard.set(self.bookingData?.type, forKey: StaticVar.last_place_type)
                 
                 self.state = .success
@@ -1140,8 +1106,8 @@ class OrderOperation: AbstractOperation {
                 }
                 
                 self.state = .success
-                
                 self.finish(true)
+                
             case .failure(let error):
                 self.state = .error
                 self.error = error.localizedDescription
@@ -1185,8 +1151,8 @@ class CancelBookingOperation: AbstractOperation {
                 }
                 
                 self.state = .success
-                
                 self.finish(true)
+                
             case .failure(let error):
                 print("cancel booking operation error \(error.localizedDescription)")
                 self.error = error.localizedDescription
@@ -1235,17 +1201,17 @@ class ListOngoingOperation: AbstractOperation {
                 print("ongoing data \(data)")
                 
                 var ongoingModel = OngoingModel()
-                ongoingModel.building_name = data["building_name"].string
-                ongoingModel.booking_start_time = data["booking_start_time"].string
-                ongoingModel.order_id = data["order_id"].int
-                ongoingModel.plate_number = data["plate_number"].string
-                ongoingModel.name_customers = data["name_customers"].string
-                ongoingModel.booking_status_id = data["booking_status_id"].int
-                ongoingModel.payment_status = data["payment_status"].int
-                ongoingModel.isNonCash = data["isNonCash"].int
-                ongoingModel.latitude = data["latitude"].string
-                ongoingModel.longitude = data["longitude"].string
-                ongoingModel.booking_code = data["booking_code"].string
+                ongoingModel.building_name = data["building_name"].string ?? ""
+                ongoingModel.booking_start_time = data["booking_start_time"].string ?? ""
+                ongoingModel.order_id = data["order_id"].int ?? 0
+                ongoingModel.plate_number = data["plate_number"].string ?? ""
+                ongoingModel.name_customers = data["name_customers"].string ?? ""
+                ongoingModel.booking_status_id = data["booking_status_id"].int ?? 0
+                ongoingModel.payment_status = data["payment_status"].int ?? 0
+                ongoingModel.isNonCash = data["isNonCash"].int ?? 0
+                ongoingModel.latitude = data["latitude"].string ?? ""
+                ongoingModel.longitude = data["longitude"].string ?? ""
+                ongoingModel.booking_code = data["booking_code"].string ?? ""
                 ongoingModel.vehicle_type = self.vehicle_type
                 ongoingModel.removeTimer = false
                 ongoingModel.officer = (data["officer"].arrayObject as! [String])
@@ -1302,11 +1268,7 @@ class DetailOngoingOperation: AbstractOperation {
                     listImage.append((image["images"].string ?? nil)!)
                 }
                 
-//                for store in stores! {
-//                    listStore.append(store["images"].string ?? "")
-//                }
-                
-                self.returnDetailOngoing = (parking_lot: data["parking_lot"].string!, booking_code: data["booking_code"].string!, tariff: data["tariff"].int!, plate_number: data["plate_number"].string!, building_name: building["building_name"].string!, vehicle_types_id: building["vehicle_types_id"].int!, parking_types: building["parking_types"].int!, type: building["type"].string!, payment_types_id: building["payment_types_id"].int!, name_areas: building["name_areas"].string!, images: listImage, store_list: listStore)
+                self.returnDetailOngoing = (parking_lot: data["parking_lot"].string ?? "", booking_code: data["booking_code"].string ?? "", tariff: data["tariff"].int ?? 0, plate_number: data["plate_number"].string ?? "", building_name: building["building_name"].string ?? "", vehicle_types_id: building["vehicle_types_id"].int ?? 0, parking_types: building["parking_types"].int ?? 0, type: building["type"].string ?? "", payment_types_id: building["payment_types_id"].int ?? 0, name_areas: building["name_areas"].string ?? "", images: listImage, store_list: listStore)
                 
                 self.state = .success
                 self.finish(true)
@@ -1358,31 +1320,30 @@ class ListReceiptsOperation: AbstractOperation {
                     return
                 }
                 
-                self.state = .success
-                
                 for (index, receipt) in receipts.enumerated() {
                     let details = receipt["details"]
                     var receiptsModel = ReceiptsModel()
-                    receiptsModel.orders_id = receipt["orders_id"].int!
-                    receiptsModel.booking_status_id = receipt["booking_status_id"].int!
-                    receiptsModel.booking_code = details["booking_code"].string!
-                    receiptsModel.payment_types = details["payment_types"].int!
+                    receiptsModel.orders_id = receipt["orders_id"].int ?? 0
+                    receiptsModel.booking_status_id = receipt["booking_status_id"].int ?? 0
+                    receiptsModel.booking_code = details["booking_code"].string ?? "Failed to get data"
+                    receiptsModel.payment_types = details["payment_types"].int ?? 0
                     //receiptsModel.booking_tax = details["booking_tax"].
-                    receiptsModel.booking_sub_total = details["booking_sub_total"].int!
-                    receiptsModel.booking_total = details["booking_total"].int!
-                    receiptsModel.vouchers_nominal = details["vouchers_nominal"].int!
-                    receiptsModel.customers_name = details["customers_name"].string!
-                    receiptsModel.customers_images = details["customers_images"].string!
-                    receiptsModel.building_name = details["building_name"].string!
+                    receiptsModel.booking_sub_total = details["booking_sub_total"].int ?? 0
+                    receiptsModel.booking_total = details["booking_total"].int ?? 0
+                    receiptsModel.vouchers_nominal = details["vouchers_nominal"].int ?? 0
+                    receiptsModel.customers_name = details["customers_name"].string ?? "Failed to get data"
+                    receiptsModel.customers_images = details["customers_images"].string ?? "Failed to get data"
+                    receiptsModel.building_name = details["building_name"].string ?? "Failed to get data"
                     receiptsModel.booking_start_time = details["booking_start_time"].string ?? ""
-                    receiptsModel.parking_lot = details["parking_lot"].string!
-                    receiptsModel.plate_number = details["plate_number"].string!
-                    receiptsModel.parking_types = details["parking_types"].int!
-                    receiptsModel.vehicle_types = details["vehicle_types"].int!
+                    receiptsModel.parking_lot = details["parking_lot"].string ?? "Failed to get data"
+                    receiptsModel.plate_number = details["plate_number"].string ?? "Failed to get data"
+                    receiptsModel.parking_types = details["parking_types"].int ?? 0
+                    receiptsModel.vehicle_types = details["vehicle_types"].int ?? 0
                     
                     self.listReceipts.append(receiptsModel)
                     
                     if index == receipts.count - 1 {
+                        self.state = .success
                         self.finish(true)
                     }
                 }
@@ -1574,17 +1535,16 @@ class HistoryOperation: AbstractOperation {
                     return
                 }
                 
-                self.state = .success
-                
                 for (index, history) in histories.enumerated() {
                     var historyModel = HistoryModel()
-                    historyModel.nominal = history["nominal"].string!
-                    historyModel.trans_date = history["trans_date"].string!
-                    historyModel.event_id = history["event_id"].int!
+                    historyModel.nominal = history["nominal"].string ?? "Failed to get data"
+                    historyModel.trans_date = history["trans_date"].string ?? "Failed to get data"
+                    historyModel.event_id = history["event_id"].int ?? 0
                     
                     self.listHistory.append(historyModel)
                     
                     if index == histories.count - 1 {
+                        self.state = .success
                         self.finish(true)
                     }
                 }
@@ -1629,16 +1589,13 @@ class TicketOperation: AbstractOperation {
                 
                 guard let tickets = jsonArrayTicket else {
                     self.venueTicketModel = VenueTicketModel(data["name_building"].string!, data["address"].string!, data["images_building"].string!, data["count_event"].int!, self.listTicket)
-                    
                     self.state = .empty
                     self.finish(true)
-                    
                     return
                 }
                 
                 if tickets.count == 0 {
                     self.venueTicketModel = VenueTicketModel(data["name_building"].string!, data["address"].string!, data["images_building"].string!, data["count_event"].int!, self.listTicket)
-                    
                     self.state = .empty
                     self.finish(true)
                     return
@@ -1647,21 +1604,20 @@ class TicketOperation: AbstractOperation {
                 for (index, ticket) in tickets.enumerated() {
                     var ticketModel = TicketModel()
                     ticketModel.tickets_id = ticket["tickets_id"].int ?? 0
-                    ticketModel.images = ticket["images"].string ?? ""
-                    ticketModel.schedule = ticket["schedule"].string ?? ""
-                    ticketModel.name = ticket["name"].string ?? ""
+                    ticketModel.images = ticket["images"].string ?? "Failed to get data"
+                    ticketModel.schedule = ticket["schedule"].string ?? "Failed to get data"
+                    ticketModel.name = ticket["name"].string ?? "Failed to get data"
                     ticketModel.price = ticket["price"].int ?? 0
                     ticketModel.quantity = ticket["quantity"].int ?? 0
                     ticketModel.limit_ticket = ticket["limit_ticket"].int ?? 0
                     ticketModel.limit_ticket_to = ticket["limit_ticket_to"].int ?? 0
                     ticketModel.buildings_id = ticket["buildings_id"].int ?? 0
-                    ticketModel.building_name = ticket["building_name"].string ?? ""
-                    ticketModel.reedem_date = ticket["reedem_date"].string ?? ""
-                    
+                    ticketModel.building_name = ticket["building_name"].string ?? "Failed to get data"
+                    ticketModel.reedem_date = ticket["reedem_date"].string ?? "Failed to get data"
                     self.listTicket.append(ticketModel)
                     
                     if index == tickets.count - 1 {
-                        self.venueTicketModel = VenueTicketModel(data["name_building"].string!, data["address"].string!, data["images_building"].string!, data["count_event"].int!, self.listTicket)
+                        self.venueTicketModel = VenueTicketModel(data["name_building"].string ?? "Failed to get data", data["address"].string ?? "Failed to get data", data["images_building"].string ?? "", data["count_event"].int ?? 0, self.listTicket)
                         self.state = .success
                         self.finish(true)
                     }
@@ -1745,22 +1701,22 @@ class TicketDetailOperation: AbstractOperation {
             case .success(let success):
                 let data = JSON(success)["data"]
                 self.ticketDetail = TicketDetailModel()
-                self.ticketDetail?.tickets_id = data["tickets_id"].int!
-                self.ticketDetail?.buildings_id = data["buildings_id"].int!
-                self.ticketDetail?.tickets_name = data["tickets_name"].string!
-                self.ticketDetail?.schedule = data["schedule"].string!
-                self.ticketDetail?.reedem_date = data["reedem_date"].string!
-                self.ticketDetail?.description = data["description"].string!
+                self.ticketDetail?.tickets_id = data["tickets_id"].int ?? 0
+                self.ticketDetail?.buildings_id = data["buildings_id"].int ?? 0
+                self.ticketDetail?.tickets_name = data["tickets_name"].string ?? "Failed to get data"
+                self.ticketDetail?.schedule = data["schedule"].string ?? "Failed to get data"
+                self.ticketDetail?.reedem_date = data["reedem_date"].string ?? "Failed to get data"
+                self.ticketDetail?.description = data["description"].string ?? "Failed to get data"
                 self.ticketDetail?.images = data["images"].string ?? ""
-                self.ticketDetail?.building_name = data["building_name"].string!
-                self.ticketDetail?.booking_code = data["booking_code"].string!
-                self.ticketDetail?.customers_id = data["customers_id"].int!
+                self.ticketDetail?.building_name = data["building_name"].string ?? "Failed to get data"
+                self.ticketDetail?.booking_code = data["booking_code"].string ?? "Failed to get data"
+                self.ticketDetail?.customers_id = data["customers_id"].int ?? 0
                 self.ticketDetail?.booking_sub_total = data["booking_sub_total"].int!
-                self.ticketDetail?.booking_total = data["booking_total"].int!
-                self.ticketDetail?.types_pays_id = data["types_pays_id"].int!
-                self.ticketDetail?.customers_name = data["customers_name"].string!
-                self.ticketDetail?.quantity_order = data["quantity_order"].int!
-                self.ticketDetail?.tickets_order = data["tickets_order"].string!
+                self.ticketDetail?.booking_total = data["booking_total"].int ?? 0
+                self.ticketDetail?.types_pays_id = data["types_pays_id"].int ?? 0
+                self.ticketDetail?.customers_name = data["customers_name"].string ?? "Failed to get data"
+                self.ticketDetail?.quantity_order = data["quantity_order"].int ?? 0
+                self.ticketDetail?.tickets_order = data["tickets_order"].string ?? "Failed to get data"
                 
                 self.state = .success
                 self.finish(true)
@@ -1866,14 +1822,14 @@ class ListStoreOperation: AbstractOperation {
                 
                 for (index, value) in stores.enumerated() {
                     var storeModel = StoreModel()
-                    storeModel.address = value["address"].string!
-                    storeModel.description = value["description"].string!
+                    storeModel.address = value["address"].string ?? "Failed to get data"
+                    storeModel.description = value["description"].string ?? "Failed to get data"
                     storeModel.images = value["images"].string ?? ""
-                    storeModel.name_building = value["name_building"].string!
-                    storeModel.name_store = value["name_store"].string!
-                    storeModel.store_id = value["store_id"].int!
-                    storeModel.opened = value["opened"].int!
-                    storeModel.time = value["time"].string ?? ""
+                    storeModel.name_building = value["name_building"].string ?? "Failed to get data"
+                    storeModel.name_store = value["name_store"].string ?? "Failed to get data"
+                    storeModel.store_id = value["store_id"].int ?? 0
+                    storeModel.opened = value["opened"].int ?? 0
+                    storeModel.time = value["time"].string ?? "Failed to get data"
                     
                     self.listStore.append(storeModel)
                     
@@ -1919,23 +1875,29 @@ class DetailStoreOperation: AbstractOperation {
             case .success(let success):
                 let productsArray = JSON(success)["data"].array
                 
-                print("detail store data \(String(describing: productsArray))")
-                
-                if productsArray?.count == 0 {
+                guard let products = productsArray else {
                     self.state = .empty
                     self.finish(true)
                     return
                 }
                 
-                for (index, product) in productsArray!.enumerated() {
+                print("detail store data \(String(describing: productsArray))")
+                
+                if products.count == 0 {
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
+                
+                for (index, product) in products.enumerated() {
                     var productModel = ProductModel()
-                    productModel.product_description = product["product_description"].string!
-                    productModel.product_name = product["product_name"].string!
-                    productModel.product_price = product["product_price"].int!
-                    productModel.product_images = product["product_images"].string ?? ""
+                    productModel.product_description = product["product_description"].string ?? "Failed to get data"
+                    productModel.product_name = product["product_name"].string ?? "Failed to get data"
+                    productModel.product_price = product["product_price"].int ?? 0
+                    productModel.product_images = product["product_images"].string ?? "Failed to get data"
                     self.listProduct.append(productModel)
                     
-                    if index == productsArray!.count - 1 {
+                    if index == products.count - 1 {
                         self.state = .success
                         self.finish(true)
                     }

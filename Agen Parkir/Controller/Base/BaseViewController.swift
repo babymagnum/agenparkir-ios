@@ -71,6 +71,12 @@ class BaseViewController: UIViewController {
         
         inetReachability.stopNotifier()
     }
+    
+    func showDevelopmentFeature() {
+        let alert = UIAlertController(title: "Development Feature", message: "This feature is in development, we'll let you know if this feature is ready to use :)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Understand", style: .cancel, handler: nil))
+        present(alert, animated: true)
+    }
 
     @objc func internetChanged(note: Notification) {
 

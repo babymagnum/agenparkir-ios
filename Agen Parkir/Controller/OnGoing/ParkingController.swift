@@ -60,7 +60,7 @@ class ParkingController: BaseViewController, IndicatorInfoProvider, BaseViewCont
         super.viewWillDisappear(animated)
         
         if allowStopTimer {
-            UserDefaults.standard.set(PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
+            UserDefaults.standard.set(PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
 
             print("cancel timer because of user tap back in \(UserDefaults.standard.string(forKey: StaticVar.time_timer_removed) ?? "")")
 
@@ -174,14 +174,14 @@ class ParkingController: BaseViewController, IndicatorInfoProvider, BaseViewCont
         venueName.text = ongoingModel.building_name
         
         if let date = ongoingModel.booking_start_time {
-            let longDate = PublicFunction().dateStringToInt(stringDate: date, pattern: "yyyy-MM-dd kk:mm:ss")
-            orderDate.text = PublicFunction().dateLongToString(dateInMillis: longDate, pattern: "dd MMMM yyyy, kk:mm a")
+            let longDate = PublicFunction.instance.dateStringToInt(stringDate: date, pattern: "yyyy-MM-dd kk:mm:ss")
+            orderDate.text = PublicFunction.instance.dateLongToString(dateInMillis: longDate, pattern: "dd MMMM yyyy, kk:mm a")
         } else {
-            orderDate.text = PublicFunction().getCurrentDate(pattern: "dd MMMM yyyy kk:mm a")
+            orderDate.text = PublicFunction.instance.getCurrentDate(pattern: "dd MMMM yyyy kk:mm a")
         }
         
         if ongoingModel.vehicle_type == 0 {
-            let difference = Calendar.current.dateComponents([.second], from: PublicFunction().getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed) ?? "\(PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"))", pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction().getDate(stringDate: PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
+            let difference = Calendar.current.dateComponents([.second], from: PublicFunction.instance.getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed) ?? "\(PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"))", pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction.instance.getDate(stringDate: PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
             print("time left for canceled timer \(UserDefaults.standard.integer(forKey: StaticVar.last_timer))")
             print("difference between last time and current time \(difference)")
             self.timerLast = UserDefaults.standard.integer(forKey: StaticVar.last_timer) - difference
@@ -273,6 +273,7 @@ class ParkingController: BaseViewController, IndicatorInfoProvider, BaseViewCont
     private func navigateToMessage(_ model: OngoingModel) {
         let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
         chatController.listUserId = model.officer
+        chatController.delegate = self
         self.navigationController?.pushViewController(chatController, animated: true)
     }
 }
@@ -293,6 +294,7 @@ extension ParkingController {
     @objc func viewMapsClick() {
         if let model = ongoingModel {
             let directionController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DirectionController") as! DirectionController
+            directionController.delegate = self
             
             switch vehicleType{
             case 1: //motor
@@ -320,6 +322,7 @@ extension ParkingController {
         if let model = ongoingModel {
             let ongoingInfoController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OngoingInfoController") as! OngoingInfoController
             ongoingInfoController.ongoingModel = model
+            ongoingInfoController.delegate = self
             self.present(ongoingInfoController, animated: true)
         }
     }
@@ -333,7 +336,7 @@ extension ParkingController {
             print("start timer again from background")
             
             if model.vehicle_type == 0 {
-                let difference = Calendar.current.dateComponents([.second], from: PublicFunction().getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed)!, pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction().getDate(stringDate: PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
+                let difference = Calendar.current.dateComponents([.second], from: PublicFunction.instance.getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed)!, pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction.instance.getDate(stringDate: PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
                 print("time left for canceled timer \(UserDefaults.standard.integer(forKey: StaticVar.last_timer))")
                 print("difference between last time and current time \(difference)")
                 self.timerLast = UserDefaults.standard.integer(forKey: StaticVar.last_timer) - difference
@@ -349,7 +352,7 @@ extension ParkingController {
     }
     
     @objc func willResignActive(_ notification: Notification) {
-        UserDefaults.standard.set(PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
+        UserDefaults.standard.set(PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
         
         print("cancel timer because of in background in \(UserDefaults.standard.string(forKey: StaticVar.time_timer_removed) ?? "")")
         

@@ -16,7 +16,7 @@ class BookingPlateCell: UICollectionViewCell {
     @IBOutlet weak var icon: UIImageView!
     
     override func awakeFromNib() {
-        PublicFunction().changeTintColor(imageView: icon, hexCode: 0xffffff, alpha: 1)
+        PublicFunction.instance.changeTintColor(imageView: icon, hexCode: 0xffffff, alpha: 1)
         viewIcon.layer.cornerRadius = viewIcon.frame.width / 2
     }
     
@@ -26,9 +26,9 @@ class BookingPlateCell: UICollectionViewCell {
                 plate.text = "\(data.number_plate ?? "") / \(data.title_plate ?? "")"
                 
                 if data.vehicle_id == 1 {
-                    icon.image = UIImage(named: "scooter")
+                    icon.image = UIImage(named: "scooter")?.tinted(with: UIColor(rgb: 0xffffff))
                 } else {
-                    icon.image = UIImage(named: "car")
+                    icon.image = UIImage(named: "car")?.tinted(with: UIColor(rgb: 0xffffff))
                 }
             }
         }

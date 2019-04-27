@@ -43,12 +43,12 @@ class OngoingCell: UICollectionViewCell {
     var ongoingData: OngoingModel? {
         didSet{
             if let data = ongoingData {
-                let longDate = PublicFunction().dateStringToInt(stringDate: data.booking_start_time!, pattern: "yyyy-MM-dd kk:mm:ss")
+                let longDate = PublicFunction.instance.dateStringToInt(stringDate: data.booking_start_time!, pattern: "yyyy-MM-dd kk:mm:ss")
                 venueName.text = data.building_name
-                orderDate.text = PublicFunction().dateLongToString(dateInMillis: longDate, pattern: "dd MMMM yyyy, kk:mm a")
+                orderDate.text = PublicFunction.instance.dateLongToString(dateInMillis: longDate, pattern: "dd MMMM yyyy, kk:mm a")
                 
                 if data.vehicle_type == 0 {
-                    timerLast = UserDefaults.standard.integer(forKey: StaticVar.last_timer) - Calendar.current.dateComponents([.second], from: PublicFunction().getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed)!, pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction().getDate(stringDate: PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
+                    timerLast = UserDefaults.standard.integer(forKey: StaticVar.last_timer) - Calendar.current.dateComponents([.second], from: PublicFunction.instance.getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed)!, pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction.instance.getDate(stringDate: PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
                 }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -72,7 +72,7 @@ class OngoingCell: UICollectionViewCell {
 
                 if data.removeTimer! {
                     print("timer motor removed because in background")
-                    UserDefaults.standard.set(PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
+                    UserDefaults.standard.set(PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
                     timer.invalidate()
                 } else if self.timeLeftMotor == 0 {
                     timer.invalidate()
@@ -90,7 +90,7 @@ class OngoingCell: UICollectionViewCell {
                 
                 if data.removeTimer! {
                     print("timer cars removed because in background")
-                    UserDefaults.standard.set(PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
+                    UserDefaults.standard.set(PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
                     timer.invalidate()
                 } else if self.timeLeftCars == 0 {
                     timer.invalidate()
@@ -108,7 +108,7 @@ class OngoingCell: UICollectionViewCell {
                 
                 if data.removeTimer! {
                     print("timer default removed because in background")
-                    UserDefaults.standard.set(PublicFunction().getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
+                    UserDefaults.standard.set(PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), forKey: StaticVar.time_timer_removed)
                     timer.invalidate()
                 } else if self.timerLast == 0 {
                     timer.invalidate()

@@ -40,7 +40,6 @@ class AgreementsController: UIViewController {
 //MARK: Handle gesture listener
 extension AgreementsController {
     @objc func buttonAgreeClick() {
-        let homeController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeController") as! HomeController
-        navigationController?.pushViewController(homeController, animated: true)
+        performSegue(withIdentifier: "toHomeController", sender: self)
     }
 }

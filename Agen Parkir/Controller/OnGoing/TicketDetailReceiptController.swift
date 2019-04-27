@@ -46,7 +46,7 @@ class TicketDetailReceiptController: BaseViewController {
     }
     
     private func customView() {
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x000000, alpha: 0.8)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x000000, alpha: 0.8)
         viewAccount.layer.cornerRadius = 4
         viewAccount.layer.borderWidth = 1
         viewAccount.layer.borderColor = UIColor.lightGray.cgColor
@@ -71,12 +71,12 @@ class TicketDetailReceiptController: BaseViewController {
             } else {
                 imageHeader.loadUrl("\(StaticVar.root_images)\(data.images ?? "")")
             }
-            let doubleSchedule = PublicFunction().dateStringToInt(stringDate: data.schedule!, pattern: "yyyy-MM-dd kk:mm:ss")
-            let doubleReedemDate = PublicFunction().dateStringToInt(stringDate: data.reedem_date!, pattern: "yyyy-MM-dd kk:mm:ss")
-            reedemDate.text = "/ \(PublicFunction().dateLongToString(dateInMillis: doubleReedemDate, pattern: "EEEE dd MMMM yyyy / kk:mm")) WIB"
+            let doubleSchedule = PublicFunction.instance.dateStringToInt(stringDate: data.schedule!, pattern: "yyyy-MM-dd kk:mm:ss")
+            let doubleReedemDate = PublicFunction.instance.dateStringToInt(stringDate: data.reedem_date!, pattern: "yyyy-MM-dd kk:mm:ss")
+            reedemDate.text = "/ \(PublicFunction.instance.dateLongToString(dateInMillis: doubleReedemDate, pattern: "EEEE dd MMMM yyyy / kk:mm")) WIB"
             customerName.text = data.customers_name
             bookingCode.text = data.booking_code
-            schedule.text = "/ \(PublicFunction().dateLongToString(dateInMillis: doubleSchedule, pattern: "EEEE dd MMMM yyyy / kk:mm")) WIB"
+            schedule.text = "/ \(PublicFunction.instance.dateLongToString(dateInMillis: doubleSchedule, pattern: "EEEE dd MMMM yyyy / kk:mm")) WIB"
             eventName.text = data.tickets_name
             venueName.text = "[ \(data.building_name ?? "") ]"
             totalTicket.text = "\(data.quantity_order ?? 0)"
@@ -86,7 +86,7 @@ class TicketDetailReceiptController: BaseViewController {
             default:
                 paymentType.text = "My Card"
             }
-            totalPrice.text = "Rp \(PublicFunction().prettyRupiah("\(data.booking_total ?? 0)"))"
+            totalPrice.text = "Rp \(PublicFunction.instance.prettyRupiah("\(data.booking_total ?? 0)"))"
             imageBarcode.image = Barcode.fromString(string: data.booking_code!)
         }
     }

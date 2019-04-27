@@ -38,7 +38,7 @@ class QrCodeController: BaseViewController {
     private func loadQRCode() {
         guard let booking = bookingData else { return }
         
-        qrCodeImage.image = PublicFunction().createQRFromString(booking.booking_code, size: qrCodeImage.frame.size)
+        qrCodeImage.image = PublicFunction.instance.createQRFromString(booking.booking_code, size: qrCodeImage.frame.size)
         username.text = booking.customer_name.uppercased()
         bookingOrder.text = booking.booking_code
         plateNumber.text = "[ \(booking.plate_number) ]"
@@ -54,7 +54,7 @@ class QrCodeController: BaseViewController {
         contentMain.layer.cornerRadius = 4
         qrCodeImageWidth.constant = UIScreen.main.bounds.width - 80
         qrCodeImageHeight.constant = UIScreen.main.bounds.width - 80
-        PublicFunction().changeTintColor(imageView: iconClose, hexCode: 0xD50000, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconClose, hexCode: 0xD50000, alpha: 1.0)
         viewIconClose.layer.cornerRadius = viewIconClose.frame.width / 2
         viewIconClose.layer.shadowColor = UIColor.lightGray.cgColor
         viewIconClose.layer.shadowOffset = CGSize(width: 1.5, height: 3)

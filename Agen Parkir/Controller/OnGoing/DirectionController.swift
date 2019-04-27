@@ -23,6 +23,7 @@ class DirectionController: BaseViewController, MKMapViewDelegate {
     //MARK: Props
     var dataDirection: (latitude: String, longitude: String, building_name: String, timer: Int, booking_status_id: Int)?
     var timer: Timer?
+    var delegate: UpdateOngoingProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,7 +146,7 @@ class DirectionController: BaseViewController, MKMapViewDelegate {
     private func customView() {
         viewTimeWidth.constant = 10 + 40 + 10 + timeLeft.frame.width + 10
         viewTime.layer.cornerRadius = viewTime.frame.height / 2
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x0D47A1, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x0D47A1, alpha: 1.0)
         viewBack.layer.cornerRadius = 10
         viewBack.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         iconDirection.setImage(UIImage(named: "direction")?.tinted(with: UIColor(rgb: 0x2B3990)), for: .normal)

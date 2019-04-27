@@ -26,6 +26,12 @@ class LoginRegisterController: BaseViewController {
     
     var tapClicked = 0
     
+    override func viewWillAppear(_ animated: Bool) {
+        if UserDefaults.standard.bool(forKey: StaticVar.login) {
+            performSegue(withIdentifier: "toHomeController", sender: self)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,8 +61,8 @@ class LoginRegisterController: BaseViewController {
         iconGoogle.clipsToBounds = true
         viewLogin.layer.cornerRadius = viewLogin.frame.height / 2
         viewSignup.layer.cornerRadius = viewSignup.frame.height / 2
-        PublicFunction().changeTintColor(imageView: arrowLogin, hexCode: 0x4552FF, alpha: 1.0)
-        PublicFunction().changeTintColor(imageView: arrowSignup, hexCode: 0x4552FF, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: arrowLogin, hexCode: 0x4552FF, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: arrowSignup, hexCode: 0x4552FF, alpha: 1.0)
         iconGoogle.clipsToBounds = true
         iconGoogle.layer.cornerRadius = iconGoogle.frame.width / 2
         viewGoogle.layer.cornerRadius = viewGoogle.frame.height / 2
@@ -64,7 +70,6 @@ class LoginRegisterController: BaseViewController {
     }
     
     private func getFBUserData(){
-        
         if((FBSDKAccessToken.current()) != nil){
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){
@@ -82,9 +87,9 @@ class LoginRegisterController: BaseViewController {
                                 let homeController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeController") as! HomeController
                                 self.navigationController?.pushViewController(homeController, animated: true)
                             case .error?:
-                                PublicFunction().showUnderstandDialog(self, "Error Login", facebookLoginOperation.error!, "Understand")
+                                PublicFunction.instance.showUnderstandDialog(self, "Error Login", facebookLoginOperation.error!, "Understand")
                             default:
-                                PublicFunction().showUnderstandDialog(self, "Error Login", "There was some error with system, please try again", "Understand")
+                                PublicFunction.instance.showUnderstandDialog(self, "Error Login", "There was some error with system, please try again", "Understand")
                             }
                         }
                     }

@@ -88,7 +88,7 @@ class BuildingController: BaseViewController, UICollectionViewDelegate, BaseView
         inputSearch.delegate = self
         iconSearchContent.image = UIImage(named: "search")?.tinted(with: UIColor.lightGray)
         PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x2B3990, alpha: 1.0)
-        PublicFunction().changeTintColor(imageView: iconSearch, hexCode: 0x2B3990, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconSearch, hexCode: 0x2B3990, alpha: 1.0)
         
         contentSearch.layer.borderWidth = 1
         contentSearch.layer.borderColor = UIColor(rgb: 0xEFEFEF).cgColor
@@ -173,9 +173,9 @@ class BuildingController: BaseViewController, UICollectionViewDelegate, BaseView
                     ticketController.building_id = Int(building_id)
                     self.navigationController?.pushViewController(ticketController, animated: true)
                 case .error?:
-                    PublicFunction().showUnderstandDialog(self, "Error", ticketOperation.error!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", ticketOperation.error!, "Understand")
                 default:
-                    PublicFunction().showUnderstandDialog(self, "Error", ticketOperation.error!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", ticketOperation.error!, "Understand")
                 }
             }
         }

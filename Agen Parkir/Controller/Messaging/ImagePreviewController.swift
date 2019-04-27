@@ -51,7 +51,7 @@ class ImagePreviewController: BaseViewController, UICollectionViewDelegate {
     private func joinChannelWithUrl() {
         SBDGroupChannel.createChannel(withUserIds: ["user1"], isDistinct: true) { (groupChannel, error) in
             if let err = error {
-                PublicFunction().showUnderstandDialog(self, "Error Join Channel", err.localizedDescription, "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error Join Channel", err.localizedDescription, "Understand")
                 return
             }
             

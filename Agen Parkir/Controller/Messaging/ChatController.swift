@@ -26,6 +26,8 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
     //MARK: Props
     var listChat = [ChatModel]()
     var listUserId: [String]?
+    var channelUrl: String?
+    var delegate: UpdateOngoingProtocol?
     var thisChannel: SBDGroupChannel?
     var defaultObservable = BehaviorRelay(value: "")
     let bag = DisposeBag()
@@ -78,7 +80,7 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
             SVProgressHUD.dismiss()
             
             if let err = error {
-                PublicFunction().showUnderstandDialog(self, "Error Join Channel", err.localizedDescription, "Rejoin Channel", "Cancel", completionHandler: {
+                PublicFunction.instance.showUnderstandDialog(self, "Error Join Channel", err.localizedDescription, "Rejoin Channel", "Cancel", completionHandler: {
                     self.joinChannelWithId()
                 })
                 return
@@ -101,9 +103,9 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
             let filteredUsers = users?.filter{ $0.connectionStatus == SBDUserConnectionStatus.online }
             
             if (filteredUsers?.count)! > 0 {
-                completionHandler(true, PublicFunction().dateLongToString(dateInMillis: Double(exactly: (users?[0].lastSeenAt)!)!, pattern: "dd MMM yyyy / kk:mm"), (users?[0].nickname)!)
+                completionHandler(true, PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: (users?[0].lastSeenAt)!)!, pattern: "dd MMM yyyy / kk:mm"), (filteredUsers?[0].nickname)!)
             } else {
-                completionHandler(false, PublicFunction().dateLongToString(dateInMillis: Double(exactly: (users?[0].lastSeenAt)!)!, pattern: "dd MMM yyyy / kk:mm"), (users?[0].nickname)!)
+                completionHandler(false, PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: (users?[0].lastSeenAt)!)!, pattern: "dd MMM yyyy / kk:mm"), (users?[0].nickname)!)
             }
         })
     }
@@ -146,8 +148,8 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
         baseDelegate = self
         inputChat.tag = 1
         inputChat.delegate = self
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 1.0)
-        PublicFunction().changeTintColor(imageView: iconAddImage, hexCode: 0x00A551, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconAddImage, hexCode: 0x00A551, alpha: 1.0)
         viewInputChat.layer.cornerRadius = viewInputChat.frame.height / 2
         viewInputChat.layer.borderWidth = 1
         viewInputChat.layer.borderColor = UIColor.lightGray.cgColor
@@ -175,7 +177,7 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
             }
             
             if messages?.count == 0 {
-                PublicFunction().showUnderstandDialog(self, "Empty Chat", "Ask anything to this store by typing chat in bottom of screen", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Empty Chat", "Ask anything to this store by typing chat in bottom of screen", "Understand")
                 SVProgressHUD.dismiss()
                 return
             }
@@ -207,13 +209,13 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
     }
     
     private func checkDateCell(_ contentMainHeight: NSLayoutConstraint, _ index: Int, _ dateHeight: NSLayoutConstraint, _ dateLabel: UILabel) {
-        let dateFull = PublicFunction().dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "dd MMMM yyyy")
+        let dateFull = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "dd MMMM yyyy")
         
         if index > 0 {
-            let dateBeforeFull = PublicFunction().dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].createdAt!)!, pattern: "dd MMMM yyyy")
-            let dateMonth = PublicFunction().dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "dd MMMM")
-            let year = PublicFunction().dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "yyyy")
-            let yearBefore = PublicFunction().dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].createdAt!)!, pattern: "yyyy")
+            let dateBeforeFull = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].createdAt!)!, pattern: "dd MMMM yyyy")
+            let dateMonth = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "dd MMMM")
+            let year = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "yyyy")
+            let yearBefore = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].createdAt!)!, pattern: "yyyy")
             
             if dateFull == dateBeforeFull {
                 dateLabel.text = ""
@@ -244,8 +246,8 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
         let withoutDateSize = estimatedFrame.height + 5 + 14 + 9 /* 5 untuk margin dan 14 untuk padding */
         
         if index > 0 {
-            let date = PublicFunction().dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "dd MMMM yyyy")
-            let dateBefore = PublicFunction().dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].createdAt!)!, pattern: "dd MMMM yyyy")
+            let date = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "dd MMMM yyyy")
+            let dateBefore = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].createdAt!)!, pattern: "dd MMMM yyyy")
             
             if date == dateBefore {
                 return CGSize(width: UIScreen.main.bounds.width, height: withoutDateSize)

@@ -66,13 +66,13 @@ class SendReceiptController: BaseViewController {
                 case 2: payment.setTitle("Cash", for: .normal)
                 default: payment.setTitle("My Card", for: .normal)
             }
-            parkingRent.setTitle("Rp\(PublicFunction().prettyRupiah("\(data.booking_sub_total ?? 1)"))", for: .normal)
-            total.setTitle("Rp\(PublicFunction().prettyRupiah("\(data.booking_total ?? 1)"))", for: .normal)
-            voucher.setTitle("Rp\(PublicFunction().prettyRupiah("\(data.vouchers_nominal ?? 1)"))", for: .normal)
+            parkingRent.setTitle("Rp\(PublicFunction.instance.prettyRupiah("\(data.booking_sub_total ?? 1)"))", for: .normal)
+            total.setTitle("Rp\(PublicFunction.instance.prettyRupiah("\(data.booking_total ?? 1)"))", for: .normal)
+            voucher.setTitle("Rp\(PublicFunction.instance.prettyRupiah("\(data.vouchers_nominal ?? 1)"))", for: .normal)
             
             if data.booking_start_time != "" {
-                let dateInMillis = PublicFunction().dateStringToInt(stringDate: data.booking_start_time!, pattern: "yyyy-MM-dd kk:mm:ss")
-                let stringDate = PublicFunction().dateLongToString(dateInMillis: dateInMillis, pattern: "dd MMMM yyyy, kk:mm a")
+                let dateInMillis = PublicFunction.instance.dateStringToInt(stringDate: data.booking_start_time!, pattern: "yyyy-MM-dd kk:mm:ss")
+                let stringDate = PublicFunction.instance.dateLongToString(dateInMillis: dateInMillis, pattern: "dd MMMM yyyy, kk:mm a")
                 self.parkingDone.text = "\(stringDate)"
             } else {
                 self.parkingDone.text = "Unknowns date"
@@ -112,9 +112,9 @@ extension SendReceiptController {
                         }))
                         self.present(alert, animated: true)
                     case .error?:
-                        PublicFunction().showUnderstandDialog(self, "Error Submiting", submitReceipts.error!, "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error Submiting", submitReceipts.error!, "Understand")
                     default:
-                        PublicFunction().showUnderstandDialog(self, "Error Submiting", "There was some error with system, try to tap the send button again", "Understand")
+                        PublicFunction.instance.showUnderstandDialog(self, "Error Submiting", "There was some error with system, try to tap the send button again", "Understand")
                     }
                 }
             }

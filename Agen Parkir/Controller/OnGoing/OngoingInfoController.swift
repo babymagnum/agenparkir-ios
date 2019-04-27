@@ -37,6 +37,7 @@ class OngoingInfoController: BaseViewController, UICollectionViewDelegate {
     
     //MARK: Props
     var ongoingModel: OngoingModel?
+    var delegate: UpdateOngoingProtocol?
     var listImages = [String]()
     var listStores = [String]()
     
@@ -96,7 +97,7 @@ class OngoingInfoController: BaseViewController, UICollectionViewDelegate {
                             self.venueName.text = data.building_name
                             self.parkingLot.text = "[ \(data.parking_lot) ]"
                             self.plateNumber.text = "[ \(data.plate_number) ]"
-                            self.price.text = "[ Rp\(PublicFunction().prettyRupiah("\(data.tariff)")) ]"
+                            self.price.text = "[ Rp\(PublicFunction.instance.prettyRupiah("\(data.tariff)")) ]"
                             self.bookingCode.text = data.booking_code
                             
                             if data.vehicle_types_id == 1 {
@@ -156,9 +157,9 @@ class OngoingInfoController: BaseViewController, UICollectionViewDelegate {
                         
                     }
                 case .error?:
-                    PublicFunction().showUnderstandDialog(self, "Error", detailOngoingOperation.error!, "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", detailOngoingOperation.error!, "Understand")
                 default:
-                    PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please refresh this page", "Understand")
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please refresh this page", "Understand")
                 }
             }
         }
@@ -169,8 +170,8 @@ class OngoingInfoController: BaseViewController, UICollectionViewDelegate {
     }
     
     private func customView() {
-        PublicFunction().changeTintColor(imageView: iconKetentuanParkir, hexCode: 0x555555, alpha: 1.0)
-        PublicFunction().changeTintColor(imageView: iconClose, hexCode: 0x000000, alpha: 0.8)
+        PublicFunction.instance.changeTintColor(imageView: iconKetentuanParkir, hexCode: 0x555555, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconClose, hexCode: 0x000000, alpha: 0.8)
     }
 }
 

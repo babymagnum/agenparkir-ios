@@ -62,13 +62,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         //one signal
+        let notificationReceivedBlock: OSHandleNotificationReceivedBlock = { notification in
+            print("Received Notification: \(String(describing: notification!.payload.notificationID))")
+        }
+        
+        let notificationOpenedBlock: OSHandleNotificationActionBlock = { result in
+            // This block gets called when the user reacts to a notification received
+            let payload: OSNotificationPayload = result!.notification.payload
+            
+            var fullMessage = payload.body
+            print("Message = \(String(describing: fullMessage))")
+            
+            if payload.additionalData != nil {
+                if payload.title != nil {
+                    let messageTitle = payload.title
+                    print("Message Title = \(messageTitle!)")
+                }
+                
+                let additionalData = payload.additionalData
+                if additionalData?["actionSelected"] != nil {
+                    fullMessage = fullMessage! + "\nPressed ButtonID: \(additionalData!["actionSelected"])"
+                }
+            }
+        }
+        
         OneSignal.add(self as OSSubscriptionObserver)
         
-        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppLaunchURL: true]
         
         OneSignal.initWithLaunchOptions(launchOptions,
                                         appId: "36504d26-6cdd-4271-b2de-666e692b398a",
-                                        handleNotificationAction: nil,
+                                        handleNotificationReceived: notificationReceivedBlock,
+                                        handleNotificationAction: notificationOpenedBlock,
                                         settings: onesignalInitSettings)
         
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
@@ -78,6 +103,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         OneSignal.promptForPushNotifications(userResponse: { accepted in
             print("User accepted notifications: \(accepted)")
         })
+        
+//        // Check if launched from notification
+//        let notificationOption = launchOptions?[.remoteNotification]
+//
+//        // 1
+//        if let notification = notificationOption as? [String: AnyObject],
+//            let aps = notification["aps"] as? [String: AnyObject] {
+//
+//            // 3
+//            let homeController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeController") as! HomeController
+//            homeController.channelUrl = aps["url"] as? String
+//            self.window?.rootViewController = homeController
+//        }
         
         return true
     }

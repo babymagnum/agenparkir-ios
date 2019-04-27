@@ -40,8 +40,8 @@ class ReceiptsCell: UICollectionViewCell {
                 
                 //booking date
                 if data.booking_start_time != "" {
-                    let dateInMillis = PublicFunction().dateStringToInt(stringDate: data.booking_start_time!, pattern: "yyyy-MM-dd kk:mm:ss")
-                    let stringDate = PublicFunction().dateLongToString(dateInMillis: dateInMillis, pattern: "dd MMMM yyyy, kk:mm a")
+                    let dateInMillis = PublicFunction.instance.dateStringToInt(stringDate: data.booking_start_time!, pattern: "yyyy-MM-dd kk:mm:ss")
+                    let stringDate = PublicFunction.instance.dateLongToString(dateInMillis: dateInMillis, pattern: "dd MMMM yyyy, kk:mm a")
                     orderDate.text = "\(stringDate)"
                 } else {
                     orderDate.text = "Unknowns date"

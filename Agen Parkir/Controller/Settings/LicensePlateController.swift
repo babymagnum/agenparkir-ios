@@ -158,14 +158,14 @@ class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollect
                     }
                 }
             case .error?:
-                PublicFunction().showUnderstandDialog(self, "Error Get List Plate", showPlateOperation.error!, "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error Get List Plate", showPlateOperation.error!, "Understand")
             case .empty?:
                 DispatchQueue.main.async {
                     self.emptyPlateLabel.isHidden = false
                     self.plateCollectionView.isHidden = true
                 }
             default:
-                PublicFunction().showUnderstandDialog(self, "Error!", "Please click the retry button to refresh data", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error!", "Please click the retry button to refresh data", "Understand")
             }
         }
     }
@@ -192,9 +192,9 @@ class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollect
         baseDelegate = self
         viewCreate.clipsToBounds = true
         viewCreate.layer.cornerRadius = viewCreate.frame.height / 2
-        PublicFunction().changeTintColor(imageView: iconCreate, hexCode: 0xffffff, alpha: 1)
-        PublicFunction().changeTintColor(imageView: iconBack, hexCode: 0x000000, alpha: 0.8)
-        PublicFunction().changeTintColor(imageView: iconEdit, hexCode: 0x000000, alpha: 0.8)
+        PublicFunction.instance.changeTintColor(imageView: iconCreate, hexCode: 0xffffff, alpha: 1)
+        PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x000000, alpha: 0.8)
+        PublicFunction.instance.changeTintColor(imageView: iconEdit, hexCode: 0x000000, alpha: 0.8)
     }
     
     private func changeToGreen(_ view: UIView, _ text: UILabel) {
@@ -234,7 +234,7 @@ class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollect
             
             switch deletePlateOperation.state {
             case .success?:
-                PublicFunction().showUnderstandDialog(self, "Success Delete", "Success delete plate with number \(plateModel.number_plate ?? "")", "Cancel")
+                PublicFunction.instance.showUnderstandDialog(self, "Success Delete", "Success delete plate with number \(plateModel.number_plate ?? "")", "Cancel")
                 self.listPlate.remove(at: positionInList)
                 
                 if let licenseProtocol = self.licensePlateControllerProtocol {
@@ -250,9 +250,9 @@ class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollect
                     }
                 }
             case .canceled?:
-                PublicFunction().showUnderstandDialog(self, "Error Delete", "Failed when deleting vehicle with plate \(plateModel.number_plate ?? ""), please try again", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error Delete", "Failed when deleting vehicle with plate \(plateModel.number_plate ?? ""), please try again", "Understand")
             default:
-                PublicFunction().showUnderstandDialog(self, "Error Delete", "Failed when deleting vehicle, error: \(deletePlateOperation.error ?? "")", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error Delete", "Failed when deleting vehicle, error: \(deletePlateOperation.error ?? "")", "Understand")
             }
         }
     }
@@ -308,7 +308,7 @@ extension LicensePlateController {
         inputVehicleName.resignFirstResponder()
         
         if enableCreate == .dont {
-            PublicFunction().showUnderstandDialog(self, "Form not Complete", "Make sure to choose the vehicle type then input the plate number and vehicle name before proceed", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Form not Complete", "Make sure to choose the vehicle type then input the plate number and vehicle name before proceed", "Understand")
             return
         }
         
@@ -322,13 +322,13 @@ extension LicensePlateController {
             
             switch postPlateOperation.state {
             case .success?:
-                PublicFunction().showUnderstandDialog(self, "Success", "Success registered your vehicle", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Success", "Success registered your vehicle", "Understand")
                 self.setToDefault()
                 self.loadListPlate()
             case .error?:
-                PublicFunction().showUnderstandDialog(self, "Error", postPlateOperation.error!, "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error", postPlateOperation.error!, "Understand")
             default: //canceled
-                PublicFunction().showUnderstandDialog(self, "Error", "There was something error with system, please try again to registered your vehicle", "Understand")
+                PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again to registered your vehicle", "Understand")
             }
         }
     }

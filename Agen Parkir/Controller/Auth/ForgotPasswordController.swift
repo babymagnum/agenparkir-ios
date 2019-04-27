@@ -85,7 +85,7 @@ extension ForgotPasswordController {
     
     @objc func viewNextClick() {
         if state.value == .dont {
-            PublicFunction().showUnderstandDialog(self, "Empty Email", "Please input registered email, so we can send link to reset your password", "Understand")
+            PublicFunction.instance.showUnderstandDialog(self, "Empty Email", "Please input registered email, so we can send link to reset your password", "Understand")
             return
         }
         

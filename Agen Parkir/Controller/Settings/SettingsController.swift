@@ -49,15 +49,16 @@ class SettingsController: BaseViewController, UICollectionViewDelegate {
     private func handleGestureListener() {
         iconCancel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconCancelClick)))
         viewLogout.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewLogoutClick)))
-        let swipeBack = UISwipeGestureRecognizer(target: self, action: #selector(swipeBackGesture))
-        swipeBack.direction = .right
-        view.addGestureRecognizer(swipeBack)
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeBackGesture))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
     }
     
     private func customView() {
         viewLogout.clipsToBounds = true
         viewLogout.layer.cornerRadius = viewLogout.frame.width / 2
-        PublicFunction().changeTintColor(imageView: iconCancel, hexCode: 0xb2bec3, alpha: 1.0)
+        PublicFunction.instance.changeTintColor(imageView: iconCancel, hexCode: 0xb2bec3, alpha: 1.0)
     }
     
     private func populateSettingsData() {
@@ -94,6 +95,11 @@ extension SettingsController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc func swipeBackGesture() {
+        delegate?.updateData()
+        navigationController?.popViewController(animated: true)
+    }
+    
     @objc func viewLogoutClick() {
         SVProgressHUD.show()
         
@@ -109,29 +115,9 @@ extension SettingsController {
                     return
                 }
                 
-                //set data has account, so when from welcome controller we can head to loginregister controller
-                UserDefaults.standard.set(true, forKey: StaticVar.hasAccount)
-                //set login state to false, so user will head to welcome controller first
-                UserDefaults.standard.set(false, forKey: StaticVar.login)
-                UserDefaults.standard.set("", forKey: StaticVar.id)
-                UserDefaults.standard.set("", forKey: StaticVar.token)
-                UserDefaults.standard.set("", forKey: StaticVar.images)
-                
-                if FBSDKAccessToken.current() != nil {
-                    FBSDKAccessToken.setCurrent(nil)
-                    FBSDKProfile.setCurrent(nil)
-                    FBSDKLoginManager().logOut()
-                }
-                
-                let welcomeController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeController") as! WelcomeController
-                self.present(welcomeController, animated: true)
+                PublicFunction.instance.logout(self)
             }
         }
-    }
-    
-    @objc func swipeBackGesture() {
-        delegate?.updateData()
-        navigationController?.popViewController(animated: true)
     }
     
     @objc func contentMainClick(sender: UITapGestureRecognizer) {
@@ -145,15 +131,15 @@ extension SettingsController {
                 let plateController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LicensePlateController") as! LicensePlateController
                 self.navigationController?.pushViewController(plateController, animated: true)
             case 3:
-                print("languange")
+                showDevelopmentFeature()
             case 4:
-                print("tos")
+                showDevelopmentFeature()
             case 5:
-                print("website")
+                showDevelopmentFeature()
             case 6:
-                print("privacy policy")
+                showDevelopmentFeature()
             default:
-                print("password")
+                showDevelopmentFeature()
             }
             
         }

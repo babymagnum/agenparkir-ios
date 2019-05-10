@@ -298,6 +298,7 @@ class PublicFunction: NSObject{
     
     open func connectSendbird(_ userId: String, _ nickname: String, _ imageUrl: String) {
         if userId == "" {
+            print("can't connect to sendbird server with empty id")
             return
         }
         

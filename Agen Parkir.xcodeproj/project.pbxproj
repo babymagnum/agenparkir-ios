@@ -92,6 +92,10 @@
 		EDBCC80622446AB1004AAF42 /* TicketDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBCC80522446AB1004AAF42 /* TicketDetailModel.swift */; };
 		EDBCC80822448C84004AAF42 /* TicketDetailReceiptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBCC80722448C84004AAF42 /* TicketDetailReceiptController.swift */; };
 		EDBCC80A22449584004AAF42 /* Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBCC80922449584004AAF42 /* Barcode.swift */; };
+		EDCDDF882284C55100E4FF2B /* VoucherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCDDF872284C55100E4FF2B /* VoucherModel.swift */; };
+		EDCDDF8A2284C64D00E4FF2B /* VoucherImagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCDDF892284C64D00E4FF2B /* VoucherImagesModel.swift */; };
+		EDCDDF8E2285023800E4FF2B /* VoucherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCDDF8D2285023800E4FF2B /* VoucherController.swift */; };
+		EDCDDF9022850CC200E4FF2B /* DetailVoucherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCDDF8F22850CC200E4FF2B /* DetailVoucherController.swift */; };
 		EDD7051A22560A6C0000EEA0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDD7051922560A6C0000EEA0 /* GoogleService-Info.plist */; };
 		EDDB03FA223FCF7B005845A9 /* BuildingActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDB03F9223FCF7B005845A9 /* BuildingActionCell.swift */; };
 		EDDB03FC223FF3C3005845A9 /* TicketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDB03FB223FF3C3005845A9 /* TicketController.swift */; };
@@ -102,6 +106,9 @@
 		EDDB95B4222A003600ED2922 /* BillboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDB95B3222A003600ED2922 /* BillboardCell.swift */; };
 		EDDB95B6222A00C800ED2922 /* BillboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDB95B5222A00C800ED2922 /* BillboardModel.swift */; };
 		EDED07A12233860600BB8CBD /* BuildingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDED07A02233860600BB8CBD /* BuildingController.swift */; };
+		EDF224D2227F9DCF008A1157 /* CoinsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF224D1227F9DCF008A1157 /* CoinsModel.swift */; };
+		EDF224D6227FA043008A1157 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF224D5227FA043008A1157 /* Networking.swift */; };
+		EDF224D8227FAC8D008A1157 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF224D7227FAC8D008A1157 /* DataModel.swift */; };
 		EDF4081D223120A400CA6FDF /* LicensePlateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF4081C223120A400CA6FDF /* LicensePlateController.swift */; };
 		EDF408212231270900CA6FDF /* PlateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF408202231270900CA6FDF /* PlateCell.swift */; };
 		EDF4082522312B9000CA6FDF /* PlateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF4082422312B9000CA6FDF /* PlateModel.swift */; };
@@ -235,6 +242,10 @@
 		EDBCC80522446AB1004AAF42 /* TicketDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailModel.swift; sourceTree = "<group>"; };
 		EDBCC80722448C84004AAF42 /* TicketDetailReceiptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailReceiptController.swift; sourceTree = "<group>"; };
 		EDBCC80922449584004AAF42 /* Barcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Barcode.swift; sourceTree = "<group>"; };
+		EDCDDF872284C55100E4FF2B /* VoucherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherModel.swift; sourceTree = "<group>"; };
+		EDCDDF892284C64D00E4FF2B /* VoucherImagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherImagesModel.swift; sourceTree = "<group>"; };
+		EDCDDF8D2285023800E4FF2B /* VoucherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherController.swift; sourceTree = "<group>"; };
+		EDCDDF8F22850CC200E4FF2B /* DetailVoucherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVoucherController.swift; sourceTree = "<group>"; };
 		EDD7051922560A6C0000EEA0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EDDB03F9223FCF7B005845A9 /* BuildingActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingActionCell.swift; sourceTree = "<group>"; };
 		EDDB03FB223FF3C3005845A9 /* TicketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketController.swift; sourceTree = "<group>"; };
@@ -245,6 +256,9 @@
 		EDDB95B3222A003600ED2922 /* BillboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillboardCell.swift; sourceTree = "<group>"; };
 		EDDB95B5222A00C800ED2922 /* BillboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillboardModel.swift; sourceTree = "<group>"; };
 		EDED07A02233860600BB8CBD /* BuildingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingController.swift; sourceTree = "<group>"; };
+		EDF224D1227F9DCF008A1157 /* CoinsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsModel.swift; sourceTree = "<group>"; };
+		EDF224D5227FA043008A1157 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		EDF224D7227FAC8D008A1157 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		EDF4081C223120A400CA6FDF /* LicensePlateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensePlateController.swift; sourceTree = "<group>"; };
 		EDF408202231270900CA6FDF /* PlateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateCell.swift; sourceTree = "<group>"; };
 		EDF4082422312B9000CA6FDF /* PlateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateModel.swift; sourceTree = "<group>"; };
@@ -376,6 +390,10 @@
 				EDA8438F224D27370054D580 /* VenueTicketModel.swift */,
 				EDA84391224D2D260054D580 /* VenueModel.swift */,
 				ED551271224F124B0052A86E /* ChatModel.swift */,
+				EDF224D1227F9DCF008A1157 /* CoinsModel.swift */,
+				EDF224D7227FAC8D008A1157 /* DataModel.swift */,
+				EDCDDF872284C55100E4FF2B /* VoucherModel.swift */,
+				EDCDDF892284C64D00E4FF2B /* VoucherImagesModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -436,6 +454,7 @@
 				ED589BC62252CF6A003FE6D7 /* ScaledHeightImageView.swift */,
 				ED42AE83225D8E5300C2DDEB /* InternetReachability.swift */,
 				ED42AE8D225DA72200C2DDEB /* NetworkManager.swift */,
+				EDF224D5227FA043008A1157 /* Networking.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -464,6 +483,8 @@
 				EDED07A02233860600BB8CBD /* BuildingController.swift */,
 				ED7253892233E347000BE938 /* BookingController.swift */,
 				ED976D0F2236912D00EF8354 /* BookingAgreementController.swift */,
+				EDCDDF8D2285023800E4FF2B /* VoucherController.swift */,
+				EDCDDF8F22850CC200E4FF2B /* DetailVoucherController.swift */,
 			);
 			path = Booking;
 			sourceTree = "<group>";
@@ -842,7 +863,9 @@
 				ED551270224F11C40052A86E /* OpponentChatImageCell.swift in Sources */,
 				ED2B0B142223BA3A004AF051 /* PublicFunction.swift in Sources */,
 				ED2B0B0F222399AC004AF051 /* WelcomeModel.swift in Sources */,
+				EDCDDF8E2285023800E4FF2B /* VoucherController.swift in Sources */,
 				EDA224E62224CA3800291B68 /* Enter4DigitResetPasswordController.swift in Sources */,
+				EDCDDF8A2284C64D00E4FF2B /* VoucherImagesModel.swift in Sources */,
 				EDA84390224D27370054D580 /* VenueTicketModel.swift in Sources */,
 				EDFBB786224872CA00BB8246 /* ProductModel.swift in Sources */,
 				ED448E67223A75DE00BAAEF4 /* ReceiptsController.swift in Sources */,
@@ -868,6 +891,7 @@
 				EDDB03FC223FF3C3005845A9 /* TicketController.swift in Sources */,
 				ED2A1AED222FC34E007E09DB /* ImagePickerManager.swift in Sources */,
 				EDDB95AE2228834000ED2922 /* RecentlyParkCell.swift in Sources */,
+				EDF224D8227FAC8D008A1157 /* DataModel.swift in Sources */,
 				ED9A3425222F4FD100D26E6F /* SettingsModel.swift in Sources */,
 				EDA84392224D2D260054D580 /* VenueModel.swift in Sources */,
 				ED9A3423222F4EEE00D26E6F /* SettingsCell.swift in Sources */,
@@ -889,12 +913,15 @@
 				ED55126C224F119D0052A86E /* OpponentChatCell.swift in Sources */,
 				ED9A3429222F83BC00D26E6F /* InteractiveRecognizer.swift in Sources */,
 				ED9A3427222F77CC00D26E6F /* AccountsController.swift in Sources */,
+				EDCDDF882284C55100E4FF2B /* VoucherModel.swift in Sources */,
 				ED42AE84225D8E5300C2DDEB /* InternetReachability.swift in Sources */,
 				ED448E6D223B41FC00BAAEF4 /* SendReceiptController.swift in Sources */,
+				EDF224D6227FA043008A1157 /* Networking.swift in Sources */,
 				ED6AE51B2239E4590057E453 /* ImagesOngoingCell.swift in Sources */,
 				ED53C1FD222CC040005FEBF9 /* UpdatesModel.swift in Sources */,
 				ED756B7C2227566D00C4C88A /* StaticVar.swift in Sources */,
 				ED01162C223E82650047AD40 /* HistoryCell.swift in Sources */,
+				EDF224D2227F9DCF008A1157 /* CoinsModel.swift in Sources */,
 				ED756B7A2225F75E00C4C88A /* RegisterModel.swift in Sources */,
 				ED305C3C222C9C71002744A6 /* ServicesModel.swift in Sources */,
 				ED01162A223E7DA30047AD40 /* HistoryModel.swift in Sources */,
@@ -904,6 +931,7 @@
 				ED10ECD32243B4780028161E /* TabOngoingController.swift in Sources */,
 				EDA224E22224C96100291B68 /* CentralOperation.swift in Sources */,
 				EDFBB78F2248A97000BB8246 /* DetailStoreController.swift in Sources */,
+				EDCDDF9022850CC200E4FF2B /* DetailVoucherController.swift in Sources */,
 				ED589BC522519A35003FE6D7 /* ImagePreviewController.swift in Sources */,
 				EDA224EA2225792E00291B68 /* AgreementsController.swift in Sources */,
 				EDBCC8042244692F004AAF42 /* ReceiptTicketCell.swift in Sources */,

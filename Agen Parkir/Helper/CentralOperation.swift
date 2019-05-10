@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import UIKit
 
 enum OperationState {
     case success, canceled, empty, error, expired
@@ -1214,7 +1215,7 @@ class ListOngoingOperation: AbstractOperation {
                 ongoingModel.booking_code = data["booking_code"].string ?? ""
                 ongoingModel.vehicle_type = self.vehicle_type
                 ongoingModel.removeTimer = false
-                ongoingModel.officer = (data["officer"].arrayObject as! [String])
+                ongoingModel.officer = data["officer"].arrayObject as? [String]
                 
                 self.listOngoing.append(ongoingModel)
                 
@@ -1756,6 +1757,8 @@ class TicketListOngoingOperation: AbstractOperation {
                     self.finish(true)
                     return
                 }
+                
+                print("ticket list ongoing data \(String(describing: data))")
                 
                 if ticketOngoing.count == 0 {
                     self.state = .empty

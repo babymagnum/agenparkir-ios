@@ -91,11 +91,6 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseV
         }
     }
     
-    private func showEmpty() {
-        emptyText.setTitle("There is no product registered in this store.", for: .normal)
-        emptyText.isHidden = false
-    }
-    
     private func handleGesture() {
         emptyText.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyTextClick)))
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
@@ -130,32 +125,40 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseV
     
     private func checkSendbird() {
         if SBDMain.getCurrentUser() == nil {
+            print("not login to sendbird server yet...")
+            SVProgressHUD.show()
+            
             let currentOperation = CurrentOperation()
             let operation = OperationQueue()
             operation.addOperation(currentOperation)
             
             currentOperation.completionBlock = {
-                switch currentOperation.state {
-                case .success?:
-                    self.navigateToMessage()
-                case .error?:
-                    PublicFunction.instance.showUnderstandDialog(self, "Error", currentOperation.error!, "Reload", "Cancel", completionHandler: {
-                        self.checkSendbird()
-                    })
-                default:
-                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was some error with syste.", "Reload", "Cancel", completionHandler: {
-                        self.checkSendbird()
-                    })
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    
+                    switch currentOperation.state {
+                    case .success?:
+                        self.navigateToMessage()
+                    case .error?:
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", currentOperation.error!, "Reload", "Cancel", completionHandler: {
+                            self.checkSendbird()
+                        })
+                    default:
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was some error with syste.", "Reload", "Cancel", completionHandler: {
+                            self.checkSendbird()
+                        })
+                    }
                 }
             }
-            
-            return
-        }
-        
-        self.navigateToMessage()
+        } else { self.navigateToMessage() }
     }
     
     private func navigateToMessage() {
+        guard let _ = SBDMain.getCurrentUser() else {
+            PublicFunction.instance.showUnderstandDialog(self, "Failed Connect to Sendbird", "Sorry, we can't connect you to sendbird chat due to internal server error. We'll notify you if this feature is working properly", "Understand")
+            return
+        }
+        
         let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
         chatController.listUserId = ["store_1"]
         navigationController?.pushViewController(chatController, animated: true)
@@ -216,15 +219,6 @@ extension DetailStoreController: UICollectionViewDataSource, UICollectionViewDel
         headerView.dataHeader = self.storeDetail
         headerView.iconMessage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconMessageClick)))
         return headerView
-        
-//        switch kind {
-//            case UICollectionView.elementKindSectionHeader:
-//                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "StoreHeaderReusableView", for: indexPath) as! StoreHeaderReusableView
-//                headerView.dataHeader = self.storeDetail
-//                return headerView
-//            default:
-//                assert(false, "Unexpected element kind")
-//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

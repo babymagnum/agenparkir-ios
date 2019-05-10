@@ -51,7 +51,7 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
     var channelUrl: String?
     var listRecently = [RecentlyModel]()
     var listBillboard = [BillboardModel]()
-    var listServices = [ServicesModel]()
+    var listServices = [VoucherModel]()
     var listUpdates = [BuildingModel]()
     var billboardViewLayout: CarouselFlowLayout!
     var recentlyViewLayout: CarouselFlowLayout!
@@ -97,15 +97,77 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         handleGestureListener()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        DispatchQueue.main.async {
+            self.recentlyCollectionView.collectionViewLayout.invalidateLayout()
+            self.billboardCollectionView.collectionViewLayout.invalidateLayout()
+            self.servicesCollectionView.collectionViewLayout.invalidateLayout()
+            self.updatesCollectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
+    
+    private func hideServiceCollection() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.contentMainHeight.constant -= self.servicesCollectionHeight.constant
+            self.servicesCollectionHeight.constant = 0
+        })
+        
+        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+            self.contentMain.layoutIfNeeded()
+        })
+    }
+    
     private func populateData(){
         SVProgressHUD.show()
         
         let recentlyOperation = RecentlyOperation()
         let billboardOperation = BillboardOperation()
-        let servicesOperation = ServicesOperation()
+        //let servicesOperation = ServicesOperation()
         let currentOperation = CurrentOperation()
         
-        operationQueue.addOperations([recentlyOperation, billboardOperation, servicesOperation, currentOperation], waitUntilFinished: false)
+        operationQueue.addOperation(currentOperation)
+        operationQueue.addOperation(recentlyOperation)
+        operationQueue.addOperation(billboardOperation)
+        //operationQueue.addOperation(servicesOperation)
+        
+        Networking.instance.getVoucherList { (list, error) in
+            if let _ = error {
+                self.hideServiceCollection()
+                return
+            }
+            
+            guard let list = list else {
+                self.hideServiceCollection()
+                return
+            }
+            
+            for (index, value) in list.enumerated() {
+                var dataValue = value
+                
+                dataValue.description = "Hanya dengan menukar coin sebanyak \(value.coin_price ?? 0) coin, kamu bisa mendapatkan saldo My Card sebanyak \(value.value ?? 0)."
+                
+                self.listServices.append(dataValue)
+                
+                if index == 1 {
+                    DispatchQueue.main.async {
+                        self.contentMainHeight.constant -= self.servicesCollectionHeight.constant
+                        self.servicesCollectionView.reloadData()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                        self.servicesCollectionHeight.constant = self.servicesCollectionView.contentSize.height
+                        self.contentMainHeight.constant += self.servicesCollectionView.contentSize.height
+                    })
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                        self.contentMain.layoutIfNeeded()
+                    })
+                    break
+                }
+            }
+        }
         
         currentOperation.completionBlock = {
             DispatchQueue.main.async {
@@ -140,7 +202,7 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
                         self.recentlyCollectionHeight.constant = self.recentlyCollectionView.contentSize.height
                     })
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                         self.contentMain.layoutIfNeeded()
                     })
                 case .error?:
@@ -149,7 +211,7 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
                     self.contentMainHeight.constant -= self.recentlyCollectionHeight.constant
                     self.recentlyCollectionHeight.constant = 0
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                         self.contentMain.layoutIfNeeded()
                     })
                 default:
@@ -170,7 +232,7 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
                         self.billboardCollectionHeight.constant = self.billboardCollectionView.contentSize.height
                     })
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                         self.contentMain.layoutIfNeeded()
                     })
                 case .error?:
@@ -179,7 +241,7 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
                     self.contentMainHeight.constant -= self.billboardCollectionHeight.constant
                     self.billboardCollectionHeight.constant = 0
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                         self.contentMain.layoutIfNeeded()
                     })
                 default:
@@ -188,37 +250,55 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
             }
         }
         
-        servicesOperation.completionBlock = {
+//        servicesOperation.completionBlock = {
+//            DispatchQueue.main.async {
+//                switch servicesOperation.state {
+//                case .success?:
+//                    self.listServices = servicesOperation.listServices
+//
+//                    self.contentMainHeight.constant -= self.servicesCollectionHeight.constant
+//                    self.servicesCollectionView.reloadData()
+//
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+//                        self.servicesCollectionHeight.constant = self.servicesCollectionView.contentSize.height
+//                        self.contentMainHeight.constant += self.servicesCollectionView.contentSize.height
+//                    })
+//
+//                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+//                        self.contentMain.layoutIfNeeded()
+//                    })
+//                case .error?:
+//                    print("services operation error \(servicesOperation.error ?? "")")
+//                case .empty?:
+//                    UIView.animate(withDuration: 0.2, animations: {
+//                        self.contentMainHeight.constant -= self.servicesCollectionHeight.constant
+//                        self.servicesCollectionHeight.constant = 0
+//                    })
+//
+//                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+//                        self.contentMain.layoutIfNeeded()
+//                    })
+//                default:
+//                    print("services operation error by system")
+//                }
+//            }
+//        }
+        
+        Networking.instance.getCoins(customer_id: UserDefaults.standard.string(forKey: StaticVar.id)!) { (coins, customer_id, error) in
             DispatchQueue.main.async {
-                switch servicesOperation.state {
-                case .success?:
-                    self.listServices = servicesOperation.listServices
-                    
-                    self.contentMainHeight.constant -= self.servicesCollectionHeight.constant
-                    self.servicesCollectionView.reloadData()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                        self.servicesCollectionHeight.constant = self.servicesCollectionView.contentSize.height
-                        self.contentMainHeight.constant += self.servicesCollectionView.contentSize.height
-                    })
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                        self.contentMain.layoutIfNeeded()
-                    })
-                case .error?:
-                    print("services operation error \(servicesOperation.error ?? "")")
-                case .empty?:
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.contentMainHeight.constant -= self.servicesCollectionHeight.constant
-                        self.servicesCollectionHeight.constant = 0
-                    })
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                        self.contentMain.layoutIfNeeded()
-                    })
-                default:
-                    print("services operation error by system")
-                }
+                if let _ = error { return }
+                
+                let approximateTextWidth = self.amountCoin.frame.width - 10 - 10
+                let size = CGSize(width: approximateTextWidth, height: 100)
+                let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]
+                let estimatedFrame = NSString(string: "\(coins ?? 0)").boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+                
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.viewCoinWidth.constant += estimatedFrame.width
+                    self.view.layoutIfNeeded()
+                })
+                
+                self.amountCoin.text = "\(coins ?? 0)"
             }
         }
     }
@@ -236,6 +316,7 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         viewMycard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewMycardClick)))
         viewNotification.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewNotificationClick)))
         iconMycardBottom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewMycardClick)))
+        viewCoin.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewCoinClick)))
     }
     
     private func initLocationManager() {
@@ -269,6 +350,7 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         recentlyViewLayout = CarouselFlowLayout.configureLayout(collectionView: recentlyCollectionView, itemSize: CGSize(width: floor(screenSize.width * 0.5), height: 159), minimumLineSpacing: 0)
         recentlyViewLayout.minimumScaleFactor = 0.8
         
+        recentlyCollectionView.isPrefetchingEnabled = false
         recentlyCollectionView.showsHorizontalScrollIndicator = false
         recentlyCollectionView.delegate = self
         recentlyCollectionView.dataSource = self
@@ -277,16 +359,19 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         billboardViewLayout = CarouselFlowLayout.configureLayout(collectionView: self.billboardCollectionView, itemSize: CGSize(width: floor(screenSize.width * 0.5), height: 147), minimumLineSpacing: 0)
         billboardViewLayout.minimumScaleFactor = 0.8
         
+        billboardCollectionView.isPrefetchingEnabled = false
         billboardCollectionView.delegate = self
         billboardCollectionView.dataSource = self
         billboardCollectionView.showsHorizontalScrollIndicator = false
         
         //service collectionview
+        servicesCollectionView.isPrefetchingEnabled = false
         servicesCollectionView.delegate = self
         servicesCollectionView.dataSource = self
         servicesCollectionView.showsVerticalScrollIndicator = false
         
         //updates collectionview
+        updatesCollectionView.isPrefetchingEnabled = false
         updatesCollectionView.delegate = self
         updatesCollectionView.dataSource = self
         updatesCollectionView.showsVerticalScrollIndicator = false
@@ -340,7 +425,7 @@ extension HomeController {
                             self.contentMainHeight.constant += self.updatesCollectionHeight.constant
                         })
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                             self.contentMain.layoutIfNeeded()
                         })
                     case .error?:
@@ -349,7 +434,7 @@ extension HomeController {
                         self.contentMainHeight.constant -= self.updatesCollectionHeight.constant
                         self.updatesCollectionHeight.constant = 0
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                             self.contentMain.layoutIfNeeded()
                         })
                     default:
@@ -397,7 +482,7 @@ extension HomeController: UICollectionViewDataSource, UICollectionViewDelegateFl
             let approximateTextWidth = cell.viewContentText.frame.width - 10 - 10
             let size = CGSize(width: approximateTextWidth, height: 100)
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)]
-            let estimatedFrame = NSString(string: service.description!).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+            let estimatedFrame = NSString(string: service.description ?? "").boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
             
             return CGSize(width: UIScreen.main.bounds.width - 40, height: estimatedFrame.height + cell.servicesName.frame.height + 60 + cell.servicesDate.frame.height + cell.iconStar.frame.height)
         } else if collectionView == billboardCollectionView {
@@ -471,6 +556,11 @@ extension HomeController: UpdateCurrentDataProtocol {
 
 //MARK: Handle Gesture Listener
 extension HomeController {
+    @objc func viewCoinClick() {
+        let voucherController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VoucherController") as! VoucherController
+        navigationController?.pushViewController(voucherController, animated: true)
+    }
+    
     @objc func iconTopUpClick() {
         let topUpController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TopupController") as! TopupController
         topUpController.delegate = self
@@ -530,8 +620,6 @@ extension HomeController {
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         populateData()
-        locationManager.startUpdatingLocation()
-        
         refreshControl.endRefreshing()
     }
     

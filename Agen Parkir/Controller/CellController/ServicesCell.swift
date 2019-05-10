@@ -28,16 +28,16 @@ class ServicesCell: UICollectionViewCell {
         iconStar.layer.cornerRadius = iconStar.frame.width / 2
     }
     
-    var servicesData: ServicesModel? {
+    var servicesData: VoucherModel? {
         didSet {
             if let data = servicesData {
-                if data.image == "" {
-                    imageHeader.image = UIImage(named: "Screen Shot 2019-02-25 at 09.34.30")
-                } else { imageHeader.loadUrl("\(StaticVar.root_images)\(data.image!)") }
+                if data.voucher_images.count == 0 {
+                    imageHeader.image = UIImage(named: "Artboard 12@0.75x-8")
+                } else { imageHeader.loadUrl("\(StaticVar.root_images)\(data.voucher_images[0].images ?? "")") }
                 
-                servicesName.text = data.title
+                servicesName.text = data.name
                 servicesDescription.text = data.description
-                servicesDate.text = data.date
+                servicesDate.text = "Mei 2020"
             }
         }
     }

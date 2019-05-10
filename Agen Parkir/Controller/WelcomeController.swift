@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WelcomeController: UIViewController, UICollectionViewDelegate {
 
@@ -55,6 +56,8 @@ class WelcomeController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        CLLocationManager().requestWhenInUseAuthorization()
 
         customView()
         

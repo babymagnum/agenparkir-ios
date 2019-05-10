@@ -37,11 +37,6 @@ class LoginRegisterController: BaseViewController {
         
         UserDefaults.standard.set("Dev", forKey: StaticVar.applicationState)
         
-        print("application state \(UserDefaults.standard.string(forKey: StaticVar.applicationState) ?? "")")
-        print("onesignal player id \(OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId ?? "")")
-        print("id loginregister \(UserDefaults.standard.string(forKey: StaticVar.id) ?? "")")
-        print("token loginregister \(UserDefaults.standard.string(forKey: StaticVar.token) ?? "")")
-        
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         customView()

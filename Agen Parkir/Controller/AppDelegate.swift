@@ -104,6 +104,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
             print("User accepted notifications: \(accepted)")
         })
         
+        
+        
 //        // Check if launched from notification
 //        let notificationOption = launchOptions?[.remoteNotification]
 //

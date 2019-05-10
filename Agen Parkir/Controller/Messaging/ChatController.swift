@@ -114,7 +114,7 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
         super.viewWillDisappear(animated)
         
         //remove sendbird delegate if view disappear
-        guard let channel = thisChannel else {return}
+        guard let channel = thisChannel else { return }
         SBDMain.removeChannelDelegate(forIdentifier: channel.channelUrl)
     }
     

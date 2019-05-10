@@ -245,34 +245,45 @@ class ParkingController: BaseViewController, IndicatorInfoProvider, BaseViewCont
         guard let model = ongoingModel else { return }
 
         if SBDMain.getCurrentUser() == nil {
+            SVProgressHUD.show()
             let currentOperation = CurrentOperation()
             let operation = OperationQueue()
             operation.addOperation(currentOperation)
             
             currentOperation.completionBlock = {
-                switch currentOperation.state {
-                case .success?:
-                    self.navigateToMessage(model)
-                case .error?:
-                    PublicFunction.instance.showUnderstandDialog(self, "Error", currentOperation.error!, "Reload", "Cancel", completionHandler: {
-                        self.checkSendbird()
-                    })
-                default:
-                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was some error with syste.", "Reload", "Cancel", completionHandler: {
-                        self.checkSendbird()
-                    })
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    
+                    switch currentOperation.state {
+                    case .success?:
+                        self.navigateToMessage(model)
+                    case .error?:
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", currentOperation.error!, "Reload", "Cancel", completionHandler: {
+                            self.checkSendbird()
+                        })
+                    default:
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was some error with syste.", "Reload", "Cancel", completionHandler: {
+                            self.checkSendbird()
+                        })
+                    }
                 }
             }
-            
-            return
-        }
-        
-        self.navigateToMessage(model)
+        } else { self.navigateToMessage(model) }
     }
     
     private func navigateToMessage(_ model: OngoingModel) {
+        guard let officers = model.officer else {
+            PublicFunction.instance.showUnderstandDialog(self, "No Officer", "Ooops, this building has no officer yet, you can't perform chat in this building", "Understand")
+            return
+        }
+        
+        guard let _ = SBDMain.getCurrentUser() else {
+            PublicFunction.instance.showUnderstandDialog(self, "Failed Connect to Sendbird", "Sorry, we can't connect you to sendbird chat due to internal server error. We'll notify you if this feature is working properly", "Understand")
+            return
+        }
+        
         let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
-        chatController.listUserId = model.officer
+        chatController.listUserId = officers
         chatController.delegate = self
         self.navigationController?.pushViewController(chatController, animated: true)
     }
@@ -299,13 +310,14 @@ extension ParkingController {
             switch vehicleType{
             case 1: //motor
                 directionController.dataDirection = (latitude: model.latitude, longitude: model.longitude, building_name: model.building_name, timer: timeLeftMotor, booking_status_id: model.booking_status_id) as? (latitude: String, longitude: String, building_name: String, timer: Int, booking_status_id: Int)
+                self.navigationController?.pushViewController(directionController, animated: true)
             case 2: //mobil
                 directionController.dataDirection = (latitude: model.latitude, longitude: model.longitude, building_name: model.building_name, timer: timeLeftCars, booking_status_id: model.booking_status_id) as? (latitude: String, longitude: String, building_name: String, timer: Int, booking_status_id: Int)
+                self.navigationController?.pushViewController(directionController, animated: true)
             default:
                 directionController.dataDirection = (latitude: model.latitude, longitude: model.longitude, building_name: model.building_name, timer: timerLast, booking_status_id: model.booking_status_id) as? (latitude: String, longitude: String, building_name: String, timer: Int, booking_status_id: Int)
+                self.navigationController?.pushViewController(directionController, animated: true)
             }
-            
-            self.navigationController?.pushViewController(directionController, animated: true)
         }
     }
     
@@ -323,7 +335,7 @@ extension ParkingController {
             let ongoingInfoController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OngoingInfoController") as! OngoingInfoController
             ongoingInfoController.ongoingModel = model
             ongoingInfoController.delegate = self
-            self.present(ongoingInfoController, animated: true)
+            present(ongoingInfoController, animated: true)
         }
     }
     

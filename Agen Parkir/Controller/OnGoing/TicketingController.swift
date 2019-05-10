@@ -24,12 +24,16 @@ class TicketingController: BaseViewController, UICollectionViewDelegate, Indicat
         return refreshControl
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadTicket()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initCollection()
-        
-        loadTicket()
         
         baseDelegate = self
         
@@ -40,10 +44,12 @@ class TicketingController: BaseViewController, UICollectionViewDelegate, Indicat
         emptyTicket.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyTicketClick)))
     }
     
+    // function from BaseViewController //
     func hasInternet() {
         emptyTicket.text = "You have no active ticket yet."
     }
     
+    // function from BaseViewController //
     func noInternet() {
         emptyTicket.attributedText = reloadString()
         
@@ -71,7 +77,6 @@ class TicketingController: BaseViewController, UICollectionViewDelegate, Indicat
                     PublicFunction.instance.showUnderstandDialog(self, "Error", ticketOngoing.error!, "Understand")
                     self.showEmpty()
                 case .empty?:
-                    PublicFunction.instance.showUnderstandDialog(self, "No Active Ticket", "You have no active ticket yet", "Understand")
                     self.showEmpty()
                 default:
                     PublicFunction.instance.showUnderstandDialog(self, "Error", ticketOngoing.error!, "Understand")

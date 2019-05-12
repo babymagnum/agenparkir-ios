@@ -1,7 +1,7 @@
 //
 //  VoucherController.swift
 //  Agen Parkir
-//
+//  
 //  Created by Arief Zainuri on 10/05/19.
 //  Copyright © 2019 Mika. All rights reserved.
 //
@@ -13,6 +13,7 @@ class VoucherController: UIViewController, UICollectionViewDelegate {
 
     //MARK: Outlet
     @IBOutlet weak var viewCoin: UIView!
+    @IBOutlet weak var iconCoins: UIImageView!
     @IBOutlet weak var iconBack: UIImageView!
     @IBOutlet weak var viewCoinWidth: NSLayoutConstraint!
     @IBOutlet weak var amountCoin: UILabel!
@@ -69,7 +70,7 @@ class VoucherController: UIViewController, UICollectionViewDelegate {
                 let estimatedFrame = NSString(string: "\(coins ?? 0)").boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
                 
                 UIView.animate(withDuration: 0.2, animations: {
-                    self.viewCoinWidth.constant += estimatedFrame.width
+                    self.viewCoinWidth.constant = self.iconCoins.frame.width + estimatedFrame.width + 2.5 + 25
                     self.view.layoutIfNeeded()
                 })
                 

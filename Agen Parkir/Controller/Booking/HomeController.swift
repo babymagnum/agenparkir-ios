@@ -16,6 +16,7 @@ import FacebookLogin
 class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectionViewDelegate {
     
     //MARK: Outlet
+    @IBOutlet weak var iconCoins: UIImageView!
     @IBOutlet weak var currentName: UILabel!
     @IBOutlet weak var homeScrollView: UIScrollView!
     @IBOutlet weak var contentMain: UIView!
@@ -250,40 +251,6 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
             }
         }
         
-//        servicesOperation.completionBlock = {
-//            DispatchQueue.main.async {
-//                switch servicesOperation.state {
-//                case .success?:
-//                    self.listServices = servicesOperation.listServices
-//
-//                    self.contentMainHeight.constant -= self.servicesCollectionHeight.constant
-//                    self.servicesCollectionView.reloadData()
-//
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-//                        self.servicesCollectionHeight.constant = self.servicesCollectionView.contentSize.height
-//                        self.contentMainHeight.constant += self.servicesCollectionView.contentSize.height
-//                    })
-//
-//                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-//                        self.contentMain.layoutIfNeeded()
-//                    })
-//                case .error?:
-//                    print("services operation error \(servicesOperation.error ?? "")")
-//                case .empty?:
-//                    UIView.animate(withDuration: 0.2, animations: {
-//                        self.contentMainHeight.constant -= self.servicesCollectionHeight.constant
-//                        self.servicesCollectionHeight.constant = 0
-//                    })
-//
-//                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-//                        self.contentMain.layoutIfNeeded()
-//                    })
-//                default:
-//                    print("services operation error by system")
-//                }
-//            }
-//        }
-        
         Networking.instance.getCoins(customer_id: UserDefaults.standard.string(forKey: StaticVar.id)!) { (coins, customer_id, error) in
             DispatchQueue.main.async {
                 if let _ = error { return }
@@ -294,7 +261,7 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
                 let estimatedFrame = NSString(string: "\(coins ?? 0)").boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
                 
                 UIView.animate(withDuration: 0.2, animations: {
-                    self.viewCoinWidth.constant += estimatedFrame.width
+                    self.viewCoinWidth.constant = self.iconCoins.frame.width + estimatedFrame.width + 2.5 + 25
                     self.view.layoutIfNeeded()
                 })
                 
@@ -510,7 +477,6 @@ extension HomeController: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if collectionView == recentlyCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentlyParkCell", for: indexPath) as! RecentlyParkCell
             cell.recentlyData = listRecently[indexPath.row]
@@ -519,6 +485,7 @@ extension HomeController: UICollectionViewDataSource, UICollectionViewDelegateFl
         } else if collectionView == servicesCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ServicesCell", for: indexPath) as! ServicesCell
             cell.servicesData = listServices[indexPath.row]
+            cell.contentMain.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(serviceContentMainClick)))
             return cell
         } else if collectionView == updatesCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpdatesCell", for: indexPath) as! UpdatesCell
@@ -556,6 +523,11 @@ extension HomeController: UpdateCurrentDataProtocol {
 
 //MARK: Handle Gesture Listener
 extension HomeController {
+    @objc func serviceContentMainClick() {
+        let voucherController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VoucherController") as! VoucherController
+        navigationController?.pushViewController(voucherController, animated: true)
+    }
+    
     @objc func viewCoinClick() {
         let voucherController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VoucherController") as! VoucherController
         navigationController?.pushViewController(voucherController, animated: true)

@@ -12,6 +12,7 @@ class DetailVoucherController: UIViewController {
 
     //MARK: Outlet
     @IBOutlet weak var contentMainHeight: NSLayoutConstraint!
+    @IBOutlet weak var iconCoinsTop: UIImageView!
     @IBOutlet weak var viewCoinTop: UIView!
     @IBOutlet weak var viewCoinWidthTop: NSLayoutConstraint!
     @IBOutlet weak var amountCoinTop: UILabel!
@@ -24,6 +25,7 @@ class DetailVoucherController: UIViewController {
     @IBOutlet weak var voucherName: UILabel!
     @IBOutlet weak var voucherRequirements: UILabel!
     @IBOutlet weak var voucherValue: UILabel!
+    @IBOutlet weak var iconCoinsPrice: UIImageView!
     
     //MARK: Props
     var myCoins: Int?
@@ -52,7 +54,7 @@ class DetailVoucherController: UIViewController {
             let estimatedFrame = NSString(string: "\(data.coin_price ?? 0)").boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
             
             UIView.animate(withDuration: 0.2, animations: {
-                self.viewCoinVoucherWidth.constant += estimatedFrame.width
+                self.viewCoinVoucherWidth.constant = self.iconCoinsPrice.frame.width + estimatedFrame.width + 2.5 + 25
                 self.view.layoutIfNeeded()
             })
             
@@ -100,7 +102,7 @@ class DetailVoucherController: UIViewController {
                 let estimatedFrame = NSString(string: "\(coins ?? 0)").boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
                 
                 UIView.animate(withDuration: 0.2, animations: {
-                    self.viewCoinWidthTop.constant += estimatedFrame.width
+                    self.viewCoinWidthTop.constant = self.iconCoinsTop.frame.width + estimatedFrame.width + 2.5 + 25
                     self.view.layoutIfNeeded()
                 })
                 
@@ -130,7 +132,7 @@ extension DetailVoucherController {
     @objc func buttonBuyClick() {
         guard let voucher = voucherData else { return }
         
-        if voucher.coin_price! < self.myCoins! {
+        if self.myCoins! >= voucher.coin_price! {
             Networking.instance.buyCoins(voucherId: "\(voucher.id ?? 0)") { (message, error) in
                 if let error = error {
                     PublicFunction.instance.showUnderstandDialog(self, "Failed Buy Voucher", error, "Understand")

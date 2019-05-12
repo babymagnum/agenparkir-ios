@@ -1674,7 +1674,7 @@
                                                                                 </constraints>
                                                                             </imageView>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" red="1" green="0.71764705880000002" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="backgroundColor" red="1" green="0.78431372549019607" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstItem="EvS-mz-rbr" firstAttribute="leading" secondItem="wN3-To-4aW" secondAttribute="trailing" constant="10" id="53Z-x2-WxB"/>
                                                                             <constraint firstAttribute="height" constant="40" id="AdI-9g-bVL"/>
@@ -2597,6 +2597,7 @@
                         <outlet property="currentName" destination="UbE-ck-16E" id="yfc-sl-0n5"/>
                         <outlet property="homeScrollView" destination="XBK-nl-jBC" id="Qxg-N1-nyk"/>
                         <outlet property="iconBookingBottom" destination="SXH-MQ-S6K" id="ugD-7A-7uf"/>
+                        <outlet property="iconCoins" destination="wN3-To-4aW" id="vfP-Q2-QlI"/>
                         <outlet property="iconMycardBottom" destination="sWj-56-9wJ" id="4Fp-oA-yTe"/>
                         <outlet property="iconOngoingBottom" destination="J0S-l3-8KQ" id="rsY-0w-1VK"/>
                         <outlet property="iconReceiptBottom" destination="kzK-QF-CIV" id="ye3-BV-d1F"/>
@@ -7672,7 +7673,7 @@
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="1" green="0.71764705880000002" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="1" green="0.78431372549019607" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="24h-Bp-CYH"/>
                                                     <constraint firstItem="wuM-X1-i1d" firstAttribute="leading" secondItem="qus-Sn-4FC" secondAttribute="leading" constant="2.5" id="9zk-OV-DfU"/>
@@ -7842,6 +7843,7 @@
                     <connections>
                         <outlet property="amountCoin" destination="XNi-wn-PGS" id="CCj-HO-bGa"/>
                         <outlet property="iconBack" destination="4Z6-qb-o3c" id="FbJ-qM-ccm"/>
+                        <outlet property="iconCoins" destination="wuM-X1-i1d" id="V8G-UW-I4R"/>
                         <outlet property="viewCoin" destination="qus-Sn-4FC" id="QpD-Ug-2zC"/>
                         <outlet property="viewCoinWidth" destination="KNW-ab-3AO" id="DCM-eW-ueZ"/>
                         <outlet property="voucherCollectionView" destination="LOx-7J-ana" id="PBf-aB-TBb"/>
@@ -7889,7 +7891,7 @@
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="1" green="0.71764705880000002" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="1" green="0.78431372549019607" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="68" id="4i1-hH-r2G"/>
                                                     <constraint firstItem="Gif-AU-hCx" firstAttribute="leading" secondItem="iO8-YU-sRX" secondAttribute="leading" constant="2.5" id="SEk-xn-mAT"/>
@@ -7946,7 +7948,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" red="1" green="0.71764705880000002" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" red="1" green="0.78431372549019607" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstItem="DGb-Lk-vL4" firstAttribute="centerY" secondItem="wib-V8-KCp" secondAttribute="centerY" id="0s5-3I-k9h"/>
                                                                     <constraint firstAttribute="width" constant="68" id="8PA-aw-Lpw"/>
@@ -8066,6 +8068,8 @@
                         <outlet property="buttonBuy" destination="TiT-he-pnN" id="dhR-Wb-G3v"/>
                         <outlet property="contentMainHeight" destination="7sd-e8-L1L" id="FLY-9n-yVQ"/>
                         <outlet property="iconClose" destination="kff-Vk-jCl" id="GJ4-Zf-NiG"/>
+                        <outlet property="iconCoinsPrice" destination="E1D-2c-hEz" id="80y-Wn-sLc"/>
+                        <outlet property="iconCoinsTop" destination="Gif-AU-hCx" id="AKR-gg-phX"/>
                         <outlet property="imageVoucher" destination="gvu-cb-eIY" id="jjU-Wi-1Sl"/>
                         <outlet property="viewCoinTop" destination="iO8-YU-sRX" id="d17-Em-yPP"/>
                         <outlet property="viewCoinVoucher" destination="wib-V8-KCp" id="EEh-bI-8u3"/>

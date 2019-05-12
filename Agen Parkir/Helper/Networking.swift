@@ -55,6 +55,8 @@ class Networking: NSObject {
             case .success(let responseSuccess):
                 let data = JSON(responseSuccess)
                 
+                print("data buy coins \(data)")
+                
                 if data["status"].string == "error" {
                     completionHandler(nil, data["message"].string)
                     return

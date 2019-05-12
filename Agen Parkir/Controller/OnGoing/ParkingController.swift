@@ -194,7 +194,7 @@ class ParkingController: BaseViewController, IndicatorInfoProvider, BaseViewCont
             parkingStatus.text = "Payment has not been setled"
             self.startTimer(ongoingModel)
         case 2:
-            self.changeToCompletePayment("Payment Completed")
+            self.changeToCompletePayment("Parking")
         case 3:
             self.changeToCompletePayment("Parking completed")
         default:

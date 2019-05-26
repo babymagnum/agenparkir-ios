@@ -16,6 +16,10 @@ import FacebookLogin
 class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectionViewDelegate {
     
     //MARK: Outlet
+    @IBOutlet weak var viewPopupPayment: UIView!
+    @IBOutlet weak var viewPopupPaymentHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelPopupPayment: UILabel!
+    @IBOutlet weak var iconPopupPayment: UIImageView!
     @IBOutlet weak var iconCoins: UIImageView!
     @IBOutlet weak var currentName: UILabel!
     @IBOutlet weak var homeScrollView: UIScrollView!
@@ -125,13 +129,30 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         
         let recentlyOperation = RecentlyOperation()
         let billboardOperation = BillboardOperation()
-        //let servicesOperation = ServicesOperation()
+        let paymentPendingOperation = PaymentPendingOperation()
         let currentOperation = CurrentOperation()
         
         operationQueue.addOperation(currentOperation)
         operationQueue.addOperation(recentlyOperation)
         operationQueue.addOperation(billboardOperation)
-        //operationQueue.addOperation(servicesOperation)
+        operationQueue.addOperation(paymentPendingOperation)
+        
+        paymentPendingOperation.completionBlock = {
+            DispatchQueue.main.async {
+                switch paymentPendingOperation.state {
+                case .success?:
+                    self.viewPopupPayment.isHidden = false
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.viewPopupPaymentHeightConstraint.constant = 50
+                        self.labelPopupPayment.text = "You have \(paymentPendingOperation.listPaymentPending.count) payment pending. Check it here..."
+                    })
+                case .error?:
+                    self.viewPopupPayment.isHidden = true
+                    self.viewPopupPaymentHeightConstraint.constant = 0
+                default: break
+                }
+            }
+        }
         
         Networking.instance.getVoucherList { (list, error) in
             if let _ = error {
@@ -284,6 +305,7 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         viewNotification.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewNotificationClick)))
         iconMycardBottom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewMycardClick)))
         viewCoin.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewCoinClick)))
+        viewPopupPayment.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewPopupPaymentClick)))
     }
     
     private func initLocationManager() {
@@ -345,6 +367,13 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
     }
     
     private func customView() {
+        iconPopupPayment.image = UIImage(named: "Artboard 180@0.75x-8")?.tinted(with: UIColor(rgb: 0xffffff))
+        viewPopupPayment.layer.cornerRadius = 5
+        viewPopupPayment.clipsToBounds = false
+        viewPopupPayment.layer.shadowColor = UIColor.lightGray.cgColor
+        viewPopupPayment.layer.shadowOffset = CGSize(width: 2.5, height: 5)
+        viewPopupPayment.layer.shadowRadius = 5
+        viewPopupPayment.layer.shadowOpacity = 0.8
         imageUpdates.clipsToBounds = true
         imageUpdates.layer.cornerRadius = 10
         imageUpdates.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -505,7 +534,25 @@ extension HomeController: UpdateCurrentDataProtocol {
         SVProgressHUD.show()
         
         let currentOperation = CurrentOperation()
-        operationQueue.addOperation(currentOperation)
+        let paymentPendingOperation = PaymentPendingOperation()
+        operationQueue.addOperations([currentOperation, paymentPendingOperation], waitUntilFinished: false)
+        
+        paymentPendingOperation.completionBlock = {
+            DispatchQueue.main.async {
+                switch paymentPendingOperation.state {
+                case .success?:
+                    self.viewPopupPayment.isHidden = false
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.viewPopupPaymentHeightConstraint.constant = 50
+                        self.labelPopupPayment.text = "You have \(paymentPendingOperation.listPaymentPending.count) payment pending. Check it here..."
+                    })
+                case .error?:
+                    self.viewPopupPayment.isHidden = true
+                    self.viewPopupPaymentHeightConstraint.constant = 0
+                default: break
+                }
+            }
+        }
         
         currentOperation.completionBlock = {
             SVProgressHUD.dismiss()
@@ -561,6 +608,13 @@ extension HomeController {
     @objc func viewBookingClick() {
         let buildingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BuildingController") as! BuildingController
         navigationController?.pushViewController(buildingController, animated: true)
+    }
+    
+    @objc func viewPopupPaymentClick() {
+        let tabOngoingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabOngoingController") as! TabOngoingController
+        tabOngoingController.updateDelegate = self
+        tabOngoingController.tab = "PaymentPendingController"
+        navigationController?.pushViewController(tabOngoingController, animated: true)
     }
     
     @objc func viewSettingsClick() {

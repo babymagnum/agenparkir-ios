@@ -1915,3 +1915,72 @@ class DetailStoreOperation: AbstractOperation {
         }
     }
 }
+
+class PaymentPendingOperation: AbstractOperation {
+    
+    var listPaymentPending = [PaymentPendingModel]()
+    var error: String?
+    var state: OperationState?
+    
+    override func main() {
+        if isCancelled {
+            self.state = .canceled
+            self.finish(true)
+            return
+        }
+        
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let url = "\(root)api/android/list-ongoing?customers_id=\(UserDefaults.standard.string(forKey: StaticVar.id) ?? "")"
+        
+        Alamofire.request(url, method: .get).responseJSON { (response) in
+            switch response.result {
+            case .success(let success):
+                let data = JSON(success)["data"]
+                
+                let paymentPendingArray = data["payment_pending"].array
+                
+                guard let list = paymentPendingArray else {
+                    self.error = "Error"
+                    self.state = .error
+                    self.finish(true)
+                    return
+                }
+                
+                if list.count == 0 {
+                    self.error = "Empty array"
+                    self.state = .empty
+                    self.finish(true)
+                    return
+                }
+                
+                print("ongoing data \(list)")
+                
+                for (index, value) in list.enumerated() {
+                    
+                    var paymentModel = PaymentPendingModel()
+                    let total = "\(value["total"].string ?? "0.00")".dropLast(3)
+                    paymentModel.orders_id = value["orders_id"].int ?? 0
+                    paymentModel.payment_status = value["payment_status"].int ?? 0
+                    paymentModel.total = "\(total)"
+                    paymentModel.booking_code = value["booking_code"].string ?? ""
+                    paymentModel.created_at = value["created_at"].string ?? ""
+                    paymentModel.payment_types = value["payment_types"].string ?? ""
+                    paymentModel.bank_name = value["bank_name"].string ?? ""
+                    paymentModel.virtual_account = value["virtual_account"].string ?? ""
+                    paymentModel.expired_time = value["expired_time"].string ?? "2019-05-26"
+                    self.listPaymentPending.append(paymentModel)
+                    
+                    if index == list.count - 1{
+                        self.state = .success
+                        self.finish(true)
+                    }
+                }
+                
+            case .failure(let error):
+                self.state = .error
+                self.error = error.localizedDescription
+                self.finish(true)
+            }
+        }
+    }
+}

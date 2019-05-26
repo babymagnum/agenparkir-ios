@@ -41,22 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         IQKeyboardManager.shared.enable = true
         
         //midtrans
-        let state = UserDefaults.standard.string(forKey: StaticVar.applicationState)
-        
-        if let appsState = state{
-            switch appsState {
-            case "Dev":
-                print("Midtrans in development state")
-                MidtransConfig.shared().setClientKey("SB-Mid-client-XAqp-KyYztrTJ6W8", environment: .sandbox, merchantServerURL: "https://merchant-url-sandbox.com")
-            default:
-                print("Midtrans in production state")
-                MidtransConfig.shared().setClientKey("SB-Mid-client-fQDdQY9fNt8Eq17W", environment: .sandbox, merchantServerURL: "https://merchant-url-sandbox.com")
-            }
-        } else {
-            print("Midtrans in production state")
-            UserDefaults.standard.set("Prod", forKey: StaticVar.applicationState)
-            MidtransConfig.shared().setClientKey("SB-Mid-client-fQDdQY9fNt8Eq17W", environment: .sandbox, merchantServerURL: "https://merchant-url-sandbox.com")
-        }
+        MidtransConfig.shared().setClientKey("Mid-client-Ecyno8FETxVdlm8N", environment: .production, merchantServerURL: "https://agenparkir.com")
         
         //facebook login
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)

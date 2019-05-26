@@ -92,6 +92,9 @@
 		EDBCC80622446AB1004AAF42 /* TicketDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBCC80522446AB1004AAF42 /* TicketDetailModel.swift */; };
 		EDBCC80822448C84004AAF42 /* TicketDetailReceiptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBCC80722448C84004AAF42 /* TicketDetailReceiptController.swift */; };
 		EDBCC80A22449584004AAF42 /* Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBCC80922449584004AAF42 /* Barcode.swift */; };
+		EDBDB01C229B47FC0095E0AD /* PaymentPendingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDB01B229B47FC0095E0AD /* PaymentPendingModel.swift */; };
+		EDBDB01E229B49950095E0AD /* PaymentPendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDB01D229B49950095E0AD /* PaymentPendingCell.swift */; };
+		EDBDB020229B49EF0095E0AD /* PaymentPendingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBDB01F229B49EF0095E0AD /* PaymentPendingController.swift */; };
 		EDCDDF882284C55100E4FF2B /* VoucherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCDDF872284C55100E4FF2B /* VoucherModel.swift */; };
 		EDCDDF8A2284C64D00E4FF2B /* VoucherImagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCDDF892284C64D00E4FF2B /* VoucherImagesModel.swift */; };
 		EDCDDF8E2285023800E4FF2B /* VoucherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCDDF8D2285023800E4FF2B /* VoucherController.swift */; };
@@ -242,6 +245,9 @@
 		EDBCC80522446AB1004AAF42 /* TicketDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailModel.swift; sourceTree = "<group>"; };
 		EDBCC80722448C84004AAF42 /* TicketDetailReceiptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailReceiptController.swift; sourceTree = "<group>"; };
 		EDBCC80922449584004AAF42 /* Barcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Barcode.swift; sourceTree = "<group>"; };
+		EDBDB01B229B47FC0095E0AD /* PaymentPendingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPendingModel.swift; sourceTree = "<group>"; };
+		EDBDB01D229B49950095E0AD /* PaymentPendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPendingCell.swift; sourceTree = "<group>"; };
+		EDBDB01F229B49EF0095E0AD /* PaymentPendingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPendingController.swift; sourceTree = "<group>"; };
 		EDCDDF872284C55100E4FF2B /* VoucherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherModel.swift; sourceTree = "<group>"; };
 		EDCDDF892284C64D00E4FF2B /* VoucherImagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherImagesModel.swift; sourceTree = "<group>"; };
 		EDCDDF8D2285023800E4FF2B /* VoucherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherController.swift; sourceTree = "<group>"; };
@@ -394,6 +400,7 @@
 				EDF224D7227FAC8D008A1157 /* DataModel.swift */,
 				EDCDDF872284C55100E4FF2B /* VoucherModel.swift */,
 				EDCDDF892284C64D00E4FF2B /* VoucherImagesModel.swift */,
+				EDBDB01B229B47FC0095E0AD /* PaymentPendingModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -435,6 +442,7 @@
 				ED55126B224F119C0052A86E /* OpponentChatCell.swift */,
 				ED55126D224F11B20052A86E /* MyChatImageCell.swift */,
 				ED55126F224F11C40052A86E /* OpponentChatImageCell.swift */,
+				EDBDB01D229B49950095E0AD /* PaymentPendingCell.swift */,
 			);
 			path = CellController;
 			sourceTree = "<group>";
@@ -500,6 +508,7 @@
 				ED6AE5122239413A0057E453 /* DirectionController.swift */,
 				ED6AE514223947850057E453 /* QrCodeController.swift */,
 				ED6AE5182239CB530057E453 /* OngoingInfoController.swift */,
+				EDBDB01F229B49EF0095E0AD /* PaymentPendingController.swift */,
 			);
 			path = OnGoing;
 			sourceTree = "<group>";
@@ -858,6 +867,7 @@
 				ED42AE7D225D826C00C2DDEB /* BaseViewController.swift in Sources */,
 				EDBCC80A22449584004AAF42 /* Barcode.swift in Sources */,
 				ED10ECD72243B8AB0028161E /* TicketingController.swift in Sources */,
+				EDBDB01E229B49950095E0AD /* PaymentPendingCell.swift in Sources */,
 				ED6AE5132239413A0057E453 /* DirectionController.swift in Sources */,
 				ED1BE8BC223877D200FD26A9 /* CustomTimer.swift in Sources */,
 				ED551270224F11C40052A86E /* OpponentChatImageCell.swift in Sources */,
@@ -870,6 +880,7 @@
 				EDFBB786224872CA00BB8246 /* ProductModel.swift in Sources */,
 				ED448E67223A75DE00BAAEF4 /* ReceiptsController.swift in Sources */,
 				ED10ECD1224309530028161E /* TicketDetailController.swift in Sources */,
+				EDBDB01C229B47FC0095E0AD /* PaymentPendingModel.swift in Sources */,
 				ED53C201222E2B73005FEBF9 /* BuildingModel.swift in Sources */,
 				ED305C36222A1D94002744A6 /* CarouselFlowLayout.swift in Sources */,
 				ED448E6F223CDFA700BAAEF4 /* MyCardController.swift in Sources */,
@@ -879,6 +890,7 @@
 				ED72538A2233E347000BE938 /* BookingController.swift in Sources */,
 				ED448E69223A7B5500BAAEF4 /* ReceiptsCell.swift in Sources */,
 				ED6AE515223947850057E453 /* QrCodeController.swift in Sources */,
+				EDBDB020229B49EF0095E0AD /* PaymentPendingController.swift in Sources */,
 				EDFBB78922489A5C00BB8246 /* StoreHeaderReusableView.swift in Sources */,
 				EDDB03FA223FCF7B005845A9 /* BuildingActionCell.swift in Sources */,
 				EDA224EC22258E6400291B68 /* AbstractOperation.swift in Sources */,

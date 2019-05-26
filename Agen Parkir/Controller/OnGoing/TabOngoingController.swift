@@ -43,6 +43,8 @@ class TabOngoingController: ButtonBarPagerTabStripViewController {
             switch tab{
             case "ParkingController":
                 self.moveTo(viewController: pages[1], animated: true)
+            case "PaymentPendingController":
+                self.moveTo(viewController: pages[2], animated: true)
             default: break
             }
         }
@@ -97,9 +99,11 @@ class TabOngoingController: ButtonBarPagerTabStripViewController {
         let parkingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ParkingController") as! ParkingController
         parkingController.vehicleType = vehicleType
         let ticketingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TicketingController") as! TicketingController
+        let paymentPendingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentPendingController") as! PaymentPendingController
         
         pages.append(ticketingController)
         pages.append(parkingController)
+        pages.append(paymentPendingController)
         return pages
     }
     

@@ -14,14 +14,11 @@ import SwiftyJSON
 class Networking: NSObject {
 
     static let instance = Networking()
-    var base_url: String?
-    
-    override init() {
-        base_url = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
-    }
 
     func getCoins(customer_id: String, completion: @escaping (_ coins: Int?, _ customer_id: String?, _ error: String?) -> Void) {
-        guard let url = URL(string: "\(base_url ?? "")api/android/customer-coins?customers_id=\(customer_id)") else { return }
+        let base_url = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        
+        guard let url = URL(string: "\(base_url)api/android/customer-coins?customers_id=\(customer_id)") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, e) in
             if let error = e {
@@ -43,7 +40,9 @@ class Networking: NSObject {
     }
     
     func buyCoins(voucherId: String, completionHandler: @escaping(_ message: String?, _ error: String?) -> Void){
-        guard let url = URL(string: "\(base_url ?? "")api/android/customer-coins-corversion") else { return }
+        let base_url = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        
+        guard let url = URL(string: "\(base_url)api/android/customer-coins-corversion") else { return }
         
         let param: [String : String] = [
             "vouchers_id": voucherId,
@@ -71,7 +70,9 @@ class Networking: NSObject {
     }
     
     func getVoucherList(completion: @escaping(_ voucherList: [VoucherModel]?, _ error: String?) -> Void) {
-        guard let url = URL(string: "\(base_url ?? "")api/android/vouchers-list") else { return }
+        let base_url = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        
+        guard let url = URL(string: "\(base_url)api/android/vouchers-list") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -90,18 +91,5 @@ class Networking: NSObject {
             } catch let err { completion(nil, err.localizedDescription) }
             
             }.resume()
-    }
-    
-    func convertCoins(vouchers_id: String, customers_id: String) {
-        let url = "\(base_url ?? "")api/android/customer-coins-corversion"
-        
-        let params = [
-            "vouchers_id": vouchers_id,
-            "customers_id": customers_id
-        ]
-        
-        Alamofire.request(url, method: .post, parameters: params).responseJSON { (response) in
-            
-        }
     }
 }

@@ -165,6 +165,11 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
                 return
             }
             
+            if list.count == 0 {
+                self.hideServiceCollection()
+                return
+            }
+            
             for (index, value) in list.enumerated() {
                 var dataValue = value
                 

@@ -150,7 +150,7 @@ class ParkingController: BaseViewController, IndicatorInfoProvider, BaseViewCont
                 switch listOngoingOperation.state {
                 case .success?:
                     self.ongoingModel = listOngoingOperation.listOngoing[0]
-                    self.updateUI(listOngoingOperation.listOngoing[0])
+                    self.updateUI(self.ongoingModel)
                     self.contentMain.isHidden = false
                 case .error?:
                     self.emptyContent()
@@ -170,7 +170,13 @@ class ParkingController: BaseViewController, IndicatorInfoProvider, BaseViewCont
         }
     }
     
-    private func updateUI(_ ongoingModel: OngoingModel) {
+    private func updateUI(_ ongoingModel: OngoingModel?) {
+        
+        guard let ongoingModel = ongoingModel else {
+            self.emptyContent()
+            return
+        }
+        
         venueName.text = ongoingModel.building_name
         
         if let date = ongoingModel.booking_start_time {

@@ -8,10 +8,13 @@
 
 import UIKit
 import SVProgressHUD
+import RxCocoa
+import RxSwift
 
 class StoreController: BaseViewController, UICollectionViewDelegate, UITextFieldDelegate, BaseViewControllerProtocol {
     
     //MARK: Outlet
+    @IBOutlet weak var iconCancelSearch: UIImageView!
     @IBOutlet weak var iconBack: UIImageView!
     @IBOutlet weak var viewIconTop: UIView!
     @IBOutlet weak var viewSearch: UIView!
@@ -28,6 +31,10 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
     var page = 1
     var lastVelocityYSign = 0
     var allowLoadMore = false
+    var inSearch = false
+    let bag = DisposeBag()
+    let defaultObs = BehaviorRelay(value: "")
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
@@ -43,14 +50,27 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
         
         initCollectionView()
         
-        loadStore()
+        loadStore("")
         
         handleGesture()
+        
+        bindUI()
+    }
+    
+    private func bindUI() {
+        Observable.combineLatest(inputSearch.rx.text, defaultObs.asObservable(), resultSelector: { search, defaultObs1 in
+            if (search?.count)! > 0 {
+                self.iconCancelSearch.isHidden = false
+            } else {
+                self.iconCancelSearch.isHidden = true
+            }
+        }).subscribe().disposed(by: bag)
     }
     
     private func handleGesture() {
         emptyText.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(emptyTextClick)))
         iconBack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconBackClick)))
+        iconCancelSearch.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(iconCancelSearchClick)))
     }
     
     private func setInteractiveRecognizer() {
@@ -64,6 +84,7 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
         inputSearch.delegate = self
         inputSearch.tag = 1
         PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 1.0)
+        iconCancelSearch.image = UIImage(named: "Artboard 208@0.75x-8")?.tinted(with: UIColor.lightGray.withAlphaComponent(0.6))
         iconSearch.image = UIImage(named: "search")?.tinted(with: UIColor.lightGray.withAlphaComponent(0.6))
         viewSearch.layer.cornerRadius = viewSearch.frame.height / 2
         viewSearch.layer.borderWidth = 1
@@ -83,10 +104,10 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
         emptyText.text = "There is no store registered yet."
     }
     
-    private func loadStore() {
+    private func loadStore(_ name: String) {
         SVProgressHUD.show()
         
-        let listStore = ListStoreOperation((building_id: (data?.building_id)!, address: (data?.address)!, page: page))
+        let listStore = ListStoreOperation((building_id: (data?.building_id)!, address: (data?.address)!, page: page, name: name))
         operation.addOperation(listStore)
         
         listStore.completionBlock = {
@@ -113,7 +134,11 @@ class StoreController: BaseViewController, UICollectionViewDelegate, UITextField
                 case .empty?:
                     if self.listStore.count == 0 {
                         self.showEmpty()
-                        PublicFunction.instance.showUnderstandDialog(self, "Error", "This building has no store registered yet", "Understand")
+                        if self.inSearch {
+                            PublicFunction.instance.showUnderstandDialog(self, "Cant Find Store", "Ooopss, we cant find store that you want to search", "Understand")
+                        } else {
+                            PublicFunction.instance.showUnderstandDialog(self, "Error", "This building has no store registered yet", "Understand")
+                        }
                     }
                 default:
                     if self.listStore.count == 0 {
@@ -147,7 +172,11 @@ extension StoreController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == listStore.count - 2 {
             if self.allowLoadMore {
-                self.loadStore()
+                if self.inSearch {
+                    self.loadStore((inputSearch.text?.trim())!)
+                } else {
+                    self.loadStore("")
+                }
             }
         }
     }
@@ -183,7 +212,10 @@ extension StoreController: UICollectionViewDataSource{
 extension StoreController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.tag == 1 {
-            PublicFunction.instance.showUnderstandDialog(self, "Search is in Development", "Search function is in development", "Understand")
+            self.inSearch = true
+            self.page = 1
+            listStore.removeAll()
+            loadStore((inputSearch.text?.trim())!)
         }
         
         return true
@@ -191,8 +223,23 @@ extension StoreController {
 }
 
 extension StoreController {
+    @objc func iconCancelSearchClick() {
+        if inSearch {
+            inSearch = false
+            page = 1
+            listStore.removeAll()
+            inputSearch.text = ""
+            loadStore("")
+            iconCancelSearch.isHidden = true
+        } else {
+            iconCancelSearch.isHidden = true
+            inputSearch.text = ""
+            inputSearch.resignFirstResponder()
+        }
+    }
+    
     @objc func emptyTextClick() {
-        loadStore()
+        loadStore("")
     }
     
     @objc func iconBackClick() {
@@ -203,6 +250,7 @@ extension StoreController {
         if let indexpath = storeCollectionView.indexPathForItem(at: sender.location(in: storeCollectionView)) {
             let detailStore = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailStoreController") as! DetailStoreController
             detailStore.storeDetail = listStore[indexpath.row]
+            detailStore.listOfficer = listStore[indexpath.row].officer
             navigationController?.pushViewController(detailStore, animated: true)
         }
     }
@@ -210,7 +258,7 @@ extension StoreController {
     @objc func handleRefresh(_ refresh: UIRefreshControl) {
         page = 1
         listStore.removeAll()
-        loadStore()
+        loadStore("")
         refresh.endRefreshing()
     }
 }

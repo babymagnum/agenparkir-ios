@@ -22,6 +22,7 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseV
     var listProduct = [ProductModel]()
     var operation = OperationQueue()
     var storeDetail: StoreModel?
+    var listOfficer: [String]?
     var page = 1
     var lastVelocityYSign = 0
     var allowLoadMore = false
@@ -36,6 +37,8 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseV
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("list officer \(listOfficer ?? [])")
+        
         customView()
         
         initCollectionView()
@@ -160,7 +163,7 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseV
         }
         
         let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
-        chatController.listUserId = ["store_1"]
+        chatController.listUserId = listOfficer
         navigationController?.pushViewController(chatController, animated: true)
     }
 }

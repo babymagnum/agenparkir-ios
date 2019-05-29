@@ -6277,21 +6277,28 @@
                                                             <constraint firstAttribute="height" constant="20" id="uji-gY-nwH"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search store here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ofU-F6-gUs">
-                                                        <rect key="frame" x="50" y="11" width="215" height="18"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search store here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ofU-F6-gUs">
+                                                        <rect key="frame" x="50" y="11" width="186" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                                     </textField>
+                                                    <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Artboard 208@0.75x-8" translatesAutoresizingMaskIntoConstraints="NO" id="iIT-C3-6ix">
+                                                        <rect key="frame" x="248" y="11.5" width="17" height="17"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="17" id="aii-I5-QdM"/>
+                                                            <constraint firstAttribute="height" constant="17" id="uah-vW-vxI"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="f7A-bx-Zhx" firstAttribute="leading" secondItem="hVp-6f-RJO" secondAttribute="leading" constant="15" id="0Jj-gq-nG7"/>
-                                                    <constraint firstAttribute="trailing" secondItem="ofU-F6-gUs" secondAttribute="trailing" constant="15" id="8v5-VC-Yzo"/>
-                                                    <constraint firstItem="ofU-F6-gUs" firstAttribute="centerY" secondItem="hVp-6f-RJO" secondAttribute="centerY" id="9NV-fa-QC9"/>
                                                     <constraint firstAttribute="height" constant="40" id="QY7-Li-pj4"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iIT-C3-6ix" secondAttribute="trailing" constant="15" id="Tqc-vK-fVQ"/>
                                                     <constraint firstItem="f7A-bx-Zhx" firstAttribute="centerY" secondItem="hVp-6f-RJO" secondAttribute="centerY" id="ZFZ-sF-POG"/>
-                                                    <constraint firstItem="ofU-F6-gUs" firstAttribute="leading" secondItem="f7A-bx-Zhx" secondAttribute="trailing" constant="15" id="rhf-v6-7vq"/>
+                                                    <constraint firstItem="iIT-C3-6ix" firstAttribute="centerY" secondItem="hVp-6f-RJO" secondAttribute="centerY" id="lfI-np-brA"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -6340,6 +6347,7 @@
                     <connections>
                         <outlet property="emptyText" destination="xgC-bV-pfP" id="dVI-EN-yi3"/>
                         <outlet property="iconBack" destination="MKv-4Y-AZr" id="maf-ox-cSG"/>
+                        <outlet property="iconCancelSearch" destination="iIT-C3-6ix" id="pAa-NL-KQl"/>
                         <outlet property="iconSearch" destination="f7A-bx-Zhx" id="uP4-kj-UBh"/>
                         <outlet property="inputSearch" destination="ofU-F6-gUs" id="lVp-Qt-cyi"/>
                         <outlet property="storeCollectionView" destination="Tch-d0-jwi" id="CgR-4w-OrL"/>

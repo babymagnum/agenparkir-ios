@@ -94,9 +94,10 @@ extension PaymentPendingController: UICollectionViewDataSource, UICollectionView
 extension PaymentPendingController{
     @objc func buttonCopyClick(sender: UITapGestureRecognizer) {
         if let indexpath = paymentPendingCollectionView.indexPathForItem(at: sender.location(in: paymentPendingCollectionView)) {
-            
             //copy virtual account here
+            UIPasteboard.general.string = listPaymentPending[indexpath.row].virtual_account
             
+            PublicFunction.instance.showUnderstandDialog(self, "Text Copied", "\(listPaymentPending[indexpath.row].virtual_account ?? "") copied to clipboard", "Understand")
         }
     }
     

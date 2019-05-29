@@ -1784,13 +1784,13 @@ class TicketListOngoingOperation: AbstractOperation {
 }
 
 class ListStoreOperation: AbstractOperation {
-    var data: (building_id: String, address: String, page: Int)?
+    var data: (building_id: String, address: String, page: Int, name: String)?
     
     var error: String?
     var state: OperationState?
     var listStore = [StoreModel]()
     
-    init(_ data: (building_id: String, address: String, page: Int)) {
+    init(_ data: (building_id: String, address: String, page: Int, name: String)) {
         self.data = data
     }
     
@@ -1802,7 +1802,7 @@ class ListStoreOperation: AbstractOperation {
         }
         
         let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
-        let url = "\(root)api/android/show-store?buildings_id=\(data?.building_id ?? "")&page=\(data?.page ?? 1)"
+        let url = "\(root)api/android/show-store?buildings_id=\(data?.building_id ?? "")&page=\(data?.page ?? 1)&name=\(data?.name ?? "")"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
             switch response.result {
@@ -1824,22 +1824,28 @@ class ListStoreOperation: AbstractOperation {
                 }
                 
                 for (index, value) in stores.enumerated() {
-                    var storeModel = StoreModel()
-                    storeModel.address = value["address"].string ?? "Failed to get data"
-                    storeModel.description = value["description"].string ?? "Failed to get data"
-                    storeModel.images = value["images"].string ?? ""
-                    storeModel.name_building = value["name_building"].string ?? "Failed to get data"
-                    storeModel.name_store = value["name_store"].string ?? "Failed to get data"
-                    storeModel.store_id = value["store_id"].int ?? 0
-                    storeModel.opened = value["opened"].int ?? 0
-                    storeModel.time = value["time"].string ?? "Failed to get data"
                     
-                    self.listStore.append(storeModel)
+                    let officerArray = value["officer"].array
                     
-                    if index == stores.count - 1 {
-                        self.state = .success
-                        self.finish(true)
-                    }
+                    self.getOfficer(officerArray!, completion: { (listOfficer) in
+                        var storeModel = StoreModel()
+                        storeModel.address = value["address"].string ?? "Failed to get data"
+                        storeModel.description = value["description"].string ?? "Failed to get data"
+                        storeModel.images = value["images"].string ?? ""
+                        storeModel.name_building = value["name_building"].string ?? "Failed to get data"
+                        storeModel.name_store = value["name_store"].string ?? "Failed to get data"
+                        storeModel.store_id = value["store_id"].int ?? 0
+                        storeModel.opened = value["opened"].int ?? 0
+                        storeModel.time = value["time"].string ?? "Failed to get data"
+                        storeModel.officer = listOfficer
+                        
+                        self.listStore.append(storeModel)
+                        
+                        if index == stores.count - 1 {
+                            self.state = .success
+                            self.finish(true)
+                        }
+                    })
                 }
                 
             case .failure(let error):
@@ -1847,6 +1853,24 @@ class ListStoreOperation: AbstractOperation {
                 self.state = .error
                 self.error = error.localizedDescription
                 self.finish(true)
+            }
+        }
+    }
+    
+    private func getOfficer(_ officerArray: [JSON], completion: @escaping(_ list: [String]) -> Void){
+        var officers = [String]()
+        
+        if officerArray.count == 0 {
+            completion(officers)
+        } else {
+            for (index, value) in (officerArray.enumerated()) {
+                let officer = value["users"]["sendbird_userid"].string
+                
+                officers.append(officer!)
+                
+                if index == officerArray.count - 1 {
+                    completion(officers)
+                }
             }
         }
     }

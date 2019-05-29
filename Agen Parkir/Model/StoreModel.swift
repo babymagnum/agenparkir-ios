@@ -17,4 +17,5 @@ struct StoreModel {
     var images: String?
     var time: String?
     var address: String?
+    var officer: [String]?
 }

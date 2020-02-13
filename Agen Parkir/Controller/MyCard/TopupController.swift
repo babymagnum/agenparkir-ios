@@ -92,10 +92,10 @@ extension TopupController {
         }
         
         let amount = inputAmount.text?.trim().replacingOccurrences(of: "Rp", with: "").replacingOccurrences(of: ".", with: "")
-//        if Int(amount!)! < 50000 {
-//            PublicFunction.instance.showUnderstandDialog(self, "Top Up Amount", "Minimal top up amount is Rp 50.000", "Understand")
-//            return
-//        }
+        if Int(amount!)! < 50000 {
+            PublicFunction.instance.showUnderstandDialog(self, "Top Up Amount", "Minimal top up amount is Rp 50.000", "Understand")
+            return
+        }
         
         inputAmount.resignFirstResponder()
         
@@ -104,19 +104,18 @@ extension TopupController {
         let topupOperation = TopupOperation(Int(amount!)!)
         operation.addOperation(topupOperation)
         topupOperation.completionBlock = {
-            
-            switch topupOperation.state {
-            case .success?:
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                switch topupOperation.state {
+                case .success?:
                     self.topupCreditCard(topupOperation.orders_id!, Int(amount!)!)
                     self.inputAmount.text = ""
+                case .error?:
+                    SVProgressHUD.dismiss()
+                    PublicFunction.instance.showUnderstandDialog(self, "Error Generate Token", topupOperation.error!, "Understand")
+                default:
+                    SVProgressHUD.dismiss()
+                    PublicFunction.instance.showUnderstandDialog(self, "Error Generate Token", "There was some error in the system, please try again", "Understand")
                 }
-            case .error?:
-                SVProgressHUD.dismiss()
-                PublicFunction.instance.showUnderstandDialog(self, "Error Generate Token", topupOperation.error!, "Understand")
-            default:
-                SVProgressHUD.dismiss()
-                PublicFunction.instance.showUnderstandDialog(self, "Error Generate Token", "There was some error in the system, please try again", "Understand")
             }
         }
     }
@@ -127,17 +126,18 @@ extension TopupController {
         self.operation.addOperation(topupCreditCardOperation)
         
         topupCreditCardOperation.completionBlock = {
-            
-            switch topupCreditCardOperation.state {
-            case .success?:
-                print("success generating token \(topupCreditCardOperation.token!)")
-                self.openPaymentController(topupCreditCardOperation.token!)
-            case .error?:
-                SVProgressHUD.dismiss()
-                PublicFunction.instance.showUnderstandDialog(self, "Error Generating Token", topupCreditCardOperation.error!, "Understand")
-            default:
-                SVProgressHUD.dismiss()
-                PublicFunction.instance.showUnderstandDialog(self, "Error Generating Token", "There was some error with the system, please try again", "Understand")
+            DispatchQueue.main.async {
+                switch topupCreditCardOperation.state {
+                case .success?:
+                    print("success generating token \(topupCreditCardOperation.token!)")
+                    self.openPaymentController(topupCreditCardOperation.token!)
+                case .error?:
+                    SVProgressHUD.dismiss()
+                    PublicFunction.instance.showUnderstandDialog(self, "Error Generating Token", topupCreditCardOperation.error!, "Understand")
+                default:
+                    SVProgressHUD.dismiss()
+                    PublicFunction.instance.showUnderstandDialog(self, "Error Generating Token", "There was some error with the system, please try again", "Understand")
+                }
             }
         }
     }

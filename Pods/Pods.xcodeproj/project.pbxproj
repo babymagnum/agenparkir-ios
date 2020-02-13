@@ -1991,7 +1991,7 @@
 		018B3409D9F514291CCC18A612750F53 /* ControlProperty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ControlProperty.swift; path = RxCocoa/Traits/ControlProperty.swift; sourceTree = "<group>"; };
 		018F9CAD1CF054FB9192630101060702 /* Placeholder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Placeholder.swift; path = Sources/Placeholder.swift; sourceTree = "<group>"; };
 		01A28999CCC5A7C97ACAF531DCD55D66 /* FBSDKWebDialogView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKWebDialogView.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialogView.h; sourceTree = "<group>"; };
-		01B0137AE5997B7D502DD61ACC5BCE41 /* en_kioson.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_kioson.plist~development"; path = "MidtransKit/MidtransKit/resources/en_kioson.plist~development"; sourceTree = "<group>"; };
+		01B0137AE5997B7D502DD61ACC5BCE41 /* en_kioson.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_kioson.plist~development"; path = "MidtransKit/MidtransKit/resources/en_kioson.plist~development"; sourceTree = "<group>"; };
 		01C040A56F1B76D66E5730B07D892E02 /* FIRAnalyticsConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRAnalyticsConfiguration.m; path = Firebase/Core/FIRAnalyticsConfiguration.m; sourceTree = "<group>"; };
 		0212C5A269037812A4D4A2D464E69155 /* GraphRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphRequest.swift; path = Sources/Core/GraphRequest/GraphRequest.swift; sourceTree = "<group>"; };
 		02628C6B66BC8F932B627295483ABEEF /* Driver+Subscription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Driver+Subscription.swift"; path = "RxCocoa/Traits/Driver/Driver+Subscription.swift"; sourceTree = "<group>"; };
@@ -2000,13 +2000,13 @@
 		02E22C6FFBA861A6B9B4A20C5DAEAAD4 /* FBSDKLoginKit+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKLoginKit+Internal.h"; path = "FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginKit+Internal.h"; sourceTree = "<group>"; };
 		0304C740522CAA259DA824C06EB12BAB /* VTCCBackView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VTCCBackView.h; path = MidtransKit/MidtransKit/classes/VTCCBackView.h; sourceTree = "<group>"; };
 		030B5D45CD134A55C5D68F7A01DC3AB6 /* visa-mastercard-jcb@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "visa-mastercard-jcb@2x.png"; path = "MidtransKit/MidtransKit/resources/visa-mastercard-jcb@2x.png"; sourceTree = "<group>"; };
-		032E344B27199EAA69D5BC7C92951A09 /* nextIcon@2x.png~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "nextIcon@2x.png~development"; path = "MidtransKit/MidtransKit/resources/nextIcon@2x.png~development"; sourceTree = "<group>"; };
+		032E344B27199EAA69D5BC7C92951A09 /* nextIcon@2x.png~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "nextIcon@2x.png~development"; path = "MidtransKit/MidtransKit/resources/nextIcon@2x.png~development"; sourceTree = "<group>"; };
 		032F22A40158DAC2261FB8E0E180A4F8 /* MidtransPaymentKiosOn.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransPaymentKiosOn.m; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentKiosOn.m; sourceTree = "<group>"; };
 		0397682E125A4F51985C41608B0C741E /* FBSDKCodelessIndexer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKCodelessIndexer.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/Codeless/FBSDKCodelessIndexer.h; sourceTree = "<group>"; };
 		0397EEF00D440255156DA6334A916E21 /* KVORepresentable+CoreGraphics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "KVORepresentable+CoreGraphics.swift"; path = "RxCocoa/Foundation/KVORepresentable+CoreGraphics.swift"; sourceTree = "<group>"; };
 		03FB6D47286BE3B03A7BD66218E5AEDC /* Platform.Linux.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Platform.Linux.swift; path = Platform/Platform.Linux.swift; sourceTree = "<group>"; };
 		04165525115CB3B3634A845EAD1386F7 /* ButtonBarPagerTabStripViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ButtonBarPagerTabStripViewController.swift; path = Sources/ButtonBarPagerTabStripViewController.swift; sourceTree = "<group>"; };
-		042D608E1B62D710F7B52BC0FB12515D /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = XLPagerTabStrip.framework; path = XLPagerTabStrip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		042D608E1B62D710F7B52BC0FB12515D /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XLPagerTabStrip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0471A94EE910D9631C7AD7D87E8718A3 /* VirtualTimeConverterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VirtualTimeConverterType.swift; path = RxSwift/Schedulers/VirtualTimeConverterType.swift; sourceTree = "<group>"; };
 		048001C38BA056B3B8B39AB4E73A5468 /* Debug.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debug.swift; path = RxSwift/Observables/Debug.swift; sourceTree = "<group>"; };
 		0498B6B9A39747C51FAC136BAFDB6534 /* FacebookLogin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FacebookLogin.modulemap; sourceTree = "<group>"; };
@@ -2087,7 +2087,7 @@
 		10565AB700E3B37034B2E51A965D0F34 /* SNPPostPaymentHeaderBillPay.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SNPPostPaymentHeaderBillPay.m; path = MidtransKit/MidtransKit/classes/SNPPostPaymentHeaderBillPay.m; sourceTree = "<group>"; };
 		107347E3D48F960AAD8C31C689AD0976 /* MidtransPaymentStatusViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransPaymentStatusViewController.h; path = MidtransKit/MidtransKit/classes/MidtransPaymentStatusViewController.h; sourceTree = "<group>"; };
 		107CEFF71AB5AE10F710A07841A6BED4 /* FIRInstanceIDStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRInstanceIDStore.m; path = Firebase/InstanceID/FIRInstanceIDStore.m; sourceTree = "<group>"; };
-		10D77695EC358A6F5E366B0FF4E01E50 /* en_other_va.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_other_va.plist~development"; path = "MidtransKit/MidtransKit/resources/en_other_va.plist~development"; sourceTree = "<group>"; };
+		10D77695EC358A6F5E366B0FF4E01E50 /* en_other_va.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_other_va.plist~development"; path = "MidtransKit/MidtransKit/resources/en_other_va.plist~development"; sourceTree = "<group>"; };
 		10DCCBF673F9B6C6DEAE8DF401660A7D /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
 		10EB0671983E555ED7A26258CFEE2130 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
 		10EC45AC7F7D7AA85613ADD7B24A6DAE /* MidtransSavedCardController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MidtransSavedCardController.xib; path = MidtransKit/MidtransKit/resources/MidtransSavedCardController.xib; sourceTree = "<group>"; };
@@ -2111,12 +2111,12 @@
 		1368475EE45B210C4843409A4DD343B7 /* MidtransTransactionExpire.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransTransactionExpire.h; path = MidtransCoreKit/MidtransCoreKit/MidtransTransactionExpire.h; sourceTree = "<group>"; };
 		1388C9BB9ADCC617A3126ED00714E9D1 /* TokenButtonIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "TokenButtonIcon@2x.png"; path = "MidtransKit/MidtransKit/resources/TokenButtonIcon@2x.png"; sourceTree = "<group>"; };
 		13AD64A7CD3E6416ED9ADAF20119773C /* FIRInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceID.h; path = Firebase/InstanceID/Public/FIRInstanceID.h; sourceTree = "<group>"; };
-		13CFB1FF512095A00C3429782E2383E1 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		13CFB1FF512095A00C3429782E2383E1 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13D468B383B620AF4B1CC6996D31017A /* RxMutableBox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxMutableBox.swift; path = RxSwift/RxMutableBox.swift; sourceTree = "<group>"; };
 		13E57EE81CD0BA7D22A2A089902D0BF9 /* MidtransPaymentRequestV2BillingAddress.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransPaymentRequestV2BillingAddress.h; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentRequestV2BillingAddress.h; sourceTree = "<group>"; };
 		13EC5DF85BB137BC87C04AF45C998710 /* SNPPostPaymentHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SNPPostPaymentHeader.m; path = MidtransKit/MidtransKit/classes/SNPPostPaymentHeader.m; sourceTree = "<group>"; };
 		144E02F0E4A62A659E98021E1DD6E360 /* plus-icon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "plus-icon@2x.png"; path = "MidtransKit/MidtransKit/resources/plus-icon@2x.png"; sourceTree = "<group>"; };
-		14C887948D889A0137ABC83BED82E700 /* MidtransCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MidtransCoreKit.framework; path = MidtransCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14C887948D889A0137ABC83BED82E700 /* MidtransCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MidtransCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D1C7FD1E31006DEEDAC6F5D1EB7A06 /* _RXObjCRuntime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _RXObjCRuntime.h; path = RxCocoa/Runtime/include/_RXObjCRuntime.h; sourceTree = "<group>"; };
 		151A937640B2A24DBD393EF1A5ACDBA1 /* CombineLatest+Collection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CombineLatest+Collection.swift"; path = "RxSwift/Observables/CombineLatest+Collection.swift"; sourceTree = "<group>"; };
 		151FA32FE414C723C33D68766227D92A /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = CoreOnly/Sources/Firebase.h; sourceTree = "<group>"; };
@@ -2146,7 +2146,7 @@
 		173DE4464EC7F51CB19A8841992AB82A /* pb_encode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = pb_encode.h; sourceTree = "<group>"; };
 		174DF924C518165DD712770BF645F0A1 /* FBSDKSettings+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKSettings+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKSettings+Internal.h"; sourceTree = "<group>"; };
 		17701532575ACFA6D313E0127FC6FB08 /* GULAppDelegateSwizzler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GULAppDelegateSwizzler.m; path = GoogleUtilities/AppDelegateSwizzler/GULAppDelegateSwizzler.m; sourceTree = "<group>"; };
-		177324F71D7C7F4AAF64FE723AB9835F /* bin.json */ = {isa = PBXFileReference; includeInIndex = 1; name = bin.json; path = MidtransKit/MidtransKit/resources/bin.json; sourceTree = "<group>"; };
+		177324F71D7C7F4AAF64FE723AB9835F /* bin.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = bin.json; path = MidtransKit/MidtransKit/resources/bin.json; sourceTree = "<group>"; };
 		1789D8BF49896E091D1387691225BDC5 /* VTItemViewModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VTItemViewModel.m; path = MidtransKit/MidtransKit/classes/VTItemViewModel.m; sourceTree = "<group>"; };
 		17D1F5DF67FDA8424314B3211F4D5608 /* SwipeDirection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipeDirection.swift; path = Sources/SwipeDirection.swift; sourceTree = "<group>"; };
 		186C517D072DE881AE3698950CA6202F /* FBSDKBridgeAPIProtocolType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIProtocolType.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIProtocolType.h; sourceTree = "<group>"; };
@@ -2185,8 +2185,8 @@
 		1BFF40ADF99847F5E900C0B05750245F /* FIRInstanceIDAPNSInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceIDAPNSInfo.h; path = Firebase/InstanceID/FIRInstanceIDAPNSInfo.h; sourceTree = "<group>"; };
 		1C03E1CB9FCE21A88831969CCDA67A0C /* VTConfirmPaymentController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = VTConfirmPaymentController.xib; path = MidtransKit/MidtransKit/resources/VTConfirmPaymentController.xib; sourceTree = "<group>"; };
 		1C0B03698B6BC28C4E73E405BEF65E3A /* RxSearchControllerDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxSearchControllerDelegateProxy.swift; path = RxCocoa/iOS/Proxies/RxSearchControllerDelegateProxy.swift; sourceTree = "<group>"; };
-		1C9361018CE091DB06298B5D93C78C7C /* en_other_va.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_other_va.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_other_va.plist~HEAD"; sourceTree = "<group>"; };
-		1C952C9A0AF7F51F5FF2FF202A178BFD /* en_bni_va.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_bni_va.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_bni_va.plist~HEAD"; sourceTree = "<group>"; };
+		1C9361018CE091DB06298B5D93C78C7C /* en_other_va.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_other_va.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_other_va.plist~HEAD"; sourceTree = "<group>"; };
+		1C952C9A0AF7F51F5FF2FF202A178BFD /* en_bni_va.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_bni_va.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_bni_va.plist~HEAD"; sourceTree = "<group>"; };
 		1CA43ED8EEA7B204C7998CFA99A66C7D /* other_prima_4@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "other_prima_4@2x.png"; path = "MidtransKit/MidtransKit/resources/other_prima_4@2x.png"; sourceTree = "<group>"; };
 		1CCC32E8BBD999D5FF40791064D2304B /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
 		1CD39AD89BE8E2FC740607F239335EE7 /* visa-mastercard-amex-seal@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "visa-mastercard-amex-seal@2x.png"; path = "MidtransKit/MidtransKit/resources/visa-mastercard-amex-seal@2x.png"; sourceTree = "<group>"; };
@@ -2228,25 +2228,25 @@
 		214B2563B726805793280F481D01BB82 /* FBSDKTooltipView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKTooltipView.m; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKTooltipView.m; sourceTree = "<group>"; };
 		214B92418CEA76A8B2D8AEF8B01CAE24 /* AnonymousDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnonymousDisposable.swift; path = RxSwift/Disposables/AnonymousDisposable.swift; sourceTree = "<group>"; };
 		216682EAD3EE425EBC39C33B9B8F1FAC /* RxPickerViewDataSourceProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxPickerViewDataSourceProxy.swift; path = RxCocoa/iOS/Proxies/RxPickerViewDataSourceProxy.swift; sourceTree = "<group>"; };
-		216A559C287807022A445F5A2E9B8090 /* XLPagerTabStrip.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = XLPagerTabStrip.bundle; path = "XLPagerTabStrip-XLPagerTabStrip.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		216A559C287807022A445F5A2E9B8090 /* XLPagerTabStrip.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XLPagerTabStrip.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		2217557104B682BF08C3A5510D849CC8 /* RxSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RxSwift-umbrella.h"; sourceTree = "<group>"; };
-		226406CBC12F9A7F4F051F0DD0830414 /* token_key_icon */ = {isa = PBXFileReference; includeInIndex = 1; name = token_key_icon; path = MidtransKit/MidtransKit/resources/token_key_icon; sourceTree = "<group>"; };
+		226406CBC12F9A7F4F051F0DD0830414 /* token_key_icon */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = token_key_icon; path = MidtransKit/MidtransKit/resources/token_key_icon; sourceTree = "<group>"; };
 		226A24C95BADEDF69FA2E604BDA73760 /* FBSDKCodelessParameterComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKCodelessParameterComponent.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/Codeless/FBSDKCodelessParameterComponent.m; sourceTree = "<group>"; };
 		22A9563B5A0A2800F1A079DE4DD277AC /* FIRApp.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRApp.m; path = Firebase/Core/FIRApp.m; sourceTree = "<group>"; };
 		22B413C201596A731D75E9441D579B13 /* SkipUntil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkipUntil.swift; path = RxSwift/Observables/SkipUntil.swift; sourceTree = "<group>"; };
-		22CAC47720A70EF19E53A6B13FDCB25E /* Secured Seal */ = {isa = PBXFileReference; includeInIndex = 1; name = "Secured Seal"; path = "MidtransKit/MidtransKit/resources/Secured Seal"; sourceTree = "<group>"; };
+		22CAC47720A70EF19E53A6B13FDCB25E /* Secured Seal */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = "Secured Seal"; path = "MidtransKit/MidtransKit/resources/Secured Seal"; sourceTree = "<group>"; };
 		22E78E5A159EE7213AE59B7DA564AFF8 /* gopay_scan_2.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = gopay_scan_2.png; path = MidtransKit/MidtransKit/resources/gopay_scan_2.png; sourceTree = "<group>"; };
 		230A7A50F658380CC53B2F407C29135A /* bca@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "bca@2x.png"; path = "MidtransKit/MidtransKit/resources/bca@2x.png"; sourceTree = "<group>"; };
 		233A23D7AC737EC6F9AD79920E3C462F /* FBSDKEventBindingManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKEventBindingManager.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/Codeless/FBSDKEventBindingManager.m; sourceTree = "<group>"; };
 		233AC2937E937A606DD1E95A54C33669 /* id_bca_klikbca.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = id_bca_klikbca.plist; path = MidtransKit/MidtransKit/resources/id_bca_klikbca.plist; sourceTree = "<group>"; };
 		235FE7CEC497AEB95C02E92D4EDC705A /* FBSDKKeychainStoreViaBundleID.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKKeychainStoreViaBundleID.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKKeychainStoreViaBundleID.m; sourceTree = "<group>"; };
 		23663D898B2D1419FC8AB6BDA6655F71 /* ControlProperty+Driver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ControlProperty+Driver.swift"; path = "RxCocoa/Traits/Driver/ControlProperty+Driver.swift"; sourceTree = "<group>"; };
-		23CBF099C1CE61CA07903D56C2F305CE /* en_paymentMethods.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_paymentMethods.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_paymentMethods.plist~HEAD"; sourceTree = "<group>"; };
+		23CBF099C1CE61CA07903D56C2F305CE /* en_paymentMethods.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_paymentMethods.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_paymentMethods.plist~HEAD"; sourceTree = "<group>"; };
 		24132226E98E3BFD3C7CBF819FAFA0DA /* snap_colors.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = snap_colors.plist; path = MidtransKit/MidtransKit/resources/snap_colors.plist; sourceTree = "<group>"; };
 		24168A55CFC2381A8282C1E2C1FA1A0A /* FBSDKAppLinkResolver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAppLinkResolver.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKAppLinkResolver.m; sourceTree = "<group>"; };
 		242EF5B3FD4D19A48D7CDC84B0A86BA5 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
 		243126AADCE8FE03357FE5747C6EDB96 /* id_kioson.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = id_kioson.plist; path = MidtransKit/MidtransKit/resources/id_kioson.plist; sourceTree = "<group>"; };
-		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		24390EFD555DD124430DFF9724065945 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		249EB8B13C71D0B96E388D61C7C159D2 /* SharedSequence+Operators+arity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SharedSequence+Operators+arity.swift"; path = "RxCocoa/Traits/SharedSequence/SharedSequence+Operators+arity.swift"; sourceTree = "<group>"; };
 		24A52B96466F4C390360C05C179C1AF2 /* AppEventParameterName.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppEventParameterName.swift; path = Sources/Core/AppEvents/AppEventParameterName.swift; sourceTree = "<group>"; };
 		24A9A01CD2DCB2C2847F23A4CF5A49DB /* permata_atm_2@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "permata_atm_2@2x.png"; path = "MidtransKit/MidtransKit/resources/permata_atm_2@2x.png"; sourceTree = "<group>"; };
@@ -2288,8 +2288,8 @@
 		28EBC0097925B62F3B27E3C61B9F95F3 /* FBSDKCoreKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKCoreKit.xcconfig; sourceTree = "<group>"; };
 		28FA24A5E744191533FD42C461D78F4A /* va.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = va.png; path = MidtransKit/MidtransKit/resources/va.png; sourceTree = "<group>"; };
 		29529F7D92C01A56671655B87D8208B3 /* FIRInstanceIDTokenDeleteOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRInstanceIDTokenDeleteOperation.m; path = Firebase/InstanceID/FIRInstanceIDTokenDeleteOperation.m; sourceTree = "<group>"; };
-		29685619E3BBB5B84D1A37F29F88C119 /* en_telkomsel_cash.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_telkomsel_cash.plist~development"; path = "MidtransKit/MidtransKit/resources/en_telkomsel_cash.plist~development"; sourceTree = "<group>"; };
-		29C52C3EDCE9ED09E13A1FF990C378C5 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "SourceSansPro-Semibold.ttf"; path = "MidtransKit/MidtransKit/resources/SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
+		29685619E3BBB5B84D1A37F29F88C119 /* en_telkomsel_cash.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_telkomsel_cash.plist~development"; path = "MidtransKit/MidtransKit/resources/en_telkomsel_cash.plist~development"; sourceTree = "<group>"; };
+		29C52C3EDCE9ED09E13A1FF990C378C5 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "SourceSansPro-Semibold.ttf"; path = "MidtransKit/MidtransKit/resources/SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
 		29CD80C86082FB4180C274A635D98C40 /* DelegateProxyType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DelegateProxyType.swift; path = RxCocoa/Common/DelegateProxyType.swift; sourceTree = "<group>"; };
 		29D2B3B017C458AC92BE2B01D561E649 /* Signal+Subscription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Signal+Subscription.swift"; path = "RxCocoa/Traits/Signal/Signal+Subscription.swift"; sourceTree = "<group>"; };
 		29D4477A3D0125B73C11972224EBB8D3 /* VTXLTunaiSuccessController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VTXLTunaiSuccessController.m; path = MidtransKit/MidtransKit/classes/VTXLTunaiSuccessController.m; sourceTree = "<group>"; };
@@ -2359,7 +2359,7 @@
 		331CED5D820B777E8B43661D7021DB47 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
 		33322813A96A6124A3E2A98BFBA57CFB /* MidtransUIListCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransUIListCell.m; path = MidtransKit/MidtransKit/classes/MidtransUIListCell.m; sourceTree = "<group>"; };
 		333A550A650E522ABC11BC52107A0631 /* MidtransImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransImageManager.h; path = MidtransCoreKit/MidtransCoreKit/MidtransImageManager.h; sourceTree = "<group>"; };
-		33921FE7C85F309618FD7251538C5A00 /* ScalingCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ScalingCarousel.framework; path = ScalingCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33921FE7C85F309618FD7251538C5A00 /* ScalingCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ScalingCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33BC2EBF0CB0C94EC146F0F84F233E8F /* VTMultiGuideController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VTMultiGuideController.m; path = MidtransKit/MidtransKit/classes/VTMultiGuideController.m; sourceTree = "<group>"; };
 		33C3AEB9D9BD5510A6B2220F99C357A1 /* FBSDKLoginCompletion+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKLoginCompletion+Internal.h"; path = "FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginCompletion+Internal.h"; sourceTree = "<group>"; };
 		33D2A992308F2E339FCD1585A6A18DC3 /* en_xl_tunai.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = en_xl_tunai.plist; path = MidtransKit/MidtransKit/resources/en_xl_tunai.plist; sourceTree = "<group>"; };
@@ -2371,7 +2371,7 @@
 		348ECE5CFC5FD8C78A0BFD37B9B112FA /* XLPagerTabStrip.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = XLPagerTabStrip.xcconfig; sourceTree = "<group>"; };
 		34AEC404101E08DDF9D43491220EC395 /* MidtransCoreKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MidtransCoreKit-dummy.m"; sourceTree = "<group>"; };
 		34B18D92C6610873359C040830AE6ED7 /* FIRLibrary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRLibrary.h; path = Firebase/Core/Private/FIRLibrary.h; sourceTree = "<group>"; };
-		34CB9043F309093053A7FA4EB58008DC /* en_indomaret.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_indomaret.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_indomaret.plist~HEAD"; sourceTree = "<group>"; };
+		34CB9043F309093053A7FA4EB58008DC /* en_indomaret.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_indomaret.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_indomaret.plist~HEAD"; sourceTree = "<group>"; };
 		34E5EB5BF14B6FB0A5EE43BCE3EFAAC6 /* FBSDKHybridAppEventsScriptMessageHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKHybridAppEventsScriptMessageHandler.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKHybridAppEventsScriptMessageHandler.h; sourceTree = "<group>"; };
 		34EBA5E18FD3AE4AFCC0BEDE35E57D98 /* SerialDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SerialDisposable.swift; path = RxSwift/Disposables/SerialDisposable.swift; sourceTree = "<group>"; };
 		34F0590BDACCF3A17FD7B58EEA8B69C3 /* UIColor+SNP_HexString.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+SNP_HexString.h"; path = "MidtransKit/MidtransKit/classes/UIColor+SNP_HexString.h"; sourceTree = "<group>"; };
@@ -2394,7 +2394,7 @@
 		3745A6633186905E391A8AF8BD7BC699 /* VTGuideView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = VTGuideView.xib; path = MidtransKit/MidtransKit/resources/VTGuideView.xib; sourceTree = "<group>"; };
 		374E9B5660FAE3A597606383185881B9 /* AnonymousObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnonymousObserver.swift; path = RxSwift/Observers/AnonymousObserver.swift; sourceTree = "<group>"; };
 		37924202780A728321EF23EFBA1F510D /* MidtransUITableAlertViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransUITableAlertViewController.h; path = MidtransKit/MidtransKit/classes/MidtransUITableAlertViewController.h; sourceTree = "<group>"; };
-		37B6CCDD436572912EB6DD4E1A9969C4 /* en_cimb_clicks.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_cimb_clicks.plist~development"; path = "MidtransKit/MidtransKit/resources/en_cimb_clicks.plist~development"; sourceTree = "<group>"; };
+		37B6CCDD436572912EB6DD4E1A9969C4 /* en_cimb_clicks.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_cimb_clicks.plist~development"; path = "MidtransKit/MidtransKit/resources/en_cimb_clicks.plist~development"; sourceTree = "<group>"; };
 		37DF94EC8A525A20B77E7343DC9A2CD6 /* MidtransUIPaymentViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransUIPaymentViewController.m; path = MidtransKit/MidtransKit/classes/MidtransUIPaymentViewController.m; sourceTree = "<group>"; };
 		37F97DFBF2644698C65930F578D63609 /* FIRInstanceIDTokenDeleteOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceIDTokenDeleteOperation.h; path = Firebase/InstanceID/FIRInstanceIDTokenDeleteOperation.h; sourceTree = "<group>"; };
 		38007FACB6A72D594FEDC3260C30760F /* ScalingCarousel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ScalingCarousel.modulemap; sourceTree = "<group>"; };
@@ -2425,7 +2425,7 @@
 		3B08049DE9928916532CB50EE9C7D34D /* SNPErrorLogManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SNPErrorLogManager.m; path = MidtransCoreKit/MidtransCoreKit/SNPErrorLogManager.m; sourceTree = "<group>"; };
 		3B8BAA0BA48948A1F3C3E5DE4729FE99 /* VTCardListController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VTCardListController.m; path = MidtransKit/MidtransKit/classes/VTCardListController.m; sourceTree = "<group>"; };
 		3BA0C030B90A61FF51C6677BE83540E5 /* FXPageControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FXPageControl.m; path = Sources/FXPageControl.m; sourceTree = "<group>"; };
-		3BF52FB1182D9C2C9F280E29615D64D3 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSDKLoginKit.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BF52FB1182D9C2C9F280E29615D64D3 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C0D92FE564612A1442E66084DFE839F /* UILabel+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILabel+Rx.swift"; path = "RxCocoa/iOS/UILabel+Rx.swift"; sourceTree = "<group>"; };
 		3C4C13B41CA5CBE22FCD76FF72C12A5F /* danamon_online.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = danamon_online.png; path = MidtransKit/MidtransKit/resources/danamon_online.png; sourceTree = "<group>"; };
 		3CC01B0205B056E0DAB5137DD7373450 /* VTTwoClickController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = VTTwoClickController.xib; path = MidtransKit/MidtransKit/resources/VTTwoClickController.xib; sourceTree = "<group>"; };
@@ -2460,11 +2460,11 @@
 		40C320D37B0065F40B15BE1C633E5E20 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E5A3CC94B6DEDB2A0475BAEF8058ED /* MidtransUITextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransUITextField.h; path = MidtransKit/MidtransKit/classes/MidtransUITextField.h; sourceTree = "<group>"; };
 		40E78C0CC5565C7D222B058FFFA1D0D2 /* en_virtualAccount.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = en_virtualAccount.plist; path = MidtransKit/MidtransKit/resources/en_virtualAccount.plist; sourceTree = "<group>"; };
-		4112A5E4E0841E9F9E374F1C7B51D8CA /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "SourceSansPro-Bold.ttf"; path = "MidtransKit/MidtransKit/resources/SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
+		4112A5E4E0841E9F9E374F1C7B51D8CA /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "SourceSansPro-Bold.ttf"; path = "MidtransKit/MidtransKit/resources/SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		412912BB9E7ACAE31A30BD42E9821160 /* visa-mastercard-jcb-amex@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "visa-mastercard-jcb-amex@2x.png"; path = "MidtransKit/MidtransKit/resources/visa-mastercard-jcb-amex@2x.png"; sourceTree = "<group>"; };
 		4143B895F39F11B11DD5ACBE9A477123 /* MIDDanamonOnlineViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MIDDanamonOnlineViewController.xib; path = MidtransKit/MidtransKit/resources/MIDDanamonOnlineViewController.xib; sourceTree = "<group>"; };
 		415DA373281306FE5614680B2104628C /* FBSDKBridgeAPIProtocolWebV1.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIProtocolWebV1.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolWebV1.h; sourceTree = "<group>"; };
-		4172BAF3EDAA4A7B025C7DE794F033FD /* en_telkomsel_cash.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_telkomsel_cash.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_telkomsel_cash.plist~HEAD"; sourceTree = "<group>"; };
+		4172BAF3EDAA4A7B025C7DE794F033FD /* en_telkomsel_cash.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_telkomsel_cash.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_telkomsel_cash.plist~HEAD"; sourceTree = "<group>"; };
 		41F7D12CF9D181AD7D6CB9B611B9B8CF /* bca_atm_6@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "bca_atm_6@2x.png"; path = "MidtransKit/MidtransKit/resources/bca_atm_6@2x.png"; sourceTree = "<group>"; };
 		4220F248A3FFD1EBB3E1AEB7CC58E0F6 /* CombineLatest+arity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CombineLatest+arity.swift"; path = "RxSwift/Observables/CombineLatest+arity.swift"; sourceTree = "<group>"; };
 		42363C9733BA01CF03E2B333549BE382 /* FBSDKTypeUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKTypeUtility.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKTypeUtility.h; sourceTree = "<group>"; };
@@ -2482,7 +2482,7 @@
 		432769CA69831308BA914DEA621ED773 /* GroupedObservable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupedObservable.swift; path = RxSwift/GroupedObservable.swift; sourceTree = "<group>"; };
 		4329FEDF4EF87243E147D28E643EA11D /* UIButton+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIButton+Rx.swift"; path = "RxCocoa/iOS/UIButton+Rx.swift"; sourceTree = "<group>"; };
 		4337675E069D1E5D2B3A260BF0DDC4F8 /* FBSDKAccessTokenCacheV4.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAccessTokenCacheV4.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenCacheV4.m; sourceTree = "<group>"; };
-		4341950D646E4D886F39FE6659691192 /* en_bri_epay.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_bri_epay.plist~development"; path = "MidtransKit/MidtransKit/resources/en_bri_epay.plist~development"; sourceTree = "<group>"; };
+		4341950D646E4D886F39FE6659691192 /* en_bri_epay.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_bri_epay.plist~development"; path = "MidtransKit/MidtransKit/resources/en_bri_epay.plist~development"; sourceTree = "<group>"; };
 		4348A76AD766D5640D27A1459182377B /* FIRInstanceIDAuthKeyChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceIDAuthKeyChain.h; path = Firebase/InstanceID/FIRInstanceIDAuthKeyChain.h; sourceTree = "<group>"; };
 		43537215A5CB1678381AFA8B5BBA70CD /* PagerTabStripViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PagerTabStripViewController.swift; path = Sources/PagerTabStripViewController.swift; sourceTree = "<group>"; };
 		437672478CA401D6DC8417D3ED5676DD /* MidtransNetworkOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransNetworkOperation.h; path = MidtransCoreKit/MidtransCoreKit/MidtransNetworkOperation.h; sourceTree = "<group>"; };
@@ -2509,7 +2509,7 @@
 		47821414C62866B583AA5B4830592F58 /* FBSDKGraphRequestBody.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKGraphRequestBody.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestBody.h; sourceTree = "<group>"; };
 		480B1250737E9D0A34B7FD061F06E661 /* mandiri_ecash@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "mandiri_ecash@2x.png"; path = "MidtransKit/MidtransKit/resources/mandiri_ecash@2x.png"; sourceTree = "<group>"; };
 		4824A755CA2FC761BCCDA86AB6A2108F /* MidtransCollectionViewLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransCollectionViewLayout.m; path = MidtransKit/MidtransKit/classes/MidtransCollectionViewLayout.m; sourceTree = "<group>"; };
-		4841EBDC377302484FB1A74926921891 /* en_virtualAccount.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_virtualAccount.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_virtualAccount.plist~HEAD"; sourceTree = "<group>"; };
+		4841EBDC377302484FB1A74926921891 /* en_virtualAccount.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_virtualAccount.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_virtualAccount.plist~HEAD"; sourceTree = "<group>"; };
 		484902FB812D31DF5D055899961B2E26 /* pendingIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "pendingIcon@2x.png"; path = "MidtransKit/MidtransKit/resources/pendingIcon@2x.png"; sourceTree = "<group>"; };
 		485327E4AE8885AB1AA3AA490EF727A4 /* VTKeyboardAccessoryView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = VTKeyboardAccessoryView.xib; path = MidtransKit/MidtransKit/resources/VTKeyboardAccessoryView.xib; sourceTree = "<group>"; };
 		487632989A00DBAC86AA796E81D19189 /* AsMaybe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsMaybe.swift; path = RxSwift/Observables/AsMaybe.swift; sourceTree = "<group>"; };
@@ -2534,7 +2534,7 @@
 		4C85DBBE8A615DCAFE91D2586879276E /* InfoIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "InfoIcon@2x.png"; path = "MidtransKit/MidtransKit/resources/InfoIcon@2x.png"; sourceTree = "<group>"; };
 		4C87895F521D94006C152F8B13C04CAE /* Bolts.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Bolts.modulemap; sourceTree = "<group>"; };
 		4CD42C6497FC0E132802892C7A2F06D7 /* MainScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MainScheduler.swift; path = RxSwift/Schedulers/MainScheduler.swift; sourceTree = "<group>"; };
-		4CD5F1559B9CBDD22A3BEDD4376F0A78 /* FacebookCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FacebookCore.framework; path = FacebookCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CD5F1559B9CBDD22A3BEDD4376F0A78 /* FacebookCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FacebookCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0CEC7B66C824329C48791E74CC0A56 /* MidtransInstallmentView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransInstallmentView.m; path = MidtransKit/MidtransKit/classes/MidtransInstallmentView.m; sourceTree = "<group>"; };
 		4D15F3865286B3BBC8BAD8AC3521D3DC /* MidtransAddress.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransAddress.m; path = MidtransCoreKit/MidtransCoreKit/MidtransAddress.m; sourceTree = "<group>"; };
 		4D1B37B8CE5BB14BFCF8C42AD712EB81 /* Create.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Create.swift; path = RxSwift/Observables/Create.swift; sourceTree = "<group>"; };
@@ -2546,9 +2546,9 @@
 		4DD7E20BF23538DE64C5135135F4CE7F /* GULNetworkMessageCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULNetworkMessageCode.h; path = GoogleUtilities/Network/Private/GULNetworkMessageCode.h; sourceTree = "<group>"; };
 		4E0A58CE1E50E6AA4C1BBEFBFFB07C4C /* FBSDKTypeUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKTypeUtility.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKTypeUtility.m; sourceTree = "<group>"; };
 		4E2BE96EAEB65DE6AF1E20548BABAE70 /* pb_decode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = pb_decode.h; sourceTree = "<group>"; };
-		4E3495601D0A46F44069D4F028173A48 /* en_bri_epay.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_bri_epay.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_bri_epay.plist~HEAD"; sourceTree = "<group>"; };
+		4E3495601D0A46F44069D4F028173A48 /* en_bri_epay.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_bri_epay.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_bri_epay.plist~HEAD"; sourceTree = "<group>"; };
 		4E3D69B546CFEE169E632F577BF81E36 /* AnyObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnyObserver.swift; path = RxSwift/AnyObserver.swift; sourceTree = "<group>"; };
-		4E3E66EF9E7EBADF6A540D1DAC5C3428 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = nanopb.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E3E66EF9E7EBADF6A540D1DAC5C3428 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E5C3D1166CF7040E3CD7E52970C6E7A /* bca.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = bca.png; path = MidtransKit/MidtransKit/resources/bca.png; sourceTree = "<group>"; };
 		4E71BF8E879FBA2E4B295763CE785A2A /* MidtransPaymentRequestV2ItemDetails.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransPaymentRequestV2ItemDetails.h; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentRequestV2ItemDetails.h; sourceTree = "<group>"; };
 		4E74D13535B9D20A1DD65573CDC374A9 /* GULReachabilityChecker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULReachabilityChecker.h; path = GoogleUtilities/Reachability/Private/GULReachabilityChecker.h; sourceTree = "<group>"; };
@@ -2559,7 +2559,7 @@
 		4F7DA41E981A764936154298FE56FE8B /* FBSDKBridgeAPIResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBridgeAPIResponse.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIResponse.m; sourceTree = "<group>"; };
 		4F9DA3EB6F9D946A1122F966868C5CE5 /* Take.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Take.swift; path = RxSwift/Observables/Take.swift; sourceTree = "<group>"; };
 		500A100B2EB72B2DE5B3F1200964D4BF /* MidtransUIThemeManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransUIThemeManager.m; path = MidtransKit/MidtransKit/classes/MidtransUIThemeManager.m; sourceTree = "<group>"; };
-		502816DF2399EFFA36BD7628D057FFA4 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyJSON.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		502816DF2399EFFA36BD7628D057FFA4 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50349DE61F36C08B1CF1B6EB94354E34 /* FBSDKLoginTooltipView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginTooltipView.h; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginTooltipView.h; sourceTree = "<group>"; };
 		506A6966126BAF1733696FDF5041BF1C /* FBSDKLoginError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginError.m; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginError.m; sourceTree = "<group>"; };
 		508902B0E68E799290114B75A9C321A0 /* bni@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "bni@2x.png"; path = "MidtransKit/MidtransKit/resources/bni@2x.png"; sourceTree = "<group>"; };
@@ -2570,7 +2570,7 @@
 		51493F63508A5E02742E249FBA017611 /* MidtransPaymentXLTunai.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransPaymentXLTunai.h; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentXLTunai.h; sourceTree = "<group>"; };
 		515339878B59A14DAE30F3B50891CF71 /* Kingfisher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Kingfisher.h; path = Sources/Kingfisher.h; sourceTree = "<group>"; };
 		515605E2A94638AE9A4A5D24E5205D91 /* FBSDKGraphRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKGraphRequest.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKGraphRequest.m; sourceTree = "<group>"; };
-		51BB1A647C6976709068CD5DCA906A8F /* pb_common.c */ = {isa = PBXFileReference; includeInIndex = 1; path = pb_common.c; sourceTree = "<group>"; };
+		51BB1A647C6976709068CD5DCA906A8F /* pb_common.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = pb_common.c; sourceTree = "<group>"; };
 		51D6800C5A2D07A8E8B612F311C7746F /* FBSDKLoginConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginConstants.m; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginConstants.m; sourceTree = "<group>"; };
 		51DA5508F6A13EC8B4DB4718D4788E05 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51DCA5ADAC9E8BC04150A5C4E41C98D2 /* FIRInstanceIDTokenInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRInstanceIDTokenInfo.m; path = Firebase/InstanceID/FIRInstanceIDTokenInfo.m; sourceTree = "<group>"; };
@@ -2602,12 +2602,12 @@
 		55A7905CDDE76E8B62EF4BFC52017937 /* other_alto_2@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "other_alto_2@2x.png"; path = "MidtransKit/MidtransKit/resources/other_alto_2@2x.png"; sourceTree = "<group>"; };
 		55C06FD5A87ABFA70389D483AB844344 /* MidtransUIFontSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransUIFontSource.h; path = MidtransKit/MidtransKit/classes/MidtransUIFontSource.h; sourceTree = "<group>"; };
 		5621ED160DE69E4E4343E0E05BAFAB07 /* SNPPostPaymentVAViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SNPPostPaymentVAViewController.m; path = MidtransKit/MidtransKit/classes/SNPPostPaymentVAViewController.m; sourceTree = "<group>"; };
-		5622CA2384F62C29CD2451FCE45C5315 /* en_bca_va.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_bca_va.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_bca_va.plist~HEAD"; sourceTree = "<group>"; };
+		5622CA2384F62C29CD2451FCE45C5315 /* en_bca_va.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_bca_va.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_bca_va.plist~HEAD"; sourceTree = "<group>"; };
 		5627D11F8A8A143D05E1E4F40DD962F3 /* SingleAssignmentDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SingleAssignmentDisposable.swift; path = RxSwift/Disposables/SingleAssignmentDisposable.swift; sourceTree = "<group>"; };
 		564E0F87B69624DFFAFB7132C661539D /* Empty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Empty.swift; path = RxSwift/Observables/Empty.swift; sourceTree = "<group>"; };
 		56C46A1683F0755CF300331E89703005 /* XLPagerTabStrip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "XLPagerTabStrip-dummy.m"; sourceTree = "<group>"; };
 		56CD9B5007F7E2234328B95CC34A58B7 /* FBSDKAccessTokenCacheV3_21.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAccessTokenCacheV3_21.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenCacheV3_21.m; sourceTree = "<group>"; };
-		56F79E7B4F6AE972E926E85E74CC4772 /* Other VA */ = {isa = PBXFileReference; includeInIndex = 1; name = "Other VA"; path = "MidtransKit/MidtransKit/resources/Other VA"; sourceTree = "<group>"; };
+		56F79E7B4F6AE972E926E85E74CC4772 /* Other VA */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = "Other VA"; path = "MidtransKit/MidtransKit/resources/Other VA"; sourceTree = "<group>"; };
 		56FC098E68A3199D67A26B6D9A448256 /* mandiri_atm_2@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "mandiri_atm_2@2x.png"; path = "MidtransKit/MidtransKit/resources/mandiri_atm_2@2x.png"; sourceTree = "<group>"; };
 		57032F16AB5C463CCF6A159D7BBB689C /* RxCollectionViewReactiveArrayDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxCollectionViewReactiveArrayDataSource.swift; path = RxCocoa/iOS/DataSources/RxCollectionViewReactiveArrayDataSource.swift; sourceTree = "<group>"; };
 		575B59409C7AF8F7AD177DBC029F2C9F /* RxAtomic.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RxAtomic.h; path = RxAtomic/include/RxAtomic.h; sourceTree = "<group>"; };
@@ -2644,7 +2644,7 @@
 		5C11D7953A0F9E7F2CFAB1344E8105E9 /* permata_atm_6@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "permata_atm_6@2x.png"; path = "MidtransKit/MidtransKit/resources/permata_atm_6@2x.png"; sourceTree = "<group>"; };
 		5C159DAA5BD274EF75705EC81D27A147 /* VTSegmentedControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VTSegmentedControl.m; path = MidtransKit/MidtransKit/classes/VTSegmentedControl.m; sourceTree = "<group>"; };
 		5C2CBE58C4D2992288D26FA9C1DA67FF /* VTPaymentListController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VTPaymentListController.h; path = MidtransKit/MidtransKit/classes/VTPaymentListController.h; sourceTree = "<group>"; };
-		5C91F510093253F2790100814B4FFFB7 /* en_mandiri_ecash.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_mandiri_ecash.plist~development"; path = "MidtransKit/MidtransKit/resources/en_mandiri_ecash.plist~development"; sourceTree = "<group>"; };
+		5C91F510093253F2790100814B4FFFB7 /* en_mandiri_ecash.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_mandiri_ecash.plist~development"; path = "MidtransKit/MidtransKit/resources/en_mandiri_ecash.plist~development"; sourceTree = "<group>"; };
 		5CAC9209C128C923FBC68E5C005DA15B /* permata_atm_1@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "permata_atm_1@2x.png"; path = "MidtransKit/MidtransKit/resources/permata_atm_1@2x.png"; sourceTree = "<group>"; };
 		5CC4B8F521AB0994E6B983164CD9D1CE /* Timeout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeout.swift; path = RxSwift/Observables/Timeout.swift; sourceTree = "<group>"; };
 		5CF714BAD8DF0C83F2D4F96203765E94 /* MidtransLoadingView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransLoadingView.h; path = MidtransKit/MidtransKit/classes/MidtransLoadingView.h; sourceTree = "<group>"; };
@@ -2667,7 +2667,7 @@
 		5F1FE86F0539FE7CEBD1661E8BDC6F45 /* FBSDKProfile+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKProfile+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKProfile+Internal.h"; sourceTree = "<group>"; };
 		5F2F524731CF30E8418467141DB711E3 /* anz@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "anz@2x.png"; path = "MidtransKit/MidtransKit/resources/anz@2x.png"; sourceTree = "<group>"; };
 		5F46B7F5CD981B21EA2056322BFE9D63 /* MIDUrlHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MIDUrlHandler.h; path = MidtransCoreKit/MidtransCoreKit/MIDUrlHandler.h; sourceTree = "<group>"; };
-		5F4C729C9597FF96284725BDC8FF7C9A /* pb_encode.c */ = {isa = PBXFileReference; includeInIndex = 1; path = pb_encode.c; sourceTree = "<group>"; };
+		5F4C729C9597FF96284725BDC8FF7C9A /* pb_encode.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = pb_encode.c; sourceTree = "<group>"; };
 		5F5380C1A0FF13F7659FF419AA9C056A /* Multicast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Multicast.swift; path = RxSwift/Observables/Multicast.swift; sourceTree = "<group>"; };
 		5F79D9974B522861D346C342B9BA37D2 /* FIRComponentType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRComponentType.m; path = Firebase/Core/FIRComponentType.m; sourceTree = "<group>"; };
 		5F7DF7EC87B7C40C8D6785042A7B7AF9 /* SNPPostPaymentIndomaretHeader.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = SNPPostPaymentIndomaretHeader.xib; path = MidtransKit/MidtransKit/resources/SNPPostPaymentIndomaretHeader.xib; sourceTree = "<group>"; };
@@ -2696,7 +2696,7 @@
 		628BAD19CD7664AB6BD24AFBC1AD11B2 /* FIRAnalyticsConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRAnalyticsConfiguration.h; path = Firebase/Core/Public/FIRAnalyticsConfiguration.h; sourceTree = "<group>"; };
 		62A051B248304123DB776A8684F05DAA /* GULMutableDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULMutableDictionary.h; path = GoogleUtilities/Network/Private/GULMutableDictionary.h; sourceTree = "<group>"; };
 		62D92AF21207A0CD3C100FC0E0CFD045 /* Range.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Range.swift; path = RxSwift/Observables/Range.swift; sourceTree = "<group>"; };
-		634DD3EF01FEA4ECC7BDA9FD7B181D7F /* en_indosat_dompetku.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_indosat_dompetku.plist~development"; path = "MidtransKit/MidtransKit/resources/en_indosat_dompetku.plist~development"; sourceTree = "<group>"; };
+		634DD3EF01FEA4ECC7BDA9FD7B181D7F /* en_indosat_dompetku.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_indosat_dompetku.plist~development"; path = "MidtransKit/MidtransKit/resources/en_indosat_dompetku.plist~development"; sourceTree = "<group>"; };
 		6353FACED7249C82B5B57D58F6E774FD /* BFWebViewAppLinkResolver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFWebViewAppLinkResolver.m; path = Bolts/iOS/BFWebViewAppLinkResolver.m; sourceTree = "<group>"; };
 		63802E96EC79EE7205DE0B2059B5B02E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63AC0E7DF03C3FD2F524726526B465D7 /* MidtransPaymentKlikBCA.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransPaymentKlikBCA.m; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentKlikBCA.m; sourceTree = "<group>"; };
@@ -2705,7 +2705,7 @@
 		6435BCDE394B6312CBEFA2DC4966C947 /* SynchronizedOnType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedOnType.swift; path = RxSwift/Concurrency/SynchronizedOnType.swift; sourceTree = "<group>"; };
 		645D65F295E187074FB9908D1363647B /* SendBirdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SendBirdSDK.framework; sourceTree = "<group>"; };
 		646007ED716343410153DF956087E376 /* VTBillpaySuccessController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VTBillpaySuccessController.h; path = MidtransKit/MidtransKit/classes/VTBillpaySuccessController.h; sourceTree = "<group>"; };
-		64853542AD544AD40E652006A233AA80 /* RxCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RxCocoa.framework; path = RxCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64853542AD544AD40E652006A233AA80 /* RxCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		649DC41AB929B890FFD627266BA2D3DD /* SectionedViewDataSourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SectionedViewDataSourceType.swift; path = RxCocoa/Common/SectionedViewDataSourceType.swift; sourceTree = "<group>"; };
 		64BC41366AFE8BBF9AD32DAC54AD39CE /* DetailDisclosure@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "DetailDisclosure@2x.png"; path = "MidtransKit/MidtransKit/resources/DetailDisclosure@2x.png"; sourceTree = "<group>"; };
 		64E64AC4B1AD17D7EDC801BD78A3C78A /* MidtransInstallmentCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MidtransInstallmentCollectionViewCell.xib; path = MidtransKit/MidtransKit/resources/MidtransInstallmentCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -2721,7 +2721,7 @@
 		663FEC810C2DE11A909F9D857C07097A /* FBSDKAccessTokenCacheV3_21.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAccessTokenCacheV3_21.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenCacheV3_21.h; sourceTree = "<group>"; };
 		6647328F6CF33A70CB920B3AF8F2ACE4 /* VTCvvInfoController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VTCvvInfoController.h; path = MidtransKit/MidtransKit/classes/VTCvvInfoController.h; sourceTree = "<group>"; };
 		666AF851DF41CE3EB727E926EBF9C4CC /* ConcurrentDispatchQueueScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConcurrentDispatchQueueScheduler.swift; path = RxSwift/Schedulers/ConcurrentDispatchQueueScheduler.swift; sourceTree = "<group>"; };
-		667ACBC8BAF6E44389F944E24A279A28 /* en_bca_klikbca.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_bca_klikbca.plist~development"; path = "MidtransKit/MidtransKit/resources/en_bca_klikbca.plist~development"; sourceTree = "<group>"; };
+		667ACBC8BAF6E44389F944E24A279A28 /* en_bca_klikbca.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_bca_klikbca.plist~development"; path = "MidtransKit/MidtransKit/resources/en_bca_klikbca.plist~development"; sourceTree = "<group>"; };
 		66CA4DA400A038E1691CD2644CD09A24 /* MidtransUIBaseViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransUIBaseViewController.m; path = MidtransKit/MidtransKit/classes/MidtransUIBaseViewController.m; sourceTree = "<group>"; };
 		66CA95F85C56FA626FC23ADF407569E9 /* MidtransVAHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransVAHeader.m; path = MidtransKit/MidtransKit/classes/MidtransVAHeader.m; sourceTree = "<group>"; };
 		66CD0971301E0533BD572F20D2C7B8FD /* MidtransCreditCardConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransCreditCardConfig.h; path = MidtransCoreKit/MidtransCoreKit/MidtransCreditCardConfig.h; sourceTree = "<group>"; };
@@ -2837,10 +2837,10 @@
 		78505F53086F7E0894AEF4D79CB25AE6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		7851B1A1971648B555E5495786FD1D1E /* FIROptionsInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIROptionsInternal.h; path = Firebase/Core/Private/FIROptionsInternal.h; sourceTree = "<group>"; };
 		7873434910D74D25DF57658FC8E5B4AB /* Resource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = Sources/Resource.swift; sourceTree = "<group>"; };
-		789F929A19B40E9BC0678D220F9CAD53 /* MidtransKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MidtransKit.bundle; path = "MidtransKit-MidtransKit.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		789F929A19B40E9BC0678D220F9CAD53 /* MidtransKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MidtransKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		78AC0E497BD98D2C542EEF9E8FD54DDA /* VTVASuccessStatusController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VTVASuccessStatusController.m; path = MidtransKit/MidtransKit/classes/VTVASuccessStatusController.m; sourceTree = "<group>"; };
 		78AE8C022F317693FC3D97ED093D2C51 /* MidtransLineView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransLineView.h; path = MidtransKit/MidtransKit/classes/MidtransLineView.h; sourceTree = "<group>"; };
-		78FC9240A7042C4A325031E9F7863413 /* en_virtualAccount.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_virtualAccount.plist~development"; path = "MidtransKit/MidtransKit/resources/en_virtualAccount.plist~development"; sourceTree = "<group>"; };
+		78FC9240A7042C4A325031E9F7863413 /* en_virtualAccount.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_virtualAccount.plist~development"; path = "MidtransKit/MidtransKit/resources/en_virtualAccount.plist~development"; sourceTree = "<group>"; };
 		79053C90C834313F2C093F71821D0A4E /* MIDUrlHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MIDUrlHandler.m; path = MidtransCoreKit/MidtransCoreKit/MIDUrlHandler.m; sourceTree = "<group>"; };
 		79491461E28F4CD7D4CEADDAE962EE70 /* Skip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Skip.swift; path = RxSwift/Observables/Skip.swift; sourceTree = "<group>"; };
 		794BD04F5DD2DA0426B7745CE9954D92 /* FBSDKMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKMacros.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKMacros.h; sourceTree = "<group>"; };
@@ -2859,7 +2859,7 @@
 		7B2298EE3F23AC7CE215C1437DC1A019 /* SNPPostPaymentGeneralView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SNPPostPaymentGeneralView.m; path = MidtransKit/MidtransKit/SNPPostPaymentGeneralView.m; sourceTree = "<group>"; };
 		7B2C8049306D2D1E9845C365A5E5D55A /* HistoricalScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HistoricalScheduler.swift; path = RxSwift/Schedulers/HistoricalScheduler.swift; sourceTree = "<group>"; };
 		7B36A077EEA707E9C707CEC3C95BDDC2 /* _RX.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _RX.m; path = RxCocoa/Runtime/_RX.m; sourceTree = "<group>"; };
-		7B4619A4AFEF7815C82F21FED3AEDA49 /* en_paymentMethods.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_paymentMethods.plist~development"; path = "MidtransKit/MidtransKit/resources/en_paymentMethods.plist~development"; sourceTree = "<group>"; };
+		7B4619A4AFEF7815C82F21FED3AEDA49 /* en_paymentMethods.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_paymentMethods.plist~development"; path = "MidtransKit/MidtransKit/resources/en_paymentMethods.plist~development"; sourceTree = "<group>"; };
 		7BB2C6B4B623CB4F7B94641B79002020 /* MidtransPaymentAkulaku.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransPaymentAkulaku.m; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentAkulaku.m; sourceTree = "<group>"; };
 		7BB8F29FD17F9B8DF9F9D01B6ED8ABDB /* FIRInstanceIDCheckinPreferences+Internal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FIRInstanceIDCheckinPreferences+Internal.m"; path = "Firebase/InstanceID/FIRInstanceIDCheckinPreferences+Internal.m"; sourceTree = "<group>"; };
 		7BC983149F0153CA2481AA7965173577 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2867,7 +2867,7 @@
 		7C2D8262E7E9D4E55884DDB9F8D10A6E /* danamon_online@1.5x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "danamon_online@1.5x.png"; path = "MidtransKit/MidtransKit/resources/danamon_online@1.5x.png"; sourceTree = "<group>"; };
 		7C36174E2EFD596E5BA9C6292D45E8FD /* MidtransTokenizeRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransTokenizeRequest.h; path = MidtransCoreKit/MidtransCoreKit/MidtransTokenizeRequest.h; sourceTree = "<group>"; };
 		7C65C222458033AAE64C4938DD5424AA /* UILabel+Boldify.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Boldify.m"; path = "MidtransKit/MidtransKit/classes/UILabel+Boldify.m"; sourceTree = "<group>"; };
-		7CA62A6EC679AC74E8F4C894A49850CA /* Pods_Agen_Parkir.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Agen_Parkir.framework; path = "Pods-Agen Parkir.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CA62A6EC679AC74E8F4C894A49850CA /* Pods_Agen_Parkir.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Agen_Parkir.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CAAD68B10EBCCDFE1D7CBB158C77B3D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CC047E8F659D879B8BC246E39751B73 /* Kingfisher-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kingfisher-umbrella.h"; sourceTree = "<group>"; };
 		7CDF3E8EB3B4B118913FFB697C95D720 /* FBSDKWebViewAppLinkResolver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKWebViewAppLinkResolver.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKWebViewAppLinkResolver.h; sourceTree = "<group>"; };
@@ -2921,13 +2921,13 @@
 		869182D0DE3FC66A2B4ADBE76C509067 /* FIRInstanceIDKeyPairStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRInstanceIDKeyPairStore.m; path = Firebase/InstanceID/FIRInstanceIDKeyPairStore.m; sourceTree = "<group>"; };
 		86B4EA1EDC08C6B8D80E9C83FAA1F430 /* FIRVersion.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRVersion.m; path = Firebase/Core/FIRVersion.m; sourceTree = "<group>"; };
 		86C7280FC4F1B58B57C2E6F23049A187 /* MidtransPaymentListDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransPaymentListDataModel.h; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentListDataModel.h; sourceTree = "<group>"; };
-		86EBE54E49E55A40F82ACE25AFAAD60A /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IQKeyboardManagerSwift.framework; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86EBE54E49E55A40F82ACE25AFAAD60A /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		876583B7BAFB2186DB5A6DFD5D6C60F4 /* RxAtomic-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RxAtomic-prefix.pch"; sourceTree = "<group>"; };
 		8792264BBCB2F9BA784EA6A990C0B335 /* FBSDKURL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKURL.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKURL.h; sourceTree = "<group>"; };
-		87CE4E6238881ECD3F7C660099E280AA /* pb_decode.c */ = {isa = PBXFileReference; includeInIndex = 1; path = pb_decode.c; sourceTree = "<group>"; };
+		87CE4E6238881ECD3F7C660099E280AA /* pb_decode.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = pb_decode.c; sourceTree = "<group>"; };
 		8802F4CD0064C1F49144E5FF1BD8D243 /* UITextView+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITextView+Rx.swift"; path = "RxCocoa/iOS/UITextView+Rx.swift"; sourceTree = "<group>"; };
-		8805784FB49E6F3B4D85225D4285FF60 /* en_cimb_clicks.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_cimb_clicks.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_cimb_clicks.plist~HEAD"; sourceTree = "<group>"; };
-		8823D0F35002D0E392F86EF0A552626B /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Bolts.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8805784FB49E6F3B4D85225D4285FF60 /* en_cimb_clicks.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_cimb_clicks.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_cimb_clicks.plist~HEAD"; sourceTree = "<group>"; };
+		8823D0F35002D0E392F86EF0A552626B /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88322C6915E35B58021F5242F67A5415 /* Throttle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Throttle.swift; path = RxSwift/Observables/Throttle.swift; sourceTree = "<group>"; };
 		88384CEDCFE7A3B41E29635C9B6C3885 /* RxCollectionViewDataSourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxCollectionViewDataSourceType.swift; path = RxCocoa/iOS/Protocols/RxCollectionViewDataSourceType.swift; sourceTree = "<group>"; };
 		8838BD5141B703330B2834FDBDF9F8FF /* MidtransDirectHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransDirectHeader.h; path = MidtransKit/MidtransKit/classes/MidtransDirectHeader.h; sourceTree = "<group>"; };
@@ -2942,7 +2942,7 @@
 		89B610D82FEF218F0D737A17794B2167 /* FIRInstanceIDTokenInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceIDTokenInfo.h; path = Firebase/InstanceID/FIRInstanceIDTokenInfo.h; sourceTree = "<group>"; };
 		89EE61CFB17B63C53001E073EF954C87 /* FBSDKPaymentObserver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKPaymentObserver.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKPaymentObserver.m; sourceTree = "<group>"; };
 		89F5C5348BA2D4822A8CD9D92AFB795D /* MasterCardDark@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MasterCardDark@2x.png"; path = "MidtransKit/MidtransKit/resources/MasterCardDark@2x.png"; sourceTree = "<group>"; };
-		89F6B2A8BE56D1598E25914152870130 /* en_mandiri_clickpay.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_mandiri_clickpay.plist~development"; path = "MidtransKit/MidtransKit/resources/en_mandiri_clickpay.plist~development"; sourceTree = "<group>"; };
+		89F6B2A8BE56D1598E25914152870130 /* en_mandiri_clickpay.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_mandiri_clickpay.plist~development"; path = "MidtransKit/MidtransKit/resources/en_mandiri_clickpay.plist~development"; sourceTree = "<group>"; };
 		8A2E0AFC35A8D7C3CA56BA2961B500B7 /* GULNetwork.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULNetwork.h; path = GoogleUtilities/Network/Private/GULNetwork.h; sourceTree = "<group>"; };
 		8A445FD78F364A673E493FA59EDA8029 /* ScalingCarouselCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingCarouselCell.swift; path = ScalingCarousel/Classes/ScalingCarouselCell.swift; sourceTree = "<group>"; };
 		8A4E8369DA3D7DE0100ED7F5E2EC358A /* FBSDKGraphRequestPiggybackManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKGraphRequestPiggybackManager.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestPiggybackManager.m; sourceTree = "<group>"; };
@@ -2956,7 +2956,7 @@
 		8B44939E653C71DA4945DBF006395AAB /* VTItemViewModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VTItemViewModel.h; path = MidtransKit/MidtransKit/classes/VTItemViewModel.h; sourceTree = "<group>"; };
 		8B6A9FDAB8B08A197A6D65B432E89BE9 /* VTSubGuideController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VTSubGuideController.h; path = MidtransKit/MidtransKit/classes/VTSubGuideController.h; sourceTree = "<group>"; };
 		8B781DE90CA50E18BC03100E1F01C3B5 /* UIColor+VTColor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+VTColor.m"; path = "MidtransKit/MidtransKit/classes/UIColor+VTColor.m"; sourceTree = "<group>"; };
-		8B78711EAEC69F74861C90E7FF1AD22C /* RxAtomic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RxAtomic.framework; path = RxAtomic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B78711EAEC69F74861C90E7FF1AD22C /* RxAtomic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxAtomic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BAF0A352E70251D2B7A07BEE4005C43 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
 		8BEA687A5EBE085C8FC366DC3C0F5DC3 /* FBSDKBridgeAPICrypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPICrypto.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPICrypto.h; sourceTree = "<group>"; };
 		8C0A6E59BBACF29EDB0AFF9404082529 /* id_ipad_gopay.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = id_ipad_gopay.plist; path = MidtransKit/MidtransKit/resources/id_ipad_gopay.plist; sourceTree = "<group>"; };
@@ -2981,7 +2981,7 @@
 		8D9E58B4AB5D3EF94F21DA3B4234D4E0 /* PushAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PushAnimator.m; path = MidtransKit/MidtransKit/classes/PushAnimator.m; sourceTree = "<group>"; };
 		8DBC0958B13C129B52CFFB0BD207DA9C /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = Frameworks/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
 		8DCB7154CA86770591D5A5CB96A7C04F /* MidtransConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransConfig.h; path = MidtransCoreKit/MidtransCoreKit/MidtransConfig.h; sourceTree = "<group>"; };
-		8E0361EAA49A11524E3232311850855F /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FirebaseInstanceID.framework; path = FirebaseInstanceID.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E0361EAA49A11524E3232311850855F /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FirebaseInstanceID.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E16EEC12D82C2C894FAA2807FDF532B /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		8E2269ABC37A88F205104BCB0D97A5E0 /* MidtransPrivateConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransPrivateConfig.m; path = MidtransCoreKit/MidtransCoreKit/MidtransPrivateConfig.m; sourceTree = "<group>"; };
 		8E7EB675CCF5B719A5A35CC089DA80E4 /* id_bca_va.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = id_bca_va.plist; path = MidtransKit/MidtransKit/resources/id_bca_va.plist; sourceTree = "<group>"; };
@@ -3006,7 +3006,7 @@
 		912446ED0FC19881EA598A10655EF191 /* _RXDelegateProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _RXDelegateProxy.h; path = RxCocoa/Runtime/include/_RXDelegateProxy.h; sourceTree = "<group>"; };
 		9161EE315EE7E1837B0F59102D876E1D /* FBSDKContainerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKContainerViewController.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKContainerViewController.m; sourceTree = "<group>"; };
 		91B60186A6DF325A2B932C3450DAACAE /* VTIndomaretSuccessController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = VTIndomaretSuccessController.xib; path = MidtransKit/MidtransKit/resources/VTIndomaretSuccessController.xib; sourceTree = "<group>"; };
-		91BAB6BBF43CB653727DED8246ACD533 /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "SourceSansPro-Light.ttf"; path = "MidtransKit/MidtransKit/resources/SourceSansPro-Light.ttf"; sourceTree = "<group>"; };
+		91BAB6BBF43CB653727DED8246ACD533 /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "SourceSansPro-Light.ttf"; path = "MidtransKit/MidtransKit/resources/SourceSansPro-Light.ttf"; sourceTree = "<group>"; };
 		91C23BF37F2CD0BC48B9A6E0F1A92F73 /* MidtransCreditCardConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransCreditCardConfig.m; path = MidtransCoreKit/MidtransCoreKit/MidtransCreditCardConfig.m; sourceTree = "<group>"; };
 		91EBB89B55760D25F678CAFEAB329FB3 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		92243739EC9ABA800E3FB102B25B179A /* bca_atm_3@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "bca_atm_3@2x.png"; path = "MidtransKit/MidtransKit/resources/bca_atm_3@2x.png"; sourceTree = "<group>"; };
@@ -3086,19 +3086,19 @@
 		9B5A1E8C1FBEA5D7013FE8A604A2BE7F /* bca_va@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "bca_va@2x.png"; path = "MidtransKit/MidtransKit/resources/bca_va@2x.png"; sourceTree = "<group>"; };
 		9B7611348B26D53BF77F9BDD302119E4 /* FBSDKAppLink_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAppLink_Internal.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKAppLink_Internal.h; sourceTree = "<group>"; };
 		9B9BBB6526DB8A4598D9ADAA4031862C /* MidtransPaymentStatusViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransPaymentStatusViewController.m; path = MidtransKit/MidtransKit/classes/MidtransPaymentStatusViewController.m; sourceTree = "<group>"; };
-		9BC2619AA75928AF6646AE2D63C97482 /* en_indomaret.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_indomaret.plist~development"; path = "MidtransKit/MidtransKit/resources/en_indomaret.plist~development"; sourceTree = "<group>"; };
+		9BC2619AA75928AF6646AE2D63C97482 /* en_indomaret.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_indomaret.plist~development"; path = "MidtransKit/MidtransKit/resources/en_indomaret.plist~development"; sourceTree = "<group>"; };
 		9BD59DFE2CA0426ACA4409A614605A5E /* MIDGopayDetailView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MIDGopayDetailView.m; path = MidtransKit/MidtransKit/MIDGopayDetailView.m; sourceTree = "<group>"; };
 		9BFE65B9A63D68E7BB913B7D98DB0DEC /* SNPPostPaymentHeaderBillPay.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = SNPPostPaymentHeaderBillPay.xib; path = MidtransKit/MidtransKit/resources/SNPPostPaymentHeaderBillPay.xib; sourceTree = "<group>"; };
 		9C7588FE5C94E20D7CCD7832860EACEF /* FBSDKDynamicFrameworkLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKDynamicFrameworkLoader.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKDynamicFrameworkLoader.h; sourceTree = "<group>"; };
 		9C97CAC36986201A27B3904936FBB7BE /* MidtransPaymentRequestV2CreditCard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransPaymentRequestV2CreditCard.m; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentRequestV2CreditCard.m; sourceTree = "<group>"; };
 		9CC050BB8831C189FE8449D31D526B5F /* ObservableConvertibleType+SharedSequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ObservableConvertibleType+SharedSequence.swift"; path = "RxCocoa/Traits/SharedSequence/ObservableConvertibleType+SharedSequence.swift"; sourceTree = "<group>"; };
 		9CC08480F7D5F8D66F843DB124A4C48D /* FBSDKLoginError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginError.h; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginError.h; sourceTree = "<group>"; };
-		9CD135D17EF5EB72DC9124892CB55034 /* en_bni_va.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_bni_va.plist~development"; path = "MidtransKit/MidtransKit/resources/en_bni_va.plist~development"; sourceTree = "<group>"; };
+		9CD135D17EF5EB72DC9124892CB55034 /* en_bni_va.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_bni_va.plist~development"; path = "MidtransKit/MidtransKit/resources/en_bni_va.plist~development"; sourceTree = "<group>"; };
 		9D1D021B1AC1B243BD0B4F53218BEC87 /* LoginBehavior.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoginBehavior.swift; path = Sources/Login/LoginBehavior.swift; sourceTree = "<group>"; };
 		9D3709CD5FA6C704E9F8585BB8B68330 /* bni_va@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "bni_va@3x.png"; path = "MidtransKit/MidtransKit/resources/bni_va@3x.png"; sourceTree = "<group>"; };
 		9D4A54D5B5A5235A54F3473E5EF20B79 /* other_prima_1@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "other_prima_1@2x.png"; path = "MidtransKit/MidtransKit/resources/other_prima_1@2x.png"; sourceTree = "<group>"; };
 		9D4E7E98FBE96717259F4F9BA7BDD9AB /* FIRInstanceIDConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceIDConstants.h; path = Firebase/InstanceID/FIRInstanceIDConstants.h; sourceTree = "<group>"; };
-		9D5BA0FFFBB05AB77A1997E59D3EE1EB /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "SourceSansPro-Regular.ttf"; path = "MidtransKit/MidtransKit/resources/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		9D5BA0FFFBB05AB77A1997E59D3EE1EB /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "SourceSansPro-Regular.ttf"; path = "MidtransKit/MidtransKit/resources/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		9DB670924141320FD502732FD756B128 /* GULNetworkConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULNetworkConstants.h; path = GoogleUtilities/Network/Private/GULNetworkConstants.h; sourceTree = "<group>"; };
 		9DB966306FE7BEAD0F72E068964C0EF1 /* ScalingCarousel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ScalingCarousel.xcconfig; sourceTree = "<group>"; };
 		9DEC14309ED05BF40C01FF0D5790DA19 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
@@ -3107,7 +3107,7 @@
 		9E383DC8905DC2D0D01AAC2FF73249D8 /* id_mandiri_clickpay.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = id_mandiri_clickpay.plist; path = MidtransKit/MidtransKit/resources/id_mandiri_clickpay.plist; sourceTree = "<group>"; };
 		9E84A90B8577F2DE9B7F51BE4FF57E4E /* MidtransNewCreditCardView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransNewCreditCardView.h; path = MidtransKit/MidtransKit/classes/MidtransNewCreditCardView.h; sourceTree = "<group>"; };
 		9EE00D569D43FA824D9ECA8AF9E900C1 /* IQUIView+Hierarchy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUIView+Hierarchy.swift"; path = "IQKeyboardManagerSwift/Categories/IQUIView+Hierarchy.swift"; sourceTree = "<group>"; };
-		9EE81A14DFB0E5E06DA370700FDD8F08 /* Pods_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OneSignalNotificationServiceExtension.framework; path = "Pods-OneSignalNotificationServiceExtension.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EE81A14DFB0E5E06DA370700FDD8F08 /* Pods_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EEFE3AF8F6E36DCBCDCD4EE1CC95648 /* MidtransPaymentListModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransPaymentListModel.m; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentListModel.m; sourceTree = "<group>"; };
 		9EFCB2B5BED2BF33CFE36D2A02F68348 /* MidtransPaymentRequestV2ShippingAddress.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransPaymentRequestV2ShippingAddress.m; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentRequestV2ShippingAddress.m; sourceTree = "<group>"; };
 		9F1F4A32AAEB88EE06CDA3C37FE6B48C /* MidtransPromo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransPromo.m; path = MidtransCoreKit/MidtransCoreKit/MidtransPromo.m; sourceTree = "<group>"; };
@@ -3122,7 +3122,7 @@
 		A0E19E81D83D937EDDEB4805B0495983 /* RxAtomic.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RxAtomic.xcconfig; sourceTree = "<group>"; };
 		A11D5ABA72A407B6CF24BEA0A5F363D9 /* FBSDKDynamicFrameworkLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKDynamicFrameworkLoader.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal_NoARC/FBSDKDynamicFrameworkLoader.m; sourceTree = "<group>"; };
 		A13730A778B1FEB994848419364A6421 /* Pods-Agen Parkir.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Agen Parkir.release.xcconfig"; sourceTree = "<group>"; };
-		A167C0FE2CDD7E9048F043519D844E1E /* en_bca_klikbca.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_bca_klikbca.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_bca_klikbca.plist~HEAD"; sourceTree = "<group>"; };
+		A167C0FE2CDD7E9048F043519D844E1E /* en_bca_klikbca.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_bca_klikbca.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_bca_klikbca.plist~HEAD"; sourceTree = "<group>"; };
 		A17C481B148B645F7249978D38C45610 /* FBSDKLoginUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginUtility.m; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginUtility.m; sourceTree = "<group>"; };
 		A1A86FDF357F342BD635860B81A063B1 /* ImageModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageModifier.swift; path = Sources/ImageModifier.swift; sourceTree = "<group>"; };
 		A1F705B9226A261208F7282BC12D34FE /* FBSDKGraphRequestPiggybackManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKGraphRequestPiggybackManager.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestPiggybackManager.h; sourceTree = "<group>"; };
@@ -3136,7 +3136,7 @@
 		A28A563ACA5BFAD4AEF76866719B8FE9 /* FBSDKTooltipView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKTooltipView.h; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKTooltipView.h; sourceTree = "<group>"; };
 		A2AB98AEFB10C43551F22DDD80319EBB /* CreditCardFront@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "CreditCardFront@2x.png"; path = "MidtransKit/MidtransKit/resources/CreditCardFront@2x.png"; sourceTree = "<group>"; };
 		A2C3CF2565C975917F0946B0211F7276 /* MidtransSavedCardController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransSavedCardController.m; path = MidtransKit/MidtransKit/classes/MidtransSavedCardController.m; sourceTree = "<group>"; };
-		A2D64D2AA3F3C602DE6CADD78B0098FD /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = MidtransKit/MidtransKit/resources/en.lproj; sourceTree = "<group>"; };
+		A2D64D2AA3F3C602DE6CADD78B0098FD /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = en.lproj; path = MidtransKit/MidtransKit/resources/en.lproj; sourceTree = "<group>"; };
 		A2DF0692252A86FF7548E4B2908E7F5E /* MidtransNewCreditCardViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MidtransNewCreditCardViewController.xib; path = MidtransKit/MidtransKit/resources/MidtransNewCreditCardViewController.xib; sourceTree = "<group>"; };
 		A2E6E23639EDEC9790FADA7562EB02D1 /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKStrings.bundle; sourceTree = "<group>"; };
 		A317B2F924D923136ACA1C99EDA9A9CC /* SNPFreeTextInquiry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SNPFreeTextInquiry.h; path = "MidtransCoreKit/MidtransCoreKit/Free Text/SNPFreeTextInquiry.h"; sourceTree = "<group>"; };
@@ -3157,13 +3157,13 @@
 		A526A53934B5BCC9D67FD2295812B27A /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
 		A52993A9C402D2AFFE1F465C72E10624 /* icon-help@4x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "icon-help@4x.png"; path = "MidtransKit/MidtransKit/resources/icon-help@4x.png"; sourceTree = "<group>"; };
 		A564580F1E648A679B73BB62E8A38F0A /* FBSDKBridgeAPIProtocolNativeV1.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBridgeAPIProtocolNativeV1.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolNativeV1.m; sourceTree = "<group>"; };
-		A574380929285AC1563598202AAB628C /* en_bca_va.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_bca_va.plist~development"; path = "MidtransKit/MidtransKit/resources/en_bca_va.plist~development"; sourceTree = "<group>"; };
+		A574380929285AC1563598202AAB628C /* en_bca_va.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_bca_va.plist~development"; path = "MidtransKit/MidtransKit/resources/en_bca_va.plist~development"; sourceTree = "<group>"; };
 		A5813B2393A4AAFA2107FB87A5EFB20B /* FormatIndicatedCacheSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormatIndicatedCacheSerializer.swift; path = Sources/FormatIndicatedCacheSerializer.swift; sourceTree = "<group>"; };
 		A5914A1D893CAFA7226E05C85A9E71DE /* MidtransInstallmentCollectionViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransInstallmentCollectionViewCell.m; path = MidtransKit/MidtransKit/classes/MidtransInstallmentCollectionViewCell.m; sourceTree = "<group>"; };
 		A593749A2CC09AADDAC572D12D83C8D4 /* en_mandiri_ecash.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = en_mandiri_ecash.plist; path = MidtransKit/MidtransKit/resources/en_mandiri_ecash.plist; sourceTree = "<group>"; };
 		A5F9F7DDF5D77774DA21D83E962C6E6E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		A60F369DE8CA0AA9C65099CDD5DA2356 /* FBSDKAppEvents+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKAppEvents+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKAppEvents+Internal.h"; sourceTree = "<group>"; };
-		A611E8064BCB506412E6A46D20CA940D /* en_permata_va.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_permata_va.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_permata_va.plist~HEAD"; sourceTree = "<group>"; };
+		A611E8064BCB506412E6A46D20CA940D /* en_permata_va.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_permata_va.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_permata_va.plist~HEAD"; sourceTree = "<group>"; };
 		A62D9AE7EE9023F7C2F14FEADCCE6B5C /* RxCocoa.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxCocoa.swift; path = RxCocoa/RxCocoa.swift; sourceTree = "<group>"; };
 		A6598293AFFB97F72BF4DF56143D4B45 /* FIRDependency.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRDependency.h; path = Firebase/Core/Private/FIRDependency.h; sourceTree = "<group>"; };
 		A66D65A6CF0E53C4F4DEC00E578E8096 /* VisaDark@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "VisaDark@2x.png"; path = "MidtransKit/MidtransKit/resources/VisaDark@2x.png"; sourceTree = "<group>"; };
@@ -3208,7 +3208,7 @@
 		ACB87805740224618BC4D6199393548D /* bca_klikbca@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "bca_klikbca@2x.png"; path = "MidtransKit/MidtransKit/resources/bca_klikbca@2x.png"; sourceTree = "<group>"; };
 		ACE66FB8B4D3630F3036E1142C7F73E3 /* FBSDKAccessToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAccessToken.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKAccessToken.h; sourceTree = "<group>"; };
 		AD051A1440A5E6A7FF52F7EE43ACB2CF /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
-		AD6D0C2AF20C529CF9B90597C5735EA2 /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Kingfisher.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD6D0C2AF20C529CF9B90597C5735EA2 /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD6141133984FA34F86F764AFF98F6A /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
 		AE461CA33ECE466231C612F4CBD09867 /* VTPaymentStatusController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VTPaymentStatusController.m; path = MidtransKit/MidtransKit/classes/VTPaymentStatusController.m; sourceTree = "<group>"; };
 		AE7F10F3AF868615C08DCE31D7B687D6 /* sms.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = sms.png; path = MidtransKit/MidtransKit/resources/sms.png; sourceTree = "<group>"; };
@@ -3220,7 +3220,7 @@
 		AF65E6CD1D305E11B7676A2AAFD207DE /* MidtransPaymentCreditCard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransPaymentCreditCard.m; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentCreditCard.m; sourceTree = "<group>"; };
 		AF852219088F713E9F85A495CAC53FA2 /* MidtransPaymentRequestV2SavedTokens.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransPaymentRequestV2SavedTokens.h; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentRequestV2SavedTokens.h; sourceTree = "<group>"; };
 		AF8926FCA0A6AD574DDE7409A3A3EB2F /* VTTwoClickController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VTTwoClickController.h; path = MidtransKit/MidtransKit/classes/VTTwoClickController.h; sourceTree = "<group>"; };
-		AF8DB836BDD52196842FE842B786D66B /* RxAtomic.c */ = {isa = PBXFileReference; includeInIndex = 1; name = RxAtomic.c; path = RxAtomic/RxAtomic.c; sourceTree = "<group>"; };
+		AF8DB836BDD52196842FE842B786D66B /* RxAtomic.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = RxAtomic.c; path = RxAtomic/RxAtomic.c; sourceTree = "<group>"; };
 		B012302D109634E0311713948783E019 /* FBSDKAppLinkResolving.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAppLinkResolving.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKAppLinkResolving.h; sourceTree = "<group>"; };
 		B051B2419D26212B585F6A2D75C1D296 /* VTPendingStatusController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = VTPendingStatusController.xib; path = MidtransKit/MidtransKit/resources/VTPendingStatusController.xib; sourceTree = "<group>"; };
 		B0A68EAE47E3CACF89006752916F5746 /* MidtransUIPaymentController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransUIPaymentController.m; path = MidtransKit/MidtransKit/classes/MidtransUIPaymentController.m; sourceTree = "<group>"; };
@@ -3250,7 +3250,7 @@
 		B4185A6F16912848E9957E238A308D41 /* Generate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Generate.swift; path = RxSwift/Observables/Generate.swift; sourceTree = "<group>"; };
 		B4239C65C61B913D5648ED5B21A8CA2F /* maybank.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = maybank.png; path = MidtransKit/MidtransKit/resources/maybank.png; sourceTree = "<group>"; };
 		B4318E7981A67B0522996549219D5DBA /* FBSDKIcon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKIcon.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKIcon.m; sourceTree = "<group>"; };
-		B43B66341D2ED7E9D8A13DE8624C7A05 /* en_mandiri_ecash.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_mandiri_ecash.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_mandiri_ecash.plist~HEAD"; sourceTree = "<group>"; };
+		B43B66341D2ED7E9D8A13DE8624C7A05 /* en_mandiri_ecash.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_mandiri_ecash.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_mandiri_ecash.plist~HEAD"; sourceTree = "<group>"; };
 		B4481F3C2722D852994FAB6EB6B6F95F /* MidtransUIListCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MidtransUIListCell.xib; path = MidtransKit/MidtransKit/resources/MidtransUIListCell.xib; sourceTree = "<group>"; };
 		B46DFFACB5B63887F744FFAC4ABB8BF5 /* GULLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULLogger.h; path = GoogleUtilities/Logger/Private/GULLogger.h; sourceTree = "<group>"; };
 		B48DB7BC1D62EB0E1E415D6FCA36501C /* SNPPointView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SNPPointView.h; path = MidtransKit/MidtransKit/classes/SNPPointView.h; sourceTree = "<group>"; };
@@ -3259,7 +3259,7 @@
 		B5334DFCC4AC66BF92B1E55F6740DB9D /* DisclosureIndicatorGray@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "DisclosureIndicatorGray@2x.png"; path = "MidtransKit/MidtransKit/resources/DisclosureIndicatorGray@2x.png"; sourceTree = "<group>"; };
 		B53B7D309F20111F11278096B7163576 /* other_prima_5@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "other_prima_5@2x.png"; path = "MidtransKit/MidtransKit/resources/other_prima_5@2x.png"; sourceTree = "<group>"; };
 		B549F35A494AA5E1302139EEB9ECDAD5 /* AddOnConstructor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AddOnConstructor.m; path = MidtransKit/MidtransKit/classes/AddOnConstructor.m; sourceTree = "<group>"; };
-		B56BFF4EFCC9B48F43BD9635E308E8F9 /* en_kioson.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_kioson.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_kioson.plist~HEAD"; sourceTree = "<group>"; };
+		B56BFF4EFCC9B48F43BD9635E308E8F9 /* en_kioson.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_kioson.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_kioson.plist~HEAD"; sourceTree = "<group>"; };
 		B573AAD559C9BAEDE3FDD500B036BA4F /* cimb_clicks@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "cimb_clicks@2x.png"; path = "MidtransKit/MidtransKit/resources/cimb_clicks@2x.png"; sourceTree = "<group>"; };
 		B577BF23FA17645FA5B2EF22B00263BC /* FIRAnalyticsConfiguration+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FIRAnalyticsConfiguration+Internal.h"; path = "Firebase/Core/Private/FIRAnalyticsConfiguration+Internal.h"; sourceTree = "<group>"; };
 		B57C98C74CBDDBB5E2AFF4EDFE0BFF07 /* check@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "check@2x.png"; path = "MidtransKit/MidtransKit/resources/check@2x.png"; sourceTree = "<group>"; };
@@ -3289,7 +3289,7 @@
 		B99C37C5F413FF52E85EC59C44C0EE2A /* MidtransPaymentMandiriClickpay.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransPaymentMandiriClickpay.h; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentMandiriClickpay.h; sourceTree = "<group>"; };
 		B9A423C6300A807F3435117B3470204B /* id_virtualAccount.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = id_virtualAccount.plist; path = MidtransKit/MidtransKit/resources/id_virtualAccount.plist; sourceTree = "<group>"; };
 		B9A48A0AAB3EB2878A69EED9A60265FB /* midtrans_logo_mid@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "midtrans_logo_mid@2x.png"; path = "MidtransKit/MidtransKit/resources/midtrans_logo_mid@2x.png"; sourceTree = "<group>"; };
-		B9CC3B33BE0D028321EE3BBACC03485A /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RxSwift.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9CC3B33BE0D028321EE3BBACC03485A /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0546729060F1E902AF080D8BD6B6BB /* mega@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "mega@2x.png"; path = "MidtransKit/MidtransKit/resources/mega@2x.png"; sourceTree = "<group>"; };
 		BA2652C9093D1725781E991A057D70E7 /* Amex@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Amex@2x.png"; path = "MidtransKit/MidtransKit/resources/Amex@2x.png"; sourceTree = "<group>"; };
 		BA7372726876237D41B8906C06AD977F /* MidtransUICCFrontView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransUICCFrontView.m; path = MidtransKit/MidtransKit/classes/MidtransUICCFrontView.m; sourceTree = "<group>"; };
@@ -3364,8 +3364,8 @@
 		C565C6EC5BE2C7F181112DA003943161 /* other_alto_5@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "other_alto_5@2x.png"; path = "MidtransKit/MidtransKit/resources/other_alto_5@2x.png"; sourceTree = "<group>"; };
 		C5B4404DFA42664C743BAB3E2E8918A2 /* Queue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Platform/DataStructures/Queue.swift; sourceTree = "<group>"; };
 		C5BC66AAADFDD9BF5972FD74D8B19810 /* MIDAlfamartPostPaymentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MIDAlfamartPostPaymentViewController.h; path = MidtransKit/MidtransKit/MIDAlfamartPostPaymentViewController.h; sourceTree = "<group>"; };
-		C6106696E8609ACCD8222BA82213D3E4 /* id.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = id.lproj; path = MidtransKit/MidtransKit/resources/id.lproj; sourceTree = "<group>"; };
-		C6339BAFFACDF5F1D5F3702FA41F8F6E /* en_permata_va.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_permata_va.plist~development"; path = "MidtransKit/MidtransKit/resources/en_permata_va.plist~development"; sourceTree = "<group>"; };
+		C6106696E8609ACCD8222BA82213D3E4 /* id.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = id.lproj; path = MidtransKit/MidtransKit/resources/id.lproj; sourceTree = "<group>"; };
+		C6339BAFFACDF5F1D5F3702FA41F8F6E /* en_permata_va.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_permata_va.plist~development"; path = "MidtransKit/MidtransKit/resources/en_permata_va.plist~development"; sourceTree = "<group>"; };
 		C64EC6DBF4318ED12526C0FDEF1D755E /* visa-mastercard-amex@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "visa-mastercard-amex@3x.png"; path = "MidtransKit/MidtransKit/resources/visa-mastercard-amex@3x.png"; sourceTree = "<group>"; };
 		C6510C56DB30BE2DB44EA8EBF08E5B98 /* id_indosat_dompetku.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = id_indosat_dompetku.plist; path = MidtransKit/MidtransKit/resources/id_indosat_dompetku.plist; sourceTree = "<group>"; };
 		C653A92CFA51BE9461D5FA0D41F67C14 /* MidtransPaymentIndosatDompetku.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransPaymentIndosatDompetku.h; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentIndosatDompetku.h; sourceTree = "<group>"; };
@@ -3476,19 +3476,19 @@
 		D5A46533860A6A63CD8D13752F649FBA /* FIRInstanceIDURLQueryItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceIDURLQueryItem.h; path = Firebase/InstanceID/FIRInstanceIDURLQueryItem.h; sourceTree = "<group>"; };
 		D5AF0C34814193C52EE476F9519E3F57 /* FirebaseCore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FirebaseCore.xcconfig; sourceTree = "<group>"; };
 		D5DEA1CBEB3DD7C24BB581512B341EB0 /* ccOfferIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "ccOfferIcon@2x.png"; path = "MidtransKit/MidtransKit/resources/ccOfferIcon@2x.png"; sourceTree = "<group>"; };
-		D5E2B98480B5EA8AE4F72127E4D867C3 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSDKCoreKit.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5E2B98480B5EA8AE4F72127E4D867C3 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5EF08FEEBF0CA4CA656F4676C978D00 /* GULAppDelegateSwizzler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULAppDelegateSwizzler.h; path = GoogleUtilities/AppDelegateSwizzler/Private/GULAppDelegateSwizzler.h; sourceTree = "<group>"; };
 		D5FF4FB926228C22DBB97159810D6EBC /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
 		D628276477B3086FF0C4304A48584573 /* FBSDKTriStateBOOL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKTriStateBOOL.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKTriStateBOOL.m; sourceTree = "<group>"; };
 		D630B33B79AA08EF2511834C65E74D02 /* MidtransCreditCardAddOnComponentCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MidtransCreditCardAddOnComponentCell.xib; path = MidtransKit/MidtransKit/resources/MidtransCreditCardAddOnComponentCell.xib; sourceTree = "<group>"; };
 		D67C5AECA03742A1497EAF4F5BFC81A4 /* indosat_dompetku@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "indosat_dompetku@2x.png"; path = "MidtransKit/MidtransKit/resources/indosat_dompetku@2x.png"; sourceTree = "<group>"; };
-		D68826397FB32FA5A87FCE43DAC5BECB /* nextIcon@2x.png~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "nextIcon@2x.png~HEAD"; path = "MidtransKit/MidtransKit/resources/nextIcon@2x.png~HEAD"; sourceTree = "<group>"; };
-		D6FA3FCC7150B60F9C5E092B62AF5826 /* en_xl_tunai.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_xl_tunai.plist~development"; path = "MidtransKit/MidtransKit/resources/en_xl_tunai.plist~development"; sourceTree = "<group>"; };
+		D68826397FB32FA5A87FCE43DAC5BECB /* nextIcon@2x.png~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "nextIcon@2x.png~HEAD"; path = "MidtransKit/MidtransKit/resources/nextIcon@2x.png~HEAD"; sourceTree = "<group>"; };
+		D6FA3FCC7150B60F9C5E092B62AF5826 /* en_xl_tunai.plist~development */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_xl_tunai.plist~development"; path = "MidtransKit/MidtransKit/resources/en_xl_tunai.plist~development"; sourceTree = "<group>"; };
 		D7655429E683454E272E5BBCEABA6178 /* FirebaseInstanceID-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FirebaseInstanceID-umbrella.h"; sourceTree = "<group>"; };
 		D7756E5D5B234622D38AE9C144E350EE /* FBSDKAppLink.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAppLink.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKAppLink.m; sourceTree = "<group>"; };
 		D7944B8035C23AFFDF8874518FDCDCB9 /* MidtransUIToast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransUIToast.h; path = MidtransKit/MidtransKit/classes/MidtransUIToast.h; sourceTree = "<group>"; };
 		D79BE0A05802040139B6B1F1164E7D6B /* sms@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "sms@2x.png"; path = "MidtransKit/MidtransKit/resources/sms@2x.png"; sourceTree = "<group>"; };
-		D7EDD22C8D3EB772C9D30C58F5A0427C /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GoogleUtilities.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7EDD22C8D3EB772C9D30C58F5A0427C /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FDE4DFE84E946B3FA5E45FA090C7D1 /* FIRInstanceIDVersionUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceIDVersionUtilities.h; path = Firebase/InstanceID/FIRInstanceIDVersionUtilities.h; sourceTree = "<group>"; };
 		D86A19AA28630C874C9927817D8D6E8F /* FBSDKMeasurementEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKMeasurementEvent.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKMeasurementEvent.m; sourceTree = "<group>"; };
 		D884F2C58B5E1655A84AE6E2CD50CD60 /* MidtransUIBaseViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransUIBaseViewController.h; path = MidtransKit/MidtransKit/classes/MidtransUIBaseViewController.h; sourceTree = "<group>"; };
@@ -3554,14 +3554,14 @@
 		E12FEDCB003DF943078B83FD2FEC4741 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		E132DE451FCE0444A9A6A5353ABA4A32 /* echannel@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "echannel@2x.png"; path = "MidtransKit/MidtransKit/resources/echannel@2x.png"; sourceTree = "<group>"; };
 		E162CBBA71F702C92EB3CA8D3B052E97 /* FBSDKAudioResourceLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAudioResourceLoader.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKAudioResourceLoader.m; sourceTree = "<group>"; };
-		E173AD06A20AD66CB6EB6360C755EF76 /* MidtransKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MidtransKit.framework; path = MidtransKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E173AD06A20AD66CB6EB6360C755EF76 /* MidtransKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MidtransKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1932A7CC3AAC8173515ED9D618EE180 /* MIdtransPaymentStatusView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MIdtransPaymentStatusView.m; path = MidtransKit/MidtransKit/classes/MIdtransPaymentStatusView.m; sourceTree = "<group>"; };
 		E1DA53E2907953F28051F03053194968 /* UIColor+SNP_HexString.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+SNP_HexString.m"; path = "MidtransKit/MidtransKit/classes/UIColor+SNP_HexString.m"; sourceTree = "<group>"; };
 		E234A3E2AF631C8E00502134158DC9FB /* MidtransNetworkLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransNetworkLogger.m; path = MidtransCoreKit/MidtransCoreKit/MidtransNetworkLogger.m; sourceTree = "<group>"; };
 		E287FC42C4914E399BBBBAB68679A5CA /* permata_atm_3@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "permata_atm_3@2x.png"; path = "MidtransKit/MidtransKit/resources/permata_atm_3@2x.png"; sourceTree = "<group>"; };
 		E298D1177500BAEE71A71F696E2FF857 /* MIDAlfamartViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MIDAlfamartViewController.m; path = MidtransKit/MidtransKit/MIDAlfamartViewController.m; sourceTree = "<group>"; };
 		E2B6452C3BA247814BCFED108E68C578 /* SVProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVProgressHUD.xcconfig; sourceTree = "<group>"; };
-		E2D4C95C357EF12AB8C64A994AD487AF /* en_lang.json */ = {isa = PBXFileReference; includeInIndex = 1; name = en_lang.json; path = MidtransKit/MidtransKit/resources/en_lang.json; sourceTree = "<group>"; };
+		E2D4C95C357EF12AB8C64A994AD487AF /* en_lang.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = en_lang.json; path = MidtransKit/MidtransKit/resources/en_lang.json; sourceTree = "<group>"; };
 		E2FF151167EA837C01FF54E9ADF9DADA /* VTCCBackView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = VTCCBackView.xib; path = MidtransKit/MidtransKit/resources/VTCCBackView.xib; sourceTree = "<group>"; };
 		E321BF46E97A4A6BBC6C041112F79B7A /* en_gopay.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = en_gopay.plist; path = MidtransKit/MidtransKit/resources/en_gopay.plist; sourceTree = "<group>"; };
 		E335EB3DE509D3A040B7522CA69D9AA3 /* id_akulaku.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = id_akulaku.plist; path = MidtransKit/MidtransKit/resources/id_akulaku.plist; sourceTree = "<group>"; };
@@ -3569,7 +3569,7 @@
 		E3B36FAAF5B19242BF4BC2A6D4BE0312 /* SNPPostPaymentVAViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = SNPPostPaymentVAViewController.xib; path = MidtransKit/MidtransKit/resources/SNPPostPaymentVAViewController.xib; sourceTree = "<group>"; };
 		E3CA5ECBBB029CCBE7825D59F494CB40 /* MasterCard@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MasterCard@2x.png"; path = "MidtransKit/MidtransKit/resources/MasterCard@2x.png"; sourceTree = "<group>"; };
 		E3E1550B3AA40149F0FE85A00AC12688 /* FBSDKWebDialogView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKWebDialogView.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialogView.m; sourceTree = "<group>"; };
-		E3F4F3E8617F4CD0DC93C08EB747FF8F /* en_indosat_dompetku.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_indosat_dompetku.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_indosat_dompetku.plist~HEAD"; sourceTree = "<group>"; };
+		E3F4F3E8617F4CD0DC93C08EB747FF8F /* en_indosat_dompetku.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_indosat_dompetku.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_indosat_dompetku.plist~HEAD"; sourceTree = "<group>"; };
 		E3F5C8D8FF237FDE7F2BDAAE9F4F8562 /* SerialDispatchQueueScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SerialDispatchQueueScheduler.swift; path = RxSwift/Schedulers/SerialDispatchQueueScheduler.swift; sourceTree = "<group>"; };
 		E4086D34F9C84652EFBB93A21C27D4DA /* MidGopayDetailViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidGopayDetailViewController.h; path = MidtransKit/MidtransKit/classes/MidGopayDetailViewController.h; sourceTree = "<group>"; };
 		E41B7F4250DB15593EC494B866A3D38C /* Cancelable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cancelable.swift; path = RxSwift/Cancelable.swift; sourceTree = "<group>"; };
@@ -3580,7 +3580,7 @@
 		E4EAA8528B845849D8DDE4DD33D17642 /* bca_atm_5@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "bca_atm_5@2x.png"; path = "MidtransKit/MidtransKit/resources/bca_atm_5@2x.png"; sourceTree = "<group>"; };
 		E4F91AF12883C1E084F8935D01748700 /* MidtransPaymentGCIViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransPaymentGCIViewController.h; path = MidtransKit/MidtransKit/classes/MidtransPaymentGCIViewController.h; sourceTree = "<group>"; };
 		E4FD5B362251402095A5F58A8B1BFB3B /* Maybe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Maybe.swift; path = RxSwift/Traits/Maybe.swift; sourceTree = "<group>"; };
-		E4FEBC6BA47D90AC41949968FDCF43C6 /* en_xl_tunai.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_xl_tunai.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_xl_tunai.plist~HEAD"; sourceTree = "<group>"; };
+		E4FEBC6BA47D90AC41949968FDCF43C6 /* en_xl_tunai.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_xl_tunai.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_xl_tunai.plist~HEAD"; sourceTree = "<group>"; };
 		E535C38396D272DBA912CA8E1366A596 /* Kingfisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Kingfisher.swift; path = Sources/Kingfisher.swift; sourceTree = "<group>"; };
 		E5676EDEB9F3F5397EE4A7E073B3C331 /* MidtransPaymentRequestV2Preference.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransPaymentRequestV2Preference.h; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentRequestV2Preference.h; sourceTree = "<group>"; };
 		E571E430B8BBD2CFD5447172CF5CD7E5 /* VTTwoClickController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VTTwoClickController.m; path = MidtransKit/MidtransKit/classes/VTTwoClickController.m; sourceTree = "<group>"; };
@@ -3634,7 +3634,7 @@
 		ECAFD766F42DE300D55A0D331D60E79A /* RxAtomic-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RxAtomic-dummy.m"; sourceTree = "<group>"; };
 		ECC632FB327590EAB3CDA90A1C92E135 /* FIRBundleUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRBundleUtil.h; path = Firebase/Core/Private/FIRBundleUtil.h; sourceTree = "<group>"; };
 		ECCA42636D49518EADFB60DD87943C6B /* ControlEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ControlEvent.swift; path = RxCocoa/Traits/ControlEvent.swift; sourceTree = "<group>"; };
-		ED9EEB3ECF73FB43DBAD3CBD0DCD04D8 /* en_mandiri_clickpay.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; name = "en_mandiri_clickpay.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_mandiri_clickpay.plist~HEAD"; sourceTree = "<group>"; };
+		ED9EEB3ECF73FB43DBAD3CBD0DCD04D8 /* en_mandiri_clickpay.plist~HEAD */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = "en_mandiri_clickpay.plist~HEAD"; path = "MidtransKit/MidtransKit/resources/en_mandiri_clickpay.plist~HEAD"; sourceTree = "<group>"; };
 		EDAC26B426EF50A6DEB79C7E26A864EB /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
 		EDAE90A69BFFC007390F8256008B66EA /* GraphRequestConnection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphRequestConnection.swift; path = Sources/Core/GraphRequest/GraphRequestConnection.swift; sourceTree = "<group>"; };
 		EDEF31CAC0EDA5F4B2BA0F1AB5B7D014 /* SNPPointViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SNPPointViewController.m; path = MidtransKit/MidtransKit/classes/SNPPointViewController.m; sourceTree = "<group>"; };
@@ -3656,7 +3656,7 @@
 		F06A4E3166743E4A32DC878CBDA29660 /* RxAtomic-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RxAtomic-umbrella.h"; sourceTree = "<group>"; };
 		F06B4E2046903C412B5E4C3556B412FF /* FBSDKPaymentObserver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKPaymentObserver.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKPaymentObserver.h; sourceTree = "<group>"; };
 		F06D4A021D13721466E87C2C6915CB08 /* SNPFreeTextPayment.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SNPFreeTextPayment.m; path = "MidtransCoreKit/MidtransCoreKit/Free Text/SNPFreeTextPayment.m"; sourceTree = "<group>"; };
-		F070D392D70EF7C8F9DF96A7E7438077 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FirebaseCore.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F070D392D70EF7C8F9DF96A7E7438077 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F07665685F338FCDAFCB58C0E9BFB33E /* PagerTabStripBehaviour.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PagerTabStripBehaviour.swift; path = Sources/PagerTabStripBehaviour.swift; sourceTree = "<group>"; };
 		F089D650A58335AB09C1D90207474CEB /* NSString+MidtransValidation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+MidtransValidation.h"; path = "MidtransCoreKit/MidtransCoreKit/NSString+MidtransValidation.h"; sourceTree = "<group>"; };
 		F0A132B85B243E0606ECCABBC9C28948 /* MidtransUIPaymentGeneralViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MidtransUIPaymentGeneralViewController.xib; path = MidtransKit/MidtransKit/resources/MidtransUIPaymentGeneralViewController.xib; sourceTree = "<group>"; };
@@ -3711,7 +3711,7 @@
 		F6C77C584195A26C642DB0DBAAAB7A67 /* MidtransPaymentStatusViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MidtransPaymentStatusViewController.xib; path = MidtransKit/MidtransKit/resources/MidtransPaymentStatusViewController.xib; sourceTree = "<group>"; };
 		F6F8E2514DEAB8291796C2740E322986 /* MidGopayDetailViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidGopayDetailViewController.m; path = MidtransKit/MidtransKit/classes/MidGopayDetailViewController.m; sourceTree = "<group>"; };
 		F72B23C63BB16CE222155033F4034819 /* alfamart@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "alfamart@2x.png"; path = "MidtransKit/MidtransKit/resources/alfamart@2x.png"; sourceTree = "<group>"; };
-		F75B4835D7FEAE5AF5B61B8271F6F8E9 /* FacebookLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FacebookLogin.framework; path = FacebookLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F75B4835D7FEAE5AF5B61B8271F6F8E9 /* FacebookLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FacebookLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7769D1B81B30B05C2C4BC5938F1DE53 /* logo@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "logo@2x.png"; path = "MidtransKit/MidtransKit/resources/logo@2x.png"; sourceTree = "<group>"; };
 		F7956602997001B786D736E6BACEBBE1 /* Bolts-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bolts-prefix.pch"; sourceTree = "<group>"; };
 		F7BF435E111C3834317B46FC5CB167DE /* NSObject+Rx+RawRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSObject+Rx+RawRepresentable.swift"; path = "RxCocoa/Foundation/NSObject+Rx+RawRepresentable.swift"; sourceTree = "<group>"; };
@@ -3740,9 +3740,9 @@
 		FBA78C6625B3B0937202B2C7B9CDB1B4 /* MidtransItemCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MidtransItemCell.xib; path = MidtransKit/MidtransKit/resources/MidtransItemCell.xib; sourceTree = "<group>"; };
 		FBEB98227B966C4ADC35986950CF6CA8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		FC9727B9553EE4FF09AF66100485B999 /* other_atm_5@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "other_atm_5@2x.png"; path = "MidtransKit/MidtransKit/resources/other_atm_5@2x.png"; sourceTree = "<group>"; };
-		FCB7C8A7EC710E7358B27E5B74A5FB3A /* id_lang.json */ = {isa = PBXFileReference; includeInIndex = 1; name = id_lang.json; path = MidtransKit/MidtransKit/resources/id_lang.json; sourceTree = "<group>"; };
+		FCB7C8A7EC710E7358B27E5B74A5FB3A /* id_lang.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = id_lang.json; path = MidtransKit/MidtransKit/resources/id_lang.json; sourceTree = "<group>"; };
 		FCD7DEAC3EAC91C97A7997642C832418 /* danamon_online@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "danamon_online@2x.png"; path = "MidtransKit/MidtransKit/resources/danamon_online@2x.png"; sourceTree = "<group>"; };
-		FD196A19310011619249AE6120BA4544 /* OCRAEXT.TTF */ = {isa = PBXFileReference; includeInIndex = 1; name = OCRAEXT.TTF; path = MidtransKit/MidtransKit/resources/OCRAEXT.TTF; sourceTree = "<group>"; };
+		FD196A19310011619249AE6120BA4544 /* OCRAEXT.TTF */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = OCRAEXT.TTF; path = MidtransKit/MidtransKit/resources/OCRAEXT.TTF; sourceTree = "<group>"; };
 		FD642006EBF7BFED3FD777447CF56ED2 /* MIdtransUICardCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MIdtransUICardCell.m; path = MidtransKit/MidtransKit/classes/MIdtransUICardCell.m; sourceTree = "<group>"; };
 		FD7ADC13BEDD4F72266AAC934AB5219A /* maybank@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "maybank@2x.png"; path = "MidtransKit/MidtransKit/resources/maybank@2x.png"; sourceTree = "<group>"; };
 		FD7F0B406F334D132DC5DBA5370FE6D7 /* Bolts.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Bolts.m; path = Bolts/Common/Bolts.m; sourceTree = "<group>"; };
@@ -3756,7 +3756,7 @@
 		FE518C3996C6B7C10AA9F4B233559E5B /* IQKeyboardManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQKeyboardManager.swift; path = IQKeyboardManagerSwift/IQKeyboardManager.swift; sourceTree = "<group>"; };
 		FE67005AFF16D744B8C60ED6ECC5C7B8 /* FBSDKServerConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKServerConfiguration.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKServerConfiguration.m; sourceTree = "<group>"; };
 		FE6C118D4CD287A3A6F32A215B99FDA1 /* LockOwnerType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockOwnerType.swift; path = RxSwift/Concurrency/LockOwnerType.swift; sourceTree = "<group>"; };
-		FE7D20641E85253D642AC9FBA1751E7E /* gopay */ = {isa = PBXFileReference; includeInIndex = 1; name = gopay; path = MidtransKit/MidtransKit/resources/gopay; sourceTree = "<group>"; };
+		FE7D20641E85253D642AC9FBA1751E7E /* gopay */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = gopay; path = MidtransKit/MidtransKit/resources/gopay; sourceTree = "<group>"; };
 		FE8C01EAD6D9C6BA36D84A63F2AEB466 /* MidtransPaymentRequestV2CustomerDetails.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MidtransPaymentRequestV2CustomerDetails.h; path = MidtransCoreKit/MidtransCoreKit/MidtransPaymentRequestV2CustomerDetails.h; sourceTree = "<group>"; };
 		FE9D12492C8317808B560BFEC37D2A59 /* FBSDKGraphRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKGraphRequest.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKGraphRequest.h; sourceTree = "<group>"; };
 		FEBA78D6781452EBE29FC53345B339D0 /* BFURL_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFURL_Internal.h; path = Bolts/iOS/Internal/BFURL_Internal.h; sourceTree = "<group>"; };
@@ -3771,7 +3771,7 @@
 		FF535B8BB46961906ED2F08E4DD4D9A5 /* FIRConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRConfiguration.h; path = Firebase/Core/Public/FIRConfiguration.h; sourceTree = "<group>"; };
 		FF822407EF3A6A78ED555ABC6CAA3059 /* MidtransCustomerDetails.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransCustomerDetails.m; path = MidtransCoreKit/MidtransCoreKit/MidtransCustomerDetails.m; sourceTree = "<group>"; };
 		FF8318AB9A093D5D12B08B1A8A716896 /* IQUIView+IQKeyboardToolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUIView+IQKeyboardToolbar.swift"; path = "IQKeyboardManagerSwift/IQToolbar/IQUIView+IQKeyboardToolbar.swift"; sourceTree = "<group>"; };
-		FFB97B39605756CDB80D74C42ED71E0E /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFB97B39605756CDB80D74C42ED71E0E /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFDA6E67F1EC4C4ABCC68F956E0B9572 /* MidtransMerchantClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MidtransMerchantClient.m; path = MidtransCoreKit/MidtransCoreKit/MidtransMerchantClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4030,7 +4030,6 @@
 			children = (
 				FD0AB37BF19CD604E91754D687C3E90B /* Frameworks */,
 			);
-			name = SendBirdSDK;
 			path = SendBirdSDK;
 			sourceTree = "<group>";
 		};
@@ -4060,7 +4059,6 @@
 				E380DDD21ABCB1CEB173952D3F310E68 /* encode */,
 				B713B96D24D602F21EC3E1F6009D6E8B /* Support Files */,
 			);
-			name = nanopb;
 			path = nanopb;
 			sourceTree = "<group>";
 		};
@@ -4275,7 +4273,6 @@
 				6F57A0DBD827CF30D1A2E1BAD00936EC /* SNPUITrackingManager.m */,
 				A5418563827BA1517B084533FA08A6B0 /* Support Files */,
 			);
-			name = MidtransCoreKit;
 			path = MidtransCoreKit;
 			sourceTree = "<group>";
 		};
@@ -4319,7 +4316,6 @@
 				AD051A1440A5E6A7FF52F7EE43ACB2CF /* Fabric.h */,
 				6F4DD7C29693AD052B3FD30797C1C82F /* Frameworks */,
 			);
-			name = Fabric;
 			path = Fabric;
 			sourceTree = "<group>";
 		};
@@ -4374,7 +4370,6 @@
 				5B2D229504E3A2BD2A4DAE689DFDE3C6 /* UIButton+Kingfisher.swift */,
 				368E5A00D84646FDAF06171E20E45D5E /* Support Files */,
 			);
-			name = Kingfisher;
 			path = Kingfisher;
 			sourceTree = "<group>";
 		};
@@ -4404,7 +4399,6 @@
 				0818929C16ECD52022B6BAC7632B4684 /* Crashlytics.h */,
 				F52E20529AC0C31ACFB91789E97EE7B1 /* Frameworks */,
 			);
-			name = Crashlytics;
 			path = Crashlytics;
 			sourceTree = "<group>";
 		};
@@ -4450,7 +4444,6 @@
 			children = (
 				29BC56C7302CA9142BF00052B1A4FBB9 /* Frameworks */,
 			);
-			name = FirebaseAnalytics;
 			path = FirebaseAnalytics;
 			sourceTree = "<group>";
 		};
@@ -4469,7 +4462,6 @@
 				575B59409C7AF8F7AD177DBC029F2C9F /* RxAtomic.h */,
 				FBF868D02392DF7B71D292AE78A7949C /* Support Files */,
 			);
-			name = RxAtomic;
 			path = RxAtomic;
 			sourceTree = "<group>";
 		};
@@ -4503,7 +4495,6 @@
 				09BB157843CF859310861ABAAD5242FF /* Validation.swift */,
 				17089A25790561D31CD46103C82DACF3 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -4512,7 +4503,6 @@
 			children = (
 				E0CD92AD620ADE17C4CE1BF31A748187 /* CoreOnly */,
 			);
-			name = Firebase;
 			path = Firebase;
 			sourceTree = "<group>";
 		};
@@ -4671,7 +4661,6 @@
 				E07EAB33DF049F1305E22955B9765D77 /* Zip+Collection.swift */,
 				210FD29E195F3DD84A16E0C954AC22AF /* Support Files */,
 			);
-			name = RxSwift;
 			path = RxSwift;
 			sourceTree = "<group>";
 		};
@@ -4707,7 +4696,6 @@
 				3D7E8F582041AB2803AD553691245472 /* Resources */,
 				DD36B7BC9FB9584F97C4F28B10971397 /* Support Files */,
 			);
-			name = IQKeyboardManagerSwift;
 			path = IQKeyboardManagerSwift;
 			sourceTree = "<group>";
 		};
@@ -4751,7 +4739,6 @@
 				214B2563B726805793280F481D01BB82 /* FBSDKTooltipView.m */,
 				39A60C8F68BC6D05B810743BF7EDA005 /* Support Files */,
 			);
-			name = FBSDKLoginKit;
 			path = FBSDKLoginKit;
 			sourceTree = "<group>";
 		};
@@ -4844,7 +4831,6 @@
 			children = (
 				01CE4379FBA7EFC854E219A53601257C /* Frameworks */,
 			);
-			name = GoogleAppMeasurement;
 			path = GoogleAppMeasurement;
 			sourceTree = "<group>";
 		};
@@ -4894,7 +4880,6 @@
 				DBFAE634FB2CA335D50C8DC9BCF48F6F /* ScalingCarouselView.swift */,
 				87F9B3599EE3B3236A80F7A7A75FD455 /* Support Files */,
 			);
-			name = ScalingCarousel;
 			path = ScalingCarousel;
 			sourceTree = "<group>";
 		};
@@ -4917,7 +4902,6 @@
 			children = (
 				6E4104E28ADCFD6B95BD7583DBE1DAD0 /* Frameworks */,
 			);
-			name = OneSignal;
 			path = OneSignal;
 			sourceTree = "<group>";
 		};
@@ -4928,7 +4912,6 @@
 				CB290E67DB93C25B739DDDB4B2FE2A66 /* Support Files */,
 				34828A58403455496F27F8AEA4028881 /* Tasks */,
 			);
-			name = Bolts;
 			path = Bolts;
 			sourceTree = "<group>";
 		};
@@ -4946,7 +4929,6 @@
 				689E8548B992059BF44691FD04D10705 /* Resources */,
 				A73DAA3DF82F2D2716117EB72D9A7D52 /* Support Files */,
 			);
-			name = SVProgressHUD;
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -4963,7 +4945,6 @@
 				74B8D039013DA1B2DD27AEE0BFFA92FD /* Support Files */,
 				D1ECD83B02838657D640822CBBE003A0 /* UserDefaults */,
 			);
-			name = GoogleUtilities;
 			path = GoogleUtilities;
 			sourceTree = "<group>";
 		};
@@ -5177,7 +5158,6 @@
 				1D7D26545E1233CB740029DD5AEA3274 /* Resources */,
 				D340701CA1624E50E3603AC379410FA0 /* Support Files */,
 			);
-			name = FBSDKCoreKit;
 			path = FBSDKCoreKit;
 			sourceTree = "<group>";
 		};
@@ -5248,7 +5228,6 @@
 				0037B06E57ABC6E9AD5782C854F0BAC7 /* NSError+FIRInstanceID.m */,
 				0FF2C4638FC065C98B033E21E30FE5E8 /* Support Files */,
 			);
-			name = FirebaseInstanceID;
 			path = FirebaseInstanceID;
 			sourceTree = "<group>";
 		};
@@ -5313,7 +5292,6 @@
 				1AA109D3EAE4F07BA4A2E186898738E8 /* UserProfile.PictureView.swift */,
 				C0670574A6F9F8DB50BECE63C3E9055E /* Support Files */,
 			);
-			name = FacebookCore;
 			path = FacebookCore;
 			sourceTree = "<group>";
 		};
@@ -5370,7 +5348,6 @@
 				86B4EA1EDC08C6B8D80E9C83FAA1F430 /* FIRVersion.m */,
 				E6B3A1636A18E7AE9963567487F2A77B /* Support Files */,
 			);
-			name = FirebaseCore;
 			path = FirebaseCore;
 			sourceTree = "<group>";
 		};
@@ -5430,7 +5407,6 @@
 				EA11304769C418419FEE383E3ACFD953 /* LoginResult.swift */,
 				E1DEE330816D3E6538476CB9D2CF0863 /* Support Files */,
 			);
-			name = FacebookLogin;
 			path = FacebookLogin;
 			sourceTree = "<group>";
 		};
@@ -5455,7 +5431,6 @@
 				3E8569884E08429CCF82B77D30D60E97 /* Resources */,
 				D8BED4430C4D22A9AB41B5D27D8FC947 /* Support Files */,
 			);
-			name = XLPagerTabStrip;
 			path = XLPagerTabStrip;
 			sourceTree = "<group>";
 		};
@@ -6128,7 +6103,6 @@
 				AE4FDAD5EC2EFB2BE3F9C9736050C554 /* Resources */,
 				6BF00CBA4B270DBCF6E829FEF19A1991 /* Support Files */,
 			);
-			name = MidtransKit;
 			path = MidtransKit;
 			sourceTree = "<group>";
 		};
@@ -6149,7 +6123,6 @@
 				950BA33952BC4882C6FD88C84B65D583 /* SwiftyJSON.swift */,
 				957ECEF26209C208D1EFD1EFFC6E498F /* Support Files */,
 			);
-			name = SwiftyJSON;
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
@@ -6312,7 +6285,6 @@
 				16C3E414E983E8CE9A4D51E87AC64C05 /* URLSession+Rx.swift */,
 				3AFF4CB72DDB9870DE9DF0C076CCD169 /* Support Files */,
 			);
-			name = RxCocoa;
 			path = RxCocoa;
 			sourceTree = "<group>";
 		};
@@ -7639,13 +7611,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1130;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
@@ -9882,6 +9855,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -10990,6 +10964,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

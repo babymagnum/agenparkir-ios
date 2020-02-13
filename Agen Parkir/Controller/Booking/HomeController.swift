@@ -155,43 +155,45 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         }
         
         Networking.instance.getVoucherList { (list, error) in
-            if let _ = error {
-                self.hideServiceCollection()
-                return
-            }
-            
-            guard let list = list else {
-                self.hideServiceCollection()
-                return
-            }
-            
-            if list.count == 0 {
-                self.hideServiceCollection()
-                return
-            }
-            
-            for (index, value) in list.enumerated() {
-                var dataValue = value
+            DispatchQueue.main.async {
+                if let _ = error {
+                    self.hideServiceCollection()
+                    return
+                }
                 
-                dataValue.description = "Hanya dengan menukar coin sebanyak \(value.coin_price ?? 0) coin, kamu bisa mendapatkan saldo My Card sebanyak \(value.value ?? 0)."
+                guard let list = list else {
+                    self.hideServiceCollection()
+                    return
+                }
                 
-                self.listServices.append(dataValue)
+                if list.count == 0 {
+                    self.hideServiceCollection()
+                    return
+                }
                 
-                if index == 1 {
-                    DispatchQueue.main.async {
-                        self.contentMainHeight.constant -= self.servicesCollectionHeight.constant
-                        self.servicesCollectionView.reloadData()
+                for (index, value) in list.enumerated() {
+                    var dataValue = value
+                    
+                    dataValue.description = "Hanya dengan menukar coin sebanyak \(value.coin_price ?? 0) coin, kamu bisa mendapatkan saldo My Card sebanyak \(value.value ?? 0)."
+                    
+                    self.listServices.append(dataValue)
+                    
+                    if index == 1 {
+                        DispatchQueue.main.async {
+                            self.contentMainHeight.constant -= self.servicesCollectionHeight.constant
+                            self.servicesCollectionView.reloadData()
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                            self.servicesCollectionHeight.constant = self.servicesCollectionView.contentSize.height
+                            self.contentMainHeight.constant += self.servicesCollectionView.contentSize.height
+                        })
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                            self.contentMain.layoutIfNeeded()
+                        })
+                        break
                     }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                        self.servicesCollectionHeight.constant = self.servicesCollectionView.contentSize.height
-                        self.contentMainHeight.constant += self.servicesCollectionView.contentSize.height
-                    })
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                        self.contentMain.layoutIfNeeded()
-                    })
-                    break
                 }
             }
         }

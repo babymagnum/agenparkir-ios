@@ -35,7 +35,9 @@ class LoginRegisterController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserDefaults.standard.set("Dev", forKey: StaticVar.applicationState)
+        //uncoment below code if its dev
+        //UserDefaults.standard.set("Dev", forKey: StaticVar.applicationState)
+        UserDefaults.standard.set("Prod", forKey: StaticVar.applicationState)
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         

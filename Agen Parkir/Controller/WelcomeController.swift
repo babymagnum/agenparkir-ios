@@ -43,6 +43,7 @@ class WelcomeController: UIViewController, UICollectionViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         if UserDefaults.standard.bool(forKey: StaticVar.login) {
             DispatchQueue.main.async {
+                //self.present(HomeController(), animated: true, completion: nil)
                 self.performSegue(withIdentifier: "toHomeController", sender: self)
             }
         } else if UserDefaults.standard.bool(forKey: StaticVar.hasAccount) {

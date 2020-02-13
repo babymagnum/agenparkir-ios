@@ -1410,6 +1410,9 @@ class TopupOperation: AbstractOperation {
     }
     
     override func main() {
+        print("gross amount for topup \(gross_amount ?? 0)")
+        print("customers id for topup \(UserDefaults.standard.string(forKey: StaticVar.id) ?? "0")")
+        
         if isCancelled {
             self.state = .canceled
             self.finish(true)
@@ -1420,8 +1423,8 @@ class TopupOperation: AbstractOperation {
         let url = "\(root)api/android/top-up"
         
         let params: [String: Any] = [
-            "gross_amount": gross_amount as Any,
-            "customers_id": Int(UserDefaults.standard.string(forKey: StaticVar.id)!) as Any
+            "gross_amount": gross_amount ?? 0 as Any,
+            "customers_id": Int(UserDefaults.standard.string(forKey: StaticVar.id) ?? "0") ?? 0 as Any
         ]
         
         Alamofire.request(url, method: .get, parameters: params, encoding: JSONEncoding.default).responseJSON { (response) in

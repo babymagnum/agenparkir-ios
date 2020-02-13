@@ -328,15 +328,15 @@ extension MyCardController: UpdateCurrentDataProtocol {
         operation.addOperation(currentOperation)
         
         currentOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
-            if let err = currentOperation.error {
-                PublicFunction.instance.showUnderstandDialog(self, "Error", err, "Understand")
-            }
-            
-            guard let currentModel = currentOperation.currentModel else { return }
-            
             DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                
+                if let err = currentOperation.error {
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", err, "Understand")
+                }
+                
+                guard let currentModel = currentOperation.currentModel else { return }
+                
                 self.updateUI(currentModel)
             }
         }

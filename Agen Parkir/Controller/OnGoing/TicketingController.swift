@@ -65,9 +65,9 @@ class TicketingController: BaseViewController, UICollectionViewDelegate, Indicat
         let ticketOngoing = TicketListOngoingOperation()
         operation.addOperation(ticketOngoing)
         ticketOngoing.completionBlock = {
-            SVProgressHUD.dismiss()
-            
             DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                
                 switch ticketOngoing.state {
                 case .success?:
                     self.emptyTicket.isHidden = true

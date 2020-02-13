@@ -185,20 +185,22 @@ class BookingController: BaseViewController, UICollectionViewDelegate {
         let detailBuildingOperation = DetailBuildingOperation(buildingId: building_id!)
         operation.addOperation(detailBuildingOperation)
         detailBuildingOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
-            switch detailBuildingOperation.state {
-            case .success?:
-                if let building = detailBuildingOperation.buildingModel {
-                    self.buildingModel = building
-                    self.updateUI(building)
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                
+                switch detailBuildingOperation.state {
+                case .success?:
+                    if let building = detailBuildingOperation.buildingModel {
+                        self.buildingModel = building
+                        self.updateUI(building)
+                    }
+                case .error?:
+                    if let err = detailBuildingOperation.error {
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", err, "Understand")
+                    }
+                default:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "Operation is canceled by system, please try again", "Understand")
                 }
-            case .error?:
-                if let err = detailBuildingOperation.error {
-                    PublicFunction.instance.showUnderstandDialog(self, "Error", err, "Understand")
-                }
-            default:
-                PublicFunction.instance.showUnderstandDialog(self, "Error", "Operation is canceled by system, please try again", "Understand")
             }
         }
     }
@@ -248,36 +250,38 @@ class BookingController: BaseViewController, UICollectionViewDelegate {
         let showListPlateOperation = ShowListPlateOperation()
         operation.addOperation(showListPlateOperation)
         showListPlateOperation.completionBlock = {
-            switch showListPlateOperation.state {
-            case .success?:
-                self.listPlate.removeAll()
-                
-                for (index, plate) in showListPlateOperation.listPlate.enumerated() {
-                    if plate.vehicle_id == self.vehicleType {
-                        self.listPlate.append(plate)
-                    }
+            DispatchQueue.main.async {
+                switch showListPlateOperation.state {
+                case .success?:
+                    self.listPlate.removeAll()
                     
-                    if index == showListPlateOperation.listPlate.count - 1 {
-                        DispatchQueue.main.async {
-                            self.plateCollectionView.reloadData()
-                            
-                            if self.listPlate.count == 0 {
-                                self.buttonAddPlate.isHidden = false
-                            } else {
-                                self.buttonAddPlate.isHidden = true
+                    for (index, plate) in showListPlateOperation.listPlate.enumerated() {
+                        if plate.vehicle_id == self.vehicleType {
+                            self.listPlate.append(plate)
+                        }
+                        
+                        if index == showListPlateOperation.listPlate.count - 1 {
+                            DispatchQueue.main.async {
+                                self.plateCollectionView.reloadData()
+                                
+                                if self.listPlate.count == 0 {
+                                    self.buttonAddPlate.isHidden = false
+                                } else {
+                                    self.buttonAddPlate.isHidden = true
+                                }
                             }
                         }
                     }
-                }
-            case .error?:
-                PublicFunction.instance.showUnderstandDialog(self, "Error Get List Plate", showListPlateOperation.error!, "Understand")
-                self.buttonAddPlate.isHidden = false
-            case .empty?:
-                DispatchQueue.main.async {
+                case .error?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error Get List Plate", showListPlateOperation.error!, "Understand")
                     self.buttonAddPlate.isHidden = false
+                case .empty?:
+                    DispatchQueue.main.async {
+                        self.buttonAddPlate.isHidden = false
+                    }
+                default:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error!", "Please click the retry button to refresh data", "Understand")
                 }
-            default:
-                PublicFunction.instance.showUnderstandDialog(self, "Error!", "Please click the retry button to refresh data", "Understand")
             }
         }
     }
@@ -300,20 +304,22 @@ class BookingController: BaseViewController, UICollectionViewDelegate {
         operation.addOperation(bookingOperation)
         
         bookingOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
-            switch bookingOperation.state {
-            case .success?:
-                DispatchQueue.main.async {
-                    let bookingAgreementController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BookingAgreementController") as! BookingAgreementController
-                    bookingAgreementController.dataBooking = (vehicleType: self.vehicleType, parkingType: self.parkingType, placeType: self.placeType, paymentType: self.paymentType) as? (vehicleType: Int, parkingType: Int, placeType: String, paymentType: Int)
-                    bookingAgreementController.returnBookingData = bookingOperation.returnBookingData
-                    self.navigationController?.pushViewController(bookingAgreementController, animated: true)
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                
+                switch bookingOperation.state {
+                case .success?:
+                    DispatchQueue.main.async {
+                        let bookingAgreementController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BookingAgreementController") as! BookingAgreementController
+                        bookingAgreementController.dataBooking = (vehicleType: self.vehicleType, parkingType: self.parkingType, placeType: self.placeType, paymentType: self.paymentType) as? (vehicleType: Int, parkingType: Int, placeType: String, paymentType: Int)
+                        bookingAgreementController.returnBookingData = bookingOperation.returnBookingData
+                        self.navigationController?.pushViewController(bookingAgreementController, animated: true)
+                    }
+                case .error?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", bookingOperation.error!, "Understand")
+                default:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
                 }
-            case .error?:
-                PublicFunction.instance.showUnderstandDialog(self, "Error", bookingOperation.error!, "Understand")
-            default:
-                PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
             }
         }
     }

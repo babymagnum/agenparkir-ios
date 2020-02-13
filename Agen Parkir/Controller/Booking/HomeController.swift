@@ -562,15 +562,17 @@ extension HomeController: UpdateCurrentDataProtocol {
         }
         
         currentOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
-            if let err = currentOperation.error {
-                PublicFunction.instance.showUnderstandDialog(self, "Error", err, "Understand")
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                
+                if let err = currentOperation.error {
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", err, "Understand")
+                }
+                
+                guard let currentModel = currentOperation.currentModel else { return }
+                
+                self.updateCurrentData(currentModel)
             }
-            
-            guard let currentModel = currentOperation.currentModel else { return }
-            
-            self.updateCurrentData(currentModel)
         }
     }
 }

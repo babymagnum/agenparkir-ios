@@ -97,21 +97,20 @@ extension ForgotPasswordController {
         let forgotPasswordOperation = ForgotPasswordOperation(email: (inputEmail.text?.trim())!)
         operationQueue.addOperations([forgotPasswordOperation], waitUntilFinished: false)
         forgotPasswordOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
-            if let err = forgotPasswordOperation.error {
-                self.showDialog("Error!!", err)
-                return
-            }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
-                //self.showDialog("Reset Password", forgotPasswordOperation.message!)
+                SVProgressHUD.dismiss()
+                
+                if let err = forgotPasswordOperation.error {
+                    self.showDialog("Error!!", err)
+                    return
+                }
                 
                 let alert = UIAlertController(title: "Reset Password", message: forgotPasswordOperation.message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Understand", style: .cancel, handler: { (UIAlertAction) in
                     for (index, item) in (self.navigationController?.viewControllers.enumerated())! {
                         
-                        var viewControllerID = "\(item)".components(separatedBy: ":")
+                        let viewControllerID = "\(item)".components(separatedBy: ":")
                         let clearViewControllerID = viewControllerID[0].replacingOccurrences(of: "<", with: "")
                         
                         var loginID = "\(LoginController())".components(separatedBy: ":")

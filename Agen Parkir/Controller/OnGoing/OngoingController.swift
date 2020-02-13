@@ -157,27 +157,29 @@ class OngoingController: BaseViewController, UICollectionViewDelegate {
         let listOngoingOperation = ListOngoingOperation(vehicle_type: vehicleType ?? 0)
         operation.addOperation(listOngoingOperation)
         listOngoingOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
-            switch listOngoingOperation.state {
-            case .success?:
-                //self.listOngoing = listOngoingOperation.listOngoing
-                DispatchQueue.main.async {
-                    self.ongoingModel = listOngoingOperation.listOngoing[0]
-                    self.updateUI(listOngoingOperation.listOngoing[0])
-                    self.contentMain.isHidden = false 
-                }
-            case .error?:
-                PublicFunction.instance.showUnderstandDialog(self, "Empty Order", listOngoingOperation.error!, "Understand")
-                DispatchQueue.main.async {
-                    self.emptyOngoing.text = listOngoingOperation.error!
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                
+                switch listOngoingOperation.state {
+                case .success?:
+                    //self.listOngoing = listOngoingOperation.listOngoing
+                    DispatchQueue.main.async {
+                        self.ongoingModel = listOngoingOperation.listOngoing[0]
+                        self.updateUI(listOngoingOperation.listOngoing[0])
+                        self.contentMain.isHidden = false
+                    }
+                case .error?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Empty Order", listOngoingOperation.error!, "Understand")
+                    DispatchQueue.main.async {
+                        self.emptyOngoing.text = listOngoingOperation.error!
+                        self.emptyOngoing.isHidden = false
+                        self.contentMain.isHidden = true
+                    }
+                default:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try refresh the page", "Understand")
+                    self.emptyOngoing.text = "There was something error with system, please try refresh the page"
                     self.emptyOngoing.isHidden = false
-                    self.contentMain.isHidden = true
                 }
-            default:
-                PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try refresh the page", "Understand")
-                self.emptyOngoing.text = "There was something error with system, please try refresh the page"
-                self.emptyOngoing.isHidden = false
             }
         }
     }

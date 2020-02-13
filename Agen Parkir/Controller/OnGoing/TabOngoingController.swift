@@ -110,10 +110,10 @@ class TabOngoingController: ButtonBarPagerTabStripViewController {
     private func navigateBack() {
         if let _ = fromBooking {
             for (index, item) in (self.navigationController?.viewControllers.enumerated())! {
-                var homeControllerId = "\(item)".components(separatedBy: ":")
+                let homeControllerId = "\(item)".components(separatedBy: ":")
                 let clearHomeControllerId = homeControllerId[0].replacingOccurrences(of: "<", with: "")
                 
-                var hcID = "\(HomeController())".components(separatedBy: ":")
+                let hcID = "\(HomeController())".components(separatedBy: ":")
                 let clearHcId = hcID[0].replacingOccurrences(of: "<", with: "")
                 
                 if clearHomeControllerId == clearHcId {

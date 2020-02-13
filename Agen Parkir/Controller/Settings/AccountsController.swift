@@ -123,13 +123,15 @@ extension AccountsController {
             let operationQueue = OperationQueue()
             operationQueue.addOperation(accountOperation)
             accountOperation.completionBlock = {
-                SVProgressHUD.dismiss()
-                
-                if let _ = accountOperation.error { return }
-                
-                PublicFunction.instance.showUnderstandDialog(self, "Success Edit", "Your profile was edited successfully", "Understand")
-                
-                UserDefaults.standard.set(true, forKey: StaticVar.reload_home_controller)
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    
+                    if let _ = accountOperation.error { return }
+                    
+                    PublicFunction.instance.showUnderstandDialog(self, "Success Edit", "Your profile was edited successfully", "Understand")
+                    
+                    UserDefaults.standard.set(true, forKey: StaticVar.reload_home_controller)
+                }
             }
         }
     }

@@ -145,27 +145,29 @@ class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollect
         operationQueue.addOperation(showPlateOperation)
         
         showPlateOperation.completionBlock = {
-            switch showPlateOperation.state {
-            case .success?:
-                self.listPlate = showPlateOperation.listPlate
-                DispatchQueue.main.async {
-                    self.emptyPlateLabel.isHidden = true
-                    self.plateCollectionView.isHidden = false
-                    self.plateCollectionView.reloadData()
-                    
-                    if let licenseProtocol = self.licensePlateControllerProtocol {
-                        licenseProtocol.refreshData(listPlate: showPlateOperation.listPlate)
+            DispatchQueue.main.async {
+                switch showPlateOperation.state {
+                case .success?:
+                    self.listPlate = showPlateOperation.listPlate
+                    DispatchQueue.main.async {
+                        self.emptyPlateLabel.isHidden = true
+                        self.plateCollectionView.isHidden = false
+                        self.plateCollectionView.reloadData()
+                        
+                        if let licenseProtocol = self.licensePlateControllerProtocol {
+                            licenseProtocol.refreshData(listPlate: showPlateOperation.listPlate)
+                        }
                     }
+                case .error?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error Get List Plate", showPlateOperation.error!, "Understand")
+                case .empty?:
+                    DispatchQueue.main.async {
+                        self.emptyPlateLabel.isHidden = false
+                        self.plateCollectionView.isHidden = true
+                    }
+                default:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error!", "Please click the retry button to refresh data", "Understand")
                 }
-            case .error?:
-                PublicFunction.instance.showUnderstandDialog(self, "Error Get List Plate", showPlateOperation.error!, "Understand")
-            case .empty?:
-                DispatchQueue.main.async {
-                    self.emptyPlateLabel.isHidden = false
-                    self.plateCollectionView.isHidden = true
-                }
-            default:
-                PublicFunction.instance.showUnderstandDialog(self, "Error!", "Please click the retry button to refresh data", "Understand")
             }
         }
     }
@@ -230,29 +232,31 @@ class LicensePlateController: BaseViewController, UITextFieldDelegate, UICollect
         let deletePlateOperation = DeletePlateOperation(String(plateModel.plate_id))
         operationQueue.addOperation(deletePlateOperation)
         deletePlateOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
-            switch deletePlateOperation.state {
-            case .success?:
-                PublicFunction.instance.showUnderstandDialog(self, "Success Delete", "Success delete plate with number \(plateModel.number_plate ?? "")", "Cancel")
-                self.listPlate.remove(at: positionInList)
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
                 
-                if let licenseProtocol = self.licensePlateControllerProtocol {
-                    licenseProtocol.refreshData(listPlate: self.listPlate)
-                }
-                
-                DispatchQueue.main.async {
-                    self.plateCollectionView.reloadData()
+                switch deletePlateOperation.state {
+                case .success?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Success Delete", "Success delete plate with number \(plateModel.number_plate ?? "")", "Cancel")
+                    self.listPlate.remove(at: positionInList)
                     
-                    if self.listPlate.count == 0 {
-                        self.emptyPlateLabel.isHidden = false
-                        self.plateCollectionView.isHidden = true
+                    if let licenseProtocol = self.licensePlateControllerProtocol {
+                        licenseProtocol.refreshData(listPlate: self.listPlate)
                     }
+                    
+                    DispatchQueue.main.async {
+                        self.plateCollectionView.reloadData()
+                        
+                        if self.listPlate.count == 0 {
+                            self.emptyPlateLabel.isHidden = false
+                            self.plateCollectionView.isHidden = true
+                        }
+                    }
+                case .canceled?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error Delete", "Failed when deleting vehicle with plate \(plateModel.number_plate ?? ""), please try again", "Understand")
+                default:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error Delete", "Failed when deleting vehicle, error: \(deletePlateOperation.error ?? "")", "Understand")
                 }
-            case .canceled?:
-                PublicFunction.instance.showUnderstandDialog(self, "Error Delete", "Failed when deleting vehicle with plate \(plateModel.number_plate ?? ""), please try again", "Understand")
-            default:
-                PublicFunction.instance.showUnderstandDialog(self, "Error Delete", "Failed when deleting vehicle, error: \(deletePlateOperation.error ?? "")", "Understand")
             }
         }
     }
@@ -318,17 +322,19 @@ extension LicensePlateController {
         operationQueue.addOperation(postPlateOperation)
         
         postPlateOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
-            switch postPlateOperation.state {
-            case .success?:
-                PublicFunction.instance.showUnderstandDialog(self, "Success", "Success registered your vehicle", "Understand")
-                self.setToDefault()
-                self.loadListPlate()
-            case .error?:
-                PublicFunction.instance.showUnderstandDialog(self, "Error", postPlateOperation.error!, "Understand")
-            default: //canceled
-                PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again to registered your vehicle", "Understand")
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                
+                switch postPlateOperation.state {
+                case .success?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Success", "Success registered your vehicle", "Understand")
+                    self.setToDefault()
+                    self.loadListPlate()
+                case .error?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", postPlateOperation.error!, "Understand")
+                default: //canceled
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again to registered your vehicle", "Understand")
+                }
             }
         }
     }

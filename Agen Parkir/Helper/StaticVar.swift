@@ -23,7 +23,7 @@ struct StaticVar {
     static let sendbirdIdentifier = "sendbirdIdentifier"
     static let my_card = "my_card"
     static let onesignal_player_id = "onesignal_player_id"
-    static let root_images = "https://s3-ap-southeast-1.amazonaws.com/mika-park1/"
+    static let root_images = ""
     static let last_timer = "last_timer"
     static let time_timer_removed = "time_timer_removed"
     static let reload_home_controller = "reload_home_controller"

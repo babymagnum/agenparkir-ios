@@ -87,79 +87,81 @@ class OngoingInfoController: BaseViewController, UICollectionViewDelegate {
             let detailOngoingOperation = DetailOngoingOperation(order_id: model.order_id!)
             operation.addOperation(detailOngoingOperation)
             detailOngoingOperation.completionBlock = {
-                SVProgressHUD.dismiss()
-                
-                switch detailOngoingOperation.state{
-                case .success?:
-                    if let data = detailOngoingOperation.returnDetailOngoing {
-                        
-                        DispatchQueue.main.async {
-                            self.venueName.text = data.building_name
-                            self.parkingLot.text = "[ \(data.parking_lot) ]"
-                            self.plateNumber.text = "[ \(data.plate_number) ]"
-                            self.price.text = "[ Rp\(PublicFunction.instance.prettyRupiah("\(data.tariff)")) ]"
-                            self.bookingCode.text = data.booking_code
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    
+                    switch detailOngoingOperation.state{
+                    case .success?:
+                        if let data = detailOngoingOperation.returnDetailOngoing {
                             
-                            if data.vehicle_types_id == 1 {
-                                self.viewCars.isHidden = true
-                            } else {
-                                self.viewMotorcycle.isHidden = true
-                            }
-                            
-                            if data.parking_types == 0 {
-                                self.viewVallet.isHidden = true
-                            } else {
-                                self.viewStandart.isHidden = true
-                            }
-                            
-                            if data.type == "in" {
-                                self.viewOutdoor.isHidden = true
-                            } else {
-                                self.viewIndoor.isHidden = true
-                            }
-                            
-                            switch data.payment_types_id {
-                            case 1:
-                                self.viewCash.isHidden = true
-                                self.viewMycard.isHidden = true
-                            case 2:
-                                self.viewCredit.isHidden = true
-                                self.viewMycard.isHidden = true
-                            default:
-                                self.viewCredit.isHidden = true
-                                self.viewCash.isHidden = true
-                            }
-                            
-                            self.listImages = data.images
-                            self.imagesCollectionView.reloadData()
-                            
-                            self.contentMainHeight.constant -= self.storeCollectionViewHeight.constant - 10
-                            
-                            if data.store_list.count == 0 {
-                                self.storeCollectionViewHeight.constant = 0
-                                self.textStoreInThisPlace.isHidden = true
-                            } else {
-                                self.listStores = data.store_list
-                                self.storeCollectionView.reloadData()
+                            DispatchQueue.main.async {
+                                self.venueName.text = data.building_name
+                                self.parkingLot.text = "[ \(data.parking_lot) ]"
+                                self.plateNumber.text = "[ \(data.plate_number) ]"
+                                self.price.text = "[ Rp\(PublicFunction.instance.prettyRupiah("\(data.tariff)")) ]"
+                                self.bookingCode.text = data.booking_code
+                                
+                                if data.vehicle_types_id == 1 {
+                                    self.viewCars.isHidden = true
+                                } else {
+                                    self.viewMotorcycle.isHidden = true
+                                }
+                                
+                                if data.parking_types == 0 {
+                                    self.viewVallet.isHidden = true
+                                } else {
+                                    self.viewStandart.isHidden = true
+                                }
+                                
+                                if data.type == "in" {
+                                    self.viewOutdoor.isHidden = true
+                                } else {
+                                    self.viewIndoor.isHidden = true
+                                }
+                                
+                                switch data.payment_types_id {
+                                case 1:
+                                    self.viewCash.isHidden = true
+                                    self.viewMycard.isHidden = true
+                                case 2:
+                                    self.viewCredit.isHidden = true
+                                    self.viewMycard.isHidden = true
+                                default:
+                                    self.viewCredit.isHidden = true
+                                    self.viewCash.isHidden = true
+                                }
+                                
+                                self.listImages = data.images
+                                self.imagesCollectionView.reloadData()
+                                
+                                self.contentMainHeight.constant -= self.storeCollectionViewHeight.constant - 10
+                                
+                                if data.store_list.count == 0 {
+                                    self.storeCollectionViewHeight.constant = 0
+                                    self.textStoreInThisPlace.isHidden = true
+                                } else {
+                                    self.listStores = data.store_list
+                                    self.storeCollectionView.reloadData()
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                                        self.storeCollectionViewHeight.constant = self.storeCollectionView.contentSize.height
+                                        self.contentMainHeight.constant += self.storeCollectionViewHeight.constant
+                                    })
+                                }
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                                    self.storeCollectionViewHeight.constant = self.storeCollectionView.contentSize.height
-                                    self.contentMainHeight.constant += self.storeCollectionViewHeight.constant
+                                    UIView.animate(withDuration: 0.1, animations: {
+                                        self.view.layoutIfNeeded()
+                                    })
                                 })
                             }
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                                UIView.animate(withDuration: 0.1, animations: {
-                                    self.view.layoutIfNeeded()
-                                })
-                            })
                         }
-                        
+                    case .error?:
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", detailOngoingOperation.error!, "Understand")
+                    default:
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please refresh this page", "Understand")
                     }
-                case .error?:
-                    PublicFunction.instance.showUnderstandDialog(self, "Error", detailOngoingOperation.error!, "Understand")
-                default:
-                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please refresh this page", "Understand")
                 }
             }
         }

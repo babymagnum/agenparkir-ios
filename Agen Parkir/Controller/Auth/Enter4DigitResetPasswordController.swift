@@ -137,14 +137,16 @@ extension Enter4DigitResetPasswordController {
         let resendEmailOperation = ResendEmailOperation(email: UserDefaults.standard.string(forKey: StaticVar.email)!)
         operationQueue.addOperations([resendEmailOperation], waitUntilFinished: false)
         resendEmailOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
-            if let err = resendEmailOperation.error {
-                self.showDialog("Error Resend Code", "with message \(err)")
-                return
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                
+                if let err = resendEmailOperation.error {
+                    self.showDialog("Error Resend Code", "with message \(err)")
+                    return
+                }
+                
+                self.showDialog("Success Resend Code", resendEmailOperation.message!)
             }
-            
-            self.showDialog("Success Resend Code", resendEmailOperation.message!)
         }
     }
     
@@ -173,44 +175,47 @@ extension Enter4DigitResetPasswordController {
         operation.isSuspended = false
         
         activationOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
-            if let err = activationOperation.error {
-                self.showDialog("Error Activation", "with message \(err)")
-                return
-            }
-            
-            if self.state == Enter4DigitCodeState.email {
-                let alert = UIAlertController(title: "Email Activated", message: "Welcome to Agen Parkir", preferredStyle: .alert)
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
                 
-                alert.addAction(UIAlertAction(title: "Let's Go", style: .cancel, handler: { (UIAlertAction) in
-                    UserDefaults.standard.set(true, forKey: StaticVar.login)
-                    let agreementController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AgreementsController") as! AgreementsController
-                    self.navigationController?.pushViewController(agreementController, animated: true)
-                }))
+                if let err = activationOperation.error {
+                    self.showDialog("Error Activation", "with message \(err)")
+                    return
+                }
                 
-                self.present(alert, animated: true)
-            } else {
-                let alert = UIAlertController(title: "Success!!", message: "Your password was changed, you can login with your new password", preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: "Understand", style: .cancel, handler: { (UIAlertAction) in
-                    for (index, item) in (self.navigationController?.viewControllers.enumerated())! {
-                        
-                        var viewControllerID = "\(item)".components(separatedBy: ":")
-                        let clearViewControllerID = viewControllerID[0].replacingOccurrences(of: "<", with: "")
-                        
-                        var loginID = "\(LoginController())".components(separatedBy: ":")
-                        let clearDvcID = loginID[0].replacingOccurrences(of: "<", with: "")
-                        
-                        if clearViewControllerID == clearDvcID {
-                            self.navigationController?.popToViewController(self.navigationController?.viewControllers[index] as! LoginController, animated: true)
-                            break
+                if self.state == Enter4DigitCodeState.email {
+                    let alert = UIAlertController(title: "Email Activated", message: "Welcome to Agen Parkir", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Let's Go", style: .cancel, handler: { (UIAlertAction) in
+                        UserDefaults.standard.set(true, forKey: StaticVar.login)
+                        let agreementController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AgreementsController") as! AgreementsController
+                        self.navigationController?.pushViewController(agreementController, animated: true)
+                    }))
+                    
+                    self.present(alert, animated: true)
+                }
+                else {
+                    let alert = UIAlertController(title: "Success!!", message: "Your password was changed, you can login with your new password", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Understand", style: .cancel, handler: { (UIAlertAction) in
+                        for (index, item) in (self.navigationController?.viewControllers.enumerated())! {
+                            
+                            let viewControllerID = "\(item)".components(separatedBy: ":")
+                            let clearViewControllerID = viewControllerID[0].replacingOccurrences(of: "<", with: "")
+                            
+                            let loginID = "\(LoginController())".components(separatedBy: ":")
+                            let clearDvcID = loginID[0].replacingOccurrences(of: "<", with: "")
+                            
+                            if clearViewControllerID == clearDvcID {
+                                self.navigationController?.popToViewController(self.navigationController?.viewControllers[index] as! LoginController, animated: true)
+                                break
+                            }
                         }
-                    }
-                }))
-                
-                self.present(alert, animated: true)
-                
+                    }))
+                    
+                    self.present(alert, animated: true)
+                    
+                }
             }
         }
     }

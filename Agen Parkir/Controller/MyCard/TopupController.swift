@@ -165,9 +165,9 @@ extension TopupController {
         operationQueue.addOperation(currentOperation)
         
         currentOperation.completionBlock = {
-            SVProgressHUD.dismiss()
-            
             DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                
                 switch currentOperation.state {
                 case .success?:
                     self.updateUI(currentOperation.currentModel!)
@@ -179,7 +179,6 @@ extension TopupController {
                     })
                 }
             }
-            
         }
     }
     

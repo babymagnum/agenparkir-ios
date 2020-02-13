@@ -254,7 +254,7 @@
                         <outlet property="skipButton" destination="0Gd-Gx-Zug" id="EhN-ht-QgQ"/>
                         <outlet property="textGajaman" destination="MgV-l9-TCd" id="RUS-6p-dbB"/>
                         <outlet property="welcomeCollectionVIew" destination="l4b-7Z-9vI" id="REl-ai-kAx"/>
-                        <segue destination="lFq-YH-Qgk" kind="presentation" identifier="toLoginRegisterController" id="mTn-og-pLA"/>
+                        <segue destination="lFq-YH-Qgk" kind="presentation" identifier="toLoginRegisterController" modalPresentationStyle="fullScreen" id="mTn-og-pLA"/>
                         <segue destination="ffJ-wq-jUk" kind="presentation" identifier="toHomeController" modalPresentationStyle="fullScreen" id="bEF-cG-gPP"/>
                     </connections>
                 </viewController>
@@ -267,15 +267,15 @@
             <objects>
                 <viewController storyboardIdentifier="LoginRegisterController" id="64Z-bd-Pdy" customClass="LoginRegisterController" customModule="Agen_Parkir" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cG9-1h-gwU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="780"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Artboard 3@0.75x-8" translatesAutoresizingMaskIntoConstraints="NO" id="YTI-3R-4vW">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="780"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                                 <color key="backgroundColor" red="0.92941176469999998" green="0.97647058819999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEy-dY-A8q">
-                                <rect key="frame" x="0.0" y="56" width="320" height="724"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4t-sD-SXb">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="639"/>
@@ -497,7 +497,7 @@
                         <outlet property="viewGoogle" destination="iR0-Go-l6f" id="xcB-b6-Omb"/>
                         <outlet property="viewLogin" destination="cyh-hW-ONh" id="pK7-88-BEt"/>
                         <outlet property="viewSignup" destination="9Bg-GH-vMT" id="48x-sc-Vb1"/>
-                        <segue destination="ffJ-wq-jUk" kind="presentation" identifier="toHomeController" id="HWU-fd-yzO"/>
+                        <segue destination="ffJ-wq-jUk" kind="presentation" identifier="toHomeController" modalPresentationStyle="fullScreen" id="HWU-fd-yzO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vs-K8-tMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1039,7 +1039,7 @@
                         <outlet property="viewLogin" destination="6sS-hc-CgI" id="Vp7-eB-acl"/>
                         <outlet property="viewNext" destination="XIl-KE-Su1" id="VRe-tF-TXQ"/>
                         <outlet property="viewPassword" destination="6UK-OX-o3j" id="hrx-xd-i3f"/>
-                        <segue destination="ffJ-wq-jUk" kind="presentation" identifier="toHomeController" id="oah-h9-Scl"/>
+                        <segue destination="ffJ-wq-jUk" kind="presentation" identifier="toHomeController" modalPresentationStyle="fullScreen" id="oah-h9-Scl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LhA-FR-cC8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1183,7 +1183,7 @@
                     <size key="freeformSize" width="320" height="1000"/>
                     <connections>
                         <outlet property="buttonAgree" destination="IgI-sA-IZ1" id="BB1-9p-ub2"/>
-                        <segue destination="ffJ-wq-jUk" kind="presentation" identifier="toHomeController" id="GGq-nv-PnX"/>
+                        <segue destination="ffJ-wq-jUk" kind="presentation" identifier="toHomeController" modalPresentationStyle="fullScreen" id="GGq-nv-PnX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxT-yz-XGA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2639,7 +2639,7 @@
                         <outlet property="viewPopupPaymentHeightConstraint" destination="Yex-pH-WnD" id="bS8-44-kVO"/>
                         <outlet property="viewReceipt" destination="wY1-ct-T9j" id="ixr-Fx-NLM"/>
                         <outlet property="viewSettings" destination="Kia-8P-MJZ" id="uDl-TL-OrL"/>
-                        <segue destination="lFq-YH-Qgk" kind="presentation" identifier="toLoginRegisterController" id="dHg-aX-9r2"/>
+                        <segue destination="lFq-YH-Qgk" kind="presentation" identifier="toLoginRegisterController" modalPresentationStyle="fullScreen" id="dHg-aX-9r2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Suz-LG-8CM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -6813,8 +6813,8 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WZQ-EH-g1R" userLabel="viewPayment">
                                                         <rect key="frame" x="20" y="398" width="280" height="40"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vT-TE-5fv" userLabel="viewCars">
-                                                                <rect key="frame" x="0.0" y="0.0" width="93.5" height="40"/>
+                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vT-TE-5fv" userLabel="viewCars">
+                                                                <rect key="frame" x="-50" y="0.0" width="50" height="40"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Artboard 127@0.75x-8" translatesAutoresizingMaskIntoConstraints="NO" id="1PK-pl-0QP">
                                                                         <rect key="frame" x="0.0" y="5" width="30" height="30"/>
@@ -6824,7 +6824,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit/Debit" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTY-cB-pPs">
-                                                                        <rect key="frame" x="40" y="2" width="43.5" height="36"/>
+                                                                        <rect key="frame" x="40" y="11" width="0.0" height="18"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -6841,7 +6841,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9M4-H9-tqr" userLabel="viewMotor">
-                                                                <rect key="frame" x="93.5" y="0.0" width="93" height="40"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="40"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Artboard 128@0.75x-8" translatesAutoresizingMaskIntoConstraints="NO" id="rdb-fK-hnu">
                                                                         <rect key="frame" x="0.0" y="5" width="30" height="30"/>
@@ -6851,7 +6851,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWY-E2-F8I">
-                                                                        <rect key="frame" x="40" y="11" width="43" height="18"/>
+                                                                        <rect key="frame" x="40" y="11" width="90" height="18"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -6867,7 +6867,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PBE-hf-Q7v" userLabel="viewMotor">
-                                                                <rect key="frame" x="186.5" y="0.0" width="93.5" height="40"/>
+                                                                <rect key="frame" x="140" y="0.0" width="140" height="40"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Artboard 129@0.75x-8" translatesAutoresizingMaskIntoConstraints="NO" id="PwU-xQ-I2j">
                                                                         <rect key="frame" x="0.0" y="5" width="30" height="30"/>
@@ -6877,7 +6877,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Card" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCU-iP-nGy">
-                                                                        <rect key="frame" x="40" y="2" width="43.5" height="36"/>
+                                                                        <rect key="frame" x="40" y="11" width="90" height="18"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -7387,7 +7387,7 @@
                         <outlet property="settingsCollectionHeight" destination="1u6-62-GqE" id="Vhm-Hx-vZ7"/>
                         <outlet property="settingsCollectionView" destination="r14-7h-wa1" id="NdL-EL-N6z"/>
                         <outlet property="viewLogout" destination="urh-iu-63W" id="0we-MR-XCU"/>
-                        <segue destination="lFq-YH-Qgk" kind="presentation" identifier="toLoginRegisterController" id="ToU-FU-8Qq"/>
+                        <segue destination="lFq-YH-Qgk" kind="presentation" identifier="toLoginRegisterController" modalPresentationStyle="fullScreen" id="ToU-FU-8Qq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yX8-Co-nKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -10142,11 +10142,10 @@
         <!--Navigation Controller-->
         <scene sceneID="kly-I1-oiH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lFq-YH-Qgk" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="lFq-YH-Qgk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="WSA-Fi-G6x"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZWx-xc-P5n">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="ZWx-xc-P5n">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -10265,6 +10264,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bEF-cG-gPP"/>
-        <segue reference="dHg-aX-9r2"/>
+        <segue reference="ToU-FU-8Qq"/>
     </inferredMetricsTieBreakers>
 </document>

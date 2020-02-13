@@ -214,17 +214,19 @@ extension BookingAgreementController {
                 let orderOperation = OrderOperation(order_id: "\(booking.order_id)")
                 operation.addOperation(orderOperation)
                 orderOperation.completionBlock = {
-                    SVProgressHUD.dismiss()
-                    
-                    switch orderOperation.state {
-                    case .success?:
-                        DispatchQueue.main.async {
-                            self.goToOngoingController()
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        
+                        switch orderOperation.state {
+                        case .success?:
+                            DispatchQueue.main.async {
+                                self.goToOngoingController()
+                            }
+                        case .error?:
+                            PublicFunction.instance.showUnderstandDialog(self, "Error", orderOperation.error!, "Understand")
+                        default:
+                            PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
                         }
-                    case .error?:
-                        PublicFunction.instance.showUnderstandDialog(self, "Error", orderOperation.error!, "Understand")
-                    default:
-                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
                     }
                 }
             }
@@ -236,15 +238,17 @@ extension BookingAgreementController {
             operation.addOperation(creditCardOperation)
             
             creditCardOperation.completionBlock = {
-                switch creditCardOperation.state {
-                case .success?:
-                    self.showPaymentController(creditCardOperation.token!)
-                case .error?:
-                    SVProgressHUD.dismiss()
-                    PublicFunction.instance.showUnderstandDialog(self, "Error", creditCardOperation.error!, "Understand")
-                default:
-                    SVProgressHUD.dismiss()
-                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
+                DispatchQueue.main.async {
+                    switch creditCardOperation.state {
+                    case .success?:
+                        self.showPaymentController(creditCardOperation.token!)
+                    case .error?:
+                        SVProgressHUD.dismiss()
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", creditCardOperation.error!, "Understand")
+                    default:
+                        SVProgressHUD.dismiss()
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again", "Understand")
+                    }
                 }
             }
         }
@@ -257,17 +261,19 @@ extension BookingAgreementController {
             let cancelBookingOperation = CancelBookingOperation(orders_id: "\(booking.order_id)")
             operation.addOperation(cancelBookingOperation)
             cancelBookingOperation.completionBlock = {
-                SVProgressHUD.dismiss()
-                
-                switch cancelBookingOperation.state {
-                case .success?:
-                    DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    
+                    switch cancelBookingOperation.state {
+                    case .success?:
+                        DispatchQueue.main.async {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    case .error?:
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", cancelBookingOperation.error!, "Understand")
+                    default:
+                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again later", "Understand")
                     }
-                case .error?:
-                    PublicFunction.instance.showUnderstandDialog(self, "Error", cancelBookingOperation.error!, "Understand")
-                default:
-                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please try again later", "Understand")
                 }
             }
         }

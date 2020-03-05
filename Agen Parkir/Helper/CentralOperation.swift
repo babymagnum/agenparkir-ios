@@ -36,7 +36,7 @@ class FacebookLoginOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/fb-callback?token_access=\(facebookToken ?? "")&player_id=\(UserDefaults.standard.string(forKey: StaticVar.onesignal_player_id) ?? "")"
         
         Alamofire.request(url, method: .post).responseJSON { (response) in
@@ -96,7 +96,7 @@ class RegisterOperation: AbstractOperation {
             "player_id": UserDefaults.standard.string(forKey: StaticVar.onesignal_player_id)!
         ]
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/register"
         
         Alamofire.request(url, method: .post, parameters: param).responseJSON { (response) in
@@ -159,7 +159,7 @@ class LoginOperation: AbstractOperation {
             "player_id": UserDefaults.standard.string(forKey: StaticVar.onesignal_player_id)!
         ]
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/login"
         
         Alamofire.request(url, method: .post, parameters: param as Parameters).responseJSON { (response) in
@@ -217,7 +217,7 @@ class ActivationOperation: AbstractOperation {
     }
     
     private func activation() {
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/activation?otp=\(otp ?? "")"
         
         Alamofire.request(url, method: .post).responseJSON { (response) in
@@ -271,7 +271,7 @@ class ForgotPasswordOperation: AbstractOperation {
     }
     
     private func forgotPassword() {
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/forgot-password?email=\(email ?? "")"
         
         Alamofire.request(url, method: .post).responseJSON { (response) in
@@ -321,7 +321,7 @@ class ResendEmailOperation: AbstractOperation {
     }
     
     private func resendEmail() {
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/resend_email?email=\(email ?? "")"
         
         Alamofire.request(url, method: .post).responseJSON { (response) in
@@ -356,7 +356,7 @@ class RecentlyOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/recently?customers_id=\(UserDefaults.standard.string(forKey: StaticVar.id) ?? "")"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -413,7 +413,7 @@ class BillboardOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/billboard"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -474,7 +474,7 @@ class CurrentOperation: AbstractOperation {
             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: StaticVar.token) ?? "")"
         ]
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/current"
         
         Alamofire.request(url, method: .get, headers: headers).responseJSON { (response) in
@@ -538,7 +538,7 @@ class ServicesOperation: AbstractOperation {
             return
         }
 
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/services"
 
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -600,7 +600,7 @@ class ShowListBuildingOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/list-building?name=\(data?.nameQuery ?? "")&latitude=\(UserDefaults.standard.string(forKey: StaticVar.latitude) ?? "")&longitude=\(UserDefaults.standard.string(forKey: StaticVar.longitude) ?? "")&page=\(data!.pageNumber)"
         
         print("show building url \(url)")
@@ -681,7 +681,7 @@ class LogoutOperation: AbstractOperation {
             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: StaticVar.token) ?? "")"
         ]
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/logout?customers_id=\(UserDefaults.standard.string(forKey: StaticVar.id) ?? "")"
         
         Alamofire.request(url, method: .post, headers: headers).responseJSON { (response) in
@@ -721,7 +721,7 @@ class AccountOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/account"
         
         let headers: [String: String] = [
@@ -822,7 +822,7 @@ class PostPlateOperation: AbstractOperation {
             "title": (dataPlate?.title)!
         ]
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/post-plate"
         
         Alamofire.request(url, method: .post, parameters: params).responseJSON { (response) in
@@ -863,7 +863,7 @@ class ShowListPlateOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/list-plate/\(UserDefaults.standard.string(forKey: StaticVar.id) ?? "")"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -921,7 +921,7 @@ class DeletePlateOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/delete-plate?plate_id=\(plateID ?? "")"
         
         Alamofire.request(url, method: .post).responseJSON { (response) in
@@ -967,7 +967,7 @@ class DetailBuildingOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/building?buildings_id=\(buildingId!)"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -1035,7 +1035,7 @@ class BookingOperation: AbstractOperation {
             "payment_type_id": (bookingData?.payment_type_id)!
         ]
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/booking"
         
         Alamofire.request(url, method: .post, parameters: param).responseJSON { (response) in
@@ -1091,7 +1091,7 @@ class OrderOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/order?orders_id=\(order_id ?? "")"
         
         Alamofire.request(url, method: .post).responseJSON { (response) in
@@ -1135,7 +1135,7 @@ class CancelBookingOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/cancel-order?orders_id=\(orders_id ?? "")"
         
         Alamofire.request(url, method: .post).responseJSON { (response) in
@@ -1184,7 +1184,7 @@ class ListOngoingOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/list-ongoing?customers_id=\(UserDefaults.standard.string(forKey: StaticVar.id) ?? "")"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -1249,7 +1249,7 @@ class DetailOngoingOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/list-ongoing-details/?orders_id=\(order_id!)"
         
         print("detail ongoind url \(url)")
@@ -1301,7 +1301,7 @@ class ListReceiptsOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/list-receipt/?customers_id=\(UserDefaults.standard.string(forKey: StaticVar.id) ?? "")&page=\(currentPage!)"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -1376,7 +1376,7 @@ class SubmitReceipts: AbstractOperation {
             return
         }
     
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/list-receipt-submit/?orders_id=\(order_id!)"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -1419,7 +1419,7 @@ class TopupOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/top-up"
         
         let params: [String: Any] = [
@@ -1427,7 +1427,7 @@ class TopupOperation: AbstractOperation {
             "customers_id": Int(UserDefaults.standard.string(forKey: StaticVar.id) ?? "0") ?? 0 as Any
         ]
         
-        Alamofire.request(url, method: .get, parameters: params, encoding: JSONEncoding.default).responseJSON { (response) in
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { (response) in
             
             switch response.result {
             case .success(let success):
@@ -1465,7 +1465,7 @@ class TopupCreditCardOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/snap-token"
         
         let param: [String: Any] = [
@@ -1519,7 +1519,7 @@ class HistoryOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/history-my-card?customers_id=\(dataHistory?.customer_id ?? "")&page=\(dataHistory?.current_page ?? 1)"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -1581,7 +1581,7 @@ class TicketOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/ticket?buildings_id=\(building_id!)"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -1655,7 +1655,7 @@ class TicketOrderOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/ticket-order?tickets_id=\(orderData!.tickets_id)&customers_id=\(UserDefaults.standard.string(forKey: StaticVar.id) ?? "")&quantity_order=\(orderData!.quantity_order)&payment_types_id=\(orderData!.payment_types_id)"
         
         Alamofire.request(url, method: .post).responseJSON { (response) in
@@ -1697,7 +1697,7 @@ class TicketDetailOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/list-ongoing-details-ticket?orders_id=\(orders_id!)"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -1747,7 +1747,7 @@ class TicketListOngoingOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/list-ongoing-ticket?customers_id=\(UserDefaults.standard.string(forKey: StaticVar.id) ?? "")"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -1804,7 +1804,7 @@ class ListStoreOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/show-store?buildings_id=\(data?.building_id ?? "")&page=\(data?.page ?? 1)&name=\(data?.name ?? "")"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -1897,7 +1897,7 @@ class DetailStoreOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/store-building?stores_id=\(data?.stores_id ?? "")&page=\(data?.page ?? 1)"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in
@@ -1956,7 +1956,7 @@ class PaymentPendingOperation: AbstractOperation {
             return
         }
         
-        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://165.22.243.117/" : "https://agenparkir.com/"
         let url = "\(root)api/android/list-ongoing?customers_id=\(UserDefaults.standard.string(forKey: StaticVar.id) ?? "")"
         
         Alamofire.request(url, method: .get).responseJSON { (response) in

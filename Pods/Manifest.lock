@@ -110,7 +110,7 @@ DEPENDENCIES:
   - XLPagerTabStrip (~> 8.1)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - Bolts
     - Crashlytics
@@ -170,6 +170,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   XLPagerTabStrip: 22d4c58200d7c105e0e407ab6bfd01a5d85014be
 
-PODFILE CHECKSUM: f398a6e9c0d93ed84fc48cd1a0cf2bc719396080
+PODFILE CHECKSUM: 3f0f6b43be1ae51886420a63514d7a213090854c
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

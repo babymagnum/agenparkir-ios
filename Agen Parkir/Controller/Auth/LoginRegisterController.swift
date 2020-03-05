@@ -36,8 +36,8 @@ class LoginRegisterController: BaseViewController {
         super.viewDidLoad()
         
         //uncoment below code if its dev
-        //UserDefaults.standard.set("Dev", forKey: StaticVar.applicationState)
-        UserDefaults.standard.set("Prod", forKey: StaticVar.applicationState)
+        UserDefaults.standard.set("Dev", forKey: StaticVar.applicationState)
+        //UserDefaults.standard.set("Prod", forKey: StaticVar.applicationState)
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -102,7 +102,7 @@ extension LoginRegisterController {
         SVProgressHUD.show()
         
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
-        fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) -> Void in
+        fbLoginManager.logIn(withReadPermissions: ["email", "public_profile"], from: self) { (result, error) -> Void in
             if (error == nil){
                 let fbloginresult : FBSDKLoginManagerLoginResult = result!
                 // if user cancel the login

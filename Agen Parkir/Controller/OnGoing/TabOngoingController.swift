@@ -75,7 +75,6 @@ class TabOngoingController: ButtonBarPagerTabStripViewController {
     }
     
     func setupTabLayout() {
-        // change selected bar color
         settings.style.buttonBarBackgroundColor = .white
         settings.style.buttonBarItemBackgroundColor = .white
         settings.style.selectedBarBackgroundColor = UIColor.init(rgb: 0x2B3990)

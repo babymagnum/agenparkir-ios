@@ -23,14 +23,14 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb320445685278393</string>
+				<string>fb231971724492806</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>15</string>
 	<key>FacebookAppID</key>
-	<string>320445685278393</string>
+	<string>231971724492806</string>
 	<key>FacebookDisplayName</key>
 	<string>Agen Parkir</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -60,7 +60,14 @@
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
-            <key>res.cloudinary.com</key>
+			<key>res.cloudinary.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+            <key>165.22.243.117</key>
             <dict>
                 <key>NSIncludesSubdomains</key>
                 <true/>

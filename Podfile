@@ -7,8 +7,6 @@ target 'Agen Parkir' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'IQKeyboardManagerSwift'
   pod 'Kingfisher'
-  pod 'RxSwift',    '~> 4.0'
-  pod 'RxCocoa',    '~> 4.0'
   pod 'XLPagerTabStrip', '~> 8.1'
   pod 'MidtransKit'
   pod 'ScalingCarousel'
@@ -19,7 +17,9 @@ target 'Agen Parkir' do
   pod 'Firebase/Core'
   pod 'Fabric', '~> 1.9.0'
   pod 'Crashlytics', '~> 3.12.0'
-
+  pod 'RxSwift',    '~> 4.0'
+  pod 'RxCocoa',    '~> 4.0'
+  pod 'RxAtomic',    '~> 4.0'
 end
 
 target 'OneSignalNotificationServiceExtension' do

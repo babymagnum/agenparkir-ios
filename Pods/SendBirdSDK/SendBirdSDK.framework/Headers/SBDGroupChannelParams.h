@@ -34,6 +34,14 @@
 @property (nonatomic, setter=setSuper:) BOOL isSuper;
 
 /**
+ *  Represents the channel is broadcast channel or not.
+ *  NO by default.
+ *
+ *  @since 3.0.171
+ */
+@property (nonatomic, setter=setBroadcast:) BOOL isBroadcast;
+
+/**
  *  Represents the channel is public channel or not.
  *  NO by default, a.k.a. private.
  */
@@ -53,6 +61,22 @@
  *  @since 3.0.90
  */
 @property (nonatomic, setter=setEphemeral:) BOOL isEphemeral;
+
+/**
+ *  Represents a boolean whether the public group channel is discoverable.
+ *  It is only for creating or updating a public group channel. If the value is YES(true) and `isPublic` is NO(false), you will get an error from call-back of creating/updateing channel.
+ *  The default value is YES(true).
+ *
+ *  @since 3.0.136
+ */
+@property (nonatomic, getter=isDiscoverable) BOOL discoverable;
+
+/**
+ The boolean that can cause an error if any of the users is not valid when creating the channel. If you have two valid users and 'strict` is true, the channel is created successfully when you create a channel with users. If one valid user, one invalid user, and `strict` are true, you will get an error creating the channel. However, if you have one valid user, one invalid user, and `strict` is false, you can create a channel without errors without a user.
+ 
+ @since 3.0.148
+ */
+@property (nonatomic, getter=isStrict) BOOL strict;
 
 /**
  *  Represents the custom type of group channel.

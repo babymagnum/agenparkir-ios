@@ -65,7 +65,7 @@ class AccountsController: BaseViewController, UITextFieldDelegate {
     private func populateDefaultData() {
         inputName.text = UserDefaults.standard.string(forKey: StaticVar.name)
         inputPhone.text = UserDefaults.standard.string(forKey: StaticVar.phone)
-        if FBSDKAccessToken.current() != nil {
+        if AccessToken.current != nil {
             inputEmail.text = "\(UserDefaults.standard.string(forKey: StaticVar.email)?.dropFirst(3) ?? "")"
         } else {
             inputEmail.text = UserDefaults.standard.string(forKey: StaticVar.email)

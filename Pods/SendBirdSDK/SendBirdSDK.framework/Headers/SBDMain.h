@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import "SBDUser.h"
 #import "SBDBaseChannel.h"
 #import "SBDGroupChannel.h"
@@ -342,7 +341,6 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *
  *  - `SBDWebSocketConnecting` - Connecting to the chat server
  *  - `SBDWebSocketOpen` - Connected to the chat server
- *  - `SBDWebSocketClosing` - Disconnecting from the chat server
  *  - `SBSWebSocketClosed` - Disconnected from the chat server
  */
 + (SBDWebSocketConnectionState)getConnectState;
@@ -444,6 +442,16 @@ typedef void(^SBDBackgroundSessionBlock)(void);
                         completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
+ *  Updates the current user's preferred languages
+ *
+ *  @param preferredLanguages   New array of preferred languages
+ *  @param completionHandler    The handler block to execute.
+ */
++ (void)updateCurrentUserInfoWithPreferredLanguages:(nonnull NSArray<NSString *> *)preferredLanguages
+                                  completionHandler:(nullable SBDErrorHandler)completionHandler;
+
+#pragma mark - push token
+/**
  *  Gets the pending push token.
  *
  *  @return Returns the pending push token.
@@ -540,6 +548,20 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  */
 + (void)unregisterAllPushKitTokenWithCompletionHandler:(nullable void (^)(NSDictionary * _Nullable response, SBDError * _Nullable error))completionHandler;
 
+/**
+ *  Requests device push tokens list of current user after the token.
+ *
+ *  @param token  The token used to get next pagination of deive push tokens.
+ *  @param pushTokenType  The enum type to represent the type of push token.
+ *  @param completionHandler  The handler block to be executed after requests. This block has no return value and takes 5 arguments that are device push token list, push token type you are requesting, boolean that indicates having next pagination, token to be used next pagination and error.
+ *
+ *  @since 3.0.134
+ */
++ (void)getMyPushTokensByToken:(nullable NSString *)token
+                 pushTokenType:(SBDPushTokenType)pushTokenType
+             completionHandler:(nonnull SBDGetPushTokensHandler)completionHandler;
+
+#pragma mark - block
 /**
  *  Blocks the specified user.
  *
@@ -831,6 +853,15 @@ typedef void(^SBDBackgroundSessionBlock)(void);
 + (NSInteger)getSubscribedTotalUnreadMessageCount;
 + (NSInteger)getSubscribedCustomTypeTotalUnreadMessageCount;
 + (NSInteger)getSubscribedCustomTypeUnreadMessageCountWithCustomType:(nonnull NSString *)customType;
+
+/**
+ * Marks as delivered a group channel of the current user.
+ *
+ * @param channelUrl The channel URL.
+ *
+ * @since 3.0.162
+ */
++ (void)markAsDeliveredWithChannelUrl:(nonnull NSString *)channelUrl;
 
 #pragma mark - channel change logs
 /**

@@ -257,10 +257,12 @@ class PublicFunction: NSObject{
         UserDefaults.standard.set("", forKey: StaticVar.token)
         UserDefaults.standard.set("", forKey: StaticVar.images)
         
-        if FBSDKAccessToken.current() != nil {
-            FBSDKAccessToken.setCurrent(nil)
-            FBSDKProfile.setCurrent(nil)
-            FBSDKLoginManager().logOut()
+        if AccessToken.current != nil {
+            //AccessToken.setCurrent(nil)
+            AccessToken.current = nil
+            //Profile.setCurrent(nil)
+            Profile.current = nil
+            LoginManager().logOut()
         }
         
         viewController.performSegue(withIdentifier: "toLoginRegisterController", sender: viewController)

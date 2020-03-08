@@ -10,6 +10,8 @@ import UIKit
 import IQKeyboardManagerSwift
 import MidtransKit
 import FacebookCore
+import FBSDKCoreKit
+import FBSDKLoginKit
 import OneSignal
 import SendBirdSDK
 import Firebase
@@ -44,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         MidtransConfig.shared().setClientKey("Mid-client-Ecyno8FETxVdlm8N", environment: .production, merchantServerURL: "https://agenparkir.com")
         
         //facebook login
-        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        //SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         //one signal
         let notificationReceivedBlock: OSHandleNotificationReceivedBlock = { notification in
@@ -109,7 +111,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
     
     //facebook login
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return SDKApplicationDelegate.shared.application(app, open: url, options: options)
+        if ApplicationDelegate.shared.application(app, open: url, options: options) {
+            return true
+        }
+        return false
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

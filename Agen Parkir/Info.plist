@@ -53,7 +53,14 @@
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
-			<key>dev46.agenparkir.com</key>
+            <key>mercusuar.uzone.id</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
+			<key>devagenparkir.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>
@@ -67,13 +74,6 @@
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
-            <key>165.22.243.117</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-            </dict>
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>

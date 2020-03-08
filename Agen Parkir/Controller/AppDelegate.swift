@@ -45,9 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         //midtrans
         MidtransConfig.shared().setClientKey("Mid-client-Ecyno8FETxVdlm8N", environment: .production, merchantServerURL: "https://agenparkir.com")
         
-        //facebook login
-        //SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        
         //one signal
         let notificationReceivedBlock: OSHandleNotificationReceivedBlock = { notification in
             print("Received Notification: \(String(describing: notification!.payload.notificationID))")

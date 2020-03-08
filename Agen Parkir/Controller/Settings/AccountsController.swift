@@ -65,17 +65,12 @@ class AccountsController: BaseViewController, UITextFieldDelegate {
     private func populateDefaultData() {
         inputName.text = UserDefaults.standard.string(forKey: StaticVar.name)
         inputPhone.text = UserDefaults.standard.string(forKey: StaticVar.phone)
-        if AccessToken.current != nil {
-            inputEmail.text = "\(UserDefaults.standard.string(forKey: StaticVar.email)?.dropFirst(3) ?? "")"
-        } else {
-            inputEmail.text = UserDefaults.standard.string(forKey: StaticVar.email)
-        }
+        inputEmail.text = UserDefaults.standard.string(forKey: StaticVar.email)
         
         if UserDefaults.standard.string(forKey: StaticVar.images) == "" {
             self.imageUser.image = UIImage(named: "Artboard 123@0.75x-8")
         } else {
-            let root_image_customer = "https://s3-ap-southeast-1.amazonaws.com/mika-park1/"
-            self.imageUser.kf.setImage(with: URL(string: "\(root_image_customer)\(UserDefaults.standard.string(forKey: StaticVar.images) ?? "")"))
+            self.imageUser.kf.setImage(with: URL(string: UserDefaults.standard.string(forKey: StaticVar.images) ?? ""))
         }
     }
     

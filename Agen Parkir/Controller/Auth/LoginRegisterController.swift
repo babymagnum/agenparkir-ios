@@ -36,8 +36,8 @@ class LoginRegisterController: BaseViewController {
         super.viewDidLoad()
         
         //uncoment below code if its dev
-        UserDefaults.standard.set("Dev", forKey: StaticVar.applicationState)
-        //UserDefaults.standard.set("Prod", forKey: StaticVar.applicationState)
+        //UserDefaults.standard.set("Dev", forKey: StaticVar.applicationState)
+        UserDefaults.standard.set("Prod", forKey: StaticVar.applicationState)
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         

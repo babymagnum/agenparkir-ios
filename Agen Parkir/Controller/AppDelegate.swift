@@ -83,12 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
         
         // Recommend moving the below line to prompt for push after informing the user about
-        // how your app will use them.
         OneSignal.promptForPushNotifications(userResponse: { accepted in
             print("User accepted notifications: \(accepted)")
         })
-        
-        
         
 //        // Check if launched from notification
 //        let notificationOption = launchOptions?[.remoteNotification]

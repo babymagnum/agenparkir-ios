@@ -92,10 +92,10 @@ extension TopupController {
         }
         
         let amount = inputAmount.text?.trim().replacingOccurrences(of: "Rp", with: "").replacingOccurrences(of: ".", with: "")
-//        if Int(amount!)! < 50000 {
-//            PublicFunction.instance.showUnderstandDialog(self, "Top Up Amount", "Minimal top up amount is Rp 50.000", "Understand")
-//            return
-//        }
+        if Int(amount!)! < 50000 {
+            PublicFunction.instance.showUnderstandDialog(self, "Top Up Amount", "Minimal top up amount is Rp 50.000", "Understand")
+            return
+        }
         
         inputAmount.resignFirstResponder()
         

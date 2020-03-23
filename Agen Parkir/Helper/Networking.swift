@@ -16,7 +16,7 @@ class Networking: NSObject {
     static let instance = Networking()
 
     func getCoins(customer_id: String, completion: @escaping (_ coins: Int?, _ customer_id: String?, _ error: String?) -> Void) {
-        let base_url = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let base_url = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://devagenparkir.com/" : "https://agenparkir.com/"
         
         guard let url = URL(string: "\(base_url)api/android/customer-coins?customers_id=\(customer_id)") else { return }
         
@@ -40,7 +40,7 @@ class Networking: NSObject {
     }
     
     func buyCoins(voucherId: String, completionHandler: @escaping(_ message: String?, _ error: String?) -> Void){
-        let base_url = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let base_url = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://devagenparkir.com/" : "https://agenparkir.com/"
         
         guard let url = URL(string: "\(base_url)api/android/customer-coins-corversion") else { return }
         
@@ -70,7 +70,7 @@ class Networking: NSObject {
     }
     
     func getVoucherList(completion: @escaping(_ voucherList: [VoucherModel]?, _ error: String?) -> Void) {
-        let base_url = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "https://dev46.agenparkir.com/" : "https://agenparkir.com/"
+        let base_url = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://devagenparkir.com/" : "https://agenparkir.com/"
         
         guard let url = URL(string: "\(base_url)api/android/vouchers-list") else { return }
         

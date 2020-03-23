@@ -15,26 +15,28 @@ import FBSDKLoginKit
 import OneSignal
 import SendBirdSDK
 import Firebase
+import FirebaseMessaging
+import FirebaseInstanceID
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
 
-    func onOSSubscriptionChanged(_ stateChanges: OSSubscriptionStateChanges!) {
-        if !stateChanges.from.subscribed && stateChanges.to.subscribed {
-            print("Subscribed for OneSignal push notifications!")
-        }
-        
-        //The player id is inside stateChanges. But be careful, this value can be nil if the user has not granted you permission to send notifications.
-        if let playerId = stateChanges.to.userId {
-            print("Current playerId \(playerId)")
-            UserDefaults.standard.set(playerId, forKey: StaticVar.onesignal_player_id)
-        }
-    }
+//    func onOSSubscriptionChanged(_ stateChanges: OSSubscriptionStateChanges!) {
+//        if !stateChanges.from.subscribed && stateChanges.to.subscribed {
+//            print("Subscribed for OneSignal push notifications!")
+//        }
+//
+//        //The player id is inside stateChanges. But be careful, this value can be nil if the user has not granted you permission to send notifications.
+//        if let playerId = stateChanges.to.userId {
+//            print("Current playerId \(playerId)")
+//            UserDefaults.standard.set(playerId, forKey: StaticVar.onesignal_player_id)
+//        }
+//    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //firebase
-        FirebaseApp.configure()
+        configureFirebase(application: application)
         
         //sendbird init
         SBDMain.initWithApplicationId("4FB8C8E8-D452-497C-85DE-8EE0F4FA6251")
@@ -46,61 +48,149 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         MidtransConfig.shared().setClientKey("Mid-client-Ecyno8FETxVdlm8N", environment: .production, merchantServerURL: "https://agenparkir.com")
         
         //one signal
-        let notificationReceivedBlock: OSHandleNotificationReceivedBlock = { notification in
-            print("Received Notification: \(String(describing: notification!.payload.notificationID))")
-        }
-        
-        let notificationOpenedBlock: OSHandleNotificationActionBlock = { result in
-            // This block gets called when the user reacts to a notification received
-            let payload: OSNotificationPayload = result!.notification.payload
-            
-            var fullMessage = payload.body
-            print("Message = \(String(describing: fullMessage))")
-            
-            if payload.additionalData != nil {
-                if payload.title != nil {
-                    let messageTitle = payload.title
-                    print("Message Title = \(messageTitle!)")
-                }
-                
-                let additionalData = payload.additionalData
-                if additionalData?["actionSelected"] != nil {
-                    fullMessage = fullMessage! + "\nPressed ButtonID: \(additionalData!["actionSelected"])"
-                }
-            }
-        }
-        
-        OneSignal.add(self as OSSubscriptionObserver)
-        
-        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppLaunchURL: true]
-        
-        OneSignal.initWithLaunchOptions(launchOptions,
-                                        appId: "36504d26-6cdd-4271-b2de-666e692b398a",
-                                        handleNotificationReceived: notificationReceivedBlock,
-                                        handleNotificationAction: notificationOpenedBlock,
-                                        settings: onesignalInitSettings)
-        
-        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
-        
-        // Recommend moving the below line to prompt for push after informing the user about
-        OneSignal.promptForPushNotifications(userResponse: { accepted in
-            print("User accepted notifications: \(accepted)")
-        })
-        
-//        // Check if launched from notification
-//        let notificationOption = launchOptions?[.remoteNotification]
-//
-//        // 1
-//        if let notification = notificationOption as? [String: AnyObject],
-//            let aps = notification["aps"] as? [String: AnyObject] {
-//
-//            // 3
-//            let homeController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeController") as! HomeController
-//            homeController.channelUrl = aps["url"] as? String
-//            self.window?.rootViewController = homeController
-//        }
+        //configureOneSignal()
         
         return true
+    }
+    
+//    private func configureOneSignal() {
+//        let notificationReceivedBlock: OSHandleNotificationReceivedBlock = { notification in
+//            print("Received Notification: \(String(describing: notification!.payload.notificationID))")
+//        }
+//
+//        let notificationOpenedBlock: OSHandleNotificationActionBlock = { result in
+//            // This block gets called when the user reacts to a notification received
+//            let payload: OSNotificationPayload = result!.notification.payload
+//
+//            var fullMessage = payload.body
+//            print("Message = \(String(describing: fullMessage))")
+//
+//            if payload.additionalData != nil {
+//                if payload.title != nil {
+//                    let messageTitle = payload.title
+//                    print("Message Title = \(messageTitle!)")
+//                }
+//
+//                let additionalData = payload.additionalData
+//                if additionalData?["actionSelected"] != nil {
+//                    fullMessage = fullMessage! + "\nPressed ButtonID: \(additionalData!["actionSelected"])"
+//                }
+//            }
+//        }
+//
+//        OneSignal.add(self as OSSubscriptionObserver)
+//
+//        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppLaunchURL: true]
+//
+//        OneSignal.initWithLaunchOptions(launchOptions,
+//                                        appId: "36504d26-6cdd-4271-b2de-666e692b398a",
+//                                        handleNotificationReceived: notificationReceivedBlock,
+//                                        handleNotificationAction: notificationOpenedBlock,
+//                                        settings: onesignalInitSettings)
+//
+//        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+//
+//        // Recommend moving the below line to prompt for push after informing the user about
+//        OneSignal.promptForPushNotifications(userResponse: { accepted in
+//            print("User accepted notifications: \(accepted)")
+//        })
+//    }
+    
+    private func notificationListener() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleEvent), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    @objc func handleEvent() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
+    private func configureFirebase(application: UIApplication) {
+        FirebaseApp.configure()
+        
+        // For iOS 10 display notification (sent via APNS)
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+            Messaging.messaging().delegate = self
+            UNUserNotificationCenter.current().requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
+                if error == nil{
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
+                }
+            }
+        } else {
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        UIApplication.shared.registerForRemoteNotifications()
+        
+        //get application instance ID
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print("Error fetching remote instance ID: \(error)")
+            } else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+                UserDefaults.standard.set(result.token, forKey: StaticVar.onesignal_player_id)
+            }
+        }
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("fcm token \(fcmToken)")
+        UserDefaults.standard.set(fcmToken, forKey: StaticVar.onesignal_player_id)
+    }
+    
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        print("refresh fcm token \(fcmToken)")
+        UserDefaults.standard.set(fcmToken, forKey: StaticVar.onesignal_player_id)
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+        let token = tokenParts.joined()
+        print("device token \(token)")
+        Messaging.messaging().apnsToken = deviceToken
+        //Messaging.messaging().shouldEstablishDirectChannel = true
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Unable to register for remote notifications: \(error.localizedDescription)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        print("notification data: \(userInfo)")
+    }
+    
+//    func applicationReceivedRemoteMessage(_ remoteMessage: MessagingRemoteMessage) {
+//        let data = remoteMessage.appData
+//        print("Receive data message: \(data)")
+//    }
+    
+    // function to handle when notification clicked
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        
+        print("full message \(userInfo)")
+        
+//        guard
+//            //let aps = userInfo[AnyHashable("aps")] as? NSDictionary,
+//            let data_id = userInfo[AnyHashable("data_id")],
+//            let redirect = userInfo[AnyHashable("redirect")]
+//            else {
+//                // handle any error here
+//                return
+//            }
+        
+        completionHandler()
+    }
+    
+    // handle notification in foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let content = notification.request.content
+        print("notification data foreground: \(content.userInfo)")
+        completionHandler([.alert, .sound])
     }
     
     //facebook login

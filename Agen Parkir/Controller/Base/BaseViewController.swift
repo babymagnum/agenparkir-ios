@@ -57,6 +57,10 @@ class BaseViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
 
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(internetChanged(note:)), name: Notification.Name.reachabilityChanged, object: inetReachability)
 
         do {

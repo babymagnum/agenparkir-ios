@@ -63,6 +63,8 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
     var locationManager = CLLocationManager()
     let operationQueue = OperationQueue()
     
+    var newsId: String?
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
@@ -100,6 +102,15 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         populateData()
         
         handleGestureListener()
+        
+        if let _newsId = newsId {
+            print("get data from appdelegate")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                let vc = DetailNewsController()
+                vc.newsId = _newsId
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {

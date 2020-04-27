@@ -36,6 +36,7 @@ class LoginController: BaseViewController, UITextFieldDelegate {
     private var state = LoginState.dont
     private var passwordShow = false
     fileprivate let bag = DisposeBag()
+    var popRecognizer: InteractivePopRecognizer?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,10 +44,18 @@ class LoginController: BaseViewController, UITextFieldDelegate {
         customView()
     }
     
+    private func setInteractiveRecognizer() {
+        guard let controller = navigationController else { return }
+        popRecognizer = InteractivePopRecognizer(controller: controller)
+        controller.interactivePopGestureRecognizer?.delegate = popRecognizer
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        setInteractiveRecognizer()
         
         initTextfieldDelegate()
 

@@ -79,6 +79,9 @@
 		ED9A3425222F4FD100D26E6F /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9A3424222F4FD100D26E6F /* SettingsModel.swift */; };
 		ED9A3427222F77CC00D26E6F /* AccountsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9A3426222F77CC00D26E6F /* AccountsController.swift */; };
 		ED9A3429222F83BC00D26E6F /* InteractiveRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9A3428222F83BC00D26E6F /* InteractiveRecognizer.swift */; };
+		ED9C2FD224568AAD00056BB0 /* DetailNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9C2FD024568AAD00056BB0 /* DetailNewsController.swift */; };
+		ED9C2FD324568AAD00056BB0 /* DetailNewsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9C2FD124568AAD00056BB0 /* DetailNewsController.xib */; };
+		ED9C2FD524568BF700056BB0 /* DetailNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9C2FD424568BF700056BB0 /* DetailNewsModel.swift */; };
 		EDA224E22224C96100291B68 /* CentralOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA224E12224C96100291B68 /* CentralOperation.swift */; };
 		EDA224E42224C97E00291B68 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA224E32224C97E00291B68 /* RegisterController.swift */; };
 		EDA224E62224CA3800291B68 /* Enter4DigitResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA224E52224CA3800291B68 /* Enter4DigitResetPasswordController.swift */; };
@@ -232,6 +235,9 @@
 		ED9A3424222F4FD100D26E6F /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		ED9A3426222F77CC00D26E6F /* AccountsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsController.swift; sourceTree = "<group>"; };
 		ED9A3428222F83BC00D26E6F /* InteractiveRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveRecognizer.swift; sourceTree = "<group>"; };
+		ED9C2FD024568AAD00056BB0 /* DetailNewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsController.swift; sourceTree = "<group>"; };
+		ED9C2FD124568AAD00056BB0 /* DetailNewsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailNewsController.xib; sourceTree = "<group>"; };
+		ED9C2FD424568BF700056BB0 /* DetailNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsModel.swift; sourceTree = "<group>"; };
 		EDA224E12224C96100291B68 /* CentralOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralOperation.swift; sourceTree = "<group>"; };
 		EDA224E32224C97E00291B68 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		EDA224E52224CA3800291B68 /* Enter4DigitResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enter4DigitResetPasswordController.swift; sourceTree = "<group>"; };
@@ -346,6 +352,7 @@
 		ED2B0B0622238E0D004AF051 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ED9C2FCF24568A9800056BB0 /* detail_news */,
 				ED42AE8F2261602200C2DDEB /* Messaging */,
 				ED42AE7E225D831600C2DDEB /* Settings */,
 				ED42AE7B225D825A00C2DDEB /* Base */,
@@ -390,6 +397,7 @@
 				EDCDDF872284C55100E4FF2B /* VoucherModel.swift */,
 				EDCDDF892284C64D00E4FF2B /* VoucherImagesModel.swift */,
 				EDBDB01B229B47FC0095E0AD /* PaymentPendingModel.swift */,
+				ED9C2FD424568BF700056BB0 /* DetailNewsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -567,6 +575,15 @@
 			path = "Nib Cell";
 			sourceTree = "<group>";
 		};
+		ED9C2FCF24568A9800056BB0 /* detail_news */ = {
+			isa = PBXGroup;
+			children = (
+				ED9C2FD024568AAD00056BB0 /* DetailNewsController.swift */,
+				ED9C2FD124568AAD00056BB0 /* DetailNewsController.xib */,
+			);
+			path = detail_news;
+			sourceTree = "<group>";
+		};
 		EDFBB787224899B000BB8246 /* Nib */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +715,7 @@
 				ED551262224F059A0052A86E /* MyChatCell.xib in Resources */,
 				ED42AE86225D941700C2DDEB /* NoConnectionView.xib in Resources */,
 				EDD7051A22560A6C0000EEA0 /* GoogleService-Info.plist in Resources */,
+				ED9C2FD324568AAD00056BB0 /* DetailNewsController.xib in Resources */,
 				ED551268224F05D50052A86E /* OpponentChatImageCell.xib in Resources */,
 				ED2B0AFA222387ED004AF051 /* Main.storyboard in Resources */,
 			);
@@ -816,6 +834,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDF4082522312B9000CA6FDF /* PlateModel.swift in Sources */,
+				ED9C2FD224568AAD00056BB0 /* DetailNewsController.swift in Sources */,
 				ED589BC72252CF6A003FE6D7 /* ScaledHeightImageView.swift in Sources */,
 				EDF408212231270900CA6FDF /* PlateCell.swift in Sources */,
 				ED53C1FB222CBD96005FEBF9 /* UpdatesCell.swift in Sources */,
@@ -911,6 +930,7 @@
 				ED2B0B162223D1D9004AF051 /* LoginController.swift in Sources */,
 				ED976D102236912D00EF8354 /* BookingAgreementController.swift in Sources */,
 				ED10ECD32243B4780028161E /* TabOngoingController.swift in Sources */,
+				ED9C2FD524568BF700056BB0 /* DetailNewsModel.swift in Sources */,
 				EDA224E22224C96100291B68 /* CentralOperation.swift in Sources */,
 				EDFBB78F2248A97000BB8246 /* DetailStoreController.swift in Sources */,
 				EDCDDF9022850CC200E4FF2B /* DetailVoucherController.swift in Sources */,

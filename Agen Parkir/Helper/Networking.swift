@@ -15,6 +15,32 @@ class Networking: NSObject {
 
     static let instance = Networking()
 
+    func baseUrl() -> String {
+        return UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://devagenparkir.com/" : "https://agenparkir.com/"
+    }
+    
+    func getDetailNews(newsId: String, completion: @escaping (_ detailNewsItem: DetailsNewsItem?, _ error: String?) -> Void) {
+        
+        guard let url = URL(string: "\(baseUrl())api/android/news/detail/\(newsId)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, e) in
+            if let error = e {
+                completion(nil, error.localizedDescription)
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let detailNews = try JSONDecoder().decode(DetailNews.self, from: data)
+                
+                completion(detailNews.data[0], nil)
+            } catch let err {
+                completion(nil, err.localizedDescription)
+            }
+        }.resume()
+    }
+    
     func getCoins(customer_id: String, completion: @escaping (_ coins: Int?, _ customer_id: String?, _ error: String?) -> Void) {
         let base_url = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://devagenparkir.com/" : "https://agenparkir.com/"
         

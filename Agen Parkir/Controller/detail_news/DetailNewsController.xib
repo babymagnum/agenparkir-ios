@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailNewsController" customModule="Agen_Parkir" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="IaO-Ms-C15" id="ISP-4h-hcV"/>
+                <outlet property="imageBack" destination="5Vn-Wg-K7H" id="vJt-0r-kQD"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="wkWebView" destination="PEv-iF-wdl" id="m41-xh-Owa"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lmt-z4-9Xw" userLabel="viewToolbar">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                    <subviews>
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Artboard 230@0.75x-8" translatesAutoresizingMaskIntoConstraints="NO" id="5Vn-Wg-K7H">
+                            <rect key="frame" x="20" y="18" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="Geg-IM-6eo"/>
+                                <constraint firstAttribute="height" constant="20" id="UeT-6F-9hV"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TeU-gA-xDN">
+                            <rect key="frame" x="55" y="0.0" width="106" height="56"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="5Vn-Wg-K7H" firstAttribute="leading" secondItem="Lmt-z4-9Xw" secondAttribute="leading" constant="20" id="aSY-dm-gll"/>
+                        <constraint firstItem="TeU-gA-xDN" firstAttribute="top" secondItem="Lmt-z4-9Xw" secondAttribute="top" id="cXc-xP-VHG"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="gEj-Ke-KNr"/>
+                        <constraint firstItem="TeU-gA-xDN" firstAttribute="leading" secondItem="5Vn-Wg-K7H" secondAttribute="trailing" constant="15" id="hsj-ME-sD0"/>
+                        <constraint firstItem="5Vn-Wg-K7H" firstAttribute="centerY" secondItem="Lmt-z4-9Xw" secondAttribute="centerY" id="szM-Dx-ohv"/>
+                        <constraint firstAttribute="bottom" secondItem="TeU-gA-xDN" secondAttribute="bottom" id="x8g-1B-mft"/>
+                    </constraints>
+                </view>
+                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PEv-iF-wdl">
+                    <rect key="frame" x="15" y="56" width="345" height="611"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="IaO-Ms-C15">
+                    <rect key="frame" x="169" y="315" width="37" height="37"/>
+                    <color key="color" red="0.20392156859999999" green="0.4941176471" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="PEv-iF-wdl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="2pw-AS-hKn"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Lmt-z4-9Xw" secondAttribute="trailing" id="9ov-em-34H"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PEv-iF-wdl" secondAttribute="bottom" id="SPg-he-Kpt"/>
+                <constraint firstItem="IaO-Ms-C15" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="YYj-3T-RFH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PEv-iF-wdl" secondAttribute="trailing" constant="15" id="kVq-1b-lQY"/>
+                <constraint firstItem="Lmt-z4-9Xw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kq5-kp-D9v"/>
+                <constraint firstItem="Lmt-z4-9Xw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nJo-rS-KUm"/>
+                <constraint firstItem="PEv-iF-wdl" firstAttribute="top" secondItem="Lmt-z4-9Xw" secondAttribute="bottom" id="tFQ-O8-qDl"/>
+                <constraint firstItem="IaO-Ms-C15" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zjg-lk-ud5"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="132" y="131"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Artboard 230@0.75x-8" width="128" height="128"/>
+    </resources>
+</document>

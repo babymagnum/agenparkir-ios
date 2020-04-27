@@ -21,7 +21,7 @@ import FirebaseInstanceID
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
-
+    var mainNavigationController : UINavigationController?
 //    func onOSSubscriptionChanged(_ stateChanges: OSSubscriptionStateChanges!) {
 //        if !stateChanges.from.subscribed && stateChanges.to.subscribed {
 //            print("Subscribed for OneSignal push notifications!")
@@ -151,7 +151,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         let token = tokenParts.joined()
         print("device token \(token)")
         Messaging.messaging().apnsToken = deviceToken
-        //Messaging.messaging().shouldEstablishDirectChannel = true
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -162,11 +161,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         print("notification data: \(userInfo)")
     }
     
-//    func applicationReceivedRemoteMessage(_ remoteMessage: MessagingRemoteMessage) {
-//        let data = remoteMessage.appData
-//        print("Receive data message: \(data)")
-//    }
-    
     // function to handle when notification clicked
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -174,16 +168,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         print("full message \(userInfo)")
         
-//        guard
-//            //let aps = userInfo[AnyHashable("aps")] as? NSDictionary,
-//            let data_id = userInfo[AnyHashable("data_id")],
-//            let redirect = userInfo[AnyHashable("redirect")]
-//            else {
-//                // handle any error here
-//                return
-//            }
+        guard
+            //let aps = userInfo[AnyHashable("aps")] as? NSDictionary,
+            let type = userInfo[AnyHashable("type")],
+            let news_id = userInfo[AnyHashable("news_id")]
+            else {
+                // handle any error here
+                return
+            }
+        
+        if "\(type)" == "news" {
+            let vc = DetailNewsController()
+            vc.newsId = "\(news_id)"
+            changeRootViewController(rootVC: vc)
+        }
         
         completionHandler()
+    }
+    
+    func changeStoryboardRoot() {
+        let rootViewController = self.window!.rootViewController as! UINavigationController
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeVC = mainStoryboard.instantiateViewController(withIdentifier: "HomeController") as! HomeController
+        rootViewController.pushViewController(homeVC, animated: true)
+    }
+    
+    func changeRootViewController(rootVC : UIViewController){
+        mainNavigationController = UINavigationController(rootViewController: rootVC)
+        mainNavigationController?.isNavigationBarHidden = true
+        UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.window?.rootViewController = self.mainNavigationController
+        }, completion: { completed in
+            // maybe do something here
+        })
     }
     
     // handle notification in foreground

@@ -61,7 +61,7 @@
                     <color key="color" red="0.20392156859999999" green="0.4941176471" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="PEv-iF-wdl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="2pw-AS-hKn"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Lmt-z4-9Xw" secondAttribute="trailing" id="9ov-em-34H"/>

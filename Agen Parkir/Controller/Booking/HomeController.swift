@@ -79,7 +79,6 @@ class HomeController: BaseViewController, CLLocationManagerDelegate, UICollectio
         if let url = channelUrl {
             DispatchQueue.main.async {
                 let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
-                chatController.channelUrl = url
                 self.navigationController?.pushViewController(chatController, animated: true)
             }
         }

@@ -163,7 +163,6 @@ class DetailStoreController: BaseViewController, UICollectionViewDelegate, BaseV
         }
         
         let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
-        chatController.listUserId = listOfficer
         navigationController?.pushViewController(chatController, animated: true)
     }
 }

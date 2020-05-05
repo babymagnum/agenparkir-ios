@@ -26,6 +26,9 @@ PODS:
     - FirebaseAnalytics (= 6.3.0)
   - Firebase/CoreOnly (6.18.0):
     - FirebaseCore (= 6.6.3)
+  - Firebase/Database (6.18.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 6.1.4)
   - Firebase/Messaging (6.18.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 4.3.0)
@@ -39,6 +42,7 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
   - FirebaseAnalyticsInterop (1.5.0)
+  - FirebaseAuthInterop (1.1.0)
   - FirebaseCore (6.6.3):
     - FirebaseCoreDiagnostics (~> 1.2)
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
@@ -51,6 +55,10 @@ PODS:
     - GoogleUtilities/Logger (~> 6.5)
     - nanopb (~> 0.3.901)
   - FirebaseCoreDiagnosticsInterop (1.2.0)
+  - FirebaseDatabase (6.1.4):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 6.0)
+    - leveldb-library (~> 1.22)
   - FirebaseInstallations (1.1.0):
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
@@ -99,6 +107,7 @@ PODS:
     - GoogleUtilities/Logger
   - IQKeyboardManagerSwift (6.5.5)
   - Kingfisher (4.10.1)
+  - leveldb-library (1.22)
   - MidtransCoreKit (1.16.2)
   - MidtransKit (1.16.2):
     - MidtransCoreKit (= 1.16.2)
@@ -131,6 +140,7 @@ DEPENDENCIES:
   - FacebookLogin
   - Firebase/Analytics
   - Firebase/Core
+  - Firebase/Database
   - Firebase/Messaging
   - IQKeyboardManagerSwift
   - Kingfisher
@@ -157,9 +167,11 @@ SPEC REPOS:
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
+    - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
+    - FirebaseDatabase
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseMessaging
@@ -169,6 +181,7 @@ SPEC REPOS:
     - GoogleUtilities
     - IQKeyboardManagerSwift
     - Kingfisher
+    - leveldb-library
     - MidtransCoreKit
     - MidtransKit
     - nanopb
@@ -195,9 +208,11 @@ SPEC CHECKSUMS:
   Firebase: 0490eca762a72e4f1582319539153897f1508dee
   FirebaseAnalytics: 058d71e714a1a6804d9e0f25e3bb18e377a51579
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
+  FirebaseAuthInterop: a0f37ae05833af156e72028f648d313f7e7592e9
   FirebaseCore: 78276943ad85e616dfa54dafa6c89512987d9d60
   FirebaseCoreDiagnostics: 2109d10c35e8289b1ee6cabf44d9ffb055620194
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
+  FirebaseDatabase: 0144e0706a4761f1b0e8679572eba8095ddb59be
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
   FirebaseInstanceID: 7ee0d6777013bb952f377b41965bf132b6a075be
   FirebaseMessaging: 4ec33842d36b3319e062e51fb8b35a74f726950d
@@ -207,6 +222,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MidtransCoreKit: f0a3a2bf72a3d61f153a099ce5af953a0a489b98
   MidtransKit: 08b932b740fbf2617aa64af3741fe2774f065a9e
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
@@ -222,6 +238,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   XLPagerTabStrip: 22d4c58200d7c105e0e407ab6bfd01a5d85014be
 
-PODFILE CHECKSUM: 094fb7486bb6d8cd5d43a19d133fac250bd895e1
+PODFILE CHECKSUM: afe4049ef890d85251cf84cc6aa4a8ee3aec19ad
 
 COCOAPODS: 1.9.1

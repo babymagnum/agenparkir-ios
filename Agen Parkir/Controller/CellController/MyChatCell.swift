@@ -28,7 +28,7 @@ class MyChatCell: UICollectionViewCell {
     var dataMessage: ChatModel? {
         didSet {
             if let data = dataMessage {
-                time.text = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: data.createdAt!)!, pattern: "kk:mm a")
+                time.text = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: data.time!)!, pattern: "HH:mm a")
                 message.setTitle(data.message, for: .normal)
                 
                 let messageContent = data.message

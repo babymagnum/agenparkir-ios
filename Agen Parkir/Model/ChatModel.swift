@@ -8,22 +8,11 @@
 
 import Foundation
 
-enum TypeMessage {
-    case text, image
-}
-
 struct ChatModel {
-    var id: Int64?
+    var id: String?
     var message: String?
-    var createdAt: Int64?
-    var sender: String?
-    var typeMessage: TypeMessage?
-    
-    init(_ id: Int64, _ message: String, _ createdAt: Int64, _ sender: String, _ typeMessage: TypeMessage) {
-        self.id = id
-        self.message = message
-        self.createdAt = createdAt
-        self.sender = sender
-        self.typeMessage = typeMessage
-    }
+    var userId: String?
+    var isRead: Bool?
+    var time: Double?
+    var typeMessage: String?
 }

@@ -32,7 +32,7 @@ class MyChatImageCell: UICollectionViewCell {
     var dataMessage: ChatModel? {
         didSet {
             if let data = dataMessage {
-                time.text = PublicFunction.instance.dateLongToString(dateInMillis: Double(data.createdAt!), pattern: "kk:mm a")
+                time.text = PublicFunction.instance.dateLongToString(dateInMillis: Double(data.time!), pattern: "HH:mm a")
                 image.loadUrl(data.message!)
             }
         }

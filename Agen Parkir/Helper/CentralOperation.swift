@@ -185,7 +185,7 @@ class LoginOperation: AbstractOperation {
                 
                 UserDefaults.standard.set(data["data"]["id"].int ?? 0, forKey: StaticVar.id)
                 UserDefaults.standard.set(data["data"]["token"].string ?? "", forKey: StaticVar.token)
-                
+                UserDefaults.standard.set(data["data"]["name"].string ?? "", forKey: StaticVar.name)
                 self.finish(true)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -1234,7 +1234,7 @@ class ListOngoingOperation: AbstractOperation {
 class DetailOngoingOperation: AbstractOperation {
     var order_id: Int?
     
-    var returnDetailOngoing: (parking_lot: String, booking_code: String, tariff: Int, plate_number: String, building_name: String, vehicle_types_id: Int, parking_types: Int, type: String, payment_types_id: Int, name_areas: String, images: [String], store_list: [String])?
+    var returnDetailOngoing: (parking_lot: String, booking_code: String, tariff: Int, plate_number: String, building_name: String, building_id: Int, vehicle_types_id: Int, parking_types: Int, type: String, payment_types_id: Int, name_areas: String, images: [String], store_list: [String])?
     var state: OperationState?
     var error: String?
     
@@ -1269,7 +1269,7 @@ class DetailOngoingOperation: AbstractOperation {
                     listImage.append((image["images"].string ?? nil)!)
                 }
                 
-                self.returnDetailOngoing = (parking_lot: data["parking_lot"].string ?? "", booking_code: data["booking_code"].string ?? "", tariff: data["tariff"].int ?? 0, plate_number: data["plate_number"].string ?? "", building_name: building["building_name"].string ?? "", vehicle_types_id: building["vehicle_types_id"].int ?? 0, parking_types: building["parking_types"].int ?? 0, type: building["type"].string ?? "", payment_types_id: building["payment_types_id"].int ?? 0, name_areas: building["name_areas"].string ?? "", images: listImage, store_list: listStore)
+                self.returnDetailOngoing = (parking_lot: data["parking_lot"].string ?? "", booking_code: data["booking_code"].string ?? "", tariff: data["tariff"].int ?? 0, plate_number: data["plate_number"].string ?? "", building_name: building["building_name"].string ?? "", building_id: building["buildings_id"].int ?? 0, vehicle_types_id: building["vehicle_types_id"].int ?? 0, parking_types: building["parking_types"].int ?? 0, type: building["type"].string ?? "", payment_types_id: building["payment_types_id"].int ?? 0, name_areas: building["name_areas"].string ?? "", images: listImage, store_list: listStore)
                 
                 self.state = .success
                 self.finish(true)

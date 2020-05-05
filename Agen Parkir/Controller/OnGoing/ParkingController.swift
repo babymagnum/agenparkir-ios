@@ -246,53 +246,6 @@ class ParkingController: BaseViewController, IndicatorInfoProvider, BaseViewCont
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Parking")
     }
-    
-    private func checkSendbird() {
-        guard let model = ongoingModel else { return }
-
-        if SBDMain.getCurrentUser() == nil {
-            SVProgressHUD.show()
-            let currentOperation = CurrentOperation()
-            let operation = OperationQueue()
-            operation.addOperation(currentOperation)
-            
-            currentOperation.completionBlock = {
-                DispatchQueue.main.async {
-                    SVProgressHUD.dismiss()
-                    
-                    switch currentOperation.state {
-                    case .success?:
-                        self.navigateToMessage(model)
-                    case .error?:
-                        PublicFunction.instance.showUnderstandDialog(self, "Error", currentOperation.error!, "Reload", "Cancel", completionHandler: {
-                            self.checkSendbird()
-                        })
-                    default:
-                        PublicFunction.instance.showUnderstandDialog(self, "Error", "There was some error with syste.", "Reload", "Cancel", completionHandler: {
-                            self.checkSendbird()
-                        })
-                    }
-                }
-            }
-        } else { self.navigateToMessage(model) }
-    }
-    
-    private func navigateToMessage(_ model: OngoingModel) {
-        guard let officers = model.officer else {
-            PublicFunction.instance.showUnderstandDialog(self, "No Officer", "Ooops, this building has no officer yet, you can't perform chat in this building", "Understand")
-            return
-        }
-        
-        guard let _ = SBDMain.getCurrentUser() else {
-            PublicFunction.instance.showUnderstandDialog(self, "Failed Connect to Sendbird", "Sorry, we can't connect you to sendbird chat due to internal server error. We'll notify you if this feature is working properly", "Understand")
-            return
-        }
-        
-        let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
-        chatController.listUserId = officers
-        chatController.delegate = self
-        self.navigationController?.pushViewController(chatController, animated: true)
-    }
 }
 
 extension ParkingController {
@@ -346,7 +299,9 @@ extension ParkingController {
     }
     
     @objc func viewMessageClick() {
-        self.checkSendbird()
+        let chatController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatController") as! ChatController
+        chatController.orderId = ongoingModel?.order_id
+        self.navigationController?.pushViewController(chatController, animated: true)
     }
     
     @objc func willActive(_ notification: Notification) {

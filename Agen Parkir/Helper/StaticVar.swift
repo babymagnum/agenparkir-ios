@@ -33,6 +33,8 @@ struct StaticVar {
     static let last_parking_type = "last_parking_type"
     static let last_place_type = "last_place_type"
     static let last_payment_type = "last_payment_type"
+    static let userMessage = "userMessage"
+    static let fileMessage = "fileMessage"
     
     //user default
     static let getApplicationState = UserDefaults.standard.string(forKey: StaticVar.applicationState)    

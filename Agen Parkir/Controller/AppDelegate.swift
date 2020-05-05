@@ -168,19 +168,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         print("full message \(userInfo)")
         
-        guard
-            //let aps = userInfo[AnyHashable("aps")] as? NSDictionary,
-            let type = userInfo[AnyHashable("type")],
-            let news_id = userInfo[AnyHashable("news_id")]
-            else {
-                // handle any error here
-                return
-            }
+        let type = userInfo[AnyHashable("type")]
+        let news_id = userInfo[AnyHashable("news_id")]
+        let buildingId = userInfo[AnyHashable("buildingId")]
+        let buildingName = userInfo[AnyHashable("customerName")]
         
-        if "\(type)" == "news" {
-            let vc = DetailNewsController()
-            vc.newsId = "\(news_id)"
-            changeRootViewController(rootVC: vc)
+        if let rootViewController = self.window!.rootViewController as? UINavigationController {
+            if "\(type ?? "")" == "news" {
+                if rootViewController.viewControllers.count == 1 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        let vc = DetailNewsController()
+                        vc.newsId = "\(news_id ?? "")"
+                        rootViewController.pushViewController(vc, animated: true)
+                    }
+                } else {
+                    let vc = DetailNewsController()
+                    vc.newsId = "\(news_id ?? "")"
+                    rootViewController.pushViewController(vc, animated: true)
+                }
+            } else if "\(type ?? "")" == "chat" {
+                if rootViewController.viewControllers.count == 1 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        let vc = ChatController()
+                        vc.buildingId = "\(buildingId ?? "")"
+                        vc.buildingName = "\(buildingName ?? "")"
+                        rootViewController.pushViewController(vc, animated: true)
+                    }
+                } else {
+                    let vc = ChatController()
+                    vc.buildingId = "\(buildingId ?? "")"
+                    vc.buildingName = "\(buildingName ?? "")"
+                    rootViewController.pushViewController(vc, animated: true)
+                }
+            } else {
+                // go to main activity
+            }
         }
         
         completionHandler()

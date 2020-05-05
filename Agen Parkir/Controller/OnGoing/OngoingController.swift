@@ -195,7 +195,7 @@ class OngoingController: BaseViewController, UICollectionViewDelegate {
         }
         
         if ongoingModel.vehicle_type == 0 {
-            let difference = Calendar.current.dateComponents([.second], from: PublicFunction.instance.getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed)!, pattern: "yyyy-MM-dd kk:mm:ss")!, to: PublicFunction.instance.getDate(stringDate: PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd kk:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
+            let difference = Calendar.current.dateComponents([.second], from: PublicFunction.instance.getDate(stringDate: UserDefaults.standard.string(forKey: StaticVar.time_timer_removed)!, pattern: "yyyy-MM-dd HH:mm:ss")!, to: PublicFunction.instance.getDate(stringDate: PublicFunction.instance.getCurrentDate(pattern: "yyyy-MM-dd HH:mm:ss"), pattern: "yyyy-MM-dd kk:mm:ss")!).second!
             print("time left for canceled timer \(UserDefaults.standard.integer(forKey: StaticVar.last_timer))")
             print("difference between last time and current time \(difference)")
             self.timerLast = UserDefaults.standard.integer(forKey: StaticVar.last_timer) - difference
@@ -277,7 +277,9 @@ extension OngoingController {
     }
     
     @objc func viewMessageClick() {
-        
+        let vc = ChatController()
+        vc.orderId = ongoingModel?.order_id
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func willActive(_ notification: Notification) {

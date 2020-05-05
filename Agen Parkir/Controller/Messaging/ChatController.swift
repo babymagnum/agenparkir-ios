@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import SendBirdSDK
-import RxSwift
-import RxCocoa
 import SVProgressHUD
+import Firebase
+import Alamofire
+import SwiftyJSON
 
-class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldDelegate, BaseViewControllerProtocol {
-
+class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldDelegate {
+    
     @IBOutlet weak var emptyText: UIButton!
     @IBOutlet weak var viewInputChat: UIView!
     @IBOutlet weak var inputChat: UITextField!
@@ -21,101 +21,33 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
     @IBOutlet weak var iconBack: UIImageView!
     @IBOutlet weak var chatCollectionView: UICollectionView!
     @IBOutlet weak var opponentName: UILabel!
-    @IBOutlet weak var opponentStatus: UILabel!
     
     //MARK: Props
-    var listChat = [ChatModel]()
-    var listUserId: [String]?
-    var channelUrl: String?
-    var delegate: UpdateOngoingProtocol?
-    var thisChannel: SBDGroupChannel?
-    var defaultObservable = BehaviorRelay(value: "")
-    let bag = DisposeBag()
+    private var listChat = [ChatModel]()
+    private var ref: DatabaseReference!
+    private var userId = ""
+    
+    var buildingName: String?
+    var buildingId: String?
+    var orderId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        userId = UserDefaults.standard.string(forKey: StaticVar.id) ?? ""
+        ref = Database.database().reference()
+        
         customView()
         
         initCollection()
         
-        joinChannelWithId()
-        
-        checkOnlineStatus()
-        
         handleGesture()
         
-        bindUI()
-    }
-    
-    private func checkOnlineStatus() {
-        self.checkOpponentStatus { (isOnline, lastSeen, name) in
-            self.opponentName.text = name
-            
-            if isOnline {
-                self.opponentStatus.text = "Online"
-            } else {
-                self.opponentStatus.text = "Last seen at \(lastSeen)"
-            }
+        if let _orderId = orderId {
+            getBuildingInfo(orderId: _orderId)
+        } else {
+            populateChat()
         }
-    }
-    
-    private func bindUI() {
-        Observable.combineLatest(inputChat.rx.text, defaultObservable.asObservable(), resultSelector: {
-            chat, defaultObs in
-            
-            if (chat?.count)! > 0 {
-                self.thisChannel?.startTyping()
-            } else {
-                self.thisChannel?.endTyping()
-            }
-            
-        }).subscribe().disposed(by: bag)
-    }
-    
-    private func joinChannelWithId() {
-        SVProgressHUD.show()
-        
-        SBDGroupChannel.createChannel(withUserIds: listUserId!, isDistinct: true) { (channel, error) in
-            SVProgressHUD.dismiss()
-            
-            if let err = error {
-                PublicFunction.instance.showUnderstandDialog(self, "Error Join Channel", err.localizedDescription, "Rejoin Channel", "Cancel", completionHandler: {
-                    self.joinChannelWithId()
-                })
-                return
-            }
-            
-            self.thisChannel = channel
-            
-            SBDMain.add(self as SBDChannelDelegate, identifier: ((channel?.channelUrl)!))
-            
-            self.populateData(channel!)
-        }
-    }
-    
-    private func checkOpponentStatus(completionHandler: @escaping (_ isOnline: Bool, _ lastOnline: String, _ name: String) -> Void) {
-        let applicationUserListQuery = SBDMain.createApplicationUserListQuery()
-        applicationUserListQuery?.userIdsFilter = listUserId
-        applicationUserListQuery?.loadNextPage(completionHandler: { (users, error) in
-            guard error == nil else {return}
-            
-            let filteredUsers = users?.filter{ $0.connectionStatus == SBDUserConnectionStatus.online }
-            
-            if (filteredUsers?.count)! > 0 {
-                completionHandler(true, PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: (users?[0].lastSeenAt)!)!, pattern: "dd MMM yyyy / kk:mm"), (filteredUsers?[0].nickname)!)
-            } else {
-                completionHandler(false, PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: (users?[0].lastSeenAt)!)!, pattern: "dd MMM yyyy / kk:mm"), (users?[0].nickname)!)
-            }
-        })
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        //remove sendbird delegate if view disappear
-        guard let channel = thisChannel else { return }
-        SBDMain.removeChannelDelegate(forIdentifier: channel.channelUrl)
     }
     
     private func handleGesture() {
@@ -125,31 +57,10 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewClick)))
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
-    func noInternet() {
-        emptyText.setAttributedTitle(reloadString(), for: .normal)
-        
-        opponentStatus.text = "Waiting for network..."
-        
-        if listChat.count == 0 {
-            emptyText.isHidden = false
-        }
-    }
-    
-    func hasInternet() {
-        emptyText.setTitle("Ooops, you're not send any message yet.", for: .normal)
-        opponentStatus.text = "Online"
-    }
-    
     private func customView() {
-        baseDelegate = self
-        inputChat.tag = 1
         inputChat.delegate = self
         PublicFunction.instance.changeTintColor(imageView: iconBack, hexCode: 0x00A551, alpha: 1.0)
-        PublicFunction.instance.changeTintColor(imageView: iconAddImage, hexCode: 0x00A551, alpha: 1.0)
+        //PublicFunction.instance.changeTintColor(imageView: iconAddImage, hexCode: 0x00A551, alpha: 1.0)
         viewInputChat.layer.cornerRadius = viewInputChat.frame.height / 2
         viewInputChat.layer.borderWidth = 1
         viewInputChat.layer.borderColor = UIColor.lightGray.cgColor
@@ -166,56 +77,112 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
         chatCollectionView.showsVerticalScrollIndicator = false
     }
     
-    private func populateData(_ channel: SBDGroupChannel) {
+    private func getBuildingInfo(orderId: Int) {
         SVProgressHUD.show()
         
-        let previousMessageQuery = channel.createPreviousMessageListQuery()
-        previousMessageQuery?.loadPreviousMessages(withLimit: 30, reverse: false, completionHandler: { (messages, error) in
-            if let err = error {
-                print("error failed last message \(err.localizedDescription)")
-                return
-            }
-            
-            if messages?.count == 0 {
-                PublicFunction.instance.showUnderstandDialog(self, "Empty Chat", "Ask anything to this store by typing chat in bottom of screen", "Understand")
+        let operation = OperationQueue()
+        let detailOngoingOperation = DetailOngoingOperation(order_id: orderId)
+        operation.addOperation(detailOngoingOperation)
+        detailOngoingOperation.completionBlock = {
+            DispatchQueue.main.async {
                 SVProgressHUD.dismiss()
-                return
+                
+                switch detailOngoingOperation.state{
+                case .success?:
+                    if let data = detailOngoingOperation.returnDetailOngoing {
+                        
+                        self.buildingId = "\(data.building_id)"
+                        self.buildingName = data.building_name
+                        
+                        self.opponentName.text = self.buildingName
+                        
+                        self.populateChat()
+                    }
+                case .error?:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", detailOngoingOperation.error!, "Understand")
+                default:
+                    PublicFunction.instance.showUnderstandDialog(self, "Error", "There was something error with system, please refresh this page", "Understand")
+                }
             }
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        chatCollectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    private func populateChat() {
+        SVProgressHUD.show()
+        
+        ref.child("LIST_CHAT").child(buildingId ?? "").child(userId).child("CHATS").observe(.value) { dataSnapshot in
+            SVProgressHUD.dismiss()
             
             self.listChat.removeAll()
             
-            self.emptyText.isHidden = true
-            for (index, message) in (messages?.enumerated())! {
-                if message is SBDUserMessage {
-                    guard let userMessage = message as? SBDUserMessage else {return}
-                    self.listChat.append(ChatModel(userMessage.messageId, userMessage.message!, userMessage.createdAt, (userMessage.sender?.userId)!, .text))
-                } else if message is SBDFileMessage {
-                    guard let fileMessage = message as? SBDFileMessage else {return}
-                    self.listChat.append(ChatModel(fileMessage.messageId, fileMessage.url, fileMessage.createdAt, (fileMessage.sender?.userId)!, .image))
-                } else if message is SBDAdminMessage {
-                    print("admin message")
-                }
-                
-                if index == (messages?.count)! - 1 {
-                    SVProgressHUD.dismiss()
-                    
-                    self.chatCollectionView.reloadData()
-                    
-                    //let bottomOffset = CGPoint(x: 0, y: self.chatCollectionView.contentSize.height)
-                    //self.chatCollectionView.setContentOffset(bottomOffset, animated: true)
+            for snapshot in dataSnapshot.children {
+                let _snapshot = snapshot as? DataSnapshot
+                if let value = _snapshot?.value as? [String: Any] {
+                    let chat = ChatModel(id: value["id"] as? String, message: value["message"] as? String, userId: value["userId"] as? String, isRead: value["read"] as? Bool, time: value["time"] as? Double, typeMessage: value["typeMessage"] as? String)
+                    self.listChat.append(chat)
                 }
             }
-        })
+            
+            self.listChat.sort { item1, item2 -> Bool in
+                return item1.time ?? 0 < item2.time ?? 0
+            }
+            
+            self.chatCollectionView.reloadData()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                self.chatCollectionView.scrollToLast()
+            }
+        }
+    }
+    
+    private func sendNotification() {
+        
+        guard let url = URL(string: "https://fcm.googleapis.com/fcm/send?") else { return }
+        
+        let data: [String: String] = [
+            "buildingId": buildingId ?? "",
+            "customerId": userId,
+            "customerName": UserDefaults.standard.string(forKey: StaticVar.name) ?? "",
+            "title": "\(UserDefaults.standard.string(forKey: StaticVar.name) ?? "") mengirimkan pesan.",
+            "body": inputChat.text?.trim() ?? "",
+            "type": "chat"
+        ]
+        
+        let body: [String : Any] = [
+            "to": "fYBFnVEIQGOF3Z2CRQ-Vvg:APA91bFL5Ldm8CcVA4WGPOripJj0edRNQcYScI7nRsga8CPuHeaIP_1gw2D5luZGM1WCfTHfkdbkrRZroAisxQeRSCCMq93h9qcTPRvKfgsjTATlOhby4H43JVxcopX1pWfQQvATkcNK",
+            "data": data
+        ]
+        
+        let headers: [String: String] = [
+            "Content-Type": "application/json",
+            "Authorization": "key=AAAAn19pgs8:APA91bFPWSp-7P7LIWyc88f2qd5IRqv7_ZskRh4ltSV6y4ExhY6YkO8OqcNugRKglP7rnjhAsj8bSapg6RdTkuFeHVpXCBvQhjpmSZmldyNu-Y10N6aQyHN9zYBeL2jK5uJinV-Bs5ct"
+        ]
+        
+        Alamofire.request(url, method: .post, parameters: body, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            switch response.result {
+            case .success(let responseSuccess):
+                print("success send notification \(JSON(responseSuccess))")
+            case .failure(let responseError):
+                print("error send notification \(responseError.localizedDescription)")
+                self.sendNotification()
+            }
+        }
     }
     
     private func checkDateCell(_ contentMainHeight: NSLayoutConstraint, _ index: Int, _ dateHeight: NSLayoutConstraint, _ dateLabel: UILabel) {
-        let dateFull = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "dd MMMM yyyy")
+        let dateFull = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].time!)!, pattern: "dd MMMM yyyy")
         
         if index > 0 {
-            let dateBeforeFull = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].createdAt!)!, pattern: "dd MMMM yyyy")
-            let dateMonth = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "dd MMMM")
-            let year = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "yyyy")
-            let yearBefore = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].createdAt!)!, pattern: "yyyy")
+            let dateBeforeFull = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].time!)!, pattern: "dd MMMM yyyy")
+            let dateMonth = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].time!)!, pattern: "dd MMMM")
+            let year = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].time!)!, pattern: "yyyy")
+            let yearBefore = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].time!)!, pattern: "yyyy")
             
             if dateFull == dateBeforeFull {
                 dateLabel.text = ""
@@ -246,8 +213,8 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
         let withoutDateSize = estimatedFrame.height + 5 + 14 + 9 /* 5 untuk margin dan 14 untuk padding */
         
         if index > 0 {
-            let date = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].createdAt!)!, pattern: "dd MMMM yyyy")
-            let dateBefore = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].createdAt!)!, pattern: "dd MMMM yyyy")
+            let date = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index].time!)!, pattern: "dd MMMM yyyy")
+            let dateBefore = PublicFunction.instance.dateLongToString(dateInMillis: Double(exactly: listChat[index - 1].time!)!, pattern: "dd MMMM yyyy")
             
             if date == dateBefore {
                 return CGSize(width: UIScreen.main.bounds.width, height: withoutDateSize)
@@ -255,44 +222,79 @@ class ChatController: BaseViewController, UICollectionViewDelegate, UITextFieldD
                 return CGSize(width: UIScreen.main.bounds.width, height: originalSize)
             }
         } else {
-            return CGSize(width: UIScreen.main.bounds.width, height: originalSize)
+            return CGSize(width: UIScreen.main.bounds.width, height: originalSize - 4)
         }
     }
     
     private func sendMessage() {
-        thisChannel?.sendUserMessage(inputChat.text?.trim(), completionHandler: { (message, error) in
-            if let err = error {
-                print("error sending message \(err.localizedDescription)")
-                return
+        let uuid = NSUUID().uuidString.lowercased()
+        let time = PublicFunction().getCurrentMillisecond(pattern: "dd MMMM yyyy HH:mm:ss")
+        let body: [String: Any] = [
+            "id": userId,
+            "name": UserDefaults.standard.string(forKey: StaticVar.name) ?? "",
+            "time": time,
+            "message": inputChat.text?.trim() ?? ""
+        ]
+        
+        let bodyMessage: [String: Any] = [
+            "id": uuid,
+            "message": inputChat.text?.trim() ?? "",
+            "userId": userId,
+            "read": false,
+            "time": time,
+            "typeMessage": StaticVar.userMessage
+        ]
+        
+        if listChat.count == 0 {
+            ref.child("LIST_CHAT").child(buildingId ?? "").child(userId).setValue(body) { error, _ in
+                if let _error = error {
+                  print("Data could not be saved: \(_error).")
+                } else {
+                    self.ref.child("LIST_CHAT").child(self.buildingId ?? "").child(self.userId).child("CHATS")
+                        .child(uuid).setValue(bodyMessage) { err, _ in
+                            if let _err = err {
+                                print(_err.localizedDescription)
+                            } else {
+                                self.sendNotification()
+                                self.inputChat.text = ""
+                            }
+                    }
+                }
             }
-            
-            //update the ui
-            self.inputChat.text = ""
-            
-            self.listChat.append(ChatModel((message?.messageId)!, (message?.message)!, (message?.createdAt)!, (message?.sender?.userId)!, .text))
-            
-            self.chatCollectionView.insertItems(at: [IndexPath(item: self.listChat.count - 1, section: 0)])
-            
-            self.chatCollectionView.scrollToItem(at: IndexPath(item: self.listChat.count - 1, section: 0), at: UICollectionView.ScrollPosition.centeredVertically, animated: true)
-        })
+        } else {
+            ref.child("LIST_CHAT").child(buildingId ?? "").child(userId).updateChildValues(body) { error, _ in
+                if let _error = error {
+                  print("Data could not be saved: \(_error).")
+                } else {
+                    self.ref.child("LIST_CHAT").child(self.buildingId ?? "").child(self.userId).child("CHATS")
+                        .child(uuid).setValue(bodyMessage) { err, _ in
+                            if let _err = err {
+                                print(_err.localizedDescription)
+                            } else {
+                                self.sendNotification()
+                                self.inputChat.text = ""
+                            }
+                    }
+                }
+            }
+        }
     }
 }
 
 //MARK: Handle Gesture
 extension ChatController {
     @objc func emptyTextClick() {
-        joinChannelWithId()
-        checkOnlineStatus()
     }
     
     @objc func iconAddImageClick() {
-        ImagePickerManager().pickImage(self) { (image, url) in
-            let imagePreviewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImagePreviewController") as! ImagePreviewController
-            imagePreviewController.imageUrl = url
-            imagePreviewController.imagePicked = image
-            imagePreviewController.delegate = self
-            self.present(imagePreviewController, animated: true)
-        }
+        sendMessage()
+//        ImagePickerManager().pickImage(self) { (image, url) in
+//            let imagePreviewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImagePreviewController") as! ImagePreviewController
+//            imagePreviewController.imageUrl = url
+//            imagePreviewController.imagePicked = image
+//            imagePreviewController.delegate = self
+//            self.present(imagePreviewController, animated: true)
+//        }
     }
     
     @objc func iconBackClick() {
@@ -313,17 +315,6 @@ extension ChatController {
     }
 }
 
-//MARK: Protocol
-extension ChatController: ImagePreviewControllerProtocol{
-    func reloadData() {
-        if let channel = thisChannel {
-            SBDMain.add(self as SBDChannelDelegate, identifier: (channel.channelUrl))
-            
-            self.populateData(channel)
-        }
-    }
-}
-
 //MARK: Collectionview
 extension ChatController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -331,17 +322,17 @@ extension ChatController: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if listChat[indexPath.row].typeMessage == .text && listChat[indexPath.row].sender == SBDMain.getCurrentUser()?.userId {
+        if listChat[indexPath.row].typeMessage == StaticVar.userMessage && listChat[indexPath.row].userId == userId {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyChatCell", for: indexPath) as! MyChatCell
             cell.dataMessage = listChat[indexPath.row]
             self.checkDateCell(cell.contentMainHeight, indexPath.row, cell.dateHeight, cell.date)
             return cell
-        } else if listChat[indexPath.row].typeMessage == .text && listChat[indexPath.row].sender != SBDMain.getCurrentUser()?.userId {
+        } else if listChat[indexPath.row].typeMessage == StaticVar.userMessage && listChat[indexPath.row].userId != userId {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OpponentChatCell", for: indexPath) as! OpponentChatCell
             cell.dataMessage = listChat[indexPath.row]
             self.checkDateCell(cell.contentMainHeight, indexPath.row, cell.dateHeight, cell.date)
             return cell
-        } else if listChat[indexPath.row].typeMessage == .image && listChat[indexPath.row].sender == SBDMain.getCurrentUser()?.userId {
+        } else if listChat[indexPath.row].typeMessage == StaticVar.fileMessage && listChat[indexPath.row].userId == userId {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyChatImageCell", for: indexPath) as! MyChatImageCell
             cell.dataMessage = listChat[indexPath.row]
             self.checkDateCell(cell.contentMainHeight, indexPath.row, cell.dateHeight, cell.date)
@@ -355,61 +346,18 @@ extension ChatController: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if listChat[indexPath.row].typeMessage == .text && listChat[indexPath.row].sender == SBDMain.getCurrentUser()?.userId {
+        if listChat[indexPath.row].typeMessage == StaticVar.userMessage && listChat[indexPath.row].userId == userId {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyChatCell", for: indexPath) as! MyChatCell
             return self.checkDateCellSize(cell.message, cell.date, indexPath.row)
-        } else if listChat[indexPath.row].typeMessage == .text && listChat[indexPath.row].sender != SBDMain.getCurrentUser()?.userId {
+        } else if listChat[indexPath.row].typeMessage == StaticVar.userMessage && listChat[indexPath.row].userId != userId {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OpponentChatCell", for: indexPath) as! OpponentChatCell
             return self.checkDateCellSize(cell.message, cell.date, indexPath.row)
-        } else if listChat[indexPath.row].typeMessage == .image && listChat[indexPath.row].sender == SBDMain.getCurrentUser()?.userId {
+        } else if listChat[indexPath.row].typeMessage == StaticVar.fileMessage && listChat[indexPath.row].userId == userId {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyChatImageCell", for: indexPath) as! MyChatImageCell
             return CGSize(width: UIScreen.main.bounds.width, height: cell.date.frame.height + 30 + cell.image.frame.height + 9)
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OpponentChatImageCell", for: indexPath) as! OpponentChatImageCell
             return CGSize(width: UIScreen.main.bounds.width, height: cell.date.frame.height + 30 + cell.image.frame.height + 9)
-        }
-    }
-}
-
-//MARK: Sendbird Delegate
-extension ChatController: SBDChannelDelegate {
-    func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
-        if sender.channelUrl == thisChannel?.channelUrl {
-            if message is SBDUserMessage {
-                guard let userMessage = message as? SBDUserMessage else {return}
-                self.listChat.append(ChatModel(userMessage.messageId, userMessage.message!, userMessage.createdAt, (userMessage.sender?.userId)!, .text))
-                self.chatCollectionView.insertItems(at: [IndexPath(item: self.listChat.count - 1, section: 0)])
-                self.chatCollectionView.scrollToItem(at: IndexPath(item: self.listChat.count - 1, section: 0), at: UICollectionView.ScrollPosition.centeredVertically, animated: true)
-            }
-            else if message is SBDFileMessage {
-                guard let fileMessage = message as? SBDFileMessage else {return}
-                self.listChat.append(ChatModel(fileMessage.messageId, fileMessage.url, fileMessage.createdAt, (fileMessage.sender?.userId)!, .image))
-                self.chatCollectionView.insertItems(at: [IndexPath(item: self.listChat.count - 1, section: 0)])
-                self.chatCollectionView.scrollToItem(at: IndexPath(item: self.listChat.count - 1, section: 0), at: UICollectionView.ScrollPosition.centeredVertically, animated: true)
-            }
-            else if message is SBDAdminMessage {
-                print("its admin message")
-            }
-        }
-    }
-    
-    func channelDidUpdateTypingStatus(_ sender: SBDGroupChannel) {
-        if sender.channelUrl == self.thisChannel!.channelUrl {
-            let typingMembers = sender.getTypingMembers()
-            
-            if (typingMembers?.count)! > 1 {
-                opponentStatus.text = "Typing..."
-            } else if typingMembers?.count == 1 && typingMembers![0].userId != SBDMain.getCurrentUser()?.userId {
-                opponentStatus.text = "Typing..."
-            } else {
-                self.checkOpponentStatus { (isOnline, lastSeen, name) in
-                    if isOnline {
-                        self.opponentStatus.text = "Online"
-                    } else {
-                        self.opponentStatus.text = "Last seen at \(lastSeen)"
-                    }
-                }
-            }
         }
     }
 }

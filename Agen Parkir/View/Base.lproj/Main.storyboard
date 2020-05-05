@@ -5277,27 +5277,18 @@
                                                 <rect key="frame" x="50" y="9" width="250" height="38"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5V4-IM-RGf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="38"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gn8-LP-Fbb">
-                                                        <rect key="frame" x="0.0" y="20.5" width="250" height="17"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="Gn8-LP-Fbb" firstAttribute="leading" secondItem="Hcm-ei-mHO" secondAttribute="leading" id="UI5-ik-mmb"/>
                                                     <constraint firstAttribute="height" constant="38" id="Uoo-xV-fPZ"/>
                                                     <constraint firstAttribute="trailing" secondItem="5V4-IM-RGf" secondAttribute="trailing" id="Vl4-R1-g94"/>
-                                                    <constraint firstItem="Gn8-LP-Fbb" firstAttribute="top" secondItem="5V4-IM-RGf" secondAttribute="bottom" id="eEa-vM-uo8"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Gn8-LP-Fbb" secondAttribute="trailing" id="ehR-F3-W73"/>
                                                     <constraint firstItem="5V4-IM-RGf" firstAttribute="top" secondItem="Hcm-ei-mHO" secondAttribute="top" id="m4l-nM-dE4"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Gn8-LP-Fbb" secondAttribute="bottom" constant="0.5" id="unS-eM-gnI"/>
+                                                    <constraint firstItem="5V4-IM-RGf" firstAttribute="centerY" secondItem="Hcm-ei-mHO" secondAttribute="centerY" id="sgS-ps-TgJ"/>
                                                     <constraint firstItem="5V4-IM-RGf" firstAttribute="leading" secondItem="Hcm-ei-mHO" secondAttribute="leading" id="wzG-g7-yqo"/>
                                                 </constraints>
                                             </view>
@@ -5312,7 +5303,7 @@
                                             <constraint firstItem="f1w-Dt-X3b" firstAttribute="leading" secondItem="Xwq-ko-9ts" secondAttribute="leading" constant="15" id="ve4-gi-pkU"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OP2-HO-0XK">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OP2-HO-0XK">
                                         <rect key="frame" x="0.0" y="56" width="320" height="462"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="yfe-m0-73i">
@@ -5335,8 +5326,8 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
                                                     </textField>
-                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_image" translatesAutoresizingMaskIntoConstraints="NO" id="ksv-EK-SPn">
-                                                        <rect key="frame" x="270" y="7.5" width="20" height="20"/>
+                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.up.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ksv-EK-SPn">
+                                                        <rect key="frame" x="270" y="8" width="20" height="19"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="07K-X2-GvF"/>
                                                             <constraint firstAttribute="width" constant="20" id="8eg-es-YIx"/>
@@ -5411,9 +5402,9 @@
                         <outlet property="emptyText" destination="ZFr-aN-BAk" id="NMA-HO-fCF"/>
                         <outlet property="iconAddImage" destination="ksv-EK-SPn" id="fh6-mA-SGz"/>
                         <outlet property="iconBack" destination="f1w-Dt-X3b" id="tOg-1v-7fS"/>
-                        <outlet property="inputChat" destination="r28-fS-Eaf" id="nko-QK-ESj"/>
+                        <outlet property="inputChat" destination="r28-fS-Eaf" id="tdI-ih-Qqp"/>
                         <outlet property="opponentName" destination="5V4-IM-RGf" id="OHb-tY-B4d"/>
-                        <outlet property="opponentStatus" destination="Gn8-LP-Fbb" id="cZu-5i-Nue"/>
+                        <outlet property="view" destination="dyu-xK-uJm" id="hw6-5r-ffg"/>
                         <outlet property="viewInputChat" destination="waf-hd-z7h" id="TIt-25-2oB"/>
                     </connections>
                 </viewController>
@@ -10253,7 +10244,7 @@
         <image name="Artboard 7@0.75x-8" width="286.5" height="986"/>
         <image name="Artboard 9@0.75x-8" width="402" height="228"/>
         <image name="add" width="160" height="160"/>
-        <image name="add_image" width="170.5" height="170.5"/>
+        <image name="arrow.up.circle" catalog="system" width="128" height="121"/>
         <image name="car" width="170.5" height="170.5"/>
         <image name="clock" width="160" height="160"/>
         <image name="direction" width="170.5" height="170.5"/>

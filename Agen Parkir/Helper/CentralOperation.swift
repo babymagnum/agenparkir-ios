@@ -37,7 +37,7 @@ class FacebookLoginOperation: AbstractOperation {
         }
         
         let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://devagenparkir.com/" : "https://agenparkir.com/"
-        let url = "\(root)api/fb-callback?token_access=\(facebookToken ?? "")&player_id=\(UserDefaults.standard.string(forKey: StaticVar.onesignal_player_id) ?? "")"
+        let url = "\(root)api/fb-callback?token_access=\(facebookToken ?? "")&player_id=\(UserDefaults.standard.string(forKey: StaticVar.onesignal_player_id) ?? "")&device_type=I"
         
         Alamofire.request(url, method: .post).responseJSON { (response) in
             switch response.result {
@@ -156,7 +156,8 @@ class LoginOperation: AbstractOperation {
         let param: [String : String] = [
             "email": (loginData?.0)!,
             "password": (loginData?.1)!,
-            "player_id": UserDefaults.standard.string(forKey: StaticVar.onesignal_player_id)!
+            "player_id": UserDefaults.standard.string(forKey: StaticVar.onesignal_player_id)!,
+            "device_type": "I"
         ]
         
         let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://devagenparkir.com/" : "https://agenparkir.com/"

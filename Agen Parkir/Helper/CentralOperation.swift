@@ -219,7 +219,7 @@ class ActivationOperation: AbstractOperation {
     
     private func activation() {
         let root = UserDefaults.standard.string(forKey: StaticVar.applicationState) == "Dev" ? "http://devagenparkir.com/" : "https://agenparkir.com/"
-        let url = "\(root)api/android/activation?otp=\(otp ?? "")"
+        let url = "\(root)api/android/activation?otp=\(otp ?? "")&device_type=I"
         
         Alamofire.request(url, method: .post).responseJSON { (response) in
             

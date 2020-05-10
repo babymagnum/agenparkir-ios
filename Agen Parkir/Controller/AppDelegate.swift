@@ -174,7 +174,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         let buildingName = userInfo[AnyHashable("customerName")]
         
         if let rootViewController = self.window!.rootViewController as? UINavigationController {
-            if "\(type ?? "")" == "news" {
+            if "\(type ?? "")" == "News" {
                 if rootViewController.viewControllers.count == 1 {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         let vc = DetailNewsController()
